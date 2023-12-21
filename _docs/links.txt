@@ -28,4 +28,8 @@ https://www.contentify.org/
 //-----------------
 
 
+https://github.com/majidmohammadpanah/laravel-blog/
+
+https://github.com/DannyFestor/LaravelBlog
+
 
