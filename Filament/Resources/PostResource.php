@@ -33,7 +33,7 @@ class PostResource extends Resource
                             ->required()
                             ->maxLength(2048)
                             ->reactive()
-                            ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
+                            ->afterStateUpdated(static function (\Filament\Forms\Set $set, $state) {
                                 $set('slug', Str::slug($state));
                             }),
                         Forms\Components\TextInput::make('slug')
@@ -78,7 +78,10 @@ class PostResource extends Resource
             ->columns([
                 // Tables\Columns\ImageColumn::make('thumbnail'),
                 SpatieMediaLibraryImageColumn::make('thumbnail'),
-                Tables\Columns\TextColumn::make('title')->searchable(['title', 'body'])->sortable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(['title', 'body'])
+                    ->sortable()
+                    ->wrap(),
                 Tables\Columns\IconColumn::make('active')
                     ->sortable()
                     ->boolean(),

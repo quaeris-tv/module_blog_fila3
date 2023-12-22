@@ -65,7 +65,17 @@ class Post extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['title', 'slug', 'thumbnail', 'body', 'user_id', 'active', 'published_at', 'meta_title', 'meta_description'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'thumbnail',
+        'body',
+        'user_id',
+        'active',
+        'published_at',
+        'meta_title',
+        'meta_description',
+    ];
 
     protected $casts = [
         'published_at' => 'datetime',
@@ -112,7 +122,7 @@ class Post extends BaseModel implements HasMedia
     public function humanReadTime(): Attribute
     {
         return new Attribute(
-            get: function ($value, $attributes): string {
+            get: static function ($value, $attributes): string {
                 $words = Str::wordCount(strip_tags((string) $attributes['body']));
                 $minutes = ceil($words / 200);
 
