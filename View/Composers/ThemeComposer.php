@@ -39,6 +39,23 @@ class ThemeComposer
     }
 
     /**
+     * Undocumented function.
+     *
+     * @return Collection<int, Post>
+     */
+    public function latestPosts()
+    {
+        // Latest posts
+        $latestPosts = Post::where('active', '=', 1)
+        ->whereDate('published_at', '<', Carbon::now())
+        ->orderBy('published_at', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $latestPosts;
+    }
+
+    /**
      * Show the most popular 3 posts based on upvotes.
      *
      * @return Collection<int, Post>

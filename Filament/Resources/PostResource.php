@@ -56,7 +56,7 @@ class PostResource extends Resource
                         SpatieMediaLibraryFileUpload::make('thumbnail')
                             // ->image()
                             // ->maxSize(5000)
-                            // ->multiple()
+                            ->multiple()
                             // ->enableReordering()
                             ->enableOpen()
                             ->enableDownload()
