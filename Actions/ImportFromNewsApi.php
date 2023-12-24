@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions;
 
-use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Post;
+use Illuminate\Support\Facades\Http;
 use Spatie\QueueableAction\QueueableAction;
 
 class ImportFromNewsApi
@@ -15,17 +17,18 @@ class ImportFromNewsApi
     /**
      * Undocumented function.
      */
-    public function execute()
+    public function execute(): void
     {
         // $url = 'https://newsapi.org/v2/top-headlines?country=it&apiKey='.config('services.newsapi.app_key');
         $url = 'https://newsapi.org/v2/everything?q=cripto&sortBy=popularity&apiKey='.config('services.newsapi.app_key');
         $response = Http::get($url);
-        $res = $response->json();
+        Assert::isArray($res = $response->json());
         $posts = $res['articles'];
 
         foreach ($posts as $post) {
             $res = Post::create([
                 'title' => $post['title'],
+                'slug' => Str::slug($post['title'], '-'),
                 'body' => $post['content'],
                 'active' => true,
                 'published_at' => $post['publishedAt'],
@@ -35,6 +38,8 @@ class ImportFromNewsApi
         }
     }
 }
+
+// ricordarsi di eseguire php artisan storage:link per memorizzare le immagini
 
 /*
  "source" => array:2 [▼
