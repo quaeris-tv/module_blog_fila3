@@ -49,7 +49,7 @@ class ThemeComposer
         $latestPosts = Post::where('active', '=', 1)
         ->whereDate('published_at', '<', Carbon::now())
         ->orderBy('published_at', 'desc')
-        ->limit(5)
+        ->limit(6)
         ->get();
 
         return $latestPosts;
