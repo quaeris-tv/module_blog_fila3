@@ -179,7 +179,7 @@ class ThemeComposer
         return $categories;
     }
 
-    public function getFeaturedArticles()
+    public function getFeaturedArticles(): Collection
     {
         $rows = Post::published()
             ->showHomepage()
@@ -190,7 +190,7 @@ class ThemeComposer
         return $rows;
     }
 
-    public function getLatestArticles()
+    public function getLatestArticles(): Collection
     {
         $rows = Post::published()
             ->publishedUntilToday()
@@ -201,7 +201,7 @@ class ThemeComposer
         return $rows;
     }
 
-    public function getAuthors()
+    public function getAuthors(): Collection
     {
         $rows = Profile::ProfileIsAuthor()
             ->take(4)
@@ -210,25 +210,25 @@ class ThemeComposer
         return $rows;
     }
 
-    public function getNavCategories()
+    public function getNavCategories(): Collection
     {
-        $navCategories = Category::has('posts', '>', '0')
+        $navCategories = Category::has('posts', '>', 0)
             ->take(8)
             ->get();
 
         return $navCategories;
     }
 
-    public function getFooterCategories()
+    public function getFooterCategories(): Collection
     {
-        $footerCategories = Category::has('posts', '>', '0')
+        $footerCategories = Category::has('posts', '>', 0)
             ->take(8)
             ->get();
 
         return $footerCategories;
     }
 
-    public function getFooterAuthors()
+    public function getFooterAuthors(): Collection
     {
         $footerAuthors = Profile::profileIsAuthor()
             ->take(8)
@@ -237,7 +237,7 @@ class ThemeComposer
         return $footerAuthors;
     }
 
-    public function getFooterTags()
+    public function getFooterTags(): Collection
     {
         $footerTags = Tag::take(15)->get();
 
