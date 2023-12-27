@@ -285,14 +285,14 @@ class Post extends BaseModel implements HasMedia
      * Scope a query to only include articles that belongs to an author
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the author
+     * @param                                       $profile_id    -> The id of the author
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAuthor($query, string $id)
+    public function scopeAuthor($query, string $profile_id)
     {
-        return $query->whereHas('author', static function ($q) use ($id) {
-            $q->where('id', $id);
+        return $query->whereHas('author', static function ($q) use ($profile_id) {
+            $q->where('id', $profile_id);
         });
     }
 

@@ -6,8 +6,9 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
+use Modules\Blog\Models\Post;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -57,14 +58,9 @@ class Profile extends BaseModel
         'user_id',
     ];
 
-    /**
-     * Get the articles of the user
-     *
-     * @return \App\Role
-     */
-    public function articles()
+    public function articles(): HasMany
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Post::class);
     }
 
     /**
