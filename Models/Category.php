@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -38,8 +40,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  *
  * @mixin \Eloquent
  */
-class Category extends BaseModel
+class Category extends BaseModel implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $fillable = ['title', 'slug'];
 
     public function posts(): BelongsToMany

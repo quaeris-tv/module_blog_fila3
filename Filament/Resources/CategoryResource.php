@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Resources\CategoryResource\Pages;
+use Filament\Resources\Resource;
 use Modules\Blog\Models\Category;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 
 class CategoryResource extends Resource
 {
@@ -36,6 +38,18 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(2048),
+                SpatieMediaLibraryFileUpload::make('image')
+                    // ->image()
+                    // ->maxSize(5000)
+                    // ->multiple()
+                    // ->enableReordering()
+                    ->enableOpen()
+                    ->enableDownload()
+                    ->columnSpanFull()
+                    // ->collection('avatars')
+                    // ->conversion('thumbnail')
+                    ->disk('uploads')
+                    ->directory('photos'),
             ]);
     }
 
@@ -48,6 +62,7 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
                     ->dateTime(),
+                SpatieMediaLibraryImageColumn::make('image'),
             ])
             ->filters([
             ])
