@@ -67,6 +67,7 @@ class PostResource extends Resource
                             ->directory('photos'),
                         Forms\Components\Select::make('categories')
                             ->multiple()
+                            ->required()
                             ->relationship('categories', 'title'),
                     ])->columnSpan(4),
             ])->columns(12);
@@ -76,6 +77,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id'),
                 // Tables\Columns\ImageColumn::make('thumbnail'),
                 SpatieMediaLibraryImageColumn::make('thumbnail'),
                 Tables\Columns\TextColumn::make('title')
