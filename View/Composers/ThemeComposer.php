@@ -10,6 +10,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Post;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Tag;
 
 class ThemeComposer
 {
@@ -65,7 +67,7 @@ class ThemeComposer
         $popularPosts = Post::query()
             ->leftJoin('upvote_downvotes', 'posts.id', '=', 'upvote_downvotes.post_id')
             ->select('posts.*', DB::raw('COUNT(upvote_downvotes.id) as upvote_count'))
-            ->where(function ($query) {
+            ->where(static function ($query) {
                 $query->whereNull('upvote_downvotes.is_upvote')
                     ->orWhere('upvote_downvotes.is_upvote', '=', 1);
             })
@@ -105,7 +107,7 @@ class ThemeComposer
                         WHERE upvote_downvotes.is_upvote = 1 and upvote_downvotes.user_id = ?) as t';
             $recommendedPosts = Post::query()
                 ->leftJoin('category_post as cp', 'posts.id', '=', 'cp.post_id')
-                ->leftJoin(DB::raw($leftJoin), function ($join) {
+                ->leftJoin(DB::raw($leftJoin), static function ($join) {
                     $join->on('t.category_id', '=', 'cp.category_id')
                         ->on('t.post_id', '<>', 'cp.post_id');
                 })
@@ -154,7 +156,7 @@ class ThemeComposer
     //            ->with(['posts' => function ($query) {
     //                $query->orderByDesc('published_at');
     //            }])
-                    ->whereHas('posts', function ($query) {
+                    ->whereHas('posts', static function ($query) {
                         $query
                             ->where('active', '=', 1)
                             ->whereDate('published_at', '<', Carbon::now());
@@ -175,5 +177,70 @@ class ThemeComposer
                     ->get();
 
         return $categories;
+    }
+
+    public function getFeaturedArticles()
+    {
+        $rows = Post::published()
+            ->showHomepage()
+            ->publishedUntilToday()
+            ->orderBy('published_at', 'desc')
+            ->get();
+
+        return $rows;
+    }
+
+    public function getLatestArticles()
+    {
+        $rows = Post::published()
+            ->publishedUntilToday()
+            ->orderBy('published_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return $rows;
+    }
+
+    public function getAuthors()
+    {
+        $rows = Profile::ProfileIsAuthor()
+            ->take(4)
+            ->get();
+
+        return $rows;
+    }
+
+    public function getNavCategories()
+    {
+        $navCategories = Category::has('posts', '>', '0')
+            ->take(8)
+            ->get();
+
+        return $navCategories;
+    }
+
+    public function getFooterCategories()
+    {
+        $footerCategories = Category::has('posts', '>', '0')
+            ->take(8)
+            ->get();
+
+        return $footerCategories;
+    }
+
+    public function getFooterAuthors()
+    {
+        $footerAuthors = Profile::profileIsAuthor()
+            ->take(8)
+            ->get();
+
+        return $footerAuthors;
+    }
+
+    public function getFooterTags()
+    {
+        $footerTags = Tag::take(15)->get();
+
+        return $footerTags;
     }
 }

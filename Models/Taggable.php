@@ -4,34 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Arr;
 
-/**
- * Modules\Tag\Models\Taggable.
- *
- * @property int $tag_id
- * @property string $taggable_type
- * @property int $taggable_id
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $created_by
- * @property string|null $updated_by
- * @property array $custom_properties
- * @method static Builder|Taggable newModelQuery()
- * @method static Builder|Taggable newQuery()
- * @method static Builder|Taggable query()
- * @method static Builder|Taggable whereCreatedAt($value)
- * @method static Builder|Taggable whereCreatedBy($value)
- * @method static Builder|Taggable whereCustomProperties($value)
- * @method static Builder|Taggable whereTagId($value)
- * @method static Builder|Taggable whereTaggableId($value)
- * @method static Builder|Taggable whereTaggableType($value)
- * @method static Builder|Taggable whereUpdatedAt($value)
- * @method static Builder|Taggable whereUpdatedBy($value)
- * @mixin \Eloquent
- */
 class Taggable extends BaseMorphPivot
 {
     /**
@@ -40,6 +14,11 @@ class Taggable extends BaseMorphPivot
      * @var string
      */
     protected $table = 'taggables';  // spatie vuol cosi'
+
+    /**
+     * @var string
+     */
+    protected $connection = 'blog';
 
     /**
      * Undocumented variable.
@@ -86,6 +65,8 @@ class Taggable extends BaseMorphPivot
 
     /**
      * Get the value of custom property with the given name.
+     *
+     * @param mixed|null $default
      */
     public function getCustomProperty(string $propertyName, $default = null): mixed
     {

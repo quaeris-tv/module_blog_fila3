@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Modules\User\Models\User;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\ModelStatus\HasStatuses;
 use Webmozart\Assert\Assert;
 
 /**
@@ -63,6 +65,7 @@ use Webmozart\Assert\Assert;
  */
 class Post extends BaseModel implements HasMedia
 {
+    use HasStatuses;
     use InteractsWithMedia;
 
     protected $fillable = [
@@ -75,9 +78,29 @@ class Post extends BaseModel implements HasMedia
         'published_at',
         'meta_title',
         'meta_description',
+        /*
+         'author_id',
+        'title',
+        'slug',
+        'content',
+        'picture',
+        'category_id',
+        'status',
+        'publish_date',
+        'show_on_homepage',
+        'author_name',
+        'read_time',
+        'excerpt',
+        */
     ];
 
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
     protected $casts = [
+        'date' => 'datetime',
         'published_at' => 'datetime',
     ];
 
@@ -130,5 +153,174 @@ class Post extends BaseModel implements HasMedia
                     .$words.' '.str('word')->plural($words);
             }
         );
+    }
+
+    /**
+     * Scope a query to only include articles different from current article
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeDifferentFromCurrentArticle($query, $current_article)
+    {
+        return $query->where('id', '!=', $current_article);
+    }
+
+    /**
+     * The author that belong to the article.
+     */
+    public function author()
+    {
+        return $this->belongsTo('App\User')->withTrashed();
+    }
+
+    /**
+     * Get the tags of the article
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * Get the comments of the article
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Get the path to the picture
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return "/storage/{$this->picture}";
+    }
+
+    /**
+     * Get the route key for the article.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Scope a query to only include articles
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeArticle($query, $id)
+    {
+        return $query->where('author_id', $id);
+    }
+
+    /**
+     * Scope a query to only include published articles
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        // return $query->where('status', 'published');
+        return $query->currentStatus('published');
+    }
+
+    /**
+     * Scope a query to only include show on homepage articles
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeShowHomepage($query)
+    {
+        return $query->where('show_on_homepage', 1);
+    }
+
+    /**
+     * Scope a query to only include posted articles until today
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublishedUntilToday($query)
+    {
+        return $query->whereDate('published_at', '<=', Carbon::today()->toDateString());
+    }
+
+    /**
+     * Scope a query to only include articles with a specified category
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $id    -> The id of the category
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCategory($query, $id)
+    {
+        return $query->whereHas('category', static function ($q) use ($id) {
+            $q->where('id', $id);
+        });
+    }
+
+    /**
+     * Scope a query to only include articles that belongs to an author
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $id    -> The id of the author
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAuthor($query, $id)
+    {
+        return $query->whereHas('author', static function ($q) use ($id) {
+            $q->where('id', $id);
+        });
+    }
+
+    /**
+     * Scope a query to only include articles with a specified tag
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $id    -> The id of the tag
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTag($query, $id)
+    {
+        return $query->whereHas('tags', static function ($q) use ($id) {
+            $q->where('id', $id);
+        });
+    }
+
+    /**
+     * Scope a query to only include articles which contains searching words
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $searching -> The searching words
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $searching)
+    {
+        return $query->where('title', 'LIKE', "%{$searching}%")
+                     ->orWhere('content', 'LIKE', "%{$searching}%")
+                     ->orWhere('excerpt', 'LIKE', "%{$searching}%");
     }
 }
