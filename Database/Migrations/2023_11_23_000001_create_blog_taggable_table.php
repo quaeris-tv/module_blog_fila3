@@ -22,7 +22,8 @@ class CreateBlogTaggableTable extends XotBaseMigration
         $this->tableCreate(
             static function (Blueprint $table): void {
                 $table->id();
-                $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+                // $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+                $table->foreignId('tag_id')->cascadeOnDelete();
 
                 $table->morphs('taggable');
                 // $table->unique(['tag_id', 'taggable_id', 'taggable_type']);
