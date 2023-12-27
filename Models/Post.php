@@ -164,7 +164,7 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeDifferentFromCurrentArticle($query, $current_article)
+    public function scopeDifferentFromCurrentArticle($query, string $current_article)
     {
         return $query->where('id', '!=', $current_article);
     }
@@ -172,7 +172,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * The author that belong to the article.
      */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
     }
@@ -197,15 +197,15 @@ class Post extends BaseModel implements HasMedia
         return $this->hasMany(Comment::class);
     }
 
-    /**
-     * Get the path to the picture
-     *
-     * @return string
-     */
-    public function path()
-    {
-        return "/storage/{$this->picture}";
-    }
+    // /**
+    //  * Get the path to the picture
+    //  *
+    //  * @return string
+    //  */
+    // public function path()
+    // {
+    //     return "/storage/{$this->picture}";
+    // }
 
     /**
      * Get the route key for the article.
@@ -224,7 +224,7 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeArticle($query, $id)
+    public function scopeArticle($query, string $id)
     {
         return $query->where('author_id', $id);
     }
@@ -274,7 +274,7 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeCategory($query, $id)
+    public function scopeCategory($query, string $id)
     {
         return $query->whereHas('category', static function ($q) use ($id) {
             $q->where('id', $id);
@@ -289,7 +289,7 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeAuthor($query, $id)
+    public function scopeAuthor($query, string $id)
     {
         return $query->whereHas('author', static function ($q) use ($id) {
             $q->where('id', $id);
@@ -304,7 +304,7 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeTag($query, $id)
+    public function scopeTag($query, string $id)
     {
         return $query->whereHas('tags', static function ($q) use ($id) {
             $q->where('id', $id);
@@ -319,7 +319,7 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearch($query, $searching)
+    public function scopeSearch($query, string $searching)
     {
         return $query->where('title', 'LIKE', "%{$searching}%")
                      ->orWhere('content', 'LIKE', "%{$searching}%")
