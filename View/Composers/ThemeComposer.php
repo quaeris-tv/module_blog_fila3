@@ -6,6 +6,7 @@ namespace Modules\Blog\View\Composers;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Modules\Blog\Models\Category;
@@ -247,5 +248,15 @@ class ThemeComposer
         $footerTags = Tag::take(15)->get();
 
         return $footerTags;
+    }
+
+    public function getMoreArticles(Model $model)
+    {
+        return collect([]);
+    }
+
+    public function getPaginatedArticles()
+    {
+        return collect([]);
     }
 }

@@ -50,6 +50,7 @@ class PostResource extends XotBaseResource
                         Forms\Components\Toggle::make('active')
                             ->required(),
                         Forms\Components\DateTimePicker::make('published_at'),
+                        SpatieTagsInput::make('tags'),
                     ])->columnSpan(8),
 
                 Section::make()
@@ -60,8 +61,8 @@ class PostResource extends XotBaseResource
                             // ->maxSize(5000)
                             ->multiple()
                             // ->enableReordering()
-                            ->openable()
-                            ->downloadable()
+                            ->enableOpen()
+                            ->enableDownload()
                             ->columnSpanFull()
                             // ->collection('avatars')
                             // ->conversion('thumbnail')
@@ -70,15 +71,7 @@ class PostResource extends XotBaseResource
                         Forms\Components\Select::make('categories')
                             ->multiple()
                             ->required()
-                            ->relationship('categories', 'title')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                                // Forms\Components\TextInput::make('email')
-                                //    ->required()
-                                //    ->email(),
-                            ]),
-                        SpatieTagsInput::make('tags'),
+                            ->relationship('categories', 'title'),
                     ])->columnSpan(4),
             ])->columns(12);
     }
