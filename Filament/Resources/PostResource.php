@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Resources\PostResource\Pages;
 use Modules\Blog\Models\Post;
+use Filament\Forms\Components\SpatieTagsInput;
 
 class PostResource extends Resource
 {
@@ -48,6 +49,7 @@ class PostResource extends Resource
                         Forms\Components\Toggle::make('active')
                             ->required(),
                         Forms\Components\DateTimePicker::make('published_at'),
+                        SpatieTagsInput::make('tags'),
                     ])->columnSpan(8),
 
                 Forms\Components\Card::make()
