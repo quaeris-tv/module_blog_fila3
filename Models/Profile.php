@@ -8,7 +8,10 @@ namespace Modules\Blog\Models;
 // use Astrotomic\Translatable\Translatable;
 use Modules\Blog\Models\Post;
 use Illuminate\Support\Carbon;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Builder;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -51,31 +54,36 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @mixin \Eloquent
  */
-class Profile extends BaseModel
+class Profile extends BaseModel implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $fillable = [
         'id',
         'user_id',
     ];
 
-    public function articles(): HasMany
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Post>
+     */
+    public function articles()
     {
         return $this->hasMany(Post::class);
     }
 
-    /**
-     * Get the path to the profile picture
-     *
-     * @return string
-     */
-    public function profilePicture()
-    {
-        if ($this->picture) {
-            return "/storage/{$this->picture}";
-        }
+    // /**
+    //  * Get the path to the profile picture
+    //  *
+    //  * @return string
+    //  */
+    // public function profilePicture()
+    // {
+    //     if ($this->picture) {
+    //         return "/storage/{$this->picture}";
+    //     }
 
-        return 'http://i.pravatar.cc/200';
-    }
+    //     return 'http://i.pravatar.cc/200';
+    // }
 
     /**
      * Get the route key for the user.
@@ -87,40 +95,42 @@ class Profile extends BaseModel
         return 'slug';
     }
 
-    /**
-     * Check if the user has admin role
-     *
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        return 1 === $this->role_id;
-    }
+    // /**
+    //  * Check if the user has admin role
+    //  *
+    //  * @return bool
+    //  */
+    // public function isAdmin()
+    // {
+    //     return 1 === $this->role_id;
+    // }
 
-    /**
-     * Check if the user has creator role
-     *
-     * @return bool
-     */
-    public function isAuthor()
-    {
-        return 2 === $this->role_id;
-    }
+    // /**
+    //  * Check if the user has creator role
+    //  *
+    //  * @return bool
+    //  */
+    // public function isAuthor()
+    // {
+    //     return 2 === $this->role_id;
+    // }
 
-    /**
-     * Check if the user has user role
-     *
-     * @return bool
-     */
-    public function isMember()
-    {
-        return 3 === $this->role_id;
-    }
+    // /**
+    //  * Check if the user has user role
+    //  *
+    //  * @return bool
+    //  */
+    // public function isMember()
+    // {
+    //     return 3 === $this->role_id;
+    // }
 
     /**
      * Scope a query to only include users that are authors
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
+     * 
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeProfileIsAuthor($query)
     {
