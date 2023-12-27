@@ -99,7 +99,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'date' => 'datetime',
