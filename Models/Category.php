@@ -7,6 +7,7 @@ namespace Modules\Blog\Models;
 use Carbon\Carbon;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
@@ -60,5 +61,12 @@ class Category extends BaseModel implements HasMedia
         return $this->posts()
                 ->where('active', '=', 1)
                 ->whereDate('published_at', '<', Carbon::now());
+    }
+
+    public function postCounter(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->publishedPosts()->count(),
+        );
     }
 }
