@@ -14,6 +14,7 @@ use Modules\User\Models\User;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStatus\HasStatuses;
+use Spatie\Tags\HasTags;
 use Webmozart\Assert\Assert;
 
 /**
@@ -66,6 +67,7 @@ use Webmozart\Assert\Assert;
 class Post extends BaseModel implements HasMedia
 {
     use HasStatuses;
+    use HasTags;
     use InteractsWithMedia;
 
     protected $fillable = [
@@ -172,7 +174,7 @@ class Post extends BaseModel implements HasMedia
      */
     public function author()
     {
-        return $this->belongsTo('App\User')->withTrashed();
+        return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
     }
 
     /**
@@ -180,10 +182,10 @@ class Post extends BaseModel implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
+    // public function tags()
+    // {
+    //    return $this->belongsToMany(Tag::class);
+    // }
 
     /**
      * Get the comments of the article
