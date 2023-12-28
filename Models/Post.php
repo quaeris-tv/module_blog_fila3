@@ -18,50 +18,84 @@ use Spatie\Tags\HasTags;
 use Webmozart\Assert\Assert;
 
 /**
- * Modules\Blog\Models\Post.
+ * Modules\Blog\Models\Post
  *
- * @property int                                            $id
- * @property string                                         $title
- * @property string                                         $slug
- * @property string|null                                    $thumbnail
- * @property string                                         $body
- * @property int                                            $active
- * @property \Illuminate\Support\Carbon|null                $published_at
- * @property string                                         $user_id
- * @property \Illuminate\Support\Carbon|null                $created_at
- * @property \Illuminate\Support\Carbon|null                $updated_at
- * @property string|null                                    $meta_title
- * @property string|null                                    $meta_description
- * @property Collection<int, \Modules\Blog\Models\Category> $categories
- * @property int|null                                       $categories_count
- * @property string                                         $human_read_time
- * @property User|null                                      $user
- *
- * @method static \Illuminate\Database\Eloquent\Builder|Post   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Post   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Post   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereMetaTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   wherePublishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereThumbnail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Post   whereUserId($value)
+ * @property int $id
+ * @property string $title
+ * @property string $slug
+ * @property string|null $thumbnail
+ * @property string $body
+ * @property int $active
+ * @property Carbon|null $published_at
+ * @property string $user_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $meta_title
+ * @property string|null $meta_description
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property int|null $author_id
+ * @property int $show_on_homepage
+ * @property int|null $read_time
+ * @property string|null $excerpt
+ * @property Carbon|null $deleted_at
+ * @property string|null $deleted_by
+ * @property-read \Modules\Blog\Models\Profile|null $author
+ * @property-read Collection<int, \Modules\Blog\Models\Category> $categories
+ * @property-read int|null $categories_count
+ * @property-read Collection<int, \Modules\Blog\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @property-read string $human_read_time
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property-read int|null $media_count
+ * @property Collection<int, \Modules\Blog\Models\Tag> $tags
+ * @property-read Collection<int, \Spatie\ModelStatus\Status> $statuses
+ * @property-read int|null $statuses_count
+ * @property-read int|null $tags_count
+ * @property-read User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Post article(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post author(string $profile_id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post category(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post currentStatus(...$names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post differentFromCurrentArticle(string $current_article)
  * @method static \Modules\Blog\Database\Factories\PostFactory factory($count = null, $state = [])
- *
- * @property string|null                                                                                                $updated_by
- * @property string|null                                                                                                $created_by
- * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- * @property int|null                                                                                                   $media_count
- *
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post otherCurrentStatus(...$names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post published()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post publishedUntilToday()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post search(string $searching)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post showHomepage()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post tag(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereExcerpt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereMetaTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereReadTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereShowOnHomepage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedBy($value)
- *
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withAllTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withAnyTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post withoutTrashed()
  * @mixin \Eloquent
  */
 class Post extends BaseModel implements HasMedia
@@ -190,7 +224,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * Get the comments of the article
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
      */
     public function comments()
     {

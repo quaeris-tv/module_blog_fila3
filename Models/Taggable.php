@@ -6,6 +6,34 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Support\Arr;
 
+/**
+ * Modules\Blog\Models\Taggable
+ *
+ * @property int $id
+ * @property int $tag_id
+ * @property string $taggable_type
+ * @property int $taggable_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property array $custom_properties
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereTagId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereTaggableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereTaggableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable withoutTrashed()
+ * @mixin \Eloquent
+ */
 class Taggable extends BaseMorphPivot
 {
     /**
