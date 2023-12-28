@@ -250,11 +250,17 @@ class ThemeComposer
         return $footerTags;
     }
 
+    /**
+     * @return \Illuminate\Support\Collection<(int|string), mixed>
+     */
     public function getMoreArticles(Model $model)
     {
         return collect([]);
     }
 
+    /**
+     * @return \Illuminate\Support\Collection<(int|string), mixed>
+     */
     public function getPaginatedArticles()
     {
         return collect([]);
