@@ -1,6 +1,6 @@
 https://github.com/thedevdojo/pines
 
-https://github.com/stephenjude/filament-blog
+https://github.com/stephenjude/filament-blog // faceless
 
 // per filament 3
 https://github.com/gomzyakov/laravel-blog

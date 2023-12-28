@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Modules\Blog\Models\Category.
@@ -45,11 +45,23 @@ class Category extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['title', 'slug'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'name',
+        'slug',
+        'picture',
+        'description',
+    ];
 
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function articles(): BelongsToMany
+    {
+        return $this->belongsToMany(Article::class);
     }
 
     public function publishedPosts(): BelongsToMany

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Xot\Services\FactoryService;
 use Modules\Xot\Traits\Updater;
 
@@ -21,6 +22,7 @@ abstract class BaseModel extends Model
     use HasFactory;
     // use Searchable;
     // use Cachable;
+    use SoftDeletes;
     use Updater;
 
     /**

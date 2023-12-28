@@ -6,6 +6,7 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 // //use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -13,6 +14,7 @@ use Modules\Xot\Traits\Updater;
  */
 abstract class BasePivot extends Pivot
 {
+    use SoftDeletes;
     use Updater;
 
     /**
@@ -41,9 +43,9 @@ abstract class BasePivot extends Pivot
      * @var array<string, string>
      */
     protected $casts = [
-        'id'=>'string', //must be string else primary key of related model will be typed as int
+        'id' => 'string', // must be string else primary key of related model will be typed as int
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
     ];
 
     /**

@@ -47,6 +47,8 @@ class Comment extends BaseModel
         'post_id',
         'user_id',
         'parent_id',
+        'author_id',
+        'article_id',
     ];
 
     public function user(): BelongsTo
@@ -54,14 +56,38 @@ class Comment extends BaseModel
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * The comment that belong to the author.
+     */
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
+    }
+
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
     }
 
+    /**
+     * The comment that belong to the article.
+     */
+    public function article(): BelongsTo
+    {
+        return $this->belongsTo(Article::class);
+    }
+
     public function parentComment(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    /**
+     * The childrens of a comment(reply).
+     */
+    public function childrens()
+    {
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     public function comments(): HasMany
