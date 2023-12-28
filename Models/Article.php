@@ -72,6 +72,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         // 'images' => 'array',
         'date' => 'datetime',
         'published_at' => 'datetime',
+        'active' => 'boolean',
     ];
 
     // public function path()
@@ -86,7 +87,8 @@ class Article extends BaseModel implements Feedable, HasMedia
 
     public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)
+            ->withTimestamps();
     }
 
     // ----- Feed ------

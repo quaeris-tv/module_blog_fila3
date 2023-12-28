@@ -3,7 +3,9 @@ https://github.com/thedevdojo/pines
 https://github.com/stephenjude/filament-blog // faceless
 
 // per filament 3
-https://github.com/gomzyakov/laravel-blog
+https://github.com/gomzyakov/laravel-blog    // THEME THREE
+
+https://github.com/lara-zeus/sky  // Theme SEVEN
 
 
 
@@ -31,5 +33,13 @@ https://www.contentify.org/
 https://github.com/majidmohammadpanah/laravel-blog/
 
 https://github.com/DannyFestor/LaravelBlog
+
+https://github.com/pboivin/filament-peek-demo/    // tipo fabricator ..
+
+https://github.com/khouloudhaddad/filamentBlog/
+
+https://github.com/leandrocfe/filament-blog
+
+
 
 
