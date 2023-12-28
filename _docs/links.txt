@@ -7,6 +7,28 @@ https://github.com/gomzyakov/laravel-blog    // THEME THREE
 
 https://github.com/lara-zeus/sky  // Theme SEVEN
 
+https://github.com/l4christ/FilamentBlog // Theme EIGHT
+
+https://github.com/ekobudigs/laravel-blog-filament // Theme Nine
+
+https://github.com/fadjarrafi/portoblog  // Theme Ten
+
+https://github.com/maitanchan  // Theme Eleven
+
+https://github.com/MohamedA1998/BlogPostFilament // Theme Twelve
+
+https://github.com/kamal-abdul-khalik/filament-blog //Theme 13
+
+https://github.com/iislamtaleb/Laravel-Simple-Blog // Theme 14
+
+https://github.com/italo-vinicius/Blog-Filament // Theme 15
+
+
+
+
+
+
+
 
 
 https://github.com/codewithdary/laravel-blog-template
