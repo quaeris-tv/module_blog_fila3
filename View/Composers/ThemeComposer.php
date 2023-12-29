@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
-use Modules\Blog\Models\Category;
-use Modules\Blog\Models\Post;
-use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
+use Modules\Blog\Models\Post;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ThemeComposer
 {
@@ -24,6 +25,18 @@ class ThemeComposer
     public function getPosts()
     {
         return Post::get();
+    }
+
+        /**
+     * Undocumented function.
+     *
+     * @return Collection<int, Post>
+     */
+    public function getPostsByCategory(string $category_name)
+    {
+        return Post::whereHas('categories', function (Builder $query) use ($category_name) {
+                $query->where('title', 'like', $category_name);
+            })->get();
     }
 
     /**
