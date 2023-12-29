@@ -32,6 +32,7 @@ class CategoryResource extends XotBaseResource
                     ->required()
                     ->maxLength(2048)
                     ->reactive()
+                    ->unique()
                     // ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
                     //     $set('slug', Str::slug($state));
                     // })
