@@ -11,17 +11,18 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Filament\Resources\Resource;
 use Modules\Blog\Models\Category;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 
-class CategoryResource extends Resource
+class CategoryResource extends XotBaseResource
 {
-    protected static ?string $model = Category::class;
+    // protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Content';
+    // protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {

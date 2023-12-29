@@ -19,11 +19,11 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class PostResource extends XotBaseResource
 {
-    protected static ?string $model = Post::class;
+    // protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static ?string $navigationGroup = 'Content';
+    // protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {

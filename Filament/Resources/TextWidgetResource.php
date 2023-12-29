@@ -5,21 +5,22 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
+use Filament\Resources\Resource;
 use Modules\Blog\Models\TextWidget;
+use Modules\Xot\Filament\Resources\XotBaseResource;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
 
-class TextWidgetResource extends Resource
+class TextWidgetResource extends XotBaseResource
 {
-    protected static ?string $model = TextWidget::class;
+    // protected static ?string $model = TextWidget::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Content';
+    // protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {
