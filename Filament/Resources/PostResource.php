@@ -69,7 +69,7 @@ class PostResource extends XotBaseResource
                             ->disk('uploads')
                             ->directory('photos'),
                         Forms\Components\Select::make('categories')
-                            ->multiple()
+                            // ->multiple()
                             ->required()
                             ->relationship('categories', 'title')
                             ->createOptionForm([
