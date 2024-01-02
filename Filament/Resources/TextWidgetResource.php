@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Resources\Resource;
+use Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
 use Modules\Blog\Models\TextWidget;
 use Modules\Xot\Filament\Resources\XotBaseResource;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
 
 class TextWidgetResource extends XotBaseResource
 {

@@ -29,8 +29,8 @@ class CreateArticlesTable extends XotBaseMigration
                 $table->date('published_at')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
-                $table->foreign('category_id'); //->references('id')->on('categories');
-                $table->foreign('author_id'); //->references('id')->on('users');
+                $table->foreign('category_id'); // ->references('id')->on('categories');
+                $table->foreign('author_id'); // ->references('id')->on('users');
             }
         );
         // -- UPDATE --

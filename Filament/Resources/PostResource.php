@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Post;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\SpatieTagsInput;
-use Modules\Xot\Filament\Resources\XotBaseResource;
-use Modules\Blog\Filament\Resources\PostResource\Pages;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Modules\Blog\Filament\Resources\PostResource\Filters\CategoryFilter;
+use Modules\Blog\Filament\Resources\PostResource\Pages;
+use Modules\Blog\Models\Post;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class PostResource extends XotBaseResource
 {
@@ -103,7 +103,7 @@ class PostResource extends XotBaseResource
                     ->dateTime(),
             ])
             ->filters([
-                CategoryFilter::make(), 
+                CategoryFilter::make(),
             ])
             ->actions([
                 //  Tables\Actions\ViewAction::make(),

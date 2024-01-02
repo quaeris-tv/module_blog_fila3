@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions;
 
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Post;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use Modules\Blog\Models\Post;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class ImportFromNewsApi
 {
