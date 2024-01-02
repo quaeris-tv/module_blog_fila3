@@ -36,7 +36,10 @@ class ThemeComposer
     {
         return Post::whereHas('categories', function (Builder $query) use ($category_name) {
                 $query->where('title', 'like', $category_name);
-            })->get();
+            })
+            ->orderByDesc('created_at')
+            ->limit(6)
+            ->get();
     }
 
     /**
