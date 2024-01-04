@@ -187,7 +187,7 @@ class Post extends BaseModel implements HasMedia
                 $words = Str::wordCount(strip_tags((string) $attributes['body']));
                 $minutes = ceil($words / 200);
 
-                return $minutes.' '.str('min')->plural($minutes).', '
+                return $minutes.' '.str('min')->plural((int) $minutes).', '
                     .$words.' '.str('word')->plural($words);
             }
         );
