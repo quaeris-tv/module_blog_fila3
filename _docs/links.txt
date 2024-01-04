@@ -3,6 +3,9 @@ https://github.com/thedevdojo/pines
 https://github.com/stephenjude/filament-blog // faceless
 
 // per filament 3
+
+https://github.com/pboivin/filament-peek-demo // THEME TWO
+
 https://github.com/gomzyakov/laravel-blog    // THEME THREE
 
 https://github.com/lara-zeus/sky  // Theme SEVEN
