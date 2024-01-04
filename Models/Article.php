@@ -18,6 +18,7 @@ use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags;
 use Webmozart\Assert\Assert;
 
+<<<<<<< HEAD
 /**
  * Modules\Blog\Models\Article.
  *
@@ -67,6 +68,8 @@ use Webmozart\Assert\Assert;
  *
  * @mixin \Eloquent
  */
+=======
+>>>>>>> 16936f4 (up)
 class Article extends BaseModel implements Feedable, HasMedia
 {
     use HasStatuses;
@@ -81,6 +84,14 @@ class Article extends BaseModel implements Feedable, HasMedia
         'body',
         'images',
         'viewCount',
+
+        'content_blocks',
+        'footer_blocks',
+        'is_featured',
+        'main_image_upload',
+        'main_image_url',
+        'published_at',
+
         /*
         'title',
         'slug',
@@ -126,6 +137,11 @@ class Article extends BaseModel implements Feedable, HasMedia
         'date' => 'datetime',
         'published_at' => 'datetime',
         'active' => 'boolean',
+        'created_at' => 'datetime',
+        'published_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'content_blocks' => 'array',
+        'footer_blocks' => 'array',
     ];
 
     // public function path()

@@ -42,6 +42,30 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->renameColumn('auth_user_id', 'user_id');
                 }
                 */
+                if (! $this->hasColumn('published_at')) {
+                    $table->dateTime('published_at')->nullable();
+                }
+                if (! $this->hasColumn('slug')) {
+                    $table->string('slug')->unique();
+                }
+                if (! $this->hasColumn('title')) {
+                    $table->string('title');
+                }
+                if (! $this->hasColumn('content_blocks')) {
+                    $table->text('content_blocks')->nullable();
+                }
+                if (! $this->hasColumn('footer_blocks')) {
+                    $table->text('footer_blocks')->nullable();
+                }
+                if (! $this->hasColumn('main_image_url')) {
+                    $table->text('main_image_url')->nullable();
+                }
+                if (! $this->hasColumn('main_image_upload')) {
+                    $table->text('main_image_upload')->nullable();
+                }
+                if (! $this->hasColumn('is_featured')) {
+                    $table->boolean('is_featured')->default(false);
+                }
 
                 $this->updateTimestamps($table, true);
             }
