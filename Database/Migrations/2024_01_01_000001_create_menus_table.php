@@ -31,7 +31,7 @@ class CreateMenusTable extends XotBaseMigration
                 // if (! $this->hasColumn('order_column')) {
                 //    $table->integer('order_column')->nullable();
                 // }
-                $this->updateTimestamps(table: $table, hasSoftDeletes: false);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

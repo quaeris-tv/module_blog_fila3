@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modules\Blog\View\Components;
+namespace Modules\Blog\View\Components\Article;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
-use Modules\Blog\Models\Menu as MenuModel;
 use Modules\Xot\Actions\GetViewAction;
 
 // use Modules\Xot\View\Components\XotBaseComponent;
@@ -14,10 +13,10 @@ use Modules\Xot\Actions\GetViewAction;
 /**
  * .
  */
-class Menu extends Component
+class Footer extends Component
 {
     public function __construct(
-        public string $name,
+        public array $blocks,
         public string $tpl = 'v1')
     {
     }
@@ -28,15 +27,8 @@ class Menu extends Component
          * @phpstan-var view-string
          */
         $view = app(GetViewAction::class)->execute($this->tpl);
-        $menu = MenuModel::firstOrCreate(['name' => $this->name]);
 
-        $view_params = [
-            'menu' => $menu,
-        ];
-        if (null === $menu->items) {
-            $menu->items = [];
-            $menu->save();
-        }
+        $view_params = [];
 
         return view($view, $view_params);
     }
