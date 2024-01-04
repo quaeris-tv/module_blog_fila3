@@ -1,7 +1,7 @@
 @props(['article'])
 
 <div>
-    <a class="block text-black" href="{{-- route('post.show',['slug'=>$post->slug]) --}}">
+    <a class="block text-black" href="{{ $this->url('show', ['record' => $article]) }}">
         <img
             class="h-[200px] w-full object-cover object-center bg-gray-100"
             src="{{-- $article->getMainImage() --}}"

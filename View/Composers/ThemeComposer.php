@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Post;
 use Modules\Blog\Models\Profile;
@@ -34,7 +35,7 @@ class ThemeComposer
      */
     public function getPostsByCategory(string $category_name)
     {
-        return Post::whereHas('categories', function (Builder $query) use ($category_name) {
+        return Post::whereHas('categories', static function (Builder $query) use ($category_name) {
             $query->where('title', 'like', $category_name);
         })
             ->orderByDesc('created_at')
@@ -198,15 +199,15 @@ class ThemeComposer
 
     public function getFeaturedArticles(): Collection
     {
-        $rows = Post::published()
+        $rows = Article::published()
             ->showHomepage()
             ->publishedUntilToday()
             ->orderBy('published_at', 'desc')
             ->get();
         if (0 === $rows->count()) {
-            $rows = Post::get();
+            $rows = Article::get();
             // dddx($rows);
-            Post::whereRaw('1=1')->update(['show_on_homepage' => true]);
+            Article::whereRaw('1=1')->update(['show_on_homepage' => true]);
         }
 
         return $rows;

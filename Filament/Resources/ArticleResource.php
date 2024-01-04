@@ -6,6 +6,7 @@ namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -50,6 +51,18 @@ class ArticleResource extends XotBaseResource
                     ->columnSpan(1)
                     ->required(),
                 */
+                Forms\Components\Select::make('categories')
+                            // ->multiple()
+                            ->required()
+                            ->relationship('categories', 'title')
+                            ->createOptionForm([
+                                Forms\Components\TextInput::make('name')
+                                    ->required(),
+                                // Forms\Components\TextInput::make('email')
+                                //    ->required()
+                                //    ->email(),
+                            ]),
+                SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()
                     ->required(),
@@ -117,7 +130,7 @@ class ArticleResource extends XotBaseResource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('category.name')
+                Tables\Columns\TextColumn::make('categories.title')
                     ->sortable()
                     ->searchable(),
 

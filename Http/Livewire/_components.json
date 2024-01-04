@@ -1,1 +1,1 @@
-[{"class_name":"Auth\\FilamentLogin","comp_name":"auth.filament-login","comp_ns":"Modules\\Blog\\Http\\Livewire\\Auth\\FilamentLogin"}]
+[{"class_name":"Article\\Lists","comp_name":"article.lists","comp_ns":"Modules\\Blog\\Http\\Livewire\\Article\\Lists"}]
