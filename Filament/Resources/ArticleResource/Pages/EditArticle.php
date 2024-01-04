@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
-use Modules\Blog\Filament\Resources\ArticleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Modules\Blog\Filament\Resources\ArticleResource;
 
 class EditArticle extends EditRecord
 {
