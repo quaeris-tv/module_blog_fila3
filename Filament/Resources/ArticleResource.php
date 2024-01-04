@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Filament\Fields\ArticleFooter;
 use Modules\Blog\Filament\Fields\ArticleContent;
-use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Filament\Fields\ArticleFooter;
 use Modules\Blog\Filament\Resources\ArticleResource\Pages;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Modules\Blog\Models\Article;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class ArticleResource extends XotBaseResource
 {
