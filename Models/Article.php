@@ -18,7 +18,6 @@ use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags;
 use Webmozart\Assert\Assert;
 
-<<<<<<< HEAD
 /**
  * Modules\Blog\Models\Article.
  *
@@ -68,8 +67,6 @@ use Webmozart\Assert\Assert;
  *
  * @mixin \Eloquent
  */
-=======
->>>>>>> 16936f4 (up)
 class Article extends BaseModel implements Feedable, HasMedia
 {
     use HasStatuses;
