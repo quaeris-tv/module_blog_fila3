@@ -34,7 +34,7 @@
             <div>
                 @foreach ($postChunks as $chunk)
                     @if ($currentChunk >= $loop->index)
-                        @livewire('post-chunk', ['postIds' => $chunk], key("chunk-{$queryCount}-{$loop->index}"))
+                        @livewire('article.chunk', ['postIds' => $chunk], key("chunk-{$queryCount}-{$loop->index}"))
                     @endif
                 @endforeach
             </div>
