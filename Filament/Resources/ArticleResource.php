@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Fields\ArticleContent;
-use Modules\Blog\Filament\Fields\ArticleFooter;
-use Modules\Blog\Filament\Resources\ArticleResource\Pages;
 use Modules\Blog\Models\Article;
+use Modules\Blog\Filament\Fields\ArticleFooter;
+use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Filament\Resources\ArticleResource\Pages;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class ArticleResource extends XotBaseResource
 {
@@ -90,9 +91,21 @@ class ArticleResource extends XotBaseResource
                 ->label('Main image URL')
                 ->columnSpanFull(),
 
-            Forms\Components\FileUpload::make('main_image_upload')
-                ->label('Main image upload')
-                ->columnSpanFull(),
+            // Forms\Components\FileUpload::make('main_image_upload')
+            //     ->label('Main image upload')
+            //     ->columnSpanFull(),
+            SpatieMediaLibraryFileUpload::make('main_image_upload')
+                // ->image()
+                // ->maxSize(5000)
+                // ->multiple()
+                // ->enableReordering()
+                ->openable()
+                ->downloadable()
+                ->columnSpanFull()
+                // ->collection('avatars')
+                // ->conversion('thumbnail')
+                ->disk('uploads')
+                ->directory('photos'),
         ]);
     }
 
@@ -124,6 +137,8 @@ class ArticleResource extends XotBaseResource
                     Tables\Actions\DeleteAction::make(),
                 ]),
                 */
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->defaultSort('published_at', 'desc')
             ->filters([
