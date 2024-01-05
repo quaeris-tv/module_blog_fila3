@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Filament\Fields;
+namespace Modules\Blog\Filament\Fields;
 
 use FilamentTiptapEditor\TiptapEditor;
 
