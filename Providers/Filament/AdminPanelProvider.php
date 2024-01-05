@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Providers\Filament;
 
 use Filament\Panel;
-use Pboivin\FilamentPeek\FilamentPeekPlugin;
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
+use Pboivin\FilamentPeek\FilamentPeekPlugin;
 
 class AdminPanelProvider extends XotBasePanelProvider
 {
