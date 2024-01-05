@@ -213,12 +213,12 @@ class ThemeComposer
         return $rows;
     }
 
-    public function getLatestArticles(): Collection
+    public function getLatestArticles(int $number = 3): Collection
     {
-        $rows = Post::published()
+        $rows = Article::published()
             ->publishedUntilToday()
             ->orderBy('published_at', 'desc')
-            ->take(3)
+            ->take($number)
             ->get();
 
         return $rows;
