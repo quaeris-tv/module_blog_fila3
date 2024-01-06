@@ -259,6 +259,18 @@ class Article extends BaseModel implements Feedable, HasMedia
         return $this->hasMany(Comment::class);
     }
 
+    /**
+     * Get the article's main image.
+     */
+    protected function mainImage(): Attribute
+    {
+        return new Attribute(
+            get: static function ($value, $attributes): string {
+                return $attributes['main_image_upload'] ?? $attributes['main_image_url'];
+            }
+        );
+    }
+
     // /**
     //  * Get the path to the picture
     //  *
