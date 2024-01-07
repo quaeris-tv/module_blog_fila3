@@ -126,6 +126,7 @@ class ArticleResource extends XotBaseResource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('title')
                     ->sortable()
                     ->searchable(),

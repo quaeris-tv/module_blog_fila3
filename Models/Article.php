@@ -77,7 +77,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         'user_id',
         'title',
         'slug',
-        'description',
+        // 'description',
         'body',
         'images',
         'viewCount',
@@ -267,6 +267,21 @@ class Article extends BaseModel implements Feedable, HasMedia
         return new Attribute(
             get: static function ($value, $attributes): string {
                 return $attributes['main_image_upload'] ?? $attributes['main_image_url'];
+            }
+        );
+    }
+
+    /**
+     * Get the article's description.
+     */
+    protected function description(): Attribute
+    {
+        return new Attribute(
+            get: static function ($value, $attributes): string {
+                // dddx([$value, $attributes, $attributes['content_blocks']]);
+                // dddx(collect(json_decode($attributes['content_blocks']))->where('type', 'paragraph')->first()->data->text);
+                $string  = collect(json_decode($attributes['content_blocks']))->where('type', 'paragraph')->first()->data->text;
+                return strip_tags(substr($string, 0, 100)).'...';
             }
         );
     }
