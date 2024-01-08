@@ -12,6 +12,7 @@ use Modules\Xot\Actions\GetViewAction;
 class Chunk extends Component
 {
     public $postIds;
+
     public string $tpl = 'v1';
 
     public function render(): Renderable

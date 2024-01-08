@@ -53,15 +53,15 @@ class ArticleResource extends XotBaseResource
                 */
                 Forms\Components\Select::make('categories')
                             // ->multiple()
-                            ->required()
-                            ->relationship('categories', 'title')
-                            ->createOptionForm([
-                                Forms\Components\TextInput::make('name')
-                                    ->required(),
-                                // Forms\Components\TextInput::make('email')
-                                //    ->required()
-                                //    ->email(),
-                            ]),
+                    ->required()
+                    ->relationship('categories', 'title')
+                    ->createOptionForm([
+                        Forms\Components\TextInput::make('name')
+                            ->required(),
+                        // Forms\Components\TextInput::make('email')
+                        //    ->required()
+                        //    ->email(),
+                    ]),
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()

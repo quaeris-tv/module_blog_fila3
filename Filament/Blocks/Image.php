@@ -24,13 +24,13 @@ class Image
                         // ->maxSize(5000)
                         // ->multiple()
                         // ->enableReordering()
-                        ->openable()
-                        ->downloadable()
-                        ->columnSpanFull()
+                    ->openable()
+                    ->downloadable()
+                    ->columnSpanFull()
                         // ->collection('avatars')
                         // ->conversion('thumbnail')
-                        ->disk('uploads')
-                        ->directory('photos'),
+                    ->disk('uploads')
+                    ->directory('photos'),
 
                 TextInput::make('url')
                     ->label('or Image URL'),
@@ -45,7 +45,7 @@ class Image
                 TextInput::make('caption')
                     ->columnSpanFull(),
             ])
-            ->columns('form' === $context ? 2 : 1);
+            ->columns($context === 'form' ? 2 : 1);
     }
 
     public static function getRatios(): array

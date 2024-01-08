@@ -76,8 +76,8 @@ class Category extends BaseModel implements HasMedia
         //         ->whereDate('published_at', '<', Carbon::now());
         // });
         return $this->posts()
-                ->where('active', '=', 1)
-                ->whereDate('published_at', '<', Carbon::now());
+            ->where('active', '=', 1)
+            ->whereDate('published_at', '<', Carbon::now());
     }
 
     public function postCounter(): Attribute

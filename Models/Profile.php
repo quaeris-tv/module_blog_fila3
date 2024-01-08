@@ -127,8 +127,7 @@ class Profile extends BaseModel implements HasMedia
     /**
      * Scope a query to only include users that are authors.
      *
-     * @param Builder $query
-     *
+     * @param  Builder  $query
      * @return Builder
      */
     public function scopeProfileIsAuthor($query)

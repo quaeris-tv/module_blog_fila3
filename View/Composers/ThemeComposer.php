@@ -50,10 +50,10 @@ class ThemeComposer
     {
         // Latest post
         $latestPost = Post::where('active', '=', 1)
-        ->whereDate('published_at', '<', Carbon::now())
-        ->orderBy('published_at', 'desc')
-        ->limit(1)
-        ->first();
+            ->whereDate('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'desc')
+            ->limit(1)
+            ->first();
 
         return $latestPost;
     }
@@ -67,10 +67,10 @@ class ThemeComposer
     {
         // Latest posts
         $latestPosts = Post::where('active', '=', 1)
-        ->whereDate('published_at', '<', Carbon::now())
-        ->orderBy('published_at', 'desc')
-        ->limit(6)
-        ->get();
+            ->whereDate('published_at', '<', Carbon::now())
+            ->orderBy('published_at', 'desc')
+            ->limit(6)
+            ->get();
 
         return $latestPosts;
     }
@@ -174,25 +174,25 @@ class ThemeComposer
     //            ->with(['posts' => function ($query) {
     //                $query->orderByDesc('published_at');
     //            }])
-                    ->whereHas('posts', static function ($query) {
-                        $query
-                            ->where('active', '=', 1)
-                            ->whereDate('published_at', '<', Carbon::now());
-                    })
-                    ->select('categories.*')
-                    ->selectRaw('MAX(posts.published_at) as max_date')
-                    ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
-                    ->leftJoin('posts', 'posts.id', '=', 'category_post.post_id')
-                    ->orderByDesc('max_date')
-                    ->groupBy([
-                        'categories.id',
-                        'categories.title',
-                        'categories.slug',
-                        'categories.created_at',
-                        'categories.updated_at',
-                    ])
-                    ->limit(5)
-                    ->get();
+            ->whereHas('posts', static function ($query) {
+                $query
+                    ->where('active', '=', 1)
+                    ->whereDate('published_at', '<', Carbon::now());
+            })
+            ->select('categories.*')
+            ->selectRaw('MAX(posts.published_at) as max_date')
+            ->leftJoin('category_post', 'categories.id', '=', 'category_post.category_id')
+            ->leftJoin('posts', 'posts.id', '=', 'category_post.post_id')
+            ->orderByDesc('max_date')
+            ->groupBy([
+                'categories.id',
+                'categories.title',
+                'categories.slug',
+                'categories.created_at',
+                'categories.updated_at',
+            ])
+            ->limit(5)
+            ->get();
 
         return $categories;
     }
@@ -204,7 +204,7 @@ class ThemeComposer
             ->publishedUntilToday()
             ->orderBy('published_at', 'desc')
             ->get();
-        if (0 === $rows->count()) {
+        if ($rows->count() === 0) {
             $rows = Article::get();
             // dddx($rows);
             Article::whereRaw('1=1')->update(['show_on_homepage' => true]);

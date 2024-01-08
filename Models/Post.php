@@ -166,7 +166,7 @@ class Post extends BaseModel implements HasMedia
 
     public function getThumbnail(): ?string
     {
-        if (null !== $this->getMedia()->first()) {
+        if ($this->getMedia()->first() !== null) {
             $url = $this->getMedia()->first()->getUrl();
 
             return $url;
@@ -196,8 +196,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include articles different from current article.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeDifferentFromCurrentArticle($query, string $current_article)
@@ -256,8 +255,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeArticle($query, string $id)
@@ -268,8 +266,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include published articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublished($query)
@@ -281,8 +278,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include show on homepage articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeShowHomepage($query)
@@ -293,8 +289,7 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include posted articles until today.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublishedUntilToday($query)
@@ -305,9 +300,8 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include articles with a specified category.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the category
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param    $id    -> The id of the category
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCategory($query, string $id)
@@ -320,9 +314,8 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include articles that belongs to an author.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $profile_id -> The id of the author
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param    $profile_id -> The id of the author
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAuthor($query, string $profile_id)
@@ -335,9 +328,8 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include articles with a specified tag.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the tag
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param    $id    -> The id of the tag
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeTag($query, string $id)
@@ -350,15 +342,14 @@ class Post extends BaseModel implements HasMedia
     /**
      * Scope a query to only include articles which contains searching words.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $searching -> The searching words
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param    $searching -> The searching words
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSearch($query, string $searching)
     {
         return $query->where('title', 'LIKE', "%{$searching}%")
-                     ->orWhere('content', 'LIKE', "%{$searching}%")
-                     ->orWhere('excerpt', 'LIKE', "%{$searching}%");
+            ->orWhere('content', 'LIKE', "%{$searching}%")
+            ->orWhere('excerpt', 'LIKE', "%{$searching}%");
     }
 }

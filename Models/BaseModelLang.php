@@ -21,6 +21,7 @@ abstract class BaseModelLang extends Model
 {
     use HasFactory;
     use LinkedTrait;
+
     // use Searchable;
     use SoftDeletes;
     use Updater;
