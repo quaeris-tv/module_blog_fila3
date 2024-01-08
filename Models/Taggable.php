@@ -96,7 +96,7 @@ class Taggable extends BaseMorphPivot
     /**
      * Get the value of custom property with the given name.
      *
-     * @param  mixed|null  $default
+     * @param mixed|null $default
      */
     public function getCustomProperty(string $propertyName, $default = null): mixed
     {

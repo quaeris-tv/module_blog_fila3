@@ -192,7 +192,7 @@ class Article extends BaseModel implements Feedable, HasMedia
 
     public function getThumbnail(): ?string
     {
-        if ($this->getMedia()->first() !== null) {
+        if (null !== $this->getMedia()->first()) {
             $url = $this->getMedia()->first()->getUrl();
 
             return $url;
@@ -222,7 +222,8 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include articles different from current article.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeDifferentFromCurrentArticle($query, string $current_article)
@@ -309,7 +310,8 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include articles.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeArticle($query, string $id)
@@ -320,7 +322,8 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include published articles.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublished($query)
@@ -335,7 +338,8 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include show on homepage articles.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeShowHomepage($query)
@@ -346,7 +350,8 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include posted articles until today.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublishedUntilToday($query)
@@ -357,8 +362,9 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include articles with a specified category.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param    $id    -> The id of the category
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $id    -> The id of the category
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCategory($query, string $id)
@@ -371,8 +377,9 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include articles that belongs to an author.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param    $profile_id -> The id of the author
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $profile_id -> The id of the author
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAuthor($query, string $profile_id)
@@ -385,8 +392,9 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include articles with a specified tag.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param    $id    -> The id of the tag
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $id    -> The id of the tag
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeTag($query, string $id)
@@ -399,8 +407,9 @@ class Article extends BaseModel implements Feedable, HasMedia
     /**
      * Scope a query to only include articles which contains searching words.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param    $searching -> The searching words
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param                                       $searching -> The searching words
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSearch($query, string $searching)

@@ -45,7 +45,7 @@ class Image
                 TextInput::make('caption')
                     ->columnSpanFull(),
             ])
-            ->columns($context === 'form' ? 2 : 1);
+            ->columns('form' === $context ? 2 : 1);
     }
 
     public static function getRatios(): array
