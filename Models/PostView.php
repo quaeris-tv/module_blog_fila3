@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Support\Carbon;
-
 class PostView extends BaseModel
 {
     protected $fillable = [
