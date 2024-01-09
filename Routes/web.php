@@ -13,6 +13,7 @@ declare(strict_types=1);
 |
 */
 
+
 // Route::prefix('blog')->group(function () {
 //     Route::get('/', 'BlogController@index');
 // });
