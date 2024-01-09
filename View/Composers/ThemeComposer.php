@@ -19,7 +19,7 @@ use Modules\Blog\Models\Tag;
 class ThemeComposer
 {
     /**
-     * Undocumented function.
+     * Undocumented function..
      *
      * @return Collection<int, Post>
      */
