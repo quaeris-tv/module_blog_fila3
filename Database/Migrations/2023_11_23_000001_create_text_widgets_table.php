@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
- * Class CreatePostsTable.
+ * Class CreateTextWidgetsTable.
  */
 class CreateTextWidgetsTable extends XotBaseMigration
 {

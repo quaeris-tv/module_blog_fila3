@@ -7,7 +7,7 @@ use Modules\Blog\Models\Taggable;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
- * Class CreatePostsTable.
+ * Class CreateBlogTaggableTable.
  */
 class CreateBlogTaggableTable extends XotBaseMigration
 {

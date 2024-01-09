@@ -7,7 +7,7 @@ use Modules\Blog\Models\Status;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
- * Class CreatePostsTable.
+ * Class CreateBlogStatusesTable.
  */
 class CreateBlogStatusesTable extends XotBaseMigration
 {
