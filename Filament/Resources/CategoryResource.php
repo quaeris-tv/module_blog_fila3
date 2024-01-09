@@ -5,21 +5,14 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-<<<<<<< HEAD
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-=======
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
->>>>>>> dev
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 use Modules\Blog\Models\Category;
-<<<<<<< HEAD
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class CategoryResource extends XotBaseResource
@@ -29,16 +22,6 @@ class CategoryResource extends XotBaseResource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // protected static ?string $navigationGroup = 'Content';
-=======
-
-class CategoryResource extends Resource
-{
-    protected static ?string $model = Category::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Content';
->>>>>>> dev
 
     public static function form(Form $form): Form
     {
@@ -48,7 +31,6 @@ class CategoryResource extends Resource
                     ->required()
                     ->maxLength(2048)
                     ->reactive()
-<<<<<<< HEAD
                     ->unique()
                 // ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
                 //     $set('slug', Str::slug($state));
@@ -69,14 +51,6 @@ class CategoryResource extends Resource
                     // ->conversion('thumbnail')
                     ->disk('uploads')
                     ->directory('photos'),
-=======
-                    ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
-                        $set('slug', Str::slug($state));
-                    }),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(2048),
->>>>>>> dev
             ]);
     }
 
@@ -89,10 +63,7 @@ class CategoryResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
                     ->dateTime(),
-<<<<<<< HEAD
                 SpatieMediaLibraryImageColumn::make('image'),
-=======
->>>>>>> dev
             ])
             ->filters([
             ])

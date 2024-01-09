@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\PostResource\Pages;
 
-<<<<<<< HEAD
 use Filament\Actions;
-=======
-use Filament\Pages\Actions;
->>>>>>> dev
 use Filament\Resources\Pages\ListRecords;
 use Modules\Blog\Filament\Resources\PostResource;
 

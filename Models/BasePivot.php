@@ -6,10 +6,7 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 // //use Laravel\Scout\Searchable;
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\SoftDeletes;
-=======
->>>>>>> dev
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -17,10 +14,7 @@ use Modules\Xot\Traits\Updater;
  */
 abstract class BasePivot extends Pivot
 {
-<<<<<<< HEAD
     use SoftDeletes;
-=======
->>>>>>> dev
     use Updater;
 
     /**
@@ -40,10 +34,6 @@ abstract class BasePivot extends Pivot
      * @var string
      */
     protected $connection = 'blog'; // this will use the specified database connection
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
     /**
      * @var array
      */
@@ -53,15 +43,9 @@ abstract class BasePivot extends Pivot
      * @var array<string, string>
      */
     protected $casts = [
-<<<<<<< HEAD
         'id' => 'string', // must be string else primary key of related model will be typed as int
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-=======
-        'id'=>'string', //must be string else primary key of related model will be typed as int
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime'
->>>>>>> dev
     ];
 
     /**

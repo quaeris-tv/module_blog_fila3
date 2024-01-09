@@ -21,13 +21,8 @@ class CategoryFilter extends SelectFilter
         parent::setUp();
         $this->label('Filter By Category');
         $this->placeholder('Select a category to filter');
-<<<<<<< HEAD
         // $this->relationship('category', 'name');
         $this->relationship('categories', 'title');
         // $this->searchable();
-=======
-        $this->relationship('category', 'name');
-        $this->searchable();
->>>>>>> dev
     }
 }

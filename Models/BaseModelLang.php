@@ -8,10 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 // //use Laravel\Scout\Searchable;
 
 use Illuminate\Database\Eloquent\Model;
-<<<<<<< HEAD
 use Illuminate\Database\Eloquent\SoftDeletes;
-=======
->>>>>>> dev
 use Modules\Lang\Models\Traits\LinkedTrait;
 use Modules\Xot\Traits\Updater;
 
@@ -23,15 +20,10 @@ use Modules\Xot\Traits\Updater;
 abstract class BaseModelLang extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
     use LinkedTrait;
 
     // use Searchable;
     use SoftDeletes;
-=======
-    // use Searchable;
-    use LinkedTrait;
->>>>>>> dev
     use Updater;
 
     /**

@@ -1,6 +1,5 @@
 https://github.com/thedevdojo/pines
 
-<<<<<<< HEAD
 https://github.com/stephenjude/filament-blog // faceless
 
 // per filament 3
@@ -32,12 +31,6 @@ https://github.com/italo-vinicius/Blog-Filament // Theme 15
 
 
 
-=======
-https://github.com/stephenjude/filament-blog
-
-// per filament 3
-https://github.com/gomzyakov/laravel-blog
->>>>>>> dev
 
 
 
@@ -62,7 +55,6 @@ https://www.contentify.org/
 //-----------------
 
 
-<<<<<<< HEAD
 https://github.com/majidmohammadpanah/laravel-blog/
 
 https://github.com/DannyFestor/LaravelBlog
@@ -75,6 +67,4 @@ https://github.com/leandrocfe/filament-blog
 
 
 
-=======
->>>>>>> dev
 

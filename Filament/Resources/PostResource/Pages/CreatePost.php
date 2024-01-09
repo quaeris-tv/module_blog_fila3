@@ -10,14 +10,4 @@ use Modules\Blog\Filament\Resources\PostResource;
 class CreatePost extends CreateRecord
 {
     protected static string $resource = PostResource::class;
-<<<<<<< HEAD
-=======
-
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        $data['user_id'] = auth()->id();
-
-        return $data;
-    }
->>>>>>> dev
 }
