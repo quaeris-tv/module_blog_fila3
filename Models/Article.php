@@ -281,7 +281,9 @@ class Article extends BaseModel implements Feedable, HasMedia
                 // dddx([$value, $attributes, $attributes['content_blocks']]);
                 // dddx(collect(json_decode($attributes['content_blocks']))->where('type', 'paragraph')->first()->data->text);
                 $string = collect(json_decode($attributes['content_blocks']))->where('type', 'paragraph')->first()->data->text;
-
+                if($string == null){
+                    return '...';
+                }
                 return strip_tags(substr($string, 0, 100)).'...';
             }
         );
