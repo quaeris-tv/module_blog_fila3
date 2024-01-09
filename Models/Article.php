@@ -266,7 +266,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                return $attributes['main_image_upload'] ?? $attributes['main_image_url'];
+                return $attributes['main_image_upload'] ?? $attributes['main_image_url'] ?? '#';
             }
         );
     }
