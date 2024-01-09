@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Modules\User\Models\User;
 
 /**
+<<<<<<< HEAD
  * Modules\Blog\Models\Comment.
  *
  * @property int                                                    $id
@@ -42,6 +43,36 @@ use Modules\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withoutTrashed()
+=======
+ * App\Models\Comment.
+ *
+ * @property int                             $id
+ * @property string                          $comment
+ * @property int                             $post_id
+ * @property int                             $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null                        $parent_id
+ * @property Comment|null                    $parentComment
+ * @property \Modules\Blog\Models\Post|null  $post
+ * @property User|null                       $user
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment wherePostId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUserId($value)
+ *
+ * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
+ * @property int|null                                               $comments_count
+ *
+ * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
+>>>>>>> dev
  *
  * @mixin \Eloquent
  */
@@ -52,8 +83,11 @@ class Comment extends BaseModel
         'post_id',
         'user_id',
         'parent_id',
+<<<<<<< HEAD
         'author_id',
         'article_id',
+=======
+>>>>>>> dev
     ];
 
     public function user(): BelongsTo
@@ -61,6 +95,7 @@ class Comment extends BaseModel
         return $this->belongsTo(User::class);
     }
 
+<<<<<<< HEAD
     /**
      * The comment that belong to the author.
      */
@@ -69,11 +104,14 @@ class Comment extends BaseModel
         return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
     }
 
+=======
+>>>>>>> dev
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class);
     }
 
+<<<<<<< HEAD
     /**
      * The comment that belong to the article.
      */
@@ -82,11 +120,14 @@ class Comment extends BaseModel
         return $this->belongsTo(Article::class);
     }
 
+=======
+>>>>>>> dev
     public function parentComment(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
 
+<<<<<<< HEAD
     /**
      * The childrens of a comment(reply).
      */
@@ -95,6 +136,8 @@ class Comment extends BaseModel
         return $this->hasMany(self::class, 'parent_id');
     }
 
+=======
+>>>>>>> dev
     public function comments(): HasMany
     {
         // return $this->hasMany(Comment::class, function ($query) {

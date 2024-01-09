@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 [{"class_name":"Article\\Chunk","comp_name":"article.chunk","comp_ns":"Modules\\Blog\\Http\\Livewire\\Article\\Chunk"},{"class_name":"Article\\Lists","comp_name":"article.lists","comp_ns":"Modules\\Blog\\Http\\Livewire\\Article\\Lists"}]
+=======
+[{"class_name":"Auth\\FilamentLogin","comp_name":"auth.filament-login","comp_ns":"Modules\\Blog\\Http\\Livewire\\Auth\\FilamentLogin"}]
+>>>>>>> dev

@@ -8,18 +8,25 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+<<<<<<< HEAD
 use Illuminate\Support\Carbon;
+=======
+>>>>>>> dev
 use Illuminate\Support\Str;
 use Modules\User\Models\User;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+<<<<<<< HEAD
 use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags;
+=======
+>>>>>>> dev
 use Webmozart\Assert\Assert;
 
 /**
  * Modules\Blog\Models\Post.
  *
+<<<<<<< HEAD
  * @property int                                                                                                        $id
  * @property string                                                                                                     $title
  * @property string                                                                                                     $slug
@@ -78,16 +85,45 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereExcerpt($value)
+=======
+ * @property int                                            $id
+ * @property string                                         $title
+ * @property string                                         $slug
+ * @property string|null                                    $thumbnail
+ * @property string                                         $body
+ * @property int                                            $active
+ * @property \Illuminate\Support\Carbon|null                $published_at
+ * @property string                                         $user_id
+ * @property \Illuminate\Support\Carbon|null                $created_at
+ * @property \Illuminate\Support\Carbon|null                $updated_at
+ * @property string|null                                    $meta_title
+ * @property string|null                                    $meta_description
+ * @property Collection<int, \Modules\Blog\Models\Category> $categories
+ * @property int|null                                       $categories_count
+ * @property string                                         $human_read_time
+ * @property User|null                                      $user
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   whereBody($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   whereCreatedAt($value)
+>>>>>>> dev
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereMetaDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereMetaTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   wherePublishedAt($value)
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereReadTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereShowOnHomepage($value)
+=======
+>>>>>>> dev
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereUpdatedAt($value)
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
@@ -97,11 +133,24 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withoutTrashed()
+=======
+ * @method static \Illuminate\Database\Eloquent\Builder|Post   whereUserId($value)
+ * @method static \Modules\Blog\Database\Factories\PostFactory factory($count = null, $state = [])
+ *
+ * @property string|null                                                                                                $updated_by
+ * @property string|null                                                                                                $created_by
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedBy($value)
+>>>>>>> dev
  *
  * @mixin \Eloquent
  */
 class Post extends BaseModel implements HasMedia
 {
+<<<<<<< HEAD
     use HasStatuses;
     use HasTags;
     use InteractsWithMedia;
@@ -139,6 +188,13 @@ class Post extends BaseModel implements HasMedia
      */
     protected $casts = [
         'date' => 'datetime',
+=======
+    use InteractsWithMedia;
+
+    protected $fillable = ['title', 'slug', 'thumbnail', 'body', 'user_id', 'active', 'published_at', 'meta_title', 'meta_description'];
+
+    protected $casts = [
+>>>>>>> dev
         'published_at' => 'datetime',
     ];
 
@@ -183,15 +239,24 @@ class Post extends BaseModel implements HasMedia
     public function humanReadTime(): Attribute
     {
         return new Attribute(
+<<<<<<< HEAD
             get: static function ($value, $attributes): string {
                 $words = Str::wordCount(strip_tags((string) $attributes['body']));
                 $minutes = ceil($words / 200);
 
                 return $minutes.' '.str('min')->plural((int) $minutes).', '
+=======
+            get: function ($value, $attributes): string {
+                $words = Str::wordCount(strip_tags((string) $attributes['body']));
+                $minutes = ceil($words / 200);
+
+                return $minutes.' '.str('min')->plural($minutes).', '
+>>>>>>> dev
                     .$words.' '.str('word')->plural($words);
             }
         );
     }
+<<<<<<< HEAD
 
     /**
      * Scope a query to only include articles different from current article.
@@ -361,4 +426,6 @@ class Post extends BaseModel implements HasMedia
             ->orWhere('content', 'LIKE', "%{$searching}%")
             ->orWhere('excerpt', 'LIKE', "%{$searching}%");
     }
+=======
+>>>>>>> dev
 }

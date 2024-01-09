@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\PostResource\Pages;
 
-<<<<<<< HEAD
-use Filament\Actions;
-=======
 use Filament\Pages\Actions;
->>>>>>> dev
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ViewRecord;
 use Modules\Blog\Filament\Resources\PostResource;
 
-class ListPosts extends ListRecords
+class ViewPost extends ViewRecord
 {
     protected static string $resource = PostResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\EditAction::make(),
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            PostResource\Widgets\PostOverview::class,
         ];
     }
 }

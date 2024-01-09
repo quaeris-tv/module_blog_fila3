@@ -17,10 +17,15 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
+<<<<<<< HEAD
  * @method static \Modules\Blog\Database\Factories\PostViewFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   onlyTrashed()
+=======
+ * @method static \Illuminate\Database\Eloquent\Builder|PostView   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PostView   newQuery()
+>>>>>>> dev
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   query()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereId($value)
@@ -29,8 +34,12 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereUserAgent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereUserId($value)
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   withoutTrashed()
+=======
+ * @method static \Modules\Blog\Database\Factories\PostViewFactory factory($count = null, $state = [])
+>>>>>>> dev
  *
  * @mixin \Eloquent
  */

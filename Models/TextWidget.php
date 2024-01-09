@@ -12,6 +12,7 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Blog\Models\TextWidget.
  *
+<<<<<<< HEAD
  * @property int                                                                                                        $id
  * @property string                                                                                                     $key
  * @property string|null                                                                                                $image
@@ -29,19 +30,47 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   onlyTrashed()
+=======
+ * @property int                             $id
+ * @property string                          $key
+ * @property string|null                     $image
+ * @property string|null                     $title
+ * @property string|null                     $content
+ * @property int                             $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newQuery()
+>>>>>>> dev
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   query()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedAt($value)
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedBy($value)
+=======
+>>>>>>> dev
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedAt($value)
+<<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withoutTrashed()
+=======
+ * @method static \Modules\Blog\Database\Factories\TextWidgetFactory factory($count = null, $state = [])
+ *
+ * @property string|null                                                                                                $updated_by
+ * @property string|null                                                                                                $created_by
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereUpdatedBy($value)
+>>>>>>> dev
  *
  * @mixin \Eloquent
  */

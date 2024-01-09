@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\SoftDeletes;
+=======
+>>>>>>> dev
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -13,7 +16,10 @@ use Modules\Xot\Traits\Updater;
  */
 abstract class BaseMorphPivot extends MorphPivot
 {
+<<<<<<< HEAD
     use SoftDeletes;
+=======
+>>>>>>> dev
     use Updater;
 
     /**

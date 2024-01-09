@@ -7,10 +7,15 @@ namespace Modules\Blog\Filament\Resources;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+<<<<<<< HEAD
+=======
+use Filament\Resources\Resource;
+>>>>>>> dev
 use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
 use Modules\Blog\Models\TextWidget;
+<<<<<<< HEAD
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class TextWidgetResource extends XotBaseResource
@@ -20,6 +25,16 @@ class TextWidgetResource extends XotBaseResource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // protected static ?string $navigationGroup = 'Content';
+=======
+
+class TextWidgetResource extends Resource
+{
+    protected static ?string $model = TextWidget::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationGroup = 'Content';
+>>>>>>> dev
 
     public static function form(Form $form): Form
     {
