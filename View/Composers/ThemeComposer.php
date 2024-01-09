@@ -171,9 +171,9 @@ class ThemeComposer
     public function categories()
     {
         $categories = Category::query()
-    //            ->with(['posts' => function ($query) {
-    //                $query->orderByDesc('published_at');
-    //            }])
+            // ->with(['posts' => function ($query) {
+            //     $query->orderByDesc('published_at');
+            // }])
             ->whereHas('posts', static function ($query) {
                 $query
                     ->where('active', '=', 1)
