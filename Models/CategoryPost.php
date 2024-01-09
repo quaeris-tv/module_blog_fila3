@@ -7,21 +7,21 @@ namespace Modules\Blog\Models;
 /**
  * Modules\Blog\Models\CategoryPost.
  *
-<<<<<<< HEAD
+ * <<<<<<< HEAD
  * <<<<<<< HEAD
  *
  * @property string                          $id
  *                                                        =======
  * @property int                             $id
  *                                                        >>>>>>> dev
-=======
+ *                                                        =======
  * @property string                          $id
->>>>>>> ce72d0a (up)
+ *                                                        >>>>>>> ce72d0a (up)
  * @property int                             $category_id
  * @property int                             $post_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
-<<<<<<< HEAD
+ *                                                        <<<<<<< HEAD
  *                                                        <<<<<<< HEAD
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
@@ -56,9 +56,10 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereUpdatedBy($value)
  *                                                                                          >>>>>>> dev
-=======
- * @property string|null                     $updated_by
- * @property string|null                     $created_by
+ *                                                                                          =======
+ *
+ * @property string|null $updated_by
+ * @property string|null $created_by
  *
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost newQuery()
@@ -73,7 +74,7 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost withoutTrashed()
->>>>>>> ce72d0a (up)
+ *                                                                                           >>>>>>> ce72d0a (up)
  *
  * @mixin \Eloquent
  */

@@ -12,11 +12,12 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Blog\Models\TextWidget.
  *
-<<<<<<< HEAD
+ * <<<<<<< HEAD
  * <<<<<<< HEAD
  *
-=======
->>>>>>> ce72d0a (up)
+ * =======
+ * >>>>>>> ce72d0a (up)
+ *
  * @property int                                                                                                        $id
  * @property string                                                                                                     $key
  * @property string|null                                                                                                $image
@@ -34,7 +35,7 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   onlyTrashed()
-<<<<<<< HEAD
+ *                                                                                                       <<<<<<< HEAD
  *                                                                                                       =======
  *
  * @property int                             $id
@@ -49,26 +50,26 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   newQuery()
  *                                                                                                       >>>>>>> dev
-=======
->>>>>>> ce72d0a (up)
+ *                                                                                                       =======
+ *                                                                                                       >>>>>>> ce72d0a (up)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   query()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedAt($value)
-<<<<<<< HEAD
+ *                                                                                                       <<<<<<< HEAD
  *                                                                                                       <<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedBy($value)
  *                                                                                                       =======
  *                                                                                                       >>>>>>> dev
-=======
+ *                                                                                                       =======
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereCreatedBy($value)
->>>>>>> ce72d0a (up)
+ *                                                                                                       >>>>>>> ce72d0a (up)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedAt($value)
-<<<<<<< HEAD
+ *                                                                                                       <<<<<<< HEAD
  *                                                                                                       <<<<<<< HEAD
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withTrashed()
@@ -84,11 +85,11 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereUpdatedBy($value)
  *                                                                                        >>>>>>> dev
-=======
- * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withoutTrashed()
->>>>>>> ce72d0a (up)
+ *                                                                                        =======
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget withoutTrashed()
+ *                                                                                        >>>>>>> ce72d0a (up)
  *
  * @mixin \Eloquent
  */
