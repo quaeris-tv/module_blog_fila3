@@ -44,7 +44,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\TextInput::make('description')
                     ->columnSpanFull()
                     ->required()
-                    ->helperText('Una breve descrizione dell\'articolo'),   
+                    ->helperText('Una breve descrizione dell\'articolo'),
                 Forms\Components\DateTimePicker::make('published_at')
                     ->columnSpan(1),
 
