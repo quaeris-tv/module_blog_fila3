@@ -278,9 +278,10 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if($value == null){
+                if (null == $value) {
                     return 'article title';
                 }
+
                 return $value;
             }
         );
@@ -293,9 +294,10 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if($value == null){
+                if (null == $value) {
                     return 'article\'s description '.$attributes['title'];
                 }
+
                 return $value;
             }
         );
