@@ -66,6 +66,9 @@ class CreateArticlesTable extends XotBaseMigration
                 if (! $this->hasColumn('is_featured')) {
                     $table->boolean('is_featured')->default(false);
                 }
+                if (! $this->hasColumn('description')) {
+                    $table->string('description');
+                }
 
                 $this->updateTimestamps($table, true);
             }

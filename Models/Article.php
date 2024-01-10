@@ -272,20 +272,31 @@ class Article extends BaseModel implements Feedable, HasMedia
     }
 
     /**
+     * Get the article's title.
+     */
+    protected function title(): Attribute
+    {
+        return new Attribute(
+            get: static function ($value, $attributes): string {
+                if($value == null){
+                    return 'article title';
+                }
+                return $value;
+            }
+        );
+    }
+
+    /**
      * Get the article's description.
      */
     protected function description(): Attribute
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                // dddx([$value, $attributes, $attributes['content_blocks']]);
-                // dddx(collect(json_decode($attributes['content_blocks']))->where('type', 'paragraph')->first()->data->text);
-                $string = collect(json_decode($attributes['content_blocks']))->where('type', 'paragraph')->first()->data->text;
-                if (null == $string) {
-                    return '...';
+                if($value == null){
+                    return 'article\'s description '.$attributes['title'];
                 }
-
-                return strip_tags(substr($string, 0, 100)).'...';
+                return $value;
             }
         );
     }
