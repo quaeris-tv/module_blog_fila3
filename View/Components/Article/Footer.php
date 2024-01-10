@@ -16,14 +16,14 @@ use Modules\Xot\Actions\GetViewAction;
  */
 class Footer extends Component
 {
-    public array $blocks=[];
+    public array $blocks = [];
 
     public function __construct(
         array|null $blocks,
         public Model $article,
         public string $tpl = 'v1')
     {
-        $this->blocks=$blocks ?? [];
+        $this->blocks = $blocks ?? [];
     }
 
     public function render(): Renderable
