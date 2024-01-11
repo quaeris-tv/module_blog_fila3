@@ -201,7 +201,7 @@ class ThemeComposer
     {
         return Article::all()
             ->sortBy(['created_at', 'desc'])
-            ;
+        ;
     }
 
     public function getFeaturedArticles(): Collection
@@ -288,13 +288,12 @@ class ThemeComposer
     }
 
     /**
-     //* @return \Illuminate\Support\Collection<(int|string), mixed>
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     public function getPaginatedArticles(int $num = 15)
     {
         // return collect([]);
-        return ($this->getArticles()
-                ->paginate($num));
+        return $this->getArticles()
+                ->paginate($num);
     }
 }
