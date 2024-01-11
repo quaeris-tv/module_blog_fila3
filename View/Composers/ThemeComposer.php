@@ -197,6 +197,13 @@ class ThemeComposer
         return $categories;
     }
 
+    public function getArticles(): Collection
+    {
+        return Article::all()
+            ->sortBy(['created_at', 'desc'])
+            ;
+    }
+
     public function getFeaturedArticles(): Collection
     {
         $rows = Article::published()
@@ -260,6 +267,11 @@ class ThemeComposer
         return $footerAuthors;
     }
 
+    public function getTags(): Collection
+    {
+        return Tag::all();
+    }
+
     public function getFooterTags(): Collection
     {
         $footerTags = Tag::take(15)->get();
@@ -276,10 +288,13 @@ class ThemeComposer
     }
 
     /**
-     * @return \Illuminate\Support\Collection<(int|string), mixed>
+     //* @return \Illuminate\Support\Collection<(int|string), mixed>
+     * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getPaginatedArticles()
+    public function getPaginatedArticles(int $num = 15)
     {
-        return collect([]);
+        // return collect([]);
+        return ($this->getArticles()
+                ->paginate($num));
     }
 }
