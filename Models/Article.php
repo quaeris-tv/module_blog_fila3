@@ -318,10 +318,11 @@ class Article extends BaseModel implements Feedable, HasMedia
      *
      * @return string
      */
-    // public function getRouteKeyName()
-    // {
-    //    return 'slug';
-    // }
+    public function getRouteKeyName()
+    {
+        // dddx(inAdmin());
+        return 'slug';
+    }
 
     /**
      * Scope a query to only include articles.
