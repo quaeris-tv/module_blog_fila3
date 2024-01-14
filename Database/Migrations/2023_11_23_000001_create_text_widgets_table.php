@@ -17,7 +17,7 @@ class CreateTextWidgetsTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->id();
                 $table->string('key')->unique();
                 $table->string('image', 2048)->nullable();
@@ -36,7 +36,7 @@ class CreateTextWidgetsTable extends XotBaseMigration
                 // if (! $this->hasColumn('profile_photo_path')) {
                 //    $table->string('profile_photo_path', 2048)->nullable();
                 // }
-                $this->updateTimestamps($table);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

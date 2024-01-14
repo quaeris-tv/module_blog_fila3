@@ -17,7 +17,7 @@ class CreateCommentsTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->id();
                 $table->longText('comment');
                 $table->foreignId('post_id'); // ->constrained();
@@ -34,6 +34,7 @@ class CreateCommentsTable extends XotBaseMigration
                 // if (! $this->hasColumn('profile_photo_path')) {
                 //    $table->string('profile_photo_path', 2048)->nullable();
                 // }
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

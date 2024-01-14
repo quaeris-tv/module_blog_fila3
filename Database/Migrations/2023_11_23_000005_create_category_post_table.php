@@ -17,7 +17,7 @@ class CreateCategoryPostTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->id();
                 $table->foreignId('category_id'); // ->references('id')->on('categories')->onDelete('cascade');
                 $table->foreignId('post_id'); // ->references('id')->on('posts')->onDelete('cascade');
@@ -33,7 +33,7 @@ class CreateCategoryPostTable extends XotBaseMigration
                 // if (! $this->hasColumn('profile_photo_path')) {
                 //    $table->string('profile_photo_path', 2048)->nullable();
                 // }
-                $this->updateTimestamps($table);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

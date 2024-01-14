@@ -33,7 +33,7 @@ class CreateArticleCategoryTable extends XotBaseMigration
                 // if (! $this->hasColumn('profile_photo_path')) {
                 //    $table->string('profile_photo_path', 2048)->nullable();
                 // }
-                $this->updateTimestamps($table);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

@@ -17,7 +17,7 @@ class CreatePostViewsTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->id();
                 $table->string('ip_address', 55);
                 $table->string('user_agent', 255);
@@ -35,6 +35,7 @@ class CreatePostViewsTable extends XotBaseMigration
                 // if (! $this->hasColumn('profile_photo_path')) {
                 //    $table->string('profile_photo_path', 2048)->nullable();
                 // }
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

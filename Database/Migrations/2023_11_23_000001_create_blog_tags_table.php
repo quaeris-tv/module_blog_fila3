@@ -37,7 +37,7 @@ class CreateBlogTagsTable extends XotBaseMigration
                 //    $table->string('name');
                 // }
 
-                $this->updateTimestamps($table);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

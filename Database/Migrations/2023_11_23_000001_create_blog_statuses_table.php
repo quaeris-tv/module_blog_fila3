@@ -41,7 +41,7 @@ class CreateBlogStatusesTable extends XotBaseMigration
                     $table->morphs('model');
                 }
 
-                $this->updateTimestamps($table);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

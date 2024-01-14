@@ -38,7 +38,7 @@ class CreateBlogProfilesTable extends XotBaseMigration
                 }
                 */
 
-                $this->updateTimestamps($table, true);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }
