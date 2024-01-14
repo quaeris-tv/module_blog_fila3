@@ -4,7 +4,7 @@
     <a class="block text-black" href="{{ $this->url('show', ['record' => $article]) }}">
         <img
             class="h-[200px] w-full object-cover object-center bg-gray-100"
-            src="{{-- $article->getMainImage() --}}"
+            src="{{  $article->getMainImage() }}"
             alt=""
             loading="lazy"
         >

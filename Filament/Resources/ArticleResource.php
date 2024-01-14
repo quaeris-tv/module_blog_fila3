@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -19,9 +20,15 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class ArticleResource extends XotBaseResource
 {
+    use Translatable;
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['it', 'en'];
+    }
 
     public static function form(Form $form): Form
     {

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\User\Models\User;
 use Spatie\Feed\Feedable;
@@ -16,6 +17,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags;
+use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
 
 /**
@@ -71,6 +73,7 @@ class Article extends BaseModel implements Feedable, HasMedia
 {
     use HasStatuses;
     use HasTags;
+    use HasTranslations;
     use InteractsWithMedia;
 
     protected $fillable = [
@@ -113,6 +116,13 @@ class Article extends BaseModel implements Feedable, HasMedia
         'read_time',
         'excerpt',
         */
+    ];
+
+    public $translatable = [
+        'title',
+        // 'description',
+        'content_blocks',
+        'footer_blocks',
     ];
 
     public function sluggable(): array
@@ -271,6 +281,15 @@ class Article extends BaseModel implements Feedable, HasMedia
         );
     }
 
+    public function getMainImage()
+    {
+        if ($this->main_image_upload) {
+            return Storage::url($this->main_image_upload);
+        }
+
+        return $this->main_image_url;
+    }
+
     /**
      * Get the article's title.
      */
@@ -278,7 +297,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if (null == $value) {
+                if (null === $value) {
                     return 'article title';
                 }
 
@@ -294,7 +313,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if (null == $value) {
+                if (null === $value) {
                     return 'article\'s description '.$attributes['title'];
                 }
 
@@ -320,7 +339,10 @@ class Article extends BaseModel implements Feedable, HasMedia
      */
     public function getRouteKeyName()
     {
-        // dddx(inAdmin());
+        if (inAdmin()) {
+            return $this->getKeyName();
+        }
+
         return 'slug';
     }
 
