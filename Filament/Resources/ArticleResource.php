@@ -66,7 +66,7 @@ class ArticleResource extends XotBaseResource
                     ->required()
                     ->relationship('categories', 'title')
                     ->createOptionForm([
-                        Forms\Components\TextInput::make('name')
+                        Forms\Components\TextInput::make('title')
                             ->required(),
                         // Forms\Components\TextInput::make('email')
                         //    ->required()
