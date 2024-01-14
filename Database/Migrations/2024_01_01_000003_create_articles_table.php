@@ -70,7 +70,7 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->string('description');
                 }
 
-                $this->updateTimestamps($table, true);
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

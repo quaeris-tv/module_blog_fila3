@@ -22,7 +22,6 @@ class CreateMenusTable extends XotBaseMigration
 
                 $table->string('name');
                 $table->text('items')->nullable();
-                // $table->timestamps();
             }
         );
         // -- UPDATE --
