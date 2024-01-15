@@ -5,23 +5,31 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 use Modules\Blog\Models\Category;
+use Filament\Resources\Concerns\Translatable;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 
 class CategoryResource extends XotBaseResource
 {
+    use Translatable;
+
     // protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // protected static ?string $navigationGroup = 'Content';
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['it', 'en'];
+    }
 
     public static function form(Form $form): Form
     {
@@ -38,6 +46,8 @@ class CategoryResource extends XotBaseResource
                 ,
                 Forms\Components\TextInput::make('slug')
                     ->required()
+                    ->maxLength(2048),
+                Forms\Components\TextInput::make('description')
                     ->maxLength(2048),
                 SpatieMediaLibraryFileUpload::make('image')
                     // ->image()
@@ -79,7 +89,10 @@ class CategoryResource extends XotBaseResource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageCategories::route('/'),
+            // 'index' => Pages\ManageCategories::route('/'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 }
