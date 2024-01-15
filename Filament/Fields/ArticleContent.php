@@ -9,6 +9,7 @@ use Modules\Blog\Filament\Blocks\Image;
 use Modules\Blog\Filament\Blocks\ImagesGallery;
 use Modules\Blog\Filament\Blocks\Paragraph;
 use Modules\Blog\Filament\Blocks\Title;
+use Modules\Rating\Filament\Blocks\Rating;
 
 class ArticleContent
 {
@@ -22,6 +23,7 @@ class ArticleContent
                 Paragraph::make(context: $context),
                 Image::make(context: $context),
                 ImagesGallery::make(context: $context),
+                Rating::make(context: $context),
             ])
             ->collapsible();
     }
