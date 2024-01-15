@@ -292,7 +292,11 @@ class Article extends BaseModel implements Feedable, HasMedia
             return Storage::url($this->main_image_upload);
         }
 
-        return $this->main_image_url;
+        if($this->main_image_url != null){
+            return $this->main_image_url;
+        }
+
+        return '#';
     }
 
     /**
