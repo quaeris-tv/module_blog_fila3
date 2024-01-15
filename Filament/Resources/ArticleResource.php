@@ -93,6 +93,7 @@ class ArticleResource extends XotBaseResource
 
                 ArticleContent::make('content_blocks')
                     ->label('Blocks')
+                    ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
 

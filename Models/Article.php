@@ -184,7 +184,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         $pivot_fields = $pivot->getFillable();
 
         return $this->morphToMany(Rating::class, 'model', $pivot_table_full)
-            ->using($pivot)
+            ->using($pivot_class)
             ->withPivot($pivot_fields)
             ->withTimestamps();
     }

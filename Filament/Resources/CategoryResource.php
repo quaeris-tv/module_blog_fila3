@@ -46,6 +46,10 @@ class CategoryResource extends XotBaseResource
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(2048),
+                Forms\Components\Select::make('parent_id')
+                    ->label('Sotto Categoria')
+                    ->options(Category::all()->pluck('title', 'id'))
+                    ->searchable(),
                 Forms\Components\TextInput::make('description')
                     ->maxLength(2048),
                 SpatieMediaLibraryFileUpload::make('image')
@@ -68,6 +72,8 @@ class CategoryResource extends XotBaseResource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('parentCategory.title')->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->sortable()
