@@ -49,6 +49,7 @@ use Spatie\Translatable\HasTranslations;
  */
 class Category extends BaseModel implements HasMedia
 {
+    use HasTranslations;
     use InteractsWithMedia;
     use HasTranslations;
 

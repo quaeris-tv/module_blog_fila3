@@ -11,7 +11,6 @@ use Modules\Blog\Filament\Resources\CategoryResource;
 class EditCategory extends EditRecord
 {
     use EditRecord\Concerns\Translatable;
-
     protected static string $resource = CategoryResource::class;
 
     protected function getHeaderActions(): array

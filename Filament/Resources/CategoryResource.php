@@ -19,7 +19,6 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 class CategoryResource extends XotBaseResource
 {
     use Translatable;
-
     // protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
