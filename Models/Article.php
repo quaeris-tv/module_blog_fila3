@@ -352,12 +352,11 @@ class Article extends BaseModel implements Feedable, HasMedia
     // }
 
     /**
-     * Get the path key to the item for the frontend only.
+     * Get the path key to the item for the frontend only
      *
      * @return string
      */
-    public function getFrontRouteKeyName()
-    {
+    public function getFrontRouteKeyName(){
         return 'slug';
     }
 
