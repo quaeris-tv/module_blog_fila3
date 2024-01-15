@@ -8,8 +8,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
 use Modules\User\Models\User;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -168,6 +171,21 @@ class Article extends BaseModel implements Feedable, HasMedia
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class)
+            ->withTimestamps();
+    }
+
+    public function ratings(): MorphToMany
+    {
+        $pivot_class = RatingMorph::class;
+        $pivot = app($pivot_class);
+        $pivot_table = $pivot->getTable();
+        $pivot_db_name = $pivot->getConnection()->getDatabaseName();
+        $pivot_table_full = $pivot_db_name.'.'.$pivot_table;
+        $pivot_fields = $pivot->getFillable();
+
+        return $this->morphToMany(Rating::class, 'model', $pivot_table_full)
+            ->using($pivot)
+            ->withPivot($pivot_fields)
             ->withTimestamps();
     }
 
