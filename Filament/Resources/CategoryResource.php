@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 use Modules\Blog\Models\Category;
+use Filament\Resources\Concerns\Translatable;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 
 class CategoryResource extends XotBaseResource
 {
