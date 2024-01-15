@@ -42,7 +42,8 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $slug
  * @property string                                                                                                     $title
  * @property string                                                                                                     $description
- *
+ * @property string                                                                                                     $main_image_upload
+ * @property string                                                                                                     $main_image_url
  * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
@@ -118,6 +119,9 @@ class Article extends BaseModel implements Feedable, HasMedia
         */
     ];
 
+    /**
+     * @var array<int, string>
+     */
     public $translatable = [
         'title',
         // 'description',
@@ -281,7 +285,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         );
     }
 
-    public function getMainImage()
+    public function getMainImage(): string
     {
         if ($this->main_image_upload) {
             return Storage::url($this->main_image_upload);

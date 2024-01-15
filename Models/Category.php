@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Blog\Models\Category.
@@ -51,6 +51,7 @@ class Category extends BaseModel implements HasMedia
 {
     use HasTranslations;
     use InteractsWithMedia;
+    use HasTranslations;
 
     protected $fillable = [
         'title',
@@ -61,11 +62,12 @@ class Category extends BaseModel implements HasMedia
         'description',
     ];
 
+    /**
+     * @var array<int, string>
+     */
     public $translatable = [
         'title',
-        // 'description',
-        // content_blocks',
-        // 'footer_blocks',
+        'description',
     ];
 
     public function posts(): BelongsToMany
