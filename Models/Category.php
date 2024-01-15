@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Translatable\HasTranslations;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Blog\Models\Category.
@@ -62,7 +62,7 @@ class Category extends BaseModel implements HasMedia
         'slug',
         'picture',
         'description',
-        'parent_id'
+        'parent_id',
     ];
 
     /**
