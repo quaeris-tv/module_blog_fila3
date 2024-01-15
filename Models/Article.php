@@ -332,17 +332,26 @@ class Article extends BaseModel implements Feedable, HasMedia
     //     return "/storage/{$this->picture}";
     // }
 
+    // /**
+    //  * Get the route key for the article.
+    //  *
+    //  * @return string
+    //  */
+    // public function getRouteKeyName()
+    // {
+    //     if (inAdmin()) {
+    //         return $this->getKeyName();
+    //     }
+
+    //     return 'slug';
+    // }
+
     /**
-     * Get the route key for the article.
+     * Get the path key to the item for the frontend only
      *
      * @return string
      */
-    public function getRouteKeyName()
-    {
-        if (inAdmin()) {
-            return $this->getKeyName();
-        }
-
+    public function getFrontRouteKeyName(){
         return 'slug';
     }
 
