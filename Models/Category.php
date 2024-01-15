@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Blog\Models\Category.
@@ -48,6 +49,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Category extends BaseModel implements HasMedia
 {
+    use HasTranslations;
     use InteractsWithMedia;
 
     protected $fillable = [
@@ -57,6 +59,13 @@ class Category extends BaseModel implements HasMedia
         'slug',
         'picture',
         'description',
+    ];
+
+    public $translatable = [
+        'title',
+        // 'description',
+        // content_blocks',
+        // 'footer_blocks',
     ];
 
     public function posts(): BelongsToMany
