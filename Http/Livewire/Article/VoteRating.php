@@ -23,7 +23,6 @@ class VoteRating extends Component
 
     public function render(): Renderable
     {
-
         $ratings_options = $this->article->ratings()->where('user_id', null)->get();
 
         /**
@@ -51,7 +50,6 @@ class VoteRating extends Component
         //         ->where('user_id', \Auth::id())
         //         ->delete($rating_voted->id);
         // }
-
 
         $this->article->ratings()->attach($rating->id, ['user_id' => \Auth::id()]);
         dddx($rating);
