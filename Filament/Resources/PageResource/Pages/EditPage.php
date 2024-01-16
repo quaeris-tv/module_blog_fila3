@@ -9,7 +9,7 @@ use Modules\Blog\Filament\Resources\PageResource;
 
 class EditPage extends EditRecord
 {
-    use HasPagePreview;
+    use PageResource\Pages\HasPagePreview;
 
     protected static string $resource = PageResource::class;
 }
