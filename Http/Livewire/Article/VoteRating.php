@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Rating\Models\Rating;
 use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Contracts\Support\Renderable;
 
 class VoteRating extends Component
 {
@@ -35,7 +35,8 @@ class VoteRating extends Component
         return view($view, $view_params);
     }
 
-    public function vote(Rating $rating){
+    public function vote(Rating $rating)
+    {
         $this->article->ratings()->attach($rating->id, ['user_id' => \Auth::id()]);
         dddx($rating);
     }
