@@ -19,11 +19,14 @@ class Footer extends Component
     public array $blocks = [];
 
     public function __construct(
-        array|null $blocks,
+        array|null|string $blocks,
         public Model $article,
         public string $tpl = 'v1')
     {
-        $this->blocks = $blocks ?? [];
+        if (! \is_array($blocks)) {
+            $blocks = [];
+        }
+        $this->blocks = $blocks;
     }
 
     public function render(): Renderable
