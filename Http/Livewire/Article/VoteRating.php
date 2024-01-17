@@ -4,21 +4,31 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
 use Modules\Rating\Models\Rating;
+use Illuminate\Support\Facades\Auth;
 use Modules\Xot\Actions\GetViewAction;
+use Illuminate\Contracts\Support\Renderable;
 
 class VoteRating extends Component
 {
     public string $tpl = 'v1';
 
     public Article $article;
+    
+    public Profile $profile;
 
-    public function mount($article): void
+    public function mount(Article $article): void
     {
         $this->article = $article;
+        Assert::notNull($user = Auth::user());
+        $this->profile = Profile::firstOrCreate(
+            ['user_id' => $user->id],
+            ['email' => $user->email]
+        );
     }
 
     public function render(): Renderable
@@ -51,7 +61,11 @@ class VoteRating extends Component
         //         ->delete($rating_voted->id);
         // }
 
-        $this->article->ratings()->attach($rating->id, ['user_id' => \Auth::id()]);
+        // Account::createWithAttributes(['name' => 'Yoda']);
+        $this->profile->betArticle(['rating__id' => $rating->id ,'amount' => 10]);
+
+
+        $this->article->ratings()->attach($rating->id, ['user_id' => Auth::id()]);
         dddx($rating);
     }
 }

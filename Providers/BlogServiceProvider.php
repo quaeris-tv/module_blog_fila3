@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 use Illuminate\Routing\Router;
 use Modules\Xot\Datas\XotData;
+use Spatie\EventSourcing\Facades\Projectionist;
+use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Providers\XotBaseServiceProvider;
+use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -24,6 +26,11 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $router = app('router');
         $this->registerMyMiddleware($router);
         $this->registerRoutes($router);
+
+        Projectionist::addProjectors([
+            BetBalanceProjector::class,
+            // YetAnotherProjector::class,
+        ]);
     }
 
     public function registerRoutes(Router $router): void
