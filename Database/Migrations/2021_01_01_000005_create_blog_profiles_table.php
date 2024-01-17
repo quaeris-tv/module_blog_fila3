@@ -37,7 +37,12 @@ class CreateBlogProfilesTable extends XotBaseMigration
                     $table->renameColumn('auth_user_id', 'user_id');
                 }
                 */
-
+                if ($this->hasColumn('user_id')) {
+                    $table->string('user_id')->change();
+                }
+                if (!$this->hasColumn('credits')) {
+                    $table->float('credits');
+                }
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
