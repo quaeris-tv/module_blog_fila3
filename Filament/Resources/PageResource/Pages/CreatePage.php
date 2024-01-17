@@ -9,7 +9,7 @@ use Modules\Blog\Filament\Resources\PageResource;
 
 class CreatePage extends CreateRecord
 {
-    use PageResource\Pages\HasPagePreview;
+    use HasPagePreview;
 
     protected static string $resource = PageResource::class;
 }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Modules\Blog\Models\Profile;
 use Modules\Blog\Events\BetArticle;
+use Modules\Blog\Models\Profile;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class BetBalanceProjector extends Projector

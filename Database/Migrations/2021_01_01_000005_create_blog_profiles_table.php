@@ -40,7 +40,7 @@ class CreateBlogProfilesTable extends XotBaseMigration
                 if ($this->hasColumn('user_id')) {
                     $table->string('user_id')->change();
                 }
-                if (!$this->hasColumn('credits')) {
+                if (! $this->hasColumn('credits')) {
                     $table->float('credits');
                 }
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);

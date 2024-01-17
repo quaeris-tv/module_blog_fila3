@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-use Illuminate\Routing\Router;
-use Modules\Xot\Datas\XotData;
-use Spatie\EventSourcing\Facades\Projectionist;
-use Modules\Blog\Projectors\BetBalanceProjector;
-use Modules\Xot\Providers\XotBaseServiceProvider;
 use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
+use Illuminate\Routing\Router;
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Spatie\EventSourcing\Facades\Projectionist;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
