@@ -6,18 +6,18 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Support\Carbon;
-use Spatie\MediaLibrary\HasMedia;
-use Modules\Blog\Events\BetArticle;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Events\BetArticle;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Modules\Blog\Models\Profile.
  *
  * @property int                                                                                                        $id
- * @property string|null                                                                                                   $user_id
+ * @property string|null                                                                                                $user_id
  * @property string|null                                                                                                $first_name
  * @property string|null                                                                                                $last_name
  * @property string|null                                                                                                $email
@@ -61,7 +61,7 @@ class Profile extends BaseModel implements HasMedia
     protected $fillable = [
         'id',
         'user_id',
-        'email'
+        'email',
     ];
 
     /**
