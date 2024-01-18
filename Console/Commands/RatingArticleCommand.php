@@ -1,14 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Command\PurchaseProduct;
-use App\Aggregates\ProductAggregate;
-use App\Error\ProductOutOfStockError;
-use App\Error\ProductNotRegisteredError;
-use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
 
 class RatingArticleCommand extends Command
 {
@@ -31,16 +29,16 @@ class RatingArticleCommand extends Command
      */
     public function handle()
     {
-        $userId = (string)$this->argument('userId');
-        $articleId = (string)$this->argument('articleId');
-        $ratingId = (string)$this->argument('ratingId');
-        $credit = (int)$this->argument('credit');
+        $userId = (string) $this->argument('userId');
+        $articleId = (string) $this->argument('articleId');
+        $ratingId = (string) $this->argument('ratingId');
+        $credit = (int) $this->argument('credit');
 
         $command = RatingArticleData::from([
-            'userId'=>$userId,
-            'articleId'=>$articleId,
-            'ratingId'=>$ratingId,
-            'credit'=>$credit
+            'userId' => $userId,
+            'articleId' => $articleId,
+            'ratingId' => $ratingId,
+            'credit' => $credit,
         ]);
 
         try {
@@ -50,7 +48,6 @@ class RatingArticleCommand extends Command
             $this->newLine();
             $this->info("✓ Product <fg=yellow>{$articleId}</> purchased");
             $this->newLine();
-
         } catch (\Exception $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Product out of stock:</> {$error->getMessage()}");

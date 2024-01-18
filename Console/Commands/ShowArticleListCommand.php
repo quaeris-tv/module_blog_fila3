@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Console\Commands;
 
-use Modules\Blog\Models\Article;
-
 use Illuminate\Console\Command;
+use Modules\Blog\Models\Article;
 
 class ShowArticleListCommand extends Command
 {
@@ -27,10 +28,10 @@ class ShowArticleListCommand extends Command
      */
     public function handle()
     {
-        $map = function (Article $row){
+        $map = function (Article $row) {
             $result = $row->toArray();
 
-            //$result['price'] = Money::toString($result['price']);
+            // $result['price'] = Money::toString($result['price']);
 
             return $result;
         };
@@ -38,14 +39,12 @@ class ShowArticleListCommand extends Command
         $rows = Article::all(['id', 'title'])->map($map);
 
         if (count($rows) > 0) {
-
             $headers = array_keys($rows[0]);
 
             $this->newLine();
             $this->table($headers, $rows);
             $this->newLine();
-        }
-        else {
+        } else {
             $this->newLine();
             $this->warn('⚡ No products in the stock');
             $this->newLine();

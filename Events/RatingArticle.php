@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @see https://github.com/cnastasi/event-sourcing-with-laravel/blob/main/app/Events/ProductPurchased.php
  */
@@ -14,5 +16,6 @@ class RatingArticle extends ShouldBeStored
         readonly public string $articleId,
         readonly public string $ratingId,
         readonly public int $credit,
-    ) {}
+    ) {
+    }
 }
