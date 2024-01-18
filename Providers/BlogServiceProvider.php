@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 use Illuminate\Routing\Router;
+use Modules\Xot\Datas\XotData;
+use Modules\Blog\Projectors\ArticleProjector;
+use Spatie\EventSourcing\Facades\Projectionist;
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Console\Commands\RatingWinCommand;
 use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\ShowArticleListCommand;
-use Modules\Blog\Projectors\ArticleProjector;
-use Modules\Blog\Projectors\BetBalanceProjector;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
-use Spatie\EventSourcing\Facades\Projectionist;
+use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -43,6 +44,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
     {
         $this->commands([
             RatingArticleCommand::class,
+            RatingWinCommand::class,
             ShowArticleListCommand::class,
         ]);
     }

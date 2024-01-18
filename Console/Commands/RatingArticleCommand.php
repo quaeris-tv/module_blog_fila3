@@ -46,7 +46,7 @@ class RatingArticleCommand extends Command
                 ->rating($command);
 
             $this->newLine();
-            $this->info("✓ Product <fg=yellow>{$articleId}</> purchased");
+            $this->info("✓ Rating on article <fg=yellow>{$articleId}</> purchased");
             $this->newLine();
         } catch (\Exception $error) {
             $this->newLine();
