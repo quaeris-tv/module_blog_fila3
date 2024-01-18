@@ -8,6 +8,7 @@ use Modules\Blog\Events\ArticleRegistered;
 use Modules\Blog\Events\ProductReplenished;
 use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Models\Article;
+use Modules\Rating\Models\RatingMorph;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ArticleProjector extends Projector
@@ -27,7 +28,17 @@ class ArticleProjector extends Projector
         // $account = Account::uuid($event->aggregateRootUuid());
         // $account->balance += $event->amount;
         // $account->save();
-        dddx($event->aggregateRootUuid());
+        RatingMorph::firstOrCreate(
+            [
+                'rating_id' => $event->ratingId,
+                'model_type' => 'article',
+                'model_id' => $event->articleId,
+                'user_id' => $event->userId,
+            ],
+            [
+                'value' => 0,
+            ]
+        )->increment('value', $event->credit);
     }
 
     // public function onProductReplenished(ProductReplenished $event)
