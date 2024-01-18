@@ -7,7 +7,6 @@ namespace Modules\Blog\Aggregates;
 
 use Modules\Blog\Datas\RatingData;
 use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Events\Rating\CreditAdded;
 use Modules\Blog\Events\RatingArticle;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
