@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
+use Modules\Blog\Aggregates\RatingAggregate;
 use Modules\Blog\Datas\RatingData;
 use Modules\Rating\Models\RatingMorph;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\RatingAggregate;
-use Modules\Blog\Aggregates\ArticleAggregate;
 
 class RatingWinCommand extends Command
 {
@@ -44,7 +42,7 @@ class RatingWinCommand extends Command
 
         // dddx($rating_morphs);
 
-        foreach($rating_morphs as $rm){
+        foreach ($rating_morphs as $rm) {
             $command = RatingData::from([
                 'userId' => $rm->user_id,
                 // 'articleId' => $rm->article_id,
