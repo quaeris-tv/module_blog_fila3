@@ -1,9 +1,14 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 declare(strict_types=1);
 =======
 >>>>>>> e600cc0 (.)
+=======
+
+declare(strict_types=1);
+>>>>>>> 934879b (Lint)
 /**
  * @see https://github.com/cnastasi/event-sourcing-with-laravel/blob/main/app/Events/ProductPurchased.php
  */
@@ -20,9 +25,14 @@ class RatingArticle extends ShouldBeStored
         readonly public string $ratingId,
         readonly public int $credit,
 <<<<<<< HEAD
+<<<<<<< HEAD
     ) {
     }
 =======
     ) {}
 >>>>>>> e600cc0 (.)
+=======
+    ) {
+    }
+>>>>>>> 934879b (Lint)
 }

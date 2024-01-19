@@ -1,6 +1,7 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands;
@@ -9,16 +10,19 @@ use Illuminate\Console\Command;
 use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingArticleData;
 =======
+=======
+declare(strict_types=1);
+
+>>>>>>> 934879b (Lint)
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Command\PurchaseProduct;
-use App\Aggregates\ProductAggregate;
-use App\Error\ProductOutOfStockError;
-use App\Error\ProductNotRegisteredError;
-use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Aggregates\ArticleAggregate;
+<<<<<<< HEAD
 >>>>>>> e600cc0 (.)
+=======
+use Modules\Blog\Datas\RatingArticleData;
+>>>>>>> 934879b (Lint)
 
 class RatingArticleCommand extends Command
 {
@@ -46,10 +50,14 @@ class RatingArticleCommand extends Command
     public function handle()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 934879b (Lint)
         $userId = (string) $this->argument('userId');
         $articleId = (string) $this->argument('articleId');
         $ratingId = (string) $this->argument('ratingId');
         $credit = (int) $this->argument('credit');
+<<<<<<< HEAD
 
         $command = RatingArticleData::from([
             'userId' => $userId,
@@ -68,6 +76,14 @@ class RatingArticleCommand extends Command
             'ratingId'=>$ratingId,
             'credit'=>$credit
 >>>>>>> e600cc0 (.)
+=======
+
+        $command = RatingArticleData::from([
+            'userId' => $userId,
+            'articleId' => $articleId,
+            'ratingId' => $ratingId,
+            'credit' => $credit,
+>>>>>>> 934879b (Lint)
         ]);
 
         try {
@@ -81,8 +97,11 @@ class RatingArticleCommand extends Command
 =======
             $this->info("✓ Product <fg=yellow>{$articleId}</> purchased");
             $this->newLine();
+<<<<<<< HEAD
 
 >>>>>>> e600cc0 (.)
+=======
+>>>>>>> 934879b (Lint)
         } catch (\Exception $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Product out of stock:</> {$error->getMessage()}");

@@ -6,6 +6,7 @@ namespace Modules\Blog\Providers;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Routing\Router;
 use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\RatingWinCommand;
@@ -38,6 +39,17 @@ use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\ShowArticleListCommand;
 use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 >>>>>>> e600cc0 (.)
+=======
+use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
+use Illuminate\Routing\Router;
+use Modules\Blog\Console\Commands\RatingArticleCommand;
+use Modules\Blog\Console\Commands\ShowArticleListCommand;
+use Modules\Blog\Projectors\ArticleProjector;
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Spatie\EventSourcing\Facades\Projectionist;
+>>>>>>> 934879b (Lint)
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -68,6 +80,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
 
     public function registerCommands(): void
     {
+<<<<<<< HEAD
         $this->commands([
             RatingArticleCommand::class,
             RatingWinCommand::class,
@@ -87,6 +100,8 @@ class BlogServiceProvider extends XotBaseServiceProvider
     }
 
     public function registerCommands(): void{
+=======
+>>>>>>> 934879b (Lint)
         $this->commands([
             RatingArticleCommand::class,
             ShowArticleListCommand::class,
