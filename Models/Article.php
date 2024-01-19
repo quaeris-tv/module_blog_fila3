@@ -151,7 +151,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     protected $casts = [
         // 'images' => 'array',
         'id' => 'string',
-        'uuid'=>'string',
+        'uuid' => 'string',
         'date' => 'datetime',
         'published_at' => 'datetime',
         'active' => 'boolean',
@@ -255,13 +255,15 @@ class Article extends BaseModel implements Feedable, HasMedia
         );
     }
 
-    public function getUUidAttribute(?string $value):string{
-        if($value!==null){
+    public function getUUidAttribute(?string $value): string
+    {
+        if (null !== $value) {
             return $value;
         }
-        $value=Str::uuid();
-        $this->uuid=$value;
+        $value = Str::uuid();
+        $this->uuid = $value;
         $this->save();
+
         return $value;
     }
 
