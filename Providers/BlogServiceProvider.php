@@ -42,6 +42,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
             Commands\RatingArticleCommand::class,
             Commands\RatingArticleWinnerCommand::class,
             Commands\ShowArticleListCommand::class,
+            Commands\ShowArticleCommand::class,
             Commands\ProfileRatingsCommand::class,
         ]);
     }
