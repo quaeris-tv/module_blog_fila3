@@ -146,6 +146,6 @@ class Profile extends BaseModel implements HasMedia
     }
 
     public function ratings(){
-        $this->hasManyThrough(Rating::class, RatingMorph::class);
+        return $this->hasManyThrough(Rating::class, RatingMorph::class);
     }
 }
