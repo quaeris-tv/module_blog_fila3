@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 use Illuminate\Routing\Router;
 use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\RatingWinCommand;
@@ -15,41 +12,7 @@ use Modules\Blog\Projectors\ArticleProjector;
 use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Datas\XotData;
 use Spatie\EventSourcing\Facades\Projectionist;
-use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Providers\XotBaseServiceProvider;
-<<<<<<< HEAD
-use Spatie\EventSourcing\Facades\Projectionist;
-=======
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
->>>>>>> 0f9a9ba (test)
-=======
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
-=======
->>>>>>> e600cc0 (.)
-use Illuminate\Routing\Router;
-use Modules\Xot\Datas\XotData;
-use Modules\Blog\Projectors\ArticleProjector;
-use Spatie\EventSourcing\Facades\Projectionist;
-<<<<<<< HEAD
->>>>>>> bba6ab7 (Lint)
-=======
-use Modules\Blog\Projectors\BetBalanceProjector;
-use Modules\Xot\Providers\XotBaseServiceProvider;
-use Modules\Blog\Console\Commands\RatingArticleCommand;
-use Modules\Blog\Console\Commands\ShowArticleListCommand;
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
->>>>>>> e600cc0 (.)
-=======
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
-use Illuminate\Routing\Router;
-use Modules\Blog\Console\Commands\RatingArticleCommand;
-use Modules\Blog\Console\Commands\ShowArticleListCommand;
-use Modules\Blog\Projectors\ArticleProjector;
-use Modules\Blog\Projectors\BetBalanceProjector;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
-use Spatie\EventSourcing\Facades\Projectionist;
->>>>>>> 934879b (Lint)
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -67,8 +30,6 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerMyMiddleware($router);
         $this->registerRoutes($router);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         $this->registerCommands();
 
         Projectionist::addProjectors([
@@ -80,30 +41,9 @@ class BlogServiceProvider extends XotBaseServiceProvider
 
     public function registerCommands(): void
     {
-<<<<<<< HEAD
         $this->commands([
             RatingArticleCommand::class,
             RatingWinCommand::class,
-            ShowArticleListCommand::class,
-        ]);
-=======
-=======
-        $this->registerCommands();
-
->>>>>>> e600cc0 (.)
-        Projectionist::addProjectors([
-            BetBalanceProjector::class,
-            ArticleProjector::class,
-            // YetAnotherProjector::class,
-        ]);
->>>>>>> 0f9a9ba (test)
-    }
-
-    public function registerCommands(): void{
-=======
->>>>>>> 934879b (Lint)
-        $this->commands([
-            RatingArticleCommand::class,
             ShowArticleListCommand::class,
         ]);
     }
