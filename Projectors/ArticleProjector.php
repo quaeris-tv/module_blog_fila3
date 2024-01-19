@@ -44,10 +44,10 @@ class ArticleProjector extends Projector
     public function onSetWinningOption(SetWinningOption $event): void
     {
         $rating_morph = RatingMorph::where([
-            'rating_id' => $event->ratingId, 
+            'rating_id' => $event->ratingId,
             'model_type' => 'article',
             'model_id' => $event->articleId,
-            'value' => null
+            'value' => null,
         ]);
         dddx($rating_morph);
         $rating_morph->note = 'correct';

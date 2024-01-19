@@ -35,7 +35,7 @@ class RatingWinCommand extends Command
 
         $command = RatingData::from([
             'ratingId' => $ratingId,
-            'articleId' => $articleId
+            'articleId' => $articleId,
         ]);
 
         try {
