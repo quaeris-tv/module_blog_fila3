@@ -255,12 +255,12 @@ class Article extends BaseModel implements Feedable, HasMedia
         );
     }
 
-    public function getUUidAttribute(?string $value): string
+    public function getUuidAttribute(?string $value): string
     {
         if (null !== $value) {
             return $value;
         }
-        $value = Str::uuid();
+        $value = (string) Str::uuid();
         $this->uuid = $value;
         $this->save();
 

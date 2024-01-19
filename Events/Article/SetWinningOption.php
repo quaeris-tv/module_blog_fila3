@@ -9,10 +9,11 @@ namespace Modules\Blog\Events\Article;
 
 use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
 
-class Winning extends ShouldBeStored
+class SetWinningOption extends ShouldBeStored
 {
     public function __construct(
         readonly public string $ratingId,
+        readonly public string $articleId,
     ) {
     }
 }

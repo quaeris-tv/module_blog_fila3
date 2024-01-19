@@ -7,24 +7,30 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Datas\RatingData;
 use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Events\Article\SetWinningOption;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
 {
-    // public function winning(RatingData $ratingData)
-    // {
-    //     // dddx($ratingData->ratingId);
+    public function winning(RatingData $command)
+    {
+        $event = new SetWinningOption(
+            ratingId: $command->ratingId,
+            articleId: $command->articleId
+        );
+        $this->recordThat($event);
+        $this->persist();
 
-    //     $event = new Winning(
-    //         ratingId: $ratingData->ratingId);
-    //     $this->recordThat($event);
-    //     $this->persist();
+        // $event = new Winning(
+        //     ratingId: $ratingData->ratingId);
+        // $this->recordThat($event);
+        // $this->persist();
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function rating(RatingArticleData $command): static
     {

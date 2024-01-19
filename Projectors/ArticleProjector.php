@@ -41,10 +41,18 @@ class ArticleProjector extends Projector
         )->increment('value', $event->credit);
     }
 
-    // public function onWinning(RatingData $event): void
-    // {
-    //     dddx(['article projector', $event]);
-    // }
+    public function onSetWinningOption(SetWinningOption $event): void
+    {
+        $rating_morph = RatingMorph::where([
+            'rating_id' => $event->ratingId, 
+            'model_type' => 'article',
+            'model_id' => $event->articleId,
+            'value' => null
+        ]);
+        dddx($rating_morph);
+        $rating_morph->note = 'correct';
+        $rating_morph->save();
+    }
 
     // public function onProductReplenished(ProductReplenished $event)
     // {

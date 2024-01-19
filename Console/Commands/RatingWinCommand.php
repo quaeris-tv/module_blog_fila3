@@ -35,6 +35,7 @@ class RatingWinCommand extends Command
 
         $command = RatingData::from([
             'ratingId' => $ratingId,
+            'articleId' => $articleId
         ]);
 
         try {
@@ -42,7 +43,7 @@ class RatingWinCommand extends Command
                 ->winning($command);
 
             $this->newLine();
-            $this->info("✓ Rating <fg=yellow>{$ratingId}</> on article <fg=yellow>{$articleId}</> win");
+            $this->info("✓ Rating <fg=yellow>{$ratingId}</> on article <fg=yellow>{$articleId}</> set winning");
             $this->newLine();
         } catch (\Exception $error) {
             $this->newLine();

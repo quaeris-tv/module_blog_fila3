@@ -70,7 +70,7 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->string('description');
                 }
                 if (! $this->hasColumn('uuid')) {
-                    $table->uuid('uuid')->after('id');
+                    $table->uuid('uuid')->nullable()->after('id');
                 }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);

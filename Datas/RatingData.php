@@ -9,4 +9,5 @@ use Spatie\LaravelData\Data;
 class RatingData extends Data
 {
     public string $ratingId;
+    public string $articleId;
 }
