@@ -69,6 +69,9 @@ class CreateArticlesTable extends XotBaseMigration
                 if (! $this->hasColumn('description')) {
                     $table->string('description');
                 }
+                if (! $this->hasColumn('uuid')) {
+                    $table->uuid('uuid')->after('id');
+                }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }

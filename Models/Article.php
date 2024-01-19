@@ -82,6 +82,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
+        'uuid',
         'user_id',
         'title',
         'slug',
@@ -149,6 +150,8 @@ class Article extends BaseModel implements Feedable, HasMedia
      */
     protected $casts = [
         // 'images' => 'array',
+        'id' => 'string',
+        'uuid'=>'string',
         'date' => 'datetime',
         'published_at' => 'datetime',
         'active' => 'boolean',
@@ -250,6 +253,16 @@ class Article extends BaseModel implements Feedable, HasMedia
                     .$words.' '.str('word')->plural($words);
             }
         );
+    }
+
+    public function getUUidAttribute(?string $value):string{
+        if($value!==null){
+            return $value;
+        }
+        $value=Str::uuid();
+        $this->uuid=$value;
+        $this->save();
+        return $value;
     }
 
     /**

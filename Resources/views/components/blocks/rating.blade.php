@@ -1,8 +1,7 @@
 <div>
     {{-- {{ dddx($model->ratings) }} --}}
-    WIP
     <ul>
-        <livewire:article.vote-rating :article="$model" />
+        <livewire:article.ratings :article="$model" />
     </ul>
 
     {{-- <ul>
