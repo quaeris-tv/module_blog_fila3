@@ -22,7 +22,7 @@ class RatingArticleCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Un utente scommette su un articolo';
 
     /**
      * Execute the console command.

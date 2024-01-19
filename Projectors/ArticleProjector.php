@@ -41,6 +41,11 @@ class ArticleProjector extends Projector
         )->increment('value', $event->credit);
     }
 
+    // public function onWinning(RatingData $event): void
+    // {
+    //     dddx(['article projector', $event]);
+    // }
+
     // public function onProductReplenished(ProductReplenished $event)
     // {
     // Product::withProductId($event->productId)

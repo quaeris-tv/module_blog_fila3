@@ -21,7 +21,7 @@ class ShowArticleListCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Visualizza lista articoli';
 
     /**
      * Execute the console command.
