@@ -39,6 +39,10 @@ class VoteRating extends Component
 
     public function render(): Renderable
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6223082 (wip VoteRating.php)
         $ratings_options = $this->article->ratings()->where('user_id', null)->get();
 
         /**
@@ -56,6 +60,9 @@ class VoteRating extends Component
     public function vote(Rating $rating)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6223082 (wip VoteRating.php)
         // $rating_voted =  $this->article->ratings()
         //         // ->where('rating_id', $rating->id)
         //         // ->where('user_id', \Auth::id())
@@ -68,11 +75,15 @@ class VoteRating extends Component
         //         ->delete($rating_voted->id);
         // }
 
+<<<<<<< HEAD
         // Account::createWithAttributes(['name' => 'Yoda']);
         $this->profile->betArticle(['rating__id' => $rating->id, 'amount' => 10]);
 
         $this->article->ratings()->attach($rating->id, ['user_id' => Auth::id()]);
 =======
+=======
+
+>>>>>>> 6223082 (wip VoteRating.php)
         $this->article->ratings()->attach($rating->id, ['user_id' => \Auth::id()]);
 >>>>>>> 35a88cb (Lint)
         dddx($rating);
