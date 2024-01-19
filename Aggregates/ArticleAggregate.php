@@ -8,16 +8,16 @@ declare(strict_types=1);
 namespace Modules\Blog\Aggregates;
 
 use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Datas\RatingData;
-use Modules\Blog\Events\Article\SetWinningOption;
+use Modules\Blog\Datas\RatingArticleWinnerData;
 use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Events\RatingArticleWinner;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
 {
-    public function winning(RatingData $command)
+    public function winner(RatingArticleWinnerData $command)
     {
-        $event = new SetWinningOption(
+        $event = new RatingArticleWinner(
             ratingId: $command->ratingId,
             articleId: $command->articleId
         );

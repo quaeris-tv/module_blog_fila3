@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Providers;
 
 use Illuminate\Routing\Router;
-use Modules\Blog\Console\Commands\ProfileRatingsCommand;
-use Modules\Blog\Console\Commands\RatingArticleCommand;
-use Modules\Blog\Console\Commands\RatingWinCommand;
-use Modules\Blog\Console\Commands\ShowArticleListCommand;
-use Modules\Blog\Projectors\ArticleProjector;
-use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Blog\Console\Commands;
+use Modules\Blog\Projectors;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
 use Spatie\EventSourcing\Facades\Projectionist;
@@ -34,8 +30,8 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerCommands();
 
         Projectionist::addProjectors([
-            BetBalanceProjector::class,
-            ArticleProjector::class,
+            Projectors\BetBalanceProjector::class,
+            Projectors\ArticleProjector::class,
             // YetAnotherProjector::class,
         ]);
     }
@@ -43,10 +39,10 @@ class BlogServiceProvider extends XotBaseServiceProvider
     public function registerCommands(): void
     {
         $this->commands([
-            RatingArticleCommand::class,
-            RatingWinCommand::class,
-            ShowArticleListCommand::class,
-            ProfileRatingsCommand::class,
+            Commands\RatingArticleCommand::class,
+            Commands\RatingArticleWinnerCommand::class,
+            Commands\ShowArticleListCommand::class,
+            Commands\ProfileRatingsCommand::class,
         ]);
     }
 

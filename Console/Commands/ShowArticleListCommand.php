@@ -28,7 +28,7 @@ class ShowArticleListCommand extends Command
      */
     public function handle()
     {
-        $map = function (Article $row) {
+        $map = static function (Article $row) {
             $result = $row->toArray();
 
             // $result['price'] = Money::toString($result['price']);
@@ -38,7 +38,7 @@ class ShowArticleListCommand extends Command
 
         $rows = Article::all(['id', 'title'])->map($map);
 
-        if (count($rows) > 0) {
+        if (\count($rows) > 0) {
             $headers = array_keys($rows[0]);
 
             $this->newLine();

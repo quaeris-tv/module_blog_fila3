@@ -255,18 +255,6 @@ class Article extends BaseModel implements Feedable, HasMedia
         );
     }
 
-    public function getUuidAttribute(?string $value): string
-    {
-        if (null !== $value) {
-            return $value;
-        }
-        $value = (string) Str::uuid();
-        $this->uuid = $value;
-        $this->save();
-
-        return $value;
-    }
-
     /**
      * Scope a query to only include articles different from current article.
      *
@@ -325,7 +313,7 @@ class Article extends BaseModel implements Feedable, HasMedia
             return Storage::url($this->main_image_upload);
         }
 
-        if (null != $this->main_image_url) {
+        if (null !== $this->main_image_url) {
             return $this->main_image_url;
         }
 
@@ -362,6 +350,18 @@ class Article extends BaseModel implements Feedable, HasMedia
                 return $value;
             }
         );
+    }
+
+    public function getUuidAttribute(?string $value): string
+    {
+        if (null !== $value && '' !== $value) {
+            return $value;
+        }
+        $value = (string) Str::uuid();
+        $this->uuid = $value;
+        $this->save();
+
+        return $value;
     }
 
     // /**
