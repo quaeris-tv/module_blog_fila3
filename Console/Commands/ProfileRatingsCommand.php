@@ -1,0 +1,60 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modules\Blog\Console\Commands;
+
+use Illuminate\Console\Command;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
+
+class ProfileRatingsCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'blog:profile-ratings {userId}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Visualizza votazioni dell utente';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+
+        $userId = (string) $this->argument('userId');
+
+        $profile=Profile::firstWhere(['user_id'=>$userId]);
+
+        $rows=$profile->ratings()
+            ->select('value','user_id','title as answer','model_id','model_type')
+            ->get()
+            ->map(function($item){
+                $data=$item->toArray();
+                $data['question']=$item->linkedTo->title;
+                return $data;
+            })
+            ->toArray();
+
+
+        if (count($rows) > 0) {
+            $headers = array_keys($rows[0]);
+
+            $this->newLine();
+            $this->table($headers, $rows);
+            $this->newLine();
+        } else {
+            $this->newLine();
+            $this->warn('⚡ No records');
+            $this->newLine();
+        }
+    }
+}

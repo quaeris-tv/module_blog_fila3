@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Modules\Blog\Providers;
 
 use Illuminate\Routing\Router;
-use Modules\Blog\Console\Commands\RatingArticleCommand;
-use Modules\Blog\Console\Commands\RatingWinCommand;
-use Modules\Blog\Console\Commands\ShowArticleListCommand;
-use Modules\Blog\Projectors\ArticleProjector;
-use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Projectors\ArticleProjector;
 use Spatie\EventSourcing\Facades\Projectionist;
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Console\Commands\RatingWinCommand;
+use Modules\Blog\Console\Commands\RatingArticleCommand;
+use Modules\Blog\Console\Commands\ProfileRatingsCommand;
+use Modules\Blog\Console\Commands\ShowArticleListCommand;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -45,6 +46,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
             RatingArticleCommand::class,
             RatingWinCommand::class,
             ShowArticleListCommand::class,
+            ProfileRatingsCommand::class,
         ]);
     }
 
