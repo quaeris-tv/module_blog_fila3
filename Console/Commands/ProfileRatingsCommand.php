@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
-use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 
 class ProfileRatingsCommand extends Command
@@ -29,21 +28,20 @@ class ProfileRatingsCommand extends Command
      */
     public function handle()
     {
-
         $userId = (string) $this->argument('userId');
 
-        $profile=Profile::firstWhere(['user_id'=>$userId]);
+        $profile = Profile::firstWhere(['user_id' => $userId]);
 
-        $rows=$profile->ratings()
-            ->select('value','user_id','title as answer','model_id','model_type')
+        $rows = $profile->ratings()
+            ->select('value', 'user_id', 'title as answer', 'model_id', 'model_type')
             ->get()
-            ->map(function($item){
-                $data=$item->toArray();
-                $data['question']=$item->linkedTo->title;
+            ->map(function ($item) {
+                $data = $item->toArray();
+                $data['question'] = $item->linkedTo->title;
+
                 return $data;
             })
             ->toArray();
-
 
         if (count($rows) > 0) {
             $headers = array_keys($rows[0]);

@@ -152,8 +152,9 @@ class Profile extends BaseModel implements HasMedia
         $secondKey = 'id';
         $localKey = 'user_id';
         $secondLocalKey = 'rating_id';
-        return $this->hasManyThrough(Rating::class, RatingMorph::class ,$firstKey, $secondKey , $localKey , $secondLocalKey)
-            //->withPivot(['value'])
-            ;
+
+        return $this->hasManyThrough(Rating::class, RatingMorph::class, $firstKey, $secondKey, $localKey, $secondLocalKey)
+            // ->withPivot(['value'])
+        ;
     }
 }
