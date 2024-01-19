@@ -53,6 +53,6 @@ class ProfileRatingsCommand extends Command
             $this->newLine();
             $this->warn('⚡ No records');
             $this->newLine();
-        }r
+        }
     }
 }
