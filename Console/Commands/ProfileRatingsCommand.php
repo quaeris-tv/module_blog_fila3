@@ -36,8 +36,10 @@ class ProfileRatingsCommand extends Command
             ->select('value', 'user_id', 'title as answer', 'model_id', 'model_type')
             ->get()
             ->map(function ($item) {
+                // dddx($item->toArray());
                 $data = $item->toArray();
-                $data['question'] = $item->linkedTo->title;
+                // $data['question'] = $item->linkedTo->title;
+                $data['question'] = $item->answer;
 
                 return $data;
             })
