@@ -25,7 +25,7 @@ class ProfileRatingsCommand extends Command
 
     /**
      * Execute the console command.
-     */
+     */la
     public function handle()
     {
         $userId = (string) $this->argument('userId');
@@ -53,6 +53,6 @@ class ProfileRatingsCommand extends Command
             $this->newLine();
             $this->warn('⚡ No records');
             $this->newLine();
-        }
+        }r
     }
 }
