@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 use Illuminate\Routing\Router;
 use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\RatingWinCommand;
@@ -12,8 +11,14 @@ use Modules\Blog\Console\Commands\ShowArticleListCommand;
 use Modules\Blog\Projectors\ArticleProjector;
 use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
 use Spatie\EventSourcing\Facades\Projectionist;
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+<<<<<<< HEAD
+use Spatie\EventSourcing\Facades\Projectionist;
+=======
+use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
+>>>>>>> 0f9a9ba (test)
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -31,6 +36,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerMyMiddleware($router);
         $this->registerRoutes($router);
 
+<<<<<<< HEAD
         $this->registerCommands();
 
         Projectionist::addProjectors([
@@ -47,6 +53,12 @@ class BlogServiceProvider extends XotBaseServiceProvider
             RatingWinCommand::class,
             ShowArticleListCommand::class,
         ]);
+=======
+        Projectionist::addProjectors([
+            BetBalanceProjector::class,
+            // YetAnotherProjector::class,
+        ]);
+>>>>>>> 0f9a9ba (test)
     }
 
     public function registerRoutes(Router $router): void

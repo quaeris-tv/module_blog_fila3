@@ -10,7 +10,10 @@ use Illuminate\Support\Carbon;
 use Modules\Rating\Models\Rating;
 use Spatie\MediaLibrary\HasMedia;
 use Modules\Blog\Events\BetArticle;
+<<<<<<< HEAD
 use Modules\Rating\Models\RatingMorph;
+=======
+>>>>>>> 0f9a9ba (test)
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,7 +22,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Modules\Blog\Models\Profile.
  *
  * @property int                                                                                                        $id
+<<<<<<< HEAD
  * @property string|null                                                                                                $user_id
+=======
+ * @property string|null                                                                                                   $user_id
+>>>>>>> 0f9a9ba (test)
  * @property string|null                                                                                                $first_name
  * @property string|null                                                                                                $last_name
  * @property string|null                                                                                                $email
@@ -63,7 +70,11 @@ class Profile extends BaseModel implements HasMedia
     protected $fillable = [
         'id',
         'user_id',
+<<<<<<< HEAD
         'email',
+=======
+        'email'
+>>>>>>> 0f9a9ba (test)
     ];
 
     /**
@@ -144,8 +155,11 @@ class Profile extends BaseModel implements HasMedia
     {
         event(new BetArticle($attributes));
     }
+<<<<<<< HEAD
 
     public function ratings(){
         return $this->hasManyThrough(Rating::class, RatingMorph::class);
     }
+=======
+>>>>>>> 0f9a9ba (test)
 }

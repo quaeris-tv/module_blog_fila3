@@ -4,29 +4,43 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+<<<<<<< HEAD
 use Illuminate\Contracts\Support\Renderable;
 <<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 =======
 >>>>>>> 35a88cb (Lint)
+=======
+>>>>>>> 0f9a9ba (test)
 use Livewire\Component;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Rating\Models\Rating;
+use Illuminate\Support\Facades\Auth;
 use Modules\Xot\Actions\GetViewAction;
+<<<<<<< HEAD
 <<<<<<< HEAD
 use Webmozart\Assert\Assert;
 =======
 >>>>>>> 35a88cb (Lint)
+=======
+use Illuminate\Contracts\Support\Renderable;
+>>>>>>> 0f9a9ba (test)
 
 class VoteRating extends Component
 {
     public string $tpl = 'v1';
 
     public Article $article;
-
+    
     public Profile $profile;
 
+<<<<<<< HEAD
+    public Profile $profile;
+
+=======
+>>>>>>> 0f9a9ba (test)
     public function mount(Article $article): void
     {
         $this->article = $article;
@@ -80,6 +94,7 @@ class VoteRating extends Component
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         // Account::createWithAttributes(['name' => 'Yoda']);
         $this->profile->betArticle(['rating__id' => $rating->id, 'amount' => 10]);
 
@@ -92,6 +107,13 @@ class VoteRating extends Component
 >>>>>>> 9a40889 (Lint)
         $this->article->ratings()->attach($rating->id, ['user_id' => \Auth::id()]);
 >>>>>>> 35a88cb (Lint)
+=======
+        // Account::createWithAttributes(['name' => 'Yoda']);
+        $this->profile->betArticle(['rating__id' => $rating->id ,'amount' => 10]);
+
+
+        $this->article->ratings()->attach($rating->id, ['user_id' => Auth::id()]);
+>>>>>>> 0f9a9ba (test)
         dddx($rating);
     }
 }
