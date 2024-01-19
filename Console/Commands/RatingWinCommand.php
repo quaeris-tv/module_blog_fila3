@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
+use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingData;
 use Modules\Rating\Models\RatingMorph;
-use Modules\Blog\Aggregates\ArticleAggregate;
 
 class RatingWinCommand extends Command
 {
@@ -49,7 +49,6 @@ class RatingWinCommand extends Command
             $this->line("<bg=red;fg=black>✗ Product out of stock:</> {$error->getMessage()}");
             $this->newLine();
         }
-
 
         // $rating_morphs = RatingMorph::where('rating_id', $ratingId)
         //     ->where('model_type', 'article')

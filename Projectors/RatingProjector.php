@@ -18,7 +18,7 @@ class RatingProjector extends Projector
         ->get();
         // dddx($rating_morphs);
 
-        foreach($rating_morphs as $rm){
+        foreach ($rating_morphs as $rm) {
             dddx($rm);
 
             // RatingAggregate::retrieve($command->articleId)
