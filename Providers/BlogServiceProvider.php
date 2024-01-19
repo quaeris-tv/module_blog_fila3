@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Providers;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Illuminate\Routing\Router;
 use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\RatingWinCommand;
@@ -22,12 +23,21 @@ use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 >>>>>>> 0f9a9ba (test)
 =======
 use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
+=======
+>>>>>>> e600cc0 (.)
 use Illuminate\Routing\Router;
-use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Projectors\ArticleProjector;
 use Spatie\EventSourcing\Facades\Projectionist;
+<<<<<<< HEAD
 >>>>>>> bba6ab7 (Lint)
+=======
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Console\Commands\RatingArticleCommand;
+use Modules\Blog\Console\Commands\ShowArticleListCommand;
+use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
+>>>>>>> e600cc0 (.)
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -46,6 +56,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerRoutes($router);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $this->registerCommands();
 
         Projectionist::addProjectors([
@@ -63,11 +74,23 @@ class BlogServiceProvider extends XotBaseServiceProvider
             ShowArticleListCommand::class,
         ]);
 =======
+=======
+        $this->registerCommands();
+
+>>>>>>> e600cc0 (.)
         Projectionist::addProjectors([
             BetBalanceProjector::class,
+            ArticleProjector::class,
             // YetAnotherProjector::class,
         ]);
 >>>>>>> 0f9a9ba (test)
+    }
+
+    public function registerCommands(): void{
+        $this->commands([
+            RatingArticleCommand::class,
+            ShowArticleListCommand::class,
+        ]);
     }
 
     public function registerRoutes(Router $router): void

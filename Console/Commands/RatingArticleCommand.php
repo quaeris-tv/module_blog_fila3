@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands;
@@ -7,6 +8,17 @@ namespace Modules\Blog\Console\Commands;
 use Illuminate\Console\Command;
 use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingArticleData;
+=======
+namespace Modules\Blog\Console\Commands;
+
+use Illuminate\Console\Command;
+use App\Command\PurchaseProduct;
+use App\Aggregates\ProductAggregate;
+use App\Error\ProductOutOfStockError;
+use App\Error\ProductNotRegisteredError;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Aggregates\ArticleAggregate;
+>>>>>>> e600cc0 (.)
 
 class RatingArticleCommand extends Command
 {
@@ -22,13 +34,18 @@ class RatingArticleCommand extends Command
      *
      * @var string
      */
+<<<<<<< HEAD
     protected $description = 'Un utente scommette su un articolo';
+=======
+    protected $description = 'Command description';
+>>>>>>> e600cc0 (.)
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
+<<<<<<< HEAD
         $userId = (string) $this->argument('userId');
         $articleId = (string) $this->argument('articleId');
         $ratingId = (string) $this->argument('ratingId');
@@ -39,6 +56,18 @@ class RatingArticleCommand extends Command
             'articleId' => $articleId,
             'ratingId' => $ratingId,
             'credit' => $credit,
+=======
+        $userId = (string)$this->argument('userId');
+        $articleId = (string)$this->argument('articleId');
+        $ratingId = (string)$this->argument('ratingId');
+        $credit = (int)$this->argument('credit');
+
+        $command = RatingArticleData::from([
+            'userId'=>$userId,
+            'articleId'=>$articleId,
+            'ratingId'=>$ratingId,
+            'credit'=>$credit
+>>>>>>> e600cc0 (.)
         ]);
 
         try {
@@ -46,8 +75,14 @@ class RatingArticleCommand extends Command
                 ->rating($command);
 
             $this->newLine();
+<<<<<<< HEAD
             $this->info("✓ Rating on article <fg=yellow>{$articleId}</> purchased");
             $this->newLine();
+=======
+            $this->info("✓ Product <fg=yellow>{$articleId}</> purchased");
+            $this->newLine();
+
+>>>>>>> e600cc0 (.)
         } catch (\Exception $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Product out of stock:</> {$error->getMessage()}");
