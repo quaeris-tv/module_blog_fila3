@@ -41,10 +41,14 @@ class CreateBlogProfilesTable extends XotBaseMigration
                     $table->string('user_id')->change();
                 }
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (! $this->hasColumn('credits')) {
 =======
                 if (!$this->hasColumn('credits')) {
 >>>>>>> 0f9a9ba (test)
+=======
+                if (! $this->hasColumn('credits')) {
+>>>>>>> bba6ab7 (Lint)
                     $table->float('credits');
                 }
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);

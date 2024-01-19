@@ -6,6 +6,7 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
+<<<<<<< HEAD
 use Illuminate\Support\Carbon;
 use Modules\Rating\Models\Rating;
 use Spatie\MediaLibrary\HasMedia;
@@ -14,19 +15,28 @@ use Modules\Blog\Events\BetArticle;
 use Modules\Rating\Models\RatingMorph;
 =======
 >>>>>>> 0f9a9ba (test)
+=======
+>>>>>>> bba6ab7 (Lint)
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Events\BetArticle;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Modules\Blog\Models\Profile.
  *
  * @property int                                                                                                        $id
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @property string|null                                                                                                $user_id
 =======
  * @property string|null                                                                                                   $user_id
 >>>>>>> 0f9a9ba (test)
+=======
+ * @property string|null                                                                                                $user_id
+>>>>>>> bba6ab7 (Lint)
  * @property string|null                                                                                                $first_name
  * @property string|null                                                                                                $last_name
  * @property string|null                                                                                                $email
@@ -71,10 +81,14 @@ class Profile extends BaseModel implements HasMedia
         'id',
         'user_id',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'email',
 =======
         'email'
 >>>>>>> 0f9a9ba (test)
+=======
+        'email',
+>>>>>>> bba6ab7 (Lint)
     ];
 
     /**

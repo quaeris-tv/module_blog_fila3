@@ -20,7 +20,11 @@ class BetArticle extends ShouldBeStored
         $this->betAttributes = $betAttributes;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 0f9a9ba (test)
+=======
+}
+>>>>>>> bba6ab7 (Lint)

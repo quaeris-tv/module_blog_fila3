@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
+<<<<<<< HEAD
 use Illuminate\Routing\Router;
 use Modules\Blog\Console\Commands\RatingArticleCommand;
 use Modules\Blog\Console\Commands\RatingWinCommand;
@@ -19,6 +20,14 @@ use Spatie\EventSourcing\Facades\Projectionist;
 =======
 use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
 >>>>>>> 0f9a9ba (test)
+=======
+use BezhanSalleh\FilamentLanguageSwitch\Http\Middleware\SwitchLanguageLocale;
+use Illuminate\Routing\Router;
+use Modules\Blog\Projectors\BetBalanceProjector;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Spatie\EventSourcing\Facades\Projectionist;
+>>>>>>> bba6ab7 (Lint)
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
