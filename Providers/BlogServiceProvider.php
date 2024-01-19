@@ -11,8 +11,8 @@ use Modules\Blog\Console\Commands\ShowArticleListCommand;
 use Modules\Blog\Projectors\ArticleProjector;
 use Modules\Blog\Projectors\BetBalanceProjector;
 use Modules\Xot\Datas\XotData;
-use Spatie\EventSourcing\Facades\Projectionist;
 use Modules\Xot\Providers\XotBaseServiceProvider;
+use Spatie\EventSourcing\Facades\Projectionist;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
