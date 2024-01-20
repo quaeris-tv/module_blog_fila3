@@ -48,6 +48,10 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\TextInput::make('slug')
                     ->columnSpan(1)
                     ->required(),
+                Forms\Components\Toggle::make('is_closed')
+                    ->columnSpanFull()
+                    ->helperText('Determina se è aperto alle scommesse oppure no')
+                    ->required(),
                 /*
                 Forms\Components\TextInput::make('description')
                     ->columnSpanFull()

@@ -30,7 +30,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerCommands();
 
         Projectionist::addProjectors([
-            Projectors\BetBalanceProjector::class,
+            // Projectors\BetBalanceProjector::class,
             Projectors\ArticleProjector::class,
             // YetAnotherProjector::class,
         ]);

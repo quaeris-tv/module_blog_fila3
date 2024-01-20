@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
+use Modules\Blog\Models\Article;
+use Modules\Blog\Events\RatingArticle;
+use Modules\Rating\Models\RatingMorph;
 use Modules\Blog\Events\ArticleRegistered;
 use Modules\Blog\Events\ProductReplenished;
-use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\RatingArticleWinner;
-use Modules\Blog\Models\Article;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Blog\Events\Article\CloseArticle;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ArticleProjector extends Projector
 {
-    public function onProductRegistered(ArticleRegistered $event): void
-    {
-        $data = (array) $event;
+    // public function onProductRegistered(ArticleRegistered $event): void
+    // {
+    //     $data = (array) $event;
 
-        Article::create($data);
-    }
+    //     Article::create($data);
+    // }
 
     public function onRatingArticle(RatingArticle $event): void
     {
@@ -45,8 +46,19 @@ class ArticleProjector extends Projector
             'user_id' => null,
         ]);
 
+        // if(null == $rating_morph){
+        //     dddx('null');
+        // }
+
         $rating_morph->is_winner = true;
         $rating_morph->save();
+    }
+
+    public function onCloseArticle(CloseArticle $event)
+    {
+        $article = Article::find($event->articleId);
+        $article->is_closed = true;
+        $article->save();
     }
 
     // public function onProductReplenished(ProductReplenished $event)

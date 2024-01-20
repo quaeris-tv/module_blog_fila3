@@ -24,7 +24,7 @@ class RatingArticleWinnerCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Un articolo risulta vincente selezionando un opzione di risposta';
+    protected $description = 'Un articolo viene chiuso selezionando la risposta vincente';
 
     /**
      * Execute the console command.

@@ -73,6 +73,10 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->uuid('uuid')->nullable()->after('id');
                 }
 
+                if (! $this->hasColumn('is_closed')) {
+                    $table->boolean('is_closed')->nullable();
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
