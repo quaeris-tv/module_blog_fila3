@@ -52,6 +52,10 @@ class RatingArticleCommand extends Command
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
             $this->newLine();
+        } catch (\RatingClosedArticleError $error) {
+            $this->newLine();
+            $this->line("<bg=red;fg=black>✗ Rating not allowed:</> {$error->getMessage()}");
+            $this->newLine();
         }
     }
 }

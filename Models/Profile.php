@@ -141,10 +141,10 @@ class Profile extends BaseModel implements HasMedia
         return $query; // ->where('role_id', '=', 2);
     }
 
-    public function betArticle(array $attributes): void
-    {
-        event(new BetArticle($attributes));
-    }
+    // public function betArticle(array $attributes): void
+    // {
+    //     event(new BetArticle($attributes));
+    // }
 
     public function ratings()
     {

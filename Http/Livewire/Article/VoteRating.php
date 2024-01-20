@@ -62,7 +62,7 @@ class VoteRating extends Component
         // }
 
         // Account::createWithAttributes(['name' => 'Yoda']);
-        $this->profile->betArticle(['rating__id' => $rating->id, 'amount' => 10]);
+        // $this->profile->betArticle(['rating__id' => $rating->id, 'amount' => 10]);
 
         $this->article->ratings()->attach($rating->id, ['user_id' => Auth::id()]);
         dddx($rating);
