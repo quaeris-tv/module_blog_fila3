@@ -54,7 +54,7 @@ class ArticleProjector extends Projector
         $rating_morph->save();
     }
 
-    public function onCloseArticle(CloseArticle $event)
+    public function onCloseArticle(CloseArticle $event): void
     {
         $article = Article::find($event->articleId);
         $article->is_closed = true;

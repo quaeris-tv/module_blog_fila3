@@ -6,14 +6,15 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use Modules\Blog\Events\BetArticle;
 use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
 use Spatie\MediaLibrary\HasMedia;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -146,7 +147,7 @@ class Profile extends BaseModel implements HasMedia
     //     event(new BetArticle($attributes));
     // }
 
-    public function ratings()
+    public function ratings(): HasManyThrough
     {
         $firstKey = 'user_id';
         $secondKey = 'id';

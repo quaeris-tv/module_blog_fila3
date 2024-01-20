@@ -14,17 +14,17 @@ class RatingProjector extends Projector
     {
         dddx($event);
 
-        $rating_morphs = RatingMorph::where('rating_id', $ratingData->ratingId)
-        ->where('model_type', 'article')
-        ->where('user_id', '<>', null)
-        ->get();
-        // dddx($rating_morphs);
+        // $rating_morphs = RatingMorph::where('rating_id', $ratingData->ratingId)
+        // ->where('model_type', 'article')
+        // ->where('user_id', '<>', null)
+        // ->get();
+        // // dddx($rating_morphs);
 
-        foreach ($rating_morphs as $rm) {
-            dddx($rm);
+        // foreach ($rating_morphs as $rm) {
+        //     dddx($rm);
 
-            // RatingAggregate::retrieve($command->articleId)
-            //     ->addCredit($command);
-        }
+        //     // RatingAggregate::retrieve($command->articleId)
+        //     //     ->addCredit($command);
+        // }
     }
 }

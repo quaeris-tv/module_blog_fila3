@@ -24,7 +24,7 @@ class RatingArticleWinnerCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Un articolo viene chiuso selezionando la risposta vincente';
+    protected $description = 'Un articolo viene chiuso alle scommesse selezionando la risposta vincente';
 
     /**
      * Execute the console command.
@@ -51,37 +51,5 @@ class RatingArticleWinnerCommand extends Command
             $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
             $this->newLine();
         }
-
-        // $rating_morphs = RatingMorph::where('rating_id', $ratingId)
-        //     ->where('model_type', 'article')
-        //     ->where('model_id', $articleId)
-        //     ->where('value', '>', 0)
-        //     ->get();
-
-        // // dddx($rating_morphs);
-
-        // foreach ($rating_morphs as $rm) {
-        //     $command = RatingData::from([
-        //         'userId' => $rm->user_id,
-        //         // 'articleId' => $rm->article_id,
-        //         'ratingId' => $rm->rating_id,
-        //         'credit' => $rm->value,
-        //     ]);
-
-        //     dddx($command);
-
-        //     try {
-        //         RatingAggregate::retrieve($command->articleId)
-        //             ->addCredit($command);
-
-        //         $this->newLine();
-        //         $this->info("✓ Rating on article <fg=yellow>{$articleId}</> purchased");
-        //         $this->newLine();
-        //     } catch (\Exception $error) {
-        //         $this->newLine();
-        //         $this->line("<bg=red;fg=black>✗ Product out of stock:</> {$error->getMessage()}");
-        //         $this->newLine();
-        //     }
-        // }
     }
 }
