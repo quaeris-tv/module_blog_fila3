@@ -7,11 +7,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Events\RatingArticleWinner;
-use Modules\Blog\Events\Article\CloseArticle;
 use Modules\Blog\Datas\RatingArticleWinnerData;
+use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Events\RatingArticleWinner;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
@@ -25,9 +25,9 @@ class ArticleAggregate extends AggregateRoot
         $this->recordThat($event);
 
         $this->recordThat(
-            new CloseArticle (
+            new CloseArticle(
                 articleId: $event->articleId
-                )
+            )
         );
 
         $this->persist();

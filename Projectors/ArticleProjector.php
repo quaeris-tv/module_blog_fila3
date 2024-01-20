@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Modules\Blog\Models\Article;
-use Modules\Blog\Events\RatingArticle;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Blog\Events\Article\CloseArticle;
 use Modules\Blog\Events\ArticleRegistered;
 use Modules\Blog\Events\ProductReplenished;
+use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\RatingArticleWinner;
-use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Models\Article;
+use Modules\Rating\Models\RatingMorph;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ArticleProjector extends Projector
