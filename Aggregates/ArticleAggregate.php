@@ -7,22 +7,21 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Models\Article;
-use Modules\Blog\Events\RatingArticle;
-use Modules\Blog\Error\NullArticleError;
 use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Datas\RatingArticleWinnerData;
+use Modules\Blog\Error\NullArticleError;
+use Modules\Blog\Error\RatingClosedArticleError;
+use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\RatingArticleWinner;
 use Modules\Blog\Events\RatingClosedArticle;
-use Modules\Blog\Events\Article\CloseArticle;
-use Modules\Blog\Datas\RatingArticleWinnerData;
-use Modules\Blog\Error\RatingClosedArticleError;
+use Modules\Blog\Models\Article;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
 {
     public function winner(RatingArticleWinnerData $command)
     {
-
         $article = Article::find($command->articleId);
 
         $event = new RatingArticleWinner(
@@ -31,7 +30,7 @@ class ArticleAggregate extends AggregateRoot
         );
         $this->recordThat($event);
 
-        if($article == null){
+        if (null == $article) {
             throw new NullArticleError(articleId: $command->productId);
         }
 
@@ -71,7 +70,6 @@ class ArticleAggregate extends AggregateRoot
 
             throw new RatingClosedArticleError(articleId: $command->productId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
         }
-
 
         $this->persist();
 
