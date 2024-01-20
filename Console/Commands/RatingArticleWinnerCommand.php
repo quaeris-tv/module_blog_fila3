@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
+use Modules\Blog\Error\NullArticleError;
 use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingArticleWinnerData;
 
@@ -38,13 +39,17 @@ class RatingArticleWinnerCommand extends Command
         ]);
 
         try {
-            ArticleAggregate::retrieve($command->ratingId)
+            ArticleAggregate::retrieve($command->articleId)
                 ->winner($command);
 
             $this->newLine();
             $this->info("✓ Rating <fg=yellow>{$ratingId}</> on article <fg=yellow>{$articleId}</> set winning");
             $this->newLine();
         } catch (\Exception $error) {
+            $this->newLine();
+            $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
+            $this->newLine();
+        } catch (\NullArticleError $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
             $this->newLine();

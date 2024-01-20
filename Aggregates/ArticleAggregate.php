@@ -7,25 +7,33 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Datas\RatingArticleWinnerData;
-use Modules\Blog\Error\RatingClosedArticleError;
-use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Models\Article;
 use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Error\NullArticleError;
+use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Events\RatingArticleWinner;
 use Modules\Blog\Events\RatingClosedArticle;
-use Modules\Blog\Models\Article;
+use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Datas\RatingArticleWinnerData;
+use Modules\Blog\Error\RatingClosedArticleError;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
 {
     public function winner(RatingArticleWinnerData $command)
     {
+
+        $article = Article::find($command->articleId);
+
         $event = new RatingArticleWinner(
             ratingId: $command->ratingId,
             articleId: $command->articleId
         );
         $this->recordThat($event);
+
+        if($article == null){
+            throw new NullArticleError(articleId: $command->productId);
+        }
 
         $this->recordThat(
             new CloseArticle(
@@ -47,6 +55,8 @@ class ArticleAggregate extends AggregateRoot
                 articleId: $command->articleId,
                 ratingId: $command->ratingId,
                 credit: $command->credit);
+
+            $this->recordThat($event);
         } else {
             // dddx('l\'utente ha scommesso su articolo chiuso');
             $this->recordThat(
@@ -57,12 +67,12 @@ class ArticleAggregate extends AggregateRoot
                     credit: $command->credit
                 ));
 
-            $this->persist();
+            // $this->persist();
 
             throw new RatingClosedArticleError(articleId: $command->productId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
         }
 
-        $this->recordThat($event);
+
         $this->persist();
 
         return $this;
