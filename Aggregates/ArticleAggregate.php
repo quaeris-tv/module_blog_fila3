@@ -7,11 +7,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Datas\RatingArticleWinnerData;
-use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Models\Article;
 use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Events\RatingArticleWinner;
+use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Datas\RatingArticleWinnerData;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
@@ -37,11 +38,25 @@ class ArticleAggregate extends AggregateRoot
 
     public function rating(RatingArticleData $command): static
     {
-        $event = new RatingArticle(
-            userId: $command->userId,
-            articleId: $command->articleId,
-            ratingId: $command->ratingId,
-            credit: $command->credit);
+
+        $article = Article::find($command->articleId);
+        if($article->is_closed == false){
+            $event = new RatingArticle(
+                userId: $command->userId,
+                articleId: $command->articleId,
+                ratingId: $command->ratingId,
+                credit: $command->credit);
+            
+        }else{
+            dddx('l\'utente ha scommesso su articolo chiuso');
+            // $event = new RatingClosedArticle(
+            //     userId: $command->userId,
+            //     articleId: $command->articleId,
+            //     ratingId: $command->ratingId,
+            //     credit: $command->credit);
+        }
+
+
         $this->recordThat($event);
         $this->persist();
 
