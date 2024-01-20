@@ -7,8 +7,6 @@ namespace Modules\Blog\Console\Commands;
 use Illuminate\Console\Command;
 use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingArticleWinnerData;
-use Modules\Blog\Datas\RatingData;
-use Modules\Rating\Models\RatingMorph;
 
 class RatingArticleWinnerCommand extends Command
 {

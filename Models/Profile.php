@@ -6,15 +6,15 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Support\Carbon;
-use Modules\Rating\Models\Rating;
-use Spatie\MediaLibrary\HasMedia;
-use Modules\Blog\Events\BetArticle;
-use Modules\Rating\Models\RatingMorph;
 use Illuminate\Database\Eloquent\Builder;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Modules\Blog\Models\Profile.
