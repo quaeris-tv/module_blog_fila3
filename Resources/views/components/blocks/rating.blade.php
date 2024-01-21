@@ -1,8 +1,12 @@
 <div>
     {{-- {{ dddx($model->ratings) }} --}}
-    <ul>
-        <livewire:article.ratings :article="$model" />
-    </ul>
+    @if(Auth::check())
+        <ul>
+            <livewire:article.ratings :article="$model" />
+        </ul>
+    @else
+        devi essere loggato
+    @endif
 
     {{-- <ul>
     @foreach($model->ratings as $rating)
