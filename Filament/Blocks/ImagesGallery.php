@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Blocks;
 
-use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class ImagesGallery
 {
@@ -17,20 +18,43 @@ class ImagesGallery
     ): Block {
         return Block::make($name)
             ->schema([
-                // FileUpload::make('image')
-                //     ->label('Image upload'),
-                SpatieMediaLibraryFileUpload::make('image')
+
+                Repeater::make('gallery')
+                    ->schema([
+                        SpatieMediaLibraryFileUpload::make('image')
                         // ->image()
                         // ->maxSize(5000)
-                    ->multiple()
-                    ->enableReordering()
-                    ->openable()
-                    ->downloadable()
-                    ->columnSpanFull()
-                        // ->collection('avatars')
-                        // ->conversion('thumbnail')
-                    ->disk('uploads')
-                    ->directory('photos'),
+                        ->multiple()
+                        ->enableReordering()
+                        ->openable()
+                        ->downloadable()
+                        ->columnSpanFull()
+                            // ->collection('avatars')
+                            // ->conversion('thumbnail')
+                        ->disk('uploads')
+                        ->directory('photos'),
+
+                        TextInput::make('caption')
+                        ->columnSpanFull(),
+
+                    ])->columnSpanFull(),
+
+
+
+                // FileUpload::make('image')
+                //     ->label('Image upload'),
+                // SpatieMediaLibraryFileUpload::make('image')
+                //         // ->image()
+                //         // ->maxSize(5000)
+                //     ->multiple()
+                //     ->enableReordering()
+                //     ->openable()
+                //     ->downloadable()
+                //     ->columnSpanFull()
+                //         // ->collection('avatars')
+                //         // ->conversion('thumbnail')
+                //     ->disk('uploads')
+                //     ->directory('photos'),
 
                 // TextInput::make('url')
                 //     ->label('or Image URL'),
@@ -42,8 +66,8 @@ class ImagesGallery
                 // TextInput::make('alt')
                 //     ->columnSpanFull(),
 
-                TextInput::make('caption')
-                    ->columnSpanFull(),
+                // TextInput::make('caption')
+                //     ->columnSpanFull(),
             ])
             ->columns('form' === $context ? 2 : 1);
     }
