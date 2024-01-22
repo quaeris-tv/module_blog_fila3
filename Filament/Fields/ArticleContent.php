@@ -7,10 +7,10 @@ namespace Modules\Blog\Filament\Fields;
 use Filament\Forms\Components\Builder;
 use Modules\Blog\Filament\Blocks\Chart;
 use Modules\Blog\Filament\Blocks\Image;
+use Modules\Blog\Filament\Blocks\ImagesGallery;
+use Modules\Blog\Filament\Blocks\Paragraph;
 use Modules\Blog\Filament\Blocks\Title;
 use Modules\Rating\Filament\Blocks\Rating;
-use Modules\Blog\Filament\Blocks\Paragraph;
-use Modules\Blog\Filament\Blocks\ImagesGallery;
 
 class ArticleContent
 {

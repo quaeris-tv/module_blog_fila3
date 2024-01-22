@@ -26,7 +26,7 @@ class Chart
                         // 'h4' => 'h4',
                     ])
                     ->columnSpanFull(),
-                    // ->afterStateHydrated(static fn ($state, $set) => $state || $set('level', 'h2')),
+                // ->afterStateHydrated(static fn ($state, $set) => $state || $set('level', 'h2')),
             ])
             ->columns('form' === $context ? 2 : 1);
     }
