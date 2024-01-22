@@ -12,6 +12,8 @@ class TestChart extends ChartWidget
 
     protected function getData(): array
     {
+        dddx('aaa');
+
         return [
             'datasets' => [
                 [
