@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Http\Livewire\Article;
 
 use Livewire\Component;
@@ -11,14 +13,14 @@ class Chart extends Component
 
     public string $type;
 
-    public $subscriptions=[
-        ['Day'=>'Mon','Value'=>10],
-        ['Day'=>'Tue','Value'=>20],
-        ['Day'=>'Wed','Value'=>15],
-        ['Day'=>'Thu','Value'=>25],
-        ['Day'=>'Fri','Value'=>30],
-        ['Day'=>'Sat','Value'=>22],
-        ['Day'=>'Sun','Value'=>18],
+    public $subscriptions = [
+        ['Day' => 'Mon', 'Value' => 10],
+        ['Day' => 'Tue', 'Value' => 20],
+        ['Day' => 'Wed', 'Value' => 15],
+        ['Day' => 'Thu', 'Value' => 25],
+        ['Day' => 'Fri', 'Value' => 30],
+        ['Day' => 'Sat', 'Value' => 22],
+        ['Day' => 'Sun', 'Value' => 18],
     ];
 
     public function mount(string $type_chart): void
@@ -33,12 +35,11 @@ class Chart extends Component
          * @phpstan-var view-string
          */
         $view = app(GetViewAction::class)->execute($this->tpl);
-        
+
         $view_params = [
             'view' => $view,
         ];
 
         return view($view, $view_params);
     }
-
 }
