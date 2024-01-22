@@ -1,13 +1,15 @@
 <?php
- 
+
+declare(strict_types=1);
+
 namespace Modules\Blog\Http\Livewire\Article;
- 
+
 use Filament\Widgets\ChartWidget;
- 
+
 class TestChart extends ChartWidget
 {
     protected static ?string $heading = 'Test Graph';
- 
+
     protected function getData(): array
     {
         return [
@@ -22,7 +24,7 @@ class TestChart extends ChartWidget
             'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         ];
     }
- 
+
     protected function getType(): string
     {
         return 'line';
