@@ -82,6 +82,7 @@ class Ratings extends Page implements HasForms
         foreach ($ratings as $rating) {
             $schema[] = TextInput::make('ratings.'.$rating->id.'.value')
                 ->label($rating->title.' tot ')
+                ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
                 ->disabled();
             /*
             $schema[]=TextInput::make('ratings_add.'.$rating->id.'.id')
@@ -89,6 +90,7 @@ class Ratings extends Page implements HasForms
             */
             $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
                 ->label($rating->title)
+                ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
                 // ->disabled()
             ;
         }

@@ -8,19 +8,19 @@
             :actions="$this->getFormActions()"
         />
 
-        {{-- <x-filament::button color="danger" wire:click="save">
-            New user
-        </x-filament::button> --}}
+        <x-filament::button color="danger" wire:click="save" class="inline-flex justify-center rounded-md border border-transparent bg-green-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2">
+            Add Rating
+        </x-filament::button>
 
-        <x-button label="Scommetti" wire:click="save"></x-button>
+        {{-- <x-button label="Scommetti" wire:click="save"></x-button>
 
         <button
             type="submit"
             class="inline-flex justify-center rounded-md border border-transparent bg-green-700 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
-            {{-- {{ $attributes }} --}}
+            {{ $attributes }}
         >
             aaaa
-        </button>
+        </button> --}}
 
     </x-filament-panels::form>
 </x-filament-panels::page>
