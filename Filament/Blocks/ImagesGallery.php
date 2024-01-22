@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Blocks;
 
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
 
 class ImagesGallery
 {
@@ -18,7 +18,6 @@ class ImagesGallery
     ): Block {
         return Block::make($name)
             ->schema([
-
                 Repeater::make('gallery')
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('image')
@@ -36,10 +35,7 @@ class ImagesGallery
 
                         TextInput::make('caption')
                         ->columnSpanFull(),
-
                     ])->columnSpanFull(),
-
-
 
                 // FileUpload::make('image')
                 //     ->label('Image upload'),
