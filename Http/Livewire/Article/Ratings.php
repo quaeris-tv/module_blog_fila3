@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Filament\Actions\Action;
+use Filament\Facades\Filament;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
-use Filament\Actions\Action;
-use Filament\Facades\Filament;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Filament\Forms\Concerns\InteractsWithForms;
 
 class Ratings extends Page implements HasForms
 {
@@ -93,8 +93,8 @@ class Ratings extends Page implements HasForms
             */
             $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
                 ->label($rating->title)
-                ->suffix(fn()=>Arr::get($this->data,'ratings.'.$rating->id.'.value',0))
-                //->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+                ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
+                // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
                 // ->disabled()
             ;
         }
