@@ -308,6 +308,15 @@ class Article extends BaseModel implements Feedable, HasMedia
         );
     }
 
+    public function getTitle(): string
+    {
+        if ($this->title) {
+            return $this->title;
+        }
+
+        return 'Get Title of article id '.$this->id;
+    }
+
     public function getMainImage(): string
     {
         if ($this->main_image_upload) {

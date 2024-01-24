@@ -157,6 +157,28 @@ class Post extends BaseModel implements HasMedia
         return Str::words(strip_tags((string) $this->body), $words);
     }
 
+    public function getMainImage(): string
+    {
+        if ($this->main_image_upload) {
+            return Storage::url($this->main_image_upload);
+        }
+
+        if (null !== $this->main_image_url) {
+            return $this->main_image_url;
+        }
+
+        return '#';
+    }
+
+    public function getTitle(): string
+    {
+        if ($this->title) {
+            return $this->title;
+        }
+
+        return 'Get Title of post id '.$this->id;
+    }
+
     public function getFormattedDate(): string
     {
         Assert::notNull($this->published_at);

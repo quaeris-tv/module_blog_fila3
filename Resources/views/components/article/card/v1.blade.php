@@ -1,7 +1,7 @@
 <article class="bg-white flex flex-col shadow my-4">
     <!-- Article Image -->
     <a href="{{ $this->url('show', ['record' => $article]) }}" class="hover:opacity-75">
-        <img src="{{$article->getThumbnail()}}" alt="{{$article->title}}" class="aspect-[4/3] object-contain">
+        <img src="{{$article->getMainImage()}}" alt="{{$article->getTitle()}}" class="aspect-[4/3] object-contain">
     </a>
     <div class="bg-white flex flex-col justify-start p-6">
         <div class="flex gap-4">
@@ -12,7 +12,7 @@
             @endforeach
         </div>
         <a href="{{ $this->url('show', ['record' => $article]) }}" class="text-3xl font-bold hover:text-gray-700 pb-4">
-            {{$article->title}}
+            {{$article->getTitle()}}
         </a>
         @if ($showAuthor)
             <p href="#" class="text-sm pb-3">
