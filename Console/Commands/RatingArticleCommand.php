@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\OrderAggregate;
 use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Aggregates\OrderAggregate;
+use Modules\Blog\Datas\RatingArticleData;
 
 class RatingArticleCommand extends Command
 {
@@ -58,7 +58,6 @@ class RatingArticleCommand extends Command
             $this->line("<bg=red;fg=black>✗ Rating not allowed:</> {$error->getMessage()}");
             $this->newLine();
         }
-
 
         $command = StatsRatingArticleData::from([
             'articleId' => $articleId,

@@ -18,18 +18,18 @@ class CreateOrdersTable extends XotBaseMigration
         // -- CREATE --
         $this->tableCreate(
             static function (Blueprint $table): void {
-            $table->id();
-            // $table->uuid('orderId')->unique();
-            // $table->uuid('productId')->index();
-            // $table->integer('quantity');
-            // $table->integer('total');
-            // $table->timestamps();
+                $table->id();
+                // $table->uuid('orderId')->unique();
+                // $table->uuid('productId')->index();
+                // $table->integer('quantity');
+                // $table->integer('total');
+                // $table->timestamps();
 
-            $table->date('date')->unique();
-            $table->uuid('articleId');
-            $table->integer('bet_credits');
-            $table->timestamps();
-        });
+                $table->date('date')->unique();
+                $table->uuid('articleId');
+                $table->integer('bet_credits');
+                $table->timestamps();
+            });
 
         // -- UPDATE --
         $this->tableUpdate(
@@ -40,4 +40,4 @@ class CreateOrdersTable extends XotBaseMigration
             }
         );
     }
-};
+}
