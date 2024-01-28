@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
-use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
 
 class RatingArticleCommand extends Command
 {

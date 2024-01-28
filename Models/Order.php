@@ -12,5 +12,5 @@ namespace Modules\Blog\Models;
  */
 class Order extends BaseModel
 {
-    protected $fillable = ['date', 'article_id', 'rating_id' ,'bet_credits'];
+    protected $fillable = ['date', 'article_id', 'rating_id', 'bet_credits'];
 }
