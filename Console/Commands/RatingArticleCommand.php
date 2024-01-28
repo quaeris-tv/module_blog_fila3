@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Console\Commands;
 
 use Illuminate\Console\Command;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Modules\Blog\Aggregates\OrderAggregate;
 use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Aggregates\ArticleAggregate;
 
 class RatingArticleCommand extends Command
 {
@@ -56,26 +55,6 @@ class RatingArticleCommand extends Command
         } catch (\RatingClosedArticleError $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Rating not allowed:</> {$error->getMessage()}");
-            $this->newLine();
-        }
-
-        $command = StatsRatingArticleData::from([
-            'articleId' => $articleId,
-            'bet_credits' => $credit,
-            // 'credit' => $credit,
-        ]);
-
-        // aggiorno dati per le statistiche del grafico
-        try {
-            OrderAggregate::retrieve($command->articleId)
-                ->addStats($command);
-
-            $this->newLine();
-            $this->info("✓ Rating on article <fg=yellow>{$articleId}</> done");
-            $this->newLine();
-        } catch (\Exception $error) {
-            $this->newLine();
-            $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
             $this->newLine();
         }
     }

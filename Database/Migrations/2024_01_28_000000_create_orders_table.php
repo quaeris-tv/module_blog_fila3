@@ -25,8 +25,9 @@ class CreateOrdersTable extends XotBaseMigration
                 // $table->integer('total');
                 // $table->timestamps();
 
-                $table->date('date')->unique();
-                $table->uuid('articleId');
+                $table->date('date');
+                $table->integer('article_id');
+                $table->integer('rating_id');
                 $table->integer('bet_credits');
                 $table->timestamps();
             });
@@ -34,9 +35,11 @@ class CreateOrdersTable extends XotBaseMigration
         // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table): void {
-                // if (! $this->hasColumn('current_team_id')) {
-                //    $table->foreignId('current_team_id')->nullable();
-                // }
+                if (! $this->hasColumn('rating_id')) {
+                    $table->integer('rating_id')->after('article_id');
+                }
+
+                $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
     }

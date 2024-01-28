@@ -6,10 +6,11 @@ namespace Modules\Blog\Models;
 
 /**
  * @property date   $date
- * @property string $articleId
+ * @property string $article_id
+ * @property string $rating_id
  * @property int    $bet_credits
  */
 class Order extends BaseModel
 {
-    protected $fillable = ['date', 'articleId', 'bet_credits'];
+    protected $fillable = ['date', 'article_id', 'rating_id' ,'bet_credits'];
 }
