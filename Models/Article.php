@@ -193,6 +193,11 @@ class Article extends BaseModel implements Feedable, HasMedia
             ->withTimestamps();
     }
 
+    public function getOptionRatings(): \Illuminate\Database\Eloquent\Collection
+    {
+        return $this->ratings()->where('user_id', null)->get();
+    }
+
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
