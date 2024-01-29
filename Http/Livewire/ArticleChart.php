@@ -17,12 +17,16 @@ class ArticleChart extends ChartWidget
     public array $optionsRatingsIdTitle;
     public array $datasets = [];
 
+    public ?string $filter = '-7';
+
     protected function getData(): array
     {
+        $activeFilter = $this->filter;
+
         $data_article = Order::where('article_id', $this->article_id)
             ->get()
             ->sortBy('date')
-            // ->take(-20)
+            ->take($activeFilter)
             // ->toArray()
             // ->groupBy('date')
             // ->map(function($value){
@@ -61,5 +65,16 @@ class ArticleChart extends ChartWidget
     protected function getType(): string
     {
         return $this->type_chart;
+    }
+
+    protected function getFilters(): ?array
+    {
+        return [
+            '-1' => 'Ultimo Giorno',
+            '-7' => 'Ultima Settimana',
+            '-30' => 'Ultimo Mese',
+            '-90' => 'Ultimi 3 Mesi',
+            '-180' => 'Ultimi 6 Mesi',
+        ];
     }
 }
