@@ -5,23 +5,24 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\User;
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\ModelStatus\HasStatuses;
-use Spatie\Tags\HasTags;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\User;
+use Modules\Rating\Models\Rating;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\ModelStatus\HasStatuses;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Article.
@@ -193,9 +194,10 @@ class Article extends BaseModel implements Feedable, HasMedia
             ->withTimestamps();
     }
 
-    public function getOptionRatings(): \Illuminate\Database\Eloquent\Collection
+    public function getOptionRatingsIdTitle(): array
     {
-        return $this->ratings()->where('user_id', null)->get();
+        // return $this->ratings()->where('user_id', null)->get();
+        return  Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'title', 'id');
     }
 
     // ----- Feed ------

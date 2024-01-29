@@ -14,14 +14,15 @@ class ArticleChart extends ChartWidget
 
     public string $type_chart;
     public string $article_id;
-    // public array $ratingOptions;
+    public array $optionsRatingsIdTitle;
+    public array $datasets = [];
 
     protected function getData(): array
     {
-        // dddx($this->ratingOptions);
-        $data = Order::where('article_id', $this->article_id)
+        $data_article = Order::where('article_id', $this->article_id)
             ->get()
             ->sortBy('date')
+            // ->take(-20)
             // ->toArray()
             // ->groupBy('date')
             // ->map(function($value){
@@ -29,32 +30,32 @@ class ArticleChart extends ChartWidget
             // })
             ;
 
-        $labels = Arr::pluck($data->toArray(), 'date');
-        dddx($labels);
+        $labels = [];
 
-        // dddx($data->where('rating_id', 11)->get()->toArray());
+        $tmp_labels = array_unique(Arr::pluck($data_article->toArray(), 'date'));
+        foreach($tmp_labels as $lbl){
+            $labels[] = $lbl;
+        }
 
-        $opt1 = Arr::pluck($data->where('rating_id', 11)->get()->toArray(), 'bet_credits');
-        dddx($opt1);
-        // dddx($data);
+        $data_chart = [];
 
+        foreach($this->optionsRatingsIdTitle as $key => $opt){
+            $data_options = $data_article->where('rating_id', $key);
+            $tmp = [];
+            foreach($labels as $date){
+                $data_option = $data_options->where('date', $date)->first();
+                if($data_option == null){
+                    $tmp[] = 0;
+                }else{
+                    $tmp[] = $data_option->bet_credits;
+                }
+            }
+            $data_chart['datasets'][] = ['label' => $opt, 'data' => $tmp];
+        }
 
+        $data_chart['labels'] = $labels;
 
-
-        return [
-            'datasets' => [
-                [
-                    'label' => 'Blog posts created',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                ],
-                [
-                    'label' => 'Blog posts createddddddd',
-                    'data' => [0, 2, 15, 10, 29, 42, 55, 25, 47, 88],
-                ],
-            ],
-            // 'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            'labels' => $labels
-        ];
+        return $data_chart;
     }
 
     protected function getType(): string
