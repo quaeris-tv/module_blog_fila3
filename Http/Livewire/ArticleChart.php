@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire;
 
+use Illuminate\Support\Arr;
 use Modules\Blog\Models\Order;
 use Filament\Widgets\ChartWidget;
 
@@ -18,15 +19,27 @@ class ArticleChart extends ChartWidget
     protected function getData(): array
     {
         // dddx($this->ratingOptions);
-        // $data = Order::all()
-        //     ->where('article_id', $this->article_id)
-        //     ->sortBy('date')
-        //     // ->groupBy('date')
-        //     ->map(function($value){
-        //         dddx($value);
-        //     })
-        //     ;
+        $data = Order::where('article_id', $this->article_id)
+            ->get()
+            ->sortBy('date')
+            // ->toArray()
+            // ->groupBy('date')
+            // ->map(function($value){
+            //     dddx($value);
+            // })
+            ;
+
+        $labels = Arr::pluck($data->toArray(), 'date');
+        dddx($labels);
+
+        // dddx($data->where('rating_id', 11)->get()->toArray());
+
+        $opt1 = Arr::pluck($data->where('rating_id', 11)->get()->toArray(), 'bet_credits');
+        dddx($opt1);
         // dddx($data);
+
+
+
 
         return [
             'datasets' => [
@@ -39,7 +52,8 @@ class ArticleChart extends ChartWidget
                     'data' => [0, 2, 15, 10, 29, 42, 55, 25, 47, 88],
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            // 'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            'labels' => $labels
         ];
     }
 
