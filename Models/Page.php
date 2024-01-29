@@ -10,5 +10,7 @@ class Page extends BaseModel
         'content',
         'slug',
         'title',
+        'content_blocks',
+        'footer_blocks',
     ];
 }

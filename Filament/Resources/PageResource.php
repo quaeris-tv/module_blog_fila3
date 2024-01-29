@@ -53,8 +53,10 @@ class PageResource extends Resource
                 ->columnSpanFull()
                 ->alignEnd(),
 
-            PageContent::make('content')
-                ->required(),
+            PageContent::make('content_blocks')
+                ->label('Blocks')
+                ->required()
+                ->columnSpanFull(),
         ]);
     }
 

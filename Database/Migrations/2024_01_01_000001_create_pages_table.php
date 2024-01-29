@@ -34,6 +34,9 @@ class CreatePagesTable extends XotBaseMigration
                     $table->renameColumn('auth_user_id', 'user_id');
                 }
                 */
+                if (! $this->hasColumn('content_blocks')) {
+                    $table->text('content_blocks')->nullable();
+                }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
