@@ -12,13 +12,11 @@ class OrderProjector extends Projector
 {
     public function onRatingArticle(RatingArticle $event): void
     {
-        $date = date('Y-m-d');
-
         Order::firstOrCreate(
             [
                 'rating_id' => $event->ratingId,
                 'article_id' => $event->articleId,
-                'date' => $date,
+                'date' => Carbon::today(),
             ],
             [
                 'bet_credits' => 0,
