@@ -39,6 +39,11 @@ class CreateOrdersTable extends XotBaseMigration
                     $table->integer('rating_id')->after('article_id');
                 }
 
+                if ($this->hasColumn('article_id')) {
+                    $table->dropColumn('article_id');
+                    $table->nullableMorphs('model')->after('date');
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );

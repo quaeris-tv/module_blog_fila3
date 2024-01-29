@@ -1,9 +1,3 @@
 <div>
-    {{-- {{ dddx(get_defined_vars()) }} --}}
-    {{-- {{ dddx($model->getOptionRatingsIdTitle()) }} --}}
-    graph wip
-
-    <livewire:article-chart :type_chart="$block['data']['chart_type']" :article_id="$model->id" :optionsRatingsIdTitle="$model->getOptionRatingsIdTitle()"/>
-
-
+    <livewire:article-chart :type_chart="$block['data']['chart_type']" :model_id="$model->id" :model_type="get_class($model)" :optionsRatingsIdTitle="$model->getOptionRatingsIdTitle()"/>
 </div>

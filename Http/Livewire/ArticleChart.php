@@ -13,7 +13,8 @@ class ArticleChart extends ChartWidget
     protected static ?string $heading = 'Blog Posts';
 
     public string $type_chart;
-    public string $article_id;
+    public string $model_id;
+    public string $model_type;
     public array $optionsRatingsIdTitle;
     public array $datasets = [];
 
@@ -23,7 +24,8 @@ class ArticleChart extends ChartWidget
     {
         $activeFilter = $this->filter;
 
-        $data_article = Order::where('article_id', $this->article_id)
+        $data_article = Order::where('model_id', $this->model_id)
+            ->where('model_type', $this->model_type)
             ->get()
             ->sortBy('date')
             ->take($activeFilter)

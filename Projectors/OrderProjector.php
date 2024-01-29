@@ -6,6 +6,7 @@ namespace Modules\Blog\Projectors;
 
 use Carbon\Carbon;
 use Modules\Blog\Models\Order;
+use Modules\Blog\Models\Article;
 use Modules\Blog\Events\RatingArticle;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
@@ -16,7 +17,8 @@ class OrderProjector extends Projector
         Order::firstOrCreate(
             [
                 'rating_id' => $event->ratingId,
-                'article_id' => $event->articleId,
+                'model_type' => Article::class,
+                'model_id' => $event->articleId,
                 'date' => Carbon::today(),
             ],
             [
