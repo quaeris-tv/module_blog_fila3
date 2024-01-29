@@ -7,15 +7,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Datas\RatingArticleWinnerData;
-use Modules\Blog\Error\NullArticleError;
-use Modules\Blog\Error\RatingClosedArticleError;
-use Modules\Blog\Events\Article\CloseArticle;
+use Modules\User\Models\User;
+use Modules\Blog\Models\Article;
 use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Error\NullArticleError;
+use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Events\RatingArticleWinner;
 use Modules\Blog\Events\RatingClosedArticle;
-use Modules\Blog\Models\Article;
+use Modules\Blog\Events\Article\CloseArticle;
+use Modules\Blog\Datas\RatingArticleWinnerData;
+use Modules\Blog\Error\RatingClosedArticleError;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
@@ -47,6 +48,10 @@ class ArticleAggregate extends AggregateRoot
 
     public function rating(RatingArticleData $command): static
     {
+        // dddx($command);
+        // $user = User::find($command->userId)->profile;
+        // dddx($user);
+
         $article = Article::find($command->articleId);
         if (false == $article->is_closed) {
             $event = new RatingArticle(
@@ -65,8 +70,6 @@ class ArticleAggregate extends AggregateRoot
                     ratingId: $command->ratingId,
                     credit: $command->credit
                 ));
-
-            // $this->persist();
 
             throw new RatingClosedArticleError(articleId: $command->productId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
         }

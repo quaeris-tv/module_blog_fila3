@@ -33,6 +33,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
             // Projectors\BetBalanceProjector::class,
             Projectors\ArticleProjector::class,
             Projectors\OrderProjector::class,
+            Projectors\ProfileProjector::class,
             // YetAnotherProjector::class,
         ]);
     }

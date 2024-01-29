@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Modules\Blog\Events\RatingArticle;
+use Carbon\Carbon;
 use Modules\Blog\Models\Order;
+use Modules\Blog\Events\RatingArticle;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class OrderProjector extends Projector
