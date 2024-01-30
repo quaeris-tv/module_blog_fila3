@@ -100,6 +100,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         'main_image_url',
         'published_at',
         'is_closed',
+        'category_id',
 
         /*
         'title',

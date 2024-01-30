@@ -39,16 +39,20 @@ class CategoryResource extends XotBaseResource
                     ->maxLength(2048)
                     ->reactive()
                     ->unique()
-                // ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
-                //     $set('slug', Str::slug($state));
-                // })
+                    ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
+                        $set('slug', Str::slug($state));
+                    })
                 ,
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(2048),
                 Forms\Components\Select::make('parent_id')
-                    ->label('Sotto Categoria')
-                    ->options(Category::all()->pluck('title', 'id'))
+                    ->label('Categoria Padre')
+                    ->options(
+                        // Category::where('parent_id', null)->pluck('title', 'id')
+                        // Category::tree()->get()->toTree()->pluck('title', 'id')
+                        Category::getTreeCategoryOptions()
+                        )
                     ->searchable(),
                 Forms\Components\TextInput::make('description')
                     ->maxLength(2048),
@@ -73,11 +77,11 @@ class CategoryResource extends XotBaseResource
             ->columns([
                 Tables\Columns\TextColumn::make('title')->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('parentCategory.title')->searchable()
+                Tables\Columns\TextColumn::make('parent.title')->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->sortable()
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->sortable()
+                //     ->dateTime(),
                 SpatieMediaLibraryImageColumn::make('image'),
             ])
             ->filters([

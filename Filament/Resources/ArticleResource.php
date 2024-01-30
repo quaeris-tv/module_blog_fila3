@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Components\SpatieTagsInput;
-use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Fields\ArticleContent;
-use Modules\Blog\Filament\Fields\ArticleFooter;
-use Modules\Blog\Filament\Resources\ArticleResource\Pages;
 use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Category;
+use Filament\Resources\Concerns\Translatable;
+use Filament\Forms\Components\SpatieTagsInput;
+use Modules\Blog\Filament\Fields\ArticleFooter;
+use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Filament\Resources\ArticleResource\Pages;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class ArticleResource extends XotBaseResource
 {
@@ -67,17 +68,19 @@ class ArticleResource extends XotBaseResource
                     ->columnSpan(1)
                     ->required(),
                 */
-                Forms\Components\Select::make('categories')
+                Forms\Components\Select::make('category_id')
                             // ->multiple()
                     ->required()
-                    ->relationship('categories', 'title')
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('title')
-                            ->required(),
-                        // Forms\Components\TextInput::make('email')
-                        //    ->required()
-                        //    ->email(),
-                    ]),
+                    // ->relationship('categories', 'title')
+                    ->options(Category::getTreeCategoryOptions())
+                    // ->createOptionForm([
+                    //     Forms\Components\TextInput::make('title')
+                    //         ->required(),
+                    //     // Forms\Components\TextInput::make('email')
+                    //     //    ->required()
+                    //     //    ->email(),
+                    // ])
+                    ,
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()

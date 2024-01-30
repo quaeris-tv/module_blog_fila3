@@ -54,7 +54,6 @@ class Category extends BaseModel implements HasMedia
     use HasTranslations;
     use InteractsWithMedia;
     use HasTranslations;
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     protected $fillable = [
         'title',
@@ -84,6 +83,16 @@ class Category extends BaseModel implements HasMedia
         return $this->belongsToMany(Article::class);
     }
 
+    public function parentCategory(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+
+    public function subCategories(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
     public function publishedPosts(): BelongsToMany
     {
         // return $this->belongsToMany(Post::class, function ($query) {
@@ -100,18 +109,5 @@ class Category extends BaseModel implements HasMedia
         return Attribute::make(
             get: fn () => $this->publishedPosts()->count(),
         );
-    }
-
-    static function getTreeCategoryOptions(): array
-    {
-        $categories = Category::tree()->get()->toTree();
-        $results = [];
-        foreach($categories as $cat){
-            $results[$cat->id] = $cat->title;
-            foreach($cat->children as $child){
-                $results[$child->id] = '----------------->'.$child->title;
-            }
-        }
-        return $results;
     }
 }
