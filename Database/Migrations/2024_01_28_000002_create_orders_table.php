@@ -26,9 +26,9 @@ class CreateOrdersTable extends XotBaseMigration
                 // $table->timestamps();
 
                 $table->date('date');
-                $table->integer('article_id');
+                $table->nullableMorphs('model');
                 $table->integer('rating_id');
-                $table->integer('bet_credits');
+                $table->integer('credits');
                 $table->timestamps();
             });
 
@@ -41,7 +41,10 @@ class CreateOrdersTable extends XotBaseMigration
 
                 if ($this->hasColumn('article_id')) {
                     $table->dropColumn('article_id');
-                    $table->nullableMorphs('model')->after('date');
+                    $table->nullableMorphs('model');
+                }
+                if ($this->hasColumn('bet_credits')) {
+                    $table->renameColumn('bet_credits', 'credits');
                 }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);

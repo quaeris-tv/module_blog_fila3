@@ -5,13 +5,18 @@ declare(strict_types=1);
 namespace Modules\Blog\Projectors;
 
 use Modules\Blog\Events\RatingArticle;
-use Modules\Blog\Models\Order;
+use Modules\Blog\Models\Profile;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ProfileProjector extends Projector
 {
     public function onRatingArticle(RatingArticle $event): void
     {
-        dddx('profile projector');
+        $profile = Profile::firstOrCreate(['user_id' => $event->userId], ['credits' => 1000]);
+
+        if ($profile->credits - $event->credit < 0) {
+            throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
+        }
+        $profile->decrement('credits', $event->credit);
     }
 }

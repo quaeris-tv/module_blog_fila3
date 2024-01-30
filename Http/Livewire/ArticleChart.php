@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire;
 
-use Illuminate\Support\Arr;
-use Modules\Blog\Models\Order;
+use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
+use Modules\Blog\Models\Article;
 
 class ArticleChart extends ChartWidget
 {
     protected static ?string $heading = 'Blog Posts';
 
-    public string $type_chart;
-    public string $model_id;
+    // public string $type_chart;
+    public Article $model;
+    public array $data;
+
     public string $model_type;
     public array $optionsRatingsIdTitle;
     public array $datasets = [];
@@ -23,50 +25,52 @@ class ArticleChart extends ChartWidget
     protected function getData(): array
     {
         $activeFilter = $this->filter;
+        $orders = $this->model->orders;
+        $ratings = $this->model->getOptionRatingsIdTitle();
 
-        $data_article = Order::where('model_id', $this->model_id)
-            ->where('model_type', $this->model_type)
-            ->get()
-            ->sortBy('date')
-            ->take($activeFilter)
-            // ->toArray()
-            // ->groupBy('date')
-            // ->map(function($value){
-            //     dddx($value);
-            // })
-            ;
-
-        $labels = [];
-
-        $tmp_labels = array_unique(Arr::pluck($data_article->toArray(), 'date'));
-        foreach($tmp_labels as $lbl){
-            $labels[] = $lbl;
+        $data = [];
+        for ($i = $activeFilter + 1; $i <= 0; ++$i) {
+            $date = Carbon::now()->addDays($i);
+            $key = $date->format('Y-m-d');
+            $tmp = [
+                'date' => $date,
+                'key' => $key,
+                'label' => $date->format('d/m/Y'),
+            ];
+            $tmp1 = [];
+            foreach ($ratings as $rating_id => $rating_title) {
+                $tmp1[] = [
+                    'rating_id' => $rating_id,
+                    'rating_title' => $rating_title,
+                    'value' => $orders
+                        ->where('date', $key)
+                        ->where('rating_id', $rating_id)
+                        ->first()?->credits ?? 0,
+                ];
+            }
+            $tmp['ratings'] = $tmp1;
+            $data[] = $tmp;
         }
 
         $data_chart = [];
 
-        foreach($this->optionsRatingsIdTitle as $key => $opt){
-            $data_options = $data_article->where('rating_id', $key);
-            $tmp = [];
-            foreach($labels as $date){
-                $data_option = $data_options->where('date', $date)->first();
-                if($data_option == null){
-                    $tmp[] = 0;
-                }else{
-                    $tmp[] = $data_option->bet_credits;
-                }
-            }
-            $data_chart['datasets'][] = ['label' => $opt, 'data' => $tmp];
+        $data_chart['labels'] = collect($data)->pluck('label')->toArray();
+        $data_chart['datasets'] = [];
+        foreach ($ratings as $rating_id => $rating_title) {
+            $data_chart['datasets'][] = [
+                'label' => $rating_title,
+                'data' => collect($data)->map(function ($item) use ($rating_id) {
+                    return collect($item['ratings'])->firstWhere('rating_id', $rating_id)['value'];
+                })->toArray(),
+            ];
         }
-
-        $data_chart['labels'] = $labels;
 
         return $data_chart;
     }
 
     protected function getType(): string
     {
-        return $this->type_chart;
+        return $this->data['chart_type'];
     }
 
     protected function getFilters(): ?array

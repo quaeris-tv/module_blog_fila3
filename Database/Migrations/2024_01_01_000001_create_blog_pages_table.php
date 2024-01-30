@@ -3,13 +3,16 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
+use Modules\Blog\Models\Page;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
  * Class CreateProfilesTable.
  */
-class CreatePagesTable extends XotBaseMigration
+class CreateBlogPagesTable extends XotBaseMigration
 {
+    protected ?string $model_class = Page::class;
+
     /**
      * db up.
      */
