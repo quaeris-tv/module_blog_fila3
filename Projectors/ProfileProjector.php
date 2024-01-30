@@ -13,7 +13,7 @@ class ProfileProjector extends Projector
     public function onRatingArticle(RatingArticle $event): void
     {
         // forse meglio all'inizio di tutto, come primo controllo?
-        // $profile = Profile::firstOrCreate(['user_id' => $event->userId], ['credits' => 1000]);
+        $profile = Profile::firstOrCreate(['user_id' => $event->userId], ['credits' => 1000]);
 
         // if ($profile->credits - $event->credit < 0) {
         //     throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');

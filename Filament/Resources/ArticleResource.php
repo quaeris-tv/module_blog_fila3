@@ -49,9 +49,9 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\TextInput::make('slug')
                     ->columnSpan(1)
                     ->required(),
-                Forms\Components\Toggle::make('is_closed')
-                    ->columnSpanFull()
-                    ->helperText('Determina se è aperto alle scommesse oppure no')
+                Forms\Components\DateTimePicker::make('closed_at')
+                    ->columnSpan(1)
+                    ->helperText('Determina fino a quando è possibile scommettere')
                     ->required(),
                 /*
                 Forms\Components\TextInput::make('description')
@@ -156,6 +156,10 @@ class ArticleResource extends XotBaseResource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('published_at')
+                    ->dateTime()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('closed_at')
                     ->dateTime()
                     ->sortable(),
 

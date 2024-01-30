@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
+use Carbon\Carbon;
 use Modules\User\Models\User;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
@@ -50,12 +51,17 @@ class ArticleAggregate extends AggregateRoot
     public function rating(RatingArticleData $command): static
     {
         $profile = Profile::firstOrCreate(['user_id' => $command->userId], ['credits' => 1000]);
-
         if ($profile->credits - $command->credit < 0) {
             throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
         }
 
         $article = Article::find($command->articleId);
+
+        if(Carbon::now() >= $article->closed_at){
+            throw new \Exception('bets ended on ['.$article->closed_at.']');
+        }
+
+
         if (false == $article->is_closed) {
             $event = new RatingArticle(
                 userId: $command->userId,
