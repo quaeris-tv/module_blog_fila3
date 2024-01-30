@@ -180,10 +180,9 @@ class Article extends BaseModel implements Feedable, HasMedia
         return $this->belongsTo(User::class);
     }
 
-    public function categories(): BelongsToMany
+    public function category(): BelongsTo
     {
-        return $this->belongsToMany(Category::class)
-            ->withTimestamps();
+        return $this->belongsTo(Category::class);
     }
 
     public function ratings(): MorphToMany

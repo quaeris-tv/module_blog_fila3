@@ -151,7 +151,7 @@ class ArticleResource extends XotBaseResource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('categories.title')
+                Tables\Columns\TextColumn::make('category.title')
                     ->sortable()
                     ->searchable(),
 
