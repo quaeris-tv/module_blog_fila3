@@ -12,13 +12,8 @@ class ArticleChart extends ChartWidget
 {
     protected static ?string $heading = 'Blog Posts';
 
-    // public string $type_chart;
     public Article $model;
     public array $data;
-
-    public string $model_type;
-    public array $optionsRatingsIdTitle;
-    public array $datasets = [];
 
     public ?string $filter = '-7';
 
