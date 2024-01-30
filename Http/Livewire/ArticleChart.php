@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire;
 
 use Carbon\Carbon;
-use Filament\Widgets\ChartWidget;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
+use Filament\Widgets\ChartWidget;
+use Modules\Blog\Datas\RatingInfoData;
 
 class ArticleChart extends ChartWidget
 {
@@ -24,7 +26,7 @@ class ArticleChart extends ChartWidget
         $ratings = $this->model->getOptionRatingsIdTitle();
 
         $data = [];
-        for ($i = $activeFilter + 1; $i <= 0; ++$i) {
+        for ($i = $activeFilter++; $i <= 0; ++$i) {
             $date = Carbon::now()->addDays($i);
             $key = $date->format('Y-m-d');
             $tmp = [
@@ -34,14 +36,25 @@ class ArticleChart extends ChartWidget
             ];
             $tmp1 = [];
             foreach ($ratings as $rating_id => $rating_title) {
-                $tmp1[] = [
-                    'rating_id' => $rating_id,
-                    'rating_title' => $rating_title,
-                    'value' => $orders
+                $tmp1[] = RatingInfoData::from([
+                    'ratingId' => $rating_id,
+                    'title' => $rating_title,
+                    'credit' => $orders
                         ->where('date', $key)
                         ->where('rating_id', $rating_id)
                         ->first()?->credits ?? 0,
-                ];
+                ]);
+
+
+
+                // $tmp1[] = [
+                //     'rating_id' => $rating_id,
+                //     'rating_title' => $rating_title,
+                //     'value' => $orders
+                //         ->where('date', $key)
+                //         ->where('rating_id', $rating_id)
+                //         ->first()?->credits ?? 0,
+                // ];
             }
             $tmp['ratings'] = $tmp1;
             $data[] = $tmp;
@@ -55,7 +68,9 @@ class ArticleChart extends ChartWidget
             $data_chart['datasets'][] = [
                 'label' => $rating_title,
                 'data' => collect($data)->map(function ($item) use ($rating_id) {
-                    return collect($item['ratings'])->firstWhere('rating_id', $rating_id)['value'];
+                    Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id));
+                    // return collect($item['ratings'])->firstWhere('ratingId', $rating_id)->credit;
+                    return $rating_info->credit;
                 })->toArray(),
             ];
         }
