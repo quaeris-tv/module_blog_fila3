@@ -9,6 +9,7 @@ namespace Modules\Blog\Aggregates;
 
 use Modules\User\Models\User;
 use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
 use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Error\NullArticleError;
 use Modules\Blog\Datas\RatingArticleData;
@@ -48,9 +49,11 @@ class ArticleAggregate extends AggregateRoot
 
     public function rating(RatingArticleData $command): static
     {
-        // dddx($command);
-        // $user = User::find($command->userId)->profile;
-        // dddx($user);
+        $profile = Profile::firstOrCreate(['user_id' => $command->userId], ['credits' => 1000]);
+
+        if ($profile->credits - $command->credit < 0) {
+            throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
+        }
 
         $article = Article::find($command->articleId);
         if (false == $article->is_closed) {
