@@ -8,7 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 class CreateArticlesTable extends XotBaseMigration
 {
     /**
-     * db up.
+     * db up..
      */
     public function up(): void
     {
