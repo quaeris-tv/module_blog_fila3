@@ -204,4 +204,5 @@ class ArticleResource extends XotBaseResource
             'edit' => Pages\EditArticle::route('/{record}/edit'),
         ];
     }
+    
 }
