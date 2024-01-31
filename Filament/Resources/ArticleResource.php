@@ -22,6 +22,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 class ArticleResource extends XotBaseResource
 {
     use Translatable;
+    
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
