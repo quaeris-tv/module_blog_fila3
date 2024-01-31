@@ -24,7 +24,10 @@ class ArticleChart extends ChartWidget
         $activeFilter = $this->filter;
         $orders = $this->model->orders;
         $ratings = $this->model->getOptionRatingsIdTitle();
+        $ratings_color = $this->model->getOptionRatingsIdColor();
 
+        
+        
         $data = [];
         for ($i = $activeFilter++; $i <= 0; ++$i) {
             $date = Carbon::now()->addDays($i);
@@ -44,17 +47,6 @@ class ArticleChart extends ChartWidget
                         ->where('rating_id', $rating_id)
                         ->first()?->credits ?? 0,
                 ]);
-
-
-
-                // $tmp1[] = [
-                //     'rating_id' => $rating_id,
-                //     'rating_title' => $rating_title,
-                //     'value' => $orders
-                //         ->where('date', $key)
-                //         ->where('rating_id', $rating_id)
-                //         ->first()?->credits ?? 0,
-                // ];
             }
             $tmp['ratings'] = $tmp1;
             $data[] = $tmp;
@@ -69,12 +61,12 @@ class ArticleChart extends ChartWidget
                 'label' => $rating_title,
                 'data' => collect($data)->map(function ($item) use ($rating_id) {
                     Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id));
-                    // return collect($item['ratings'])->firstWhere('ratingId', $rating_id)->credit;
                     return $rating_info->credit;
                 })->toArray(),
+                'backgroundColor' => $ratings_color[$rating_id],
+                'borderColor' => $ratings_color[$rating_id],
             ];
         }
-
         return $data_chart;
     }
 
