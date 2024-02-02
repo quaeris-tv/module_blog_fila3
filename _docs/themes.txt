@@ -7,6 +7,7 @@
 4
 ----------------------
 5
+https://github.com/DannyFestor/LaravelBlog
 ----------------------
 6
 ----------------------
@@ -16,22 +17,29 @@
 https://github.com/l4christ/FilamentBlog
 ----------------------
 9
+https://github.com/ekobudigs/laravel-blog-filament
 ----------------------
 10
+https://github.com/fadjarrafi/portoblog 
 ----------------------
 11
 https://github.com/maitanchan
 ----------------------
 12
+https://github.com/MohamedA1998/BlogPostFilament 
 ----------------------
 13
+https://github.com/kamal-abdul-khalik/filament-blog 
+(uguale al 12)
 ----------------------
 14
+https://github.com/iislamtaleb/Laravel-Simple-Blog
 ----------------------
 15
 https://github.com/italo-vinicius/Blog-Filament
 ----------------------
 16
+vuoto
 ----------------------
 17
 ----------------------
