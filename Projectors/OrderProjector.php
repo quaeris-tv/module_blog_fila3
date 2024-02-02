@@ -14,8 +14,8 @@ class OrderProjector extends Projector
 {
     public function onRatingArticle(RatingArticle $event): void
     {
-        //Article::class,
-        $model_type='article';
+        // Article::class,
+        $model_type = 'article';
         Order::firstOrCreate(
             [
                 'rating_id' => $event->ratingId,

@@ -19,7 +19,7 @@ use Modules\Xot\Filament\Resources\XotBaseResource;
 class CategoryResource extends XotBaseResource
 {
     use Translatable;
-    
+
     // protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -40,10 +40,9 @@ class CategoryResource extends XotBaseResource
                     ->maxLength(2048)
                     ->reactive()
                     ->unique()
-                    ->afterStateUpdated(function (\Filament\Forms\Set $set, $state) {
+                    ->afterStateUpdated(function (Forms\Set $set, $state) {
                         $set('slug', Str::slug($state));
-                    })
-                ,
+                    }),
                 Forms\Components\TextInput::make('slug')
                     ->required()
                     ->maxLength(2048),
@@ -53,7 +52,7 @@ class CategoryResource extends XotBaseResource
                         // Category::where('parent_id', null)->pluck('title', 'id')
                         // Category::tree()->get()->toTree()->pluck('title', 'id')
                         Category::getTreeCategoryOptions()
-                        )
+                    )
                     ->searchable(),
                 Forms\Components\TextInput::make('description')
                     ->maxLength(2048),

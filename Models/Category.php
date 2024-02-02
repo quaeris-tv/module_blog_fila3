@@ -6,9 +6,7 @@ namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
@@ -54,7 +52,7 @@ class Category extends BaseModel implements HasMedia
     use HasTranslations;
     use InteractsWithMedia;
     use HasTranslations;
-    
+
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     protected $fillable = [
@@ -103,16 +101,17 @@ class Category extends BaseModel implements HasMedia
         );
     }
 
-    static function getTreeCategoryOptions(): array
+    public static function getTreeCategoryOptions(): array
     {
         $categories = Category::tree()->get()->toTree();
         $results = [];
-        foreach($categories as $cat){
+        foreach ($categories as $cat) {
             $results[$cat->id] = $cat->title;
-            foreach($cat->children as $child){
+            foreach ($cat->children as $child) {
                 $results[$child->id] = '----------------->'.$child->title;
             }
         }
+
         return $results;
     }
 }

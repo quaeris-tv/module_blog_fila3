@@ -212,7 +212,6 @@ class Article extends BaseModel implements Feedable, HasMedia
         return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
     }
 
-
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {

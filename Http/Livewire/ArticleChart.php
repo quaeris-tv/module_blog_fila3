@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire;
 
 use Carbon\Carbon;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Article;
 use Filament\Widgets\ChartWidget;
 use Modules\Blog\Datas\RatingInfoData;
+use Modules\Blog\Models\Article;
+use Webmozart\Assert\Assert;
 
 class ArticleChart extends ChartWidget
 {
@@ -26,8 +26,6 @@ class ArticleChart extends ChartWidget
         $ratings = $this->model->getOptionRatingsIdTitle();
         $ratings_color = $this->model->getOptionRatingsIdColor();
 
-        
-        
         $data = [];
         for ($i = $activeFilter++; $i <= 0; ++$i) {
             $date = Carbon::now()->addDays($i);
@@ -61,12 +59,14 @@ class ArticleChart extends ChartWidget
                 'label' => $rating_title,
                 'data' => collect($data)->map(function ($item) use ($rating_id) {
                     Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id));
+
                     return $rating_info->credit;
                 })->toArray(),
                 'backgroundColor' => $ratings_color[$rating_id],
                 'borderColor' => $ratings_color[$rating_id],
             ];
         }
+
         return $data_chart;
     }
 

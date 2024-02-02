@@ -14,7 +14,7 @@ class Page extends BaseModel
         'footer_blocks',
     ];
 
-     /**
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array<string, string>

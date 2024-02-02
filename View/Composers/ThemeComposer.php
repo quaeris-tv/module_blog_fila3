@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Modules\Blog\Models\Tag;
-use Modules\Blog\Models\Page;
-use Modules\Blog\Models\Post;
-use Illuminate\Support\Carbon;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Profile;
-use Modules\Blog\Models\Category;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Page;
+use Modules\Blog\Models\Post;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Tag;
 
 class ThemeComposer
 {
@@ -298,9 +298,11 @@ class ThemeComposer
                 ->paginate($num);
     }
 
-    public function showPageContent(string $slug){
-        $page=Page::firstOrCreate(['slug'=>$slug],['content_blocks'=>[]]);
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks:$page->content_blocks,model:$page);
+    public function showPageContent(string $slug)
+    {
+        $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->content_blocks, model: $page);
+
         return $page->render();
     }
 }

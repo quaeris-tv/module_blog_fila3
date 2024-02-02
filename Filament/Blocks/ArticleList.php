@@ -17,31 +17,30 @@ class ArticleList
     ): Block {
         return Block::make($name)
             ->schema([
-                //Select::make('article_id')
+                // Select::make('article_id')
                 //    ->label('Article')
                 //    ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
                 //    ->required(),
-                //TextInput::make('text')
+                // TextInput::make('text')
                 //    ->label('Link text (optional)'),
                 Select::make('type')
                     ->label('Type')
                     ->options([
-                        'latest'=>'latest',
-                        'featured'=>'featured'
+                        'latest' => 'latest',
+                        'featured' => 'featured',
                     ])
                     ->required(),
                 TextInput::make('limit'),
                 Select::make('version')
                 ->label('version')
                 ->options([
-                    'v1'=>'versione 1',
-                    'v2'=>'versione 2',
-                    'v3'=>'versione 3',
-                    'v4'=>'versione 4',
-                    'v5'=>'versione 5',
+                    'v1' => 'versione 1',
+                    'v2' => 'versione 2',
+                    'v3' => 'versione 3',
+                    'v4' => 'versione 4',
+                    'v5' => 'versione 5',
                 ])
                 ->required(),
-
             ])
             ->label('article list')
             ->columns('form' === $context ? 3 : 1);
