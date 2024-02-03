@@ -19,7 +19,7 @@ class Footer extends Component
     public array $blocks = [];
 
     public function __construct(
-        array|null|string $blocks,
+        array|string|null $blocks,
         public Model $article,
         public string $tpl = 'v1')
     {
