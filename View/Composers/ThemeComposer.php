@@ -207,11 +207,12 @@ class ThemeComposer
         ;
     }
 
-    public function getFeaturedArticles(): Collection
+    public function getFeaturedArticles(int $number = 6): Collection
     {
         $rows = Article::published()
             ->showHomepage()
             ->publishedUntilToday()
+            ->take($number)
             ->orderBy('published_at', 'desc')
             ->get();
         if (0 === $rows->count()) {
@@ -223,7 +224,7 @@ class ThemeComposer
         return $rows;
     }
 
-    public function getLatestArticles(int $number = 3): Collection
+    public function getLatestArticles(int $number = 6): Collection
     {
         $rows = Article::published()
             ->publishedUntilToday()
