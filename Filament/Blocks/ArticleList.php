@@ -23,6 +23,13 @@ class ArticleList
                 //    ->required(),
                 // TextInput::make('text')
                 //    ->label('Link text (optional)'),
+                TextInput::make('title')
+                ->label('Titolo')
+                ->helperText('Inserisci un titolo del blocco articoli')
+                ->required(),
+                TextInput::make('sub_title')
+                    ->label('Sotto Titolo')
+                    ->helperText('Inserisci un sotto_titolo del blocco articoli'),
                 Select::make('type')
                     ->label('Type')
                     ->options([
