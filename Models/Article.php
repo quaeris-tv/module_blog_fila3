@@ -4,26 +4,27 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use DateTime;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\User;
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\ModelStatus\HasStatuses;
-use Spatie\Tags\HasTags;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\User;
+use Modules\Rating\Models\Rating;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\ModelStatus\HasStatuses;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Article.
@@ -338,6 +339,10 @@ class Article extends BaseModel implements Feedable, HasMedia
 
     public function getMainImage(): string
     {
+        if($this->media){
+            return $this->media->first()->getUrl();
+        }
+
         if ($this->main_image_upload) {
             return Storage::url($this->main_image_upload);
         }
@@ -372,11 +377,23 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if (null === $value) {
+                if (null === $value || '' === $value) {
                     return 'article\'s description '.$attributes['title'];
                 }
 
                 return $value;
+            }
+        );
+    }
+
+    /**
+     * Get the article's description.
+     */
+    protected function createdAt(): Attribute
+    {
+        return new Attribute(
+            get: static function ($value): string {
+                return date_format(new DateTime($value), "d/m/Y");
             }
         );
     }
