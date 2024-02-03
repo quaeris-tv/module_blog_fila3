@@ -173,7 +173,6 @@ class ThemeComposer
     {
         $categories = Category::tree()->get()->toTree();
 
-
         // $categories = Category::query()
         //     // ->with(['posts' => function ($query) {
         //     //     $query->orderByDesc('published_at');
@@ -196,7 +195,7 @@ class ThemeComposer
         //         'categories.updated_at',
         //     ])
         //     ->limit(5)
-            // ->get();
+        // ->get();
 
         return $categories;
     }
