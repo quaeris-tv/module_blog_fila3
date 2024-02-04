@@ -29,7 +29,7 @@ class ArticleList
                 ->required(),
                 TextInput::make('sub_title')
                     ->label('Sotto Titolo')
-                    ->helperText('Inserisci un sotto_titolo del blocco articoli'),
+                    ->helperText('Inserisci un sotto titolo del blocco articoli'),
                 Select::make('type')
                     ->label('Type')
                     ->options([

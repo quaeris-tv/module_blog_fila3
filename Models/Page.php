@@ -31,4 +31,15 @@ class Page extends BaseModel
         'content_blocks' => 'array',
         'footer_blocks' => 'array',
     ];
+
+    /**
+     * Get the path key to the item for the frontend only.
+     *
+     * @return string
+     */
+    public function getFrontRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }
