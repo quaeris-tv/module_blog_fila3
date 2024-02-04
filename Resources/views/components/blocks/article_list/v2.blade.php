@@ -12,7 +12,7 @@
   
       <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
 
-        @foreach($_theme->{ $type }() as $article)
+        @foreach($_theme->getArticlesType($type) as $article)
           <div class="flex flex-col overflow-hidden rounded-lg border bg-white">
             <a href="{{ $this->url('show', ['record' => $article]) }}" class="group relative block h-48 overflow-hidden bg-gray-100 md:h-64">
               <img src="{{ $article->getMainImage() }}" loading="lazy" alt="{{ $article->title }}" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />

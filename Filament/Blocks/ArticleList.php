@@ -33,8 +33,8 @@ class ArticleList
                 Select::make('type')
                     ->label('Type')
                     ->options([
-                        'getLatestArticles' => 'latest',
-                        'getFeaturedArticles' => 'featured',
+                        'latest' => 'latest',
+                        'featured' => 'featured',
                     ])
                     ->required(),
                 TextInput::make('limit'),
