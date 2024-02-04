@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Page;
@@ -205,6 +206,13 @@ class ThemeComposer
         return Article::all()
             ->sortBy(['created_at', 'desc'])
         ;
+    }
+
+    public function getArticlesType(string $type, int $number = 6): Collection
+    {
+        $fun = 'get'.Str::studly($type).'Articles';
+
+        return $this->{$fun}($number);
     }
 
     public function getFeaturedArticles(int $number = 6): Collection
