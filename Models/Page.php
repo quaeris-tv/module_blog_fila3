@@ -41,5 +41,4 @@ class Page extends BaseModel
     {
         return 'slug';
     }
-
 }
