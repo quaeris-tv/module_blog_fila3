@@ -67,6 +67,9 @@ class PageResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
