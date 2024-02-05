@@ -53,7 +53,6 @@ class ProfileResource extends XotBaseResource
                     ->requiresConfirmation()
                     ->action(function (Profile $record, array $data) {
                         dddx([get_defined_vars(), $data, $record]);
- 
                     })
                     ->form([
                         Forms\Components\TextInput::make('credits')
