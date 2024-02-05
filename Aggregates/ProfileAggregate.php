@@ -7,7 +7,6 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Aggregates;
 
-use Modules\Blog\Datas\RatingData;
 use Modules\Blog\Datas\AddedCreditsData;
 use Modules\Blog\Events\Rating\CreditsAdded;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;

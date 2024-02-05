@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Modules\Blog\Models\Profile;
-use Filament\Tables\Columns\TextColumn;
-use Modules\Blog\Datas\AddedCreditsData;
 use Filament\Resources\Concerns\Translatable;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Datas\AddedCreditsData;
 use Modules\Blog\Filament\Resources\ProfileResource\Pages;
+use Modules\Blog\Models\Profile;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class ProfileResource extends XotBaseResource
 {
@@ -58,7 +58,7 @@ class ProfileResource extends XotBaseResource
                         $added_credits_data = AddedCreditsData::from([
                             'adminId' => \Auth::user()->id,
                             'profileId' => $record->user->id,
-                            'credit' => $data['credits']
+                            'credit' => $data['credits'],
                         ]);
                         ProfileAggregate::retrieve($record->user->id)
                             ->creditAdded($added_credits_data);
