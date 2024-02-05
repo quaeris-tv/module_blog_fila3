@@ -6,15 +6,17 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Modules\User\Models\User;
 use Illuminate\Support\Carbon;
-use Modules\Blog\Events\BetArticle;
 use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
 use Spatie\MediaLibrary\HasMedia;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -65,8 +67,36 @@ class Profile extends BaseModel implements HasMedia
         'id',
         'user_id',
         'email',
+        'first_name',
+        'last_name',
         'credits',
     ];
+
+    /**
+     * Get the user's first name.
+     */
+    protected function email(): Attribute
+    {
+        // return Attribute::make(
+        //     get: fn (string $value) => ucfirst($value),
+        // );
+
+        return new Attribute(
+            get: static function ($value, $attributes): string {
+                dddx([$value, $attributes]);
+                // $words = Str::wordCount(strip_tags((string) $attributes['body']));
+                // $minutes = ceil($words / 200);
+
+                // return $minutes.' '.str('min')->plural((int) $minutes).', '
+                //     .$words.' '.str('word')->plural($words);
+            }
+        );
+    }
+
+    // public function user(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
     /**
      * @return HasMany<Post>
