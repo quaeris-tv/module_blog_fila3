@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
-use Modules\Blog\Filament\Resources\ProfileResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Modules\Blog\Filament\Resources\ProfileResource;
 
 class CreateProfile extends CreateRecord
 {

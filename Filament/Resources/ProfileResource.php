@@ -1,20 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
 use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Modules\Blog\Models\Profile;
-use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Concerns\Translatable;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Modules\Xot\Filament\Resources\XotBaseResource;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Modules\Blog\Filament\Resources\ProfileResource\Pages;
-use Modules\Blog\Filament\Resources\ProfileResource\RelationManagers;
+use Modules\Blog\Models\Profile;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class ProfileResource extends XotBaseResource
 {
@@ -43,10 +41,9 @@ class ProfileResource extends XotBaseResource
                 TextColumn::make('first_name'),
                 TextColumn::make('last_name'),
                 TextColumn::make('email'),
-                TextColumn::make('credits')
+                TextColumn::make('credits'),
             ])
             ->filters([
-                //
             ])
             ->actions([
                 // Tables\Actions\EditAction::make(),
@@ -62,14 +59,12 @@ class ProfileResource extends XotBaseResource
                 ]),
             ])
             ->emptyStateActions([
-
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 
