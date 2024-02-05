@@ -46,12 +46,20 @@ class ProfileResource extends XotBaseResource
             ->filters([
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
-                // Tables\Actions\Action::make('getCredits')
-                //     ->label('Dai Crediti')
-                //     ->icon('heroicon-o-arrow-path'),
-                // //     ->url(fn ($record): string => QuestionChartResource::getUrl('regen-img', ['record' => $record, ...self::$route_params])),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\Action::make('getCredits')
+                    // ->icon('heroicon-o-trash')
+                    ->requiresConfirmation()
+                    ->action(function (Profile $record, array $data) {
+                        dddx([get_defined_vars(), $data, $record]);
+ 
+                    })
+                    ->form([
+                        Forms\Components\TextInput::make('credits')
+                            ->numeric()
+                            ->label('Quanti crediti vuoi assegnare?'),
+                    ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -74,6 +82,7 @@ class ProfileResource extends XotBaseResource
             'index' => Pages\ListProfiles::route('/'),
             // 'create' => Pages\CreateProfile::route('/create'),
             // 'edit' => Pages\EditProfile::route('/{record}/edit'),
+            // 'getcredits' => Pages\GetCreditProfile::route('/{record}/getcredits'),
         ];
     }
 }
