@@ -93,10 +93,10 @@ class Profile extends BaseModel implements HasMedia
         );
     }
 
-    // public function user(): BelongsTo
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * @return HasMany<Post>

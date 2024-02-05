@@ -20,4 +20,9 @@ class ProfileProjector extends Projector
         // }
         $profile->decrement('credits', $event->credit);
     }
+
+    public function onCreditsAdded(CreditsAdded $event): void
+    {
+        dddx('wip');
+    }
 }
