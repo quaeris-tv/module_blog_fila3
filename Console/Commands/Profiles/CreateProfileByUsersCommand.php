@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands\Profiles;
 
-use Modules\User\Models\User;
 use Illuminate\Console\Command;
-use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Modules\User\Models\User;
 
 class CreateProfileByUsersCommand extends Command
 {
@@ -32,7 +31,7 @@ class CreateProfileByUsersCommand extends Command
     {
         $users = User::all();
 
-        foreach($users as $user){
+        foreach ($users as $user) {
             Profile::firstOrCreate(
                 ['user_id' => $user->id],
                 ['email' => $user->email],
