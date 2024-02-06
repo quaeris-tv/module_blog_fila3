@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-use Illuminate\Routing\Router;
-use Modules\Blog\Console\Commands;
-use Modules\Blog\Console\Commands\Profiles\CreateProfileByUsersCommand;
 use Modules\Blog\Projectors;
+use Illuminate\Routing\Router;
 use Modules\Xot\Datas\XotData;
-use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Console\Commands;
 use Spatie\EventSourcing\Facades\Projectionist;
+use Modules\Blog\Providers\EventServiceProvider;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Modules\Blog\Console\Commands\Profiles\CreateProfileByUsersCommand;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
@@ -29,6 +30,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerRoutes($router);
 
         $this->registerCommands();
+        $this->registerEventListener();
 
         Projectionist::addProjectors([
             // Projectors\BetBalanceProjector::class,
@@ -74,5 +76,10 @@ class BlogServiceProvider extends XotBaseServiceProvider
         // $router->pushMiddlewareToGroup('web', SwitchLanguageLocale::class);
         // $router->appendMiddlewareToGroup('api', SwitchLanguageLocale::class);
         // dddx(app()->getLocale());
+    }
+
+    protected function registerEventListener(): void
+    {
+        $this->app->register(EventServiceProvider::class);
     }
 }
