@@ -26,21 +26,25 @@ class ArticleAggregate extends AggregateRoot
     {
         $article = Article::find($command->articleId);
 
+        if (null == $article) {
+            throw new NullArticleError(articleId: $command->productId);
+        }
+
+        if (Carbon::now() <= $article->closed_at) {
+            throw new \Exception('bets ended on ['.$article->closed_at.']');
+        }
+
         $event = new RatingArticleWinner(
             ratingId: $command->ratingId,
             articleId: $command->articleId
         );
         $this->recordThat($event);
 
-        if (null == $article) {
-            throw new NullArticleError(articleId: $command->productId);
-        }
-
-        $this->recordThat(
-            new CloseArticle(
-                articleId: $event->articleId
-            )
-        );
+        // $this->recordThat(
+        //     new CloseArticle(
+        //         articleId: $event->articleId
+        //     )
+        // );
 
         $this->persist();
 
