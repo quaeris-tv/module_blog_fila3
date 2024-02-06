@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Listeners;
 
 use Modules\Blog\Models\Profile;
 use Modules\User\Events\Registered;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UserRegisteredListener
 {
@@ -14,7 +14,6 @@ class UserRegisteredListener
      */
     public function __construct()
     {
-        //
     }
 
     /**
