@@ -5,16 +5,18 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Blog\Datas\AddedCreditsData;
-use Modules\Blog\Filament\Resources\ProfileResource\Pages;
+use Modules\User\Models\User;
 use Modules\Blog\Models\Profile;
+use Filament\Tables\Columns\TextColumn;
+use Modules\Blog\Datas\AddedCreditsData;
+use Illuminate\Database\Eloquent\Collection;
+use Filament\Resources\Concerns\Translatable;
+use Modules\Blog\Aggregates\ProfileAggregate;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
 class ProfileResource extends XotBaseResource
 {
@@ -72,6 +74,19 @@ class ProfileResource extends XotBaseResource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\BulkAction::make('refresh-profiles')
+                        ->requiresConfirmation()
+                        ->action(function (Collection $records){
+                            $users = User::all();
+
+                            foreach($users as $user){
+                                Profile::firstOrCreate(
+                                    ['user_id' => $user->id],
+                                    ['email' => $user->email],
+                                    ['credits' => 1000]
+                                );
+                            }
+                        })
                 ]),
             ])
             ->emptyStateActions([
