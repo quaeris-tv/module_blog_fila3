@@ -318,4 +318,11 @@ class ThemeComposer
 
         return $page->render();
     }
+
+    public function getPages(): Collection
+    {
+        $pages = Page::all();
+
+        return $pages;
+    }
 }
