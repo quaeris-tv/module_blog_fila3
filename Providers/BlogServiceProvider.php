@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Providers;
 
-use Modules\Blog\Projectors;
 use Illuminate\Routing\Router;
-use Modules\Xot\Datas\XotData;
 use Modules\Blog\Console\Commands;
-use Spatie\EventSourcing\Facades\Projectionist;
-use Modules\Blog\Providers\EventServiceProvider;
-use Modules\Xot\Providers\XotBaseServiceProvider;
 use Modules\Blog\Console\Commands\Profiles\CreateProfileByUsersCommand;
+use Modules\Blog\Projectors;
+use Modules\Xot\Datas\XotData;
+use Modules\Xot\Providers\XotBaseServiceProvider;
+use Spatie\EventSourcing\Facades\Projectionist;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
