@@ -22,7 +22,7 @@ class RatingArticleWinnerCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Un articolo viene chiuso alle scommesse selezionando la risposta vincente';
+    protected $description = 'Su un articolo chiuso alle scommesse viene selezionata la risposta vincente';
 
     /**
      * Execute the console command.
