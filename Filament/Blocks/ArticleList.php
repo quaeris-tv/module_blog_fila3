@@ -46,6 +46,7 @@ class ArticleList
                     'v3' => 'versione 3',
                     'v4' => 'versione 4',
                     'v5' => 'versione 5',
+                    'v6' => 'versione 6',
                 ])
                 ->required(),
             ])
