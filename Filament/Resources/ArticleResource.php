@@ -85,8 +85,8 @@ class ArticleResource extends XotBaseResource
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()
-                    // ->required()
-                    ,
+                // ->required()
+                ,
             ]),
 
             Forms\Components\Section::make('Article Content')->schema([
@@ -142,8 +142,8 @@ class ArticleResource extends XotBaseResource
                 ->disk('uploads')
                 ->directory('photos')
                 ->collection('main_image_upload')
-                // ->preserveFilenames()
-                ,
+            // ->preserveFilenames()
+            ,
         ]);
     }
 
