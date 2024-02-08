@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Blocks;
 
 use Filament\Forms;
-use Illuminate\Support\Str;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Illuminate\Support\Str;
 
 class ImageSpatie
 {
