@@ -13,7 +13,7 @@ use Filament\Forms\Components\TextInput;
 class ImagesGallery
 {
     public static function make(
-        string $name = 'images gallery',
+        string $name = 'images_gallery',
         string $context = 'form',
     ): Block {
         return Block::make($name)
@@ -33,8 +33,19 @@ class ImagesGallery
                         ->disk('uploads')
                         ->directory('photos'),
 
-                        TextInput::make('caption')
-                        ->columnSpanFull(),
+                        TextInput::make('title')
+                            ->columnSpanFull(),
+    
+                        TextInput::make('subtitle')
+                            ->columnSpanFull(),
+
+                        Select::make('version')
+                            ->label('version')
+                            ->required()
+                            ->options([
+                                'v1' => 'versione 1',
+                                'v2' => 'versione 2',
+                            ])
                     ])->columnSpanFull(),
 
                 // FileUpload::make('image')
