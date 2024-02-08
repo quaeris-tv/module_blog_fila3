@@ -159,7 +159,6 @@ class ArticleResource extends XotBaseResource
                 Tables\Columns\TextColumn::make('category.title')
                     ->sortable()
                     ->searchable(),
-
                 Tables\Columns\TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
@@ -171,6 +170,40 @@ class ArticleResource extends XotBaseResource
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean()
                     ->sortable(),
+
+                // Tables\Columns\TextColumn::make('id')
+                //     ->label('My Status')
+                //     ->formatStateUsing(function ($state, Article $article) {
+                //         return $article->title . ' ' . $article->category->title;
+                //     }),
+
+                // Tables\Columns\ViewColumn::make('info')
+                //     ->view('blog::filament.tables.columns.article.info'),
+                // Tables\Columns\ViewColumn::make('status')
+                //     ->view('blog::filament.tables.columns.article.status'),
+                
+
+                // Tables\Columns\Layout\Split::make([
+                //     // Tables\Columns\TextColumn::make('id'),
+                //     Tables\Columns\TextColumn::make('title')
+                //         ->sortable()
+                //         ->searchable(),
+
+                //     Tables\Columns\TextColumn::make('category.title')
+                //         ->sortable()
+                //         ->searchable(),
+                // ]),
+                // Tables\Columns\Layout\Split::make([
+                //     Tables\Columns\TextColumn::make('published_at')
+                //         ->dateTime()
+                //         ->sortable(),
+                //     Tables\Columns\TextColumn::make('closed_at')
+                //         ->dateTime()
+                //         ->sortable(),
+                //     Tables\Columns\IconColumn::make('is_featured')
+                //         ->boolean()
+                //         ->sortable(),
+                // ]),
             ])
             ->actions([
                 /*
@@ -185,11 +218,10 @@ class ArticleResource extends XotBaseResource
             ])
             ->defaultSort('published_at', 'desc')
             ->filters([
-                /*
-                Tables\Filters\SelectFilter::make('category')
-                    ->relationship('category', 'name'),
-                */
-                Tables\Filters\TernaryFilter::make('is_featured'),
+                Tables\Filters\Filter::make('is_featured')->toggle(),
+                Tables\Filters\SelectFilter::make('Categoria')
+                    ->options(Category::getTreeCategoryOptions())
+                    ->attribute('category_id')
             ])
             ->bulkActions([]);
     }
