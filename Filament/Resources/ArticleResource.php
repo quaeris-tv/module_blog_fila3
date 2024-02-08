@@ -181,7 +181,6 @@ class ArticleResource extends XotBaseResource
                 //     ->view('blog::filament.tables.columns.article.info'),
                 // Tables\Columns\ViewColumn::make('status')
                 //     ->view('blog::filament.tables.columns.article.status'),
-                
 
                 // Tables\Columns\Layout\Split::make([
                 //     // Tables\Columns\TextColumn::make('id'),
@@ -221,7 +220,7 @@ class ArticleResource extends XotBaseResource
                 Tables\Filters\Filter::make('is_featured')->toggle(),
                 Tables\Filters\SelectFilter::make('Categoria')
                     ->options(Category::getTreeCategoryOptions())
-                    ->attribute('category_id')
+                    ->attribute('category_id'),
             ])
             ->bulkActions([]);
     }
