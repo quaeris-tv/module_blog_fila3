@@ -23,7 +23,7 @@ class ArticleContent
             ->blocks([
                 Title::make(context: $context),
                 Paragraph::make(context: $context),
-                Image::make(context: $context),
+                // Image::make(context: $context),
                 ImageSpatie::make(context: $context),
                 ImagesGallery::make(context: $context),
                 Rating::make(context: $context),
