@@ -35,7 +35,7 @@ class ImagesGallery
 
                         TextInput::make('title')
                             ->columnSpanFull(),
-    
+
                         TextInput::make('subtitle')
                             ->columnSpanFull(),
 
@@ -45,7 +45,7 @@ class ImagesGallery
                             ->options([
                                 'v1' => 'versione 1',
                                 'v2' => 'versione 2',
-                            ])
+                            ]),
                     ])->columnSpanFull(),
 
                 // FileUpload::make('image')
