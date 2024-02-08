@@ -41,4 +41,14 @@ class Page extends BaseModel
     {
         return 'slug';
     }
+
+    /**
+     * Get the path key to the item for the frontend only.
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return url('/'.app()->getLocale().'/pages/'.$this->slug);
+    }
 }
