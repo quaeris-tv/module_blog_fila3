@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Blocks;
 
 use Filament\Forms;
+use Illuminate\Support\Str;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Illuminate\Support\Str;
 
 class ImageSpatie
 {
     public static function make(
-        string $name = 'image spatie',
+        string $name = 'image_spatie',
         string $context = 'form',
     ): Block {
         return Block::make($name)
@@ -24,7 +26,18 @@ class ImageSpatie
                 // ->required(),
 
                 SpatieMediaLibraryFileUpload::make('image')
+                    ->columnSpanFull()
                     ->collection(fn (Forms\Get $get) => $get('img_uuid')),
+
+                Select::make('ratio')
+                    ->options(static::getRatios())
+                    ->afterStateHydrated(static fn ($state, $set) => $state || $set('ratio', '4-3')),
+
+                TextInput::make('alt')
+                    ->columnSpanFull(),
+
+                TextInput::make('caption')
+                    ->columnSpanFull(),
 
                 // Filament\Forms\Components\SpatieMediaLibraryFileUpload::whereCustomProperties does not exist.
                 // ->whereCustomProperties(fn(Forms\Get $get) => ['gallery_id' => $get('gallery_id')])
