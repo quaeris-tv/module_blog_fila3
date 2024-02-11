@@ -73,6 +73,16 @@ class Category extends BaseModel implements HasMedia
         'description',
     ];
 
+    /**
+     * Get the path key to the item for the frontend only.
+     *
+     * @return string
+     */
+    public function getFrontRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);
