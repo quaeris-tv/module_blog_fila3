@@ -6,6 +6,7 @@ namespace Modules\Blog\Providers;
 
 use Illuminate\Routing\Router;
 use Modules\Blog\Console\Commands;
+use Modules\Blog\Console\Commands\Profiles\CreateProfileByUsersCommand;
 use Modules\Blog\Projectors;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Providers\XotBaseServiceProvider;
@@ -27,7 +28,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         $this->registerMyMiddleware($router);
         $this->registerRoutes($router);
 
-        $this->registerCommands();
+
         $this->registerEventListener();
 
         Projectionist::addProjectors([
@@ -39,17 +40,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         ]);
     }
 
-    public function registerCommands(): void
-    {
-        $this->commands([
-            Commands\RatingArticleCommand::class,
-            Commands\RatingArticleWinnerCommand::class,
-            Commands\ShowArticleListCommand::class,
-            Commands\ShowArticleCommand::class,
-            Commands\ProfileRatingsCommand::class,
-            Commands\Profiles\CreateProfileByUsersCommand::class,
-        ]);
-    }
+
 
     public function registerRoutes(Router $router): void
     {
