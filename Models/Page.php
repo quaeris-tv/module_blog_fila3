@@ -11,6 +11,7 @@ class Page extends BaseModel
         'slug',
         'title',
         'content_blocks',
+        'sidebar_blocks',
         'footer_blocks',
     ];
 
@@ -29,6 +30,7 @@ class Page extends BaseModel
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'content_blocks' => 'array',
+        'sidebar_blocks' => 'array',
         'footer_blocks' => 'array',
     ];
 

@@ -202,6 +202,16 @@ class ThemeComposer
         return $categories;
     }
 
+    /**
+     * Show recent categories with their latest posts.
+     *
+     * @return Collection<int, Category>
+     */
+    public function getCategoriesArticles()
+    {
+        return $this->categories();
+    }
+
     public function getArticles(): Collection
     {
         return Article::all()
@@ -314,6 +324,16 @@ class ThemeComposer
         Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class);
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
         $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->content_blocks, model: $page);
+
+        return $page->render();
+    }
+
+    public function showSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    {
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class);
+        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
+
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
 
         return $page->render();
     }

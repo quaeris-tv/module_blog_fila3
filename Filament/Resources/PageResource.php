@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Fields\PageContent;
-use Modules\Blog\Filament\Resources\PageResource\Pages;
 use Modules\Blog\Models\Page;
-use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
+use Filament\Resources\Resource;
+use Modules\Blog\Filament\Fields\PageContent;
+use Modules\Blog\Filament\Fields\LeftSidebarContent;
+use Modules\Blog\Filament\Resources\PageResource\Pages;
 use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
+use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
 
 class PageResource extends Resource
 {
@@ -53,10 +54,19 @@ class PageResource extends Resource
                 ->columnSpanFull()
                 ->alignEnd(),
 
-            PageContent::make('content_blocks')
-                ->label('Blocks')
-                ->required()
-                ->columnSpanFull(),
+            Forms\Components\Section::make('Page Content')->schema([
+                PageContent::make('content_blocks')
+                    ->label('Blocchi Contenuto')
+                    ->required()
+                    ->columnSpanFull(),
+            ]),
+
+            Forms\Components\Section::make('Sidebar Content')->schema([
+                LeftSidebarContent::make('sidebar_blocks')
+                    ->label('Blocchi Sidebar')
+                    ->required()
+                    ->columnSpanFull(),
+            ]),
         ]);
     }
 

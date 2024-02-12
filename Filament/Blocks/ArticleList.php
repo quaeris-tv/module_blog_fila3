@@ -41,12 +41,12 @@ class ArticleList
                 Select::make('version')
                 ->label('version')
                 ->options([
-                    'v1' => 'versione 1',
-                    'v2' => 'versione 2',
-                    'v3' => 'versione 3',
-                    'v4' => 'versione 4',
-                    'v5' => 'versione 5',
-                    'v6' => 'versione 6',
+                    'v1' => 'versione 1 (Tailwind)',
+                    'v2' => 'versione 2 (Tailwind)',
+                    'v3' => 'versione 3 (Tailwind)',
+                    'v4' => 'versione 4 (Tailwind)',
+                    'v5' => 'versione 5 (Tailwind)',
+                    'v6' => 'versione 6 (Tailwind)',
                 ])
                 ->required(),
             ])

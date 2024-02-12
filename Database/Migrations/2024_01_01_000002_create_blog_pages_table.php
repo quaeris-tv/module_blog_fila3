@@ -41,6 +41,10 @@ class CreateBlogPagesTable extends XotBaseMigration
                     $table->text('content_blocks')->nullable();
                 }
 
+                if (! $this->hasColumn('sidebar_blocks')) {
+                    $table->text('sidebar_blocks')->nullable();
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
