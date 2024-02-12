@@ -27,6 +27,12 @@ class DropdownMenu
                                 'categories' => 'Categorie',
                             ])
                             ->required(),
+                        Select::make('layout')
+                            ->label('layout')
+                            ->options([
+                                'v1' => 'layout 1 (Bootstrap)',
+                            ])
+                            ->required(),
                     ])->columnSpanFull(),
             ]);
     }
