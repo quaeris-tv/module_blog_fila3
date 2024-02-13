@@ -340,8 +340,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         if ($this->media) {
             // https://spatie.be/docs/laravel-medialibrary/v11/basic-usage/retrieving-media
-            // return $this->getFirstMediaUrl();
-            return $this->getMedia('main_image_upload')->first()->getUrl();
+            return $this->getFirstMediaUrl('main_image_upload');
         }
 
         if ($this->main_image_upload) {
