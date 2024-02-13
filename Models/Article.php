@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
 use Modules\User\Models\User;
+use Safe\DateTime;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
@@ -24,7 +25,6 @@ use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
-use Safe\DateTime;
 
 /**
  * Modules\Blog\Models\Article.
@@ -446,10 +446,11 @@ class Article extends BaseModel implements Feedable, HasMedia
         return 'slug';
     }
 
-    public function getOnlyContentBlocks(array $name_blocks): array{
+    public function getOnlyContentBlocks(array $name_blocks): array
+    {
         $filtered = collect($this->content_blocks)->filter(function (array $value, int $key) use ($name_blocks) {
-            foreach($name_blocks as $block){
-                if($value['type'] == $block){
+            foreach ($name_blocks as $block) {
+                if ($value['type'] == $block) {
                     return $value;
                 }
             }
@@ -458,10 +459,11 @@ class Article extends BaseModel implements Feedable, HasMedia
         return $filtered;
     }
 
-    public function getExceptContentBlocks(array $name_blocks): array{
+    public function getExceptContentBlocks(array $name_blocks): array
+    {
         $filtered = collect($this->content_blocks)->filter(function (array $value, int $key) use ($name_blocks) {
-            foreach($name_blocks as $block){
-                if($value['type'] != $block){
+            foreach ($name_blocks as $block) {
+                if ($value['type'] != $block) {
                     return $value;
                 }
             }
