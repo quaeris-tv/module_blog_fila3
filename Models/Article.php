@@ -24,6 +24,7 @@ use Spatie\ModelStatus\HasStatuses;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
+use Safe\DateTime;
 
 /**
  * Modules\Blog\Models\Article.
@@ -49,6 +50,7 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $description
  * @property string                                                                                                     $main_image_upload
  * @property string                                                                                                     $main_image_url
+ * @property string                                                                                                     $content_blocks
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
@@ -393,7 +395,7 @@ class Article extends BaseModel implements Feedable, HasMedia
     {
         return new Attribute(
             get: static function ($value): string {
-                return date_format(new \DateTime($value), 'd/m/Y');
+                return date_format(new DateTime($value), 'd/m/Y');
             }
         );
     }
@@ -442,6 +444,30 @@ class Article extends BaseModel implements Feedable, HasMedia
     public function getFrontRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getOnlyContentBlocks(array $name_blocks): array{
+        $filtered = collect($this->content_blocks)->filter(function (array $value, int $key) use ($name_blocks) {
+            foreach($name_blocks as $block){
+                if($value['type'] == $block){
+                    return $value;
+                }
+            }
+        })->toArray();
+
+        return $filtered;
+    }
+
+    public function getExceptContentBlocks(array $name_blocks): array{
+        $filtered = collect($this->content_blocks)->filter(function (array $value, int $key) use ($name_blocks) {
+            foreach($name_blocks as $block){
+                if($value['type'] != $block){
+                    return $value;
+                }
+            }
+        })->toArray();
+
+        return $filtered;
     }
 
     /**
