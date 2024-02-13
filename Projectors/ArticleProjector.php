@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Modules\Blog\Events\Article\CloseArticle;
+use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Events\RatingArticle;
+use Modules\Rating\Models\RatingMorph;
 use Modules\Blog\Events\ArticleRegistered;
 use Modules\Blog\Events\ProductReplenished;
-use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\RatingArticleWinner;
-use Modules\Blog\Models\Article;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Blog\Events\Article\CloseArticle;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ArticleProjector extends Projector
@@ -45,6 +46,8 @@ class ArticleProjector extends Projector
             'model_id' => $event->articleId,
             'user_id' => null,
         ]);
+
+        Assert::notNull($rating_morph);
 
         // if(null == $rating_morph){
         //     dddx('null');
