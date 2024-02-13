@@ -4,7 +4,7 @@
             <div class="card mb-4">
                 <div class="card__header d-flex align-items-center gap-2 justify-content-between mb20">
                     <div class="card__right">
-                        <a class="card__btn f12" href="javascript:void(0)">{{ $article->category->title }}</a>
+                        <a class="card__btn f12" href="{{ $this->url('show', ['record' => $article]) }}">{{ $article->category->title }}</a>
                         {{-- <span class="f12">$1.8m Vol.</span>
                         <span class="f12">$389.6k Liq.</span> --}}
                     </div>
@@ -14,10 +14,10 @@
                     </div>
                 </div>
                 <div class="card__thumb mb-3">
-                    <a href="javascript:void(0)">
+                    <a href="{{ $this->url('show', ['record' => $article]) }}">
                     <img src="{{ $article->getMainImage() }}" alt="Image"  style="aspect-ratio: 4/2;"></a>
                 </div>
-                <a href="javascript:void(0)">
+                <a href="{{ $this->url('show', ['record' => $article]) }}">
                     <h5 class="card__title mb20">
                         {{ $article->title }}
                     </h5>
