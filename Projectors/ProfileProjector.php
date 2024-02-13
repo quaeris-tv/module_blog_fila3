@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Modules\Blog\Models\Profile;
-use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\Rating\CreditsAdded;
+use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Models\Profile;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ProfileProjector extends Projector
