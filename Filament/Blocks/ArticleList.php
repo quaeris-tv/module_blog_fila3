@@ -47,6 +47,7 @@ class ArticleList
                     'v4' => 'versione 4 (Tailwind)',
                     'v5' => 'versione 5 (Tailwind)',
                     'v6' => 'versione 6 (Tailwind)',
+                    'v7' => 'versione 7 (Bootstrap)',
                 ])
                 ->required(),
             ])
