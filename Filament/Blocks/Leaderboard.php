@@ -34,8 +34,8 @@ class Leaderboard
                 Select::make('version')
                 ->label('version')
                 ->options([
-                    'v1' => 'versione 1',
-                    // 'v2' => 'versione 2',
+                    'v1' => 'versione 1 (Tailwind)',
+                    'v2' => 'versione 2 (Bootstrap)',
                     // 'v3' => 'versione 3',
                     // 'v4' => 'versione 4',
                     // 'v5' => 'versione 5',
