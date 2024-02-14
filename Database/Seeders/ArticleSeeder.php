@@ -12,14 +12,14 @@ use Modules\Blog\Models\Category;
 
 class ArticleSeeder extends Seeder
 {
-    private $categories = [
+    private array $categories = [
         ['name' => 'Animals', 'image' => 'https://picsum.photos/id/219/800/600'],
         ['name' => 'Mountains', 'image' => 'https://picsum.photos/id/353/800/600'],
         ['name' => 'People', 'image' => 'https://picsum.photos/id/342/800/600'],
         ['name' => 'Things', 'image' => 'https://picsum.photos/id/252/800/600'],
     ];
 
-    private $date;
+    private Carbon $date;
 
     private function createArticle($data = [])
     {

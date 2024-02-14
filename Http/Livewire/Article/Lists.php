@@ -15,7 +15,7 @@ class Lists extends Component
     public const ITEMS_PER_PAGE = 10;
 
     // All categories
-    public $categories;
+    public array $categories;
 
     // Variables keeping track of the current post query
     public $postCount;

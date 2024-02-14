@@ -22,7 +22,7 @@ use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ArticleAggregate extends AggregateRoot
 {
-    public function winner(RatingArticleWinnerData $command)
+    public function winner(RatingArticleWinnerData $command):self
     {
         $article = Article::find($command->articleId);
 

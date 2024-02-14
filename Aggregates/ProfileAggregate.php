@@ -13,7 +13,7 @@ use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
 
 class ProfileAggregate extends AggregateRoot
 {
-    public function creditAdded(AddedCreditsData $addedCreditsData)
+    public function creditAdded(AddedCreditsData $addedCreditsData):self
     {
         $event = new CreditsAdded($addedCreditsData);
         dddx($event);

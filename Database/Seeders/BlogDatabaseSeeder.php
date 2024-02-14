@@ -8,6 +8,9 @@ use Illuminate\Database\Seeder;
 
 class BlogDatabaseSeeder extends Seeder
 {
+    /**
+     * @return void
+     */
     public function run()
     {
         $this->call([

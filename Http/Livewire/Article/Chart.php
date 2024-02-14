@@ -13,7 +13,7 @@ class Chart extends Component
 
     public string $type;
 
-    public $subscriptions = [
+    public array $subscriptions = [
         ['Day' => 'Mon', 'Value' => 10],
         ['Day' => 'Tue', 'Value' => 20],
         ['Day' => 'Wed', 'Value' => 15],

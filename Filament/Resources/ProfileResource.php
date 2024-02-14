@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Collection;
-use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Blog\Datas\AddedCreditsData;
-use Modules\Blog\Filament\Resources\ProfileResource\Pages;
-use Modules\Blog\Models\Profile;
 use Modules\User\Models\User;
+use Modules\Blog\Models\Profile;
+use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Columns\TextColumn;
+use Modules\Blog\Datas\AddedCreditsData;
+use Illuminate\Database\Eloquent\Collection;
+use Filament\Resources\Concerns\Translatable;
+use Modules\Blog\Aggregates\ProfileAggregate;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
 class ProfileResource extends XotBaseResource
 {
@@ -58,7 +59,7 @@ class ProfileResource extends XotBaseResource
                     ->action(function (Profile $record, array $data) {
                         dddx('wip');
                         $added_credits_data = AddedCreditsData::from([
-                            'adminId' => \Auth::user()->id,
+                            'adminId' => Auth::id(),
                             'profileId' => $record->user->id,
                             'credit' => $data['credits'],
                         ]);

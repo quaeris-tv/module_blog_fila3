@@ -11,12 +11,14 @@ class LatestArticlesWidget extends BaseWidget
 {
     public function table(Table $table): Table
     {
-        return $table
+        return $table;
+        /*
             ->query(
                 // ...
             )
             ->columns([
                 // ...
             ]);
+        */
     }
 }
