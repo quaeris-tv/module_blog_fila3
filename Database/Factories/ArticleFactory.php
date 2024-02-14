@@ -7,6 +7,7 @@ namespace Modules\Blog\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
+
 use function Safe\preg_replace;
 
 class ArticleFactory extends Factory
