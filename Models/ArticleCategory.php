@@ -14,6 +14,7 @@ namespace Modules\Blog\Models;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory onlyTrashed()
@@ -27,6 +28,7 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class ArticleCategory extends BasePivot

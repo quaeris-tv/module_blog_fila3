@@ -24,7 +24,7 @@ class ArticleAggregate extends AggregateRoot
 {
     public function winner(RatingArticleWinnerData $command): self
     {
-        $article = Article::firstWhere(['id'=>$command->articleId]);
+        $article = Article::firstWhere(['id' => $command->articleId]);
 
         if (null == $article) {
             throw new NullArticleError(articleId: $command->articleId);
@@ -59,7 +59,7 @@ class ArticleAggregate extends AggregateRoot
         }
 
         $article = Article::firstWhere(['id' => $command->articleId]);
-        if($article==null) {
+        if (null == $article) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 

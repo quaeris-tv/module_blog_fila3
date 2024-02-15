@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
 
-use function Safe\preg_replace;
 use function Safe\json_decode;
+use function Safe\preg_replace;
 
 class ArticleFactory extends Factory
 {

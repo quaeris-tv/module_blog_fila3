@@ -6,10 +6,10 @@ namespace Modules\Blog\Http\Livewire\Article;
 
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
+use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\ComponentContainer;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
@@ -36,11 +36,11 @@ class Ratings extends Page implements HasForms
 
     // protected static string $view = 'filament.pages.edit-company';
 
-    public function mount(Article $article, string $tpl = 'v1'):void
+    public function mount(Article $article, string $tpl = 'v1'): void
     {
         $this->article = $article;
         $this->tpl = $tpl;
-        $this->user_id = (string)Filament::auth()->id();
+        $this->user_id = (string) Filament::auth()->id();
         $this->profile = Profile::firstOrCreate(['user_id' => $this->user_id]);
         $ratings = $this->profile
             ->ratings()
@@ -70,7 +70,7 @@ class Ratings extends Page implements HasForms
         return view($view, $view_params);
     }
 
-    public function url(string $name, array $params):string
+    public function url(string $name, array $params): string
     {
         return '#';
     }

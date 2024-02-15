@@ -13,6 +13,7 @@ namespace Modules\Blog\Models;
  * @property int                             $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Modules\Blog\Database\Factories\UpvoteDownvoteFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   newQuery()
@@ -26,6 +27,7 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class UpvoteDownvote extends BaseModel

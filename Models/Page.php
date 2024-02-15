@@ -18,6 +18,7 @@ namespace Modules\Blog\Models;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  * @property array|null                      $content_blocks
+ *
  * @method static \Modules\Blog\Database\Factories\PageFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Page   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Page   newQuery()
@@ -36,10 +37,13 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Page   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Page   withoutTrashed()
+ *
  * @property array|null $sidebar_blocks
- * @property array $footer_blocks
+ * @property array      $footer_blocks
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereFooterBlocks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSidebarBlocks($value)
+ *
  * @mixin \Eloquent
  */
 class Page extends BaseModel

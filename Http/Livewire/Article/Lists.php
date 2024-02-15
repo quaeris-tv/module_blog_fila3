@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire\Article;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Collection;
 
 class Lists extends Component
 {
@@ -32,7 +32,7 @@ class Lists extends Component
     public int $currentChunk = 0;
 
     // Currently selected category
-    public ?Category $category=null;
+    public ?Category $category = null;
 
     // Currently selected order
     public string $order = 'date_desc';
@@ -44,7 +44,7 @@ class Lists extends Component
 
     public string $tpl;
 
-    public function mount():void
+    public function mount(): void
     {
         $this->categories = Category::all();
         $this->tpl = 'v1';
@@ -66,28 +66,28 @@ class Lists extends Component
         return view($view, $view_params);
     }
 
-    public function updatedCategory():void
+    public function updatedCategory(): void
     {
         $this->refreshArticles();
     }
 
-    public function updatedOrder():void
+    public function updatedOrder(): void
     {
         $this->refreshArticles();
     }
 
-    public function loadMore():void
+    public function loadMore(): void
     {
         ++$this->currentChunk;
     }
 
-    private function getActiveCategory():Category|null
+    private function getActiveCategory(): Category|null
     {
-        //return $this->categories->first(fn ($i) => $i->slug === $this->category);
+        // return $this->categories->first(fn ($i) => $i->slug === $this->category);
         return $this->category;
     }
 
-    private function getArticleQuery():Builder
+    private function getArticleQuery(): Builder
     {
         $query = Article::published();
 

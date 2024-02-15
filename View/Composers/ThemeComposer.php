@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -20,11 +16,6 @@ use Webmozart\Assert\Assert;
 
 class ThemeComposer
 {
-
-
-
-
-
     /**
      * Show recent categories with their latest .
      *

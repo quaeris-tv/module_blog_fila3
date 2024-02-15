@@ -27,7 +27,7 @@ class CreateProfileByUsersCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle():void
+    public function handle(): void
     {
         $users = User::all();
 

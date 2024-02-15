@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands;
 
-use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Article;
+use Webmozart\Assert\Assert;
 
 class ShowArticleCommand extends Command
 {
