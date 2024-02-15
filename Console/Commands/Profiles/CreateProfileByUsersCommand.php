@@ -33,7 +33,7 @@ class CreateProfileByUsersCommand extends Command
 
         foreach ($users as $user) {
             Profile::firstOrCreate(
-                ['user_id' => $user->id,'email' => $user->email],
+                ['user_id' => $user->id, 'email' => $user->email],
                 ['credits' => 1000]
             );
         }

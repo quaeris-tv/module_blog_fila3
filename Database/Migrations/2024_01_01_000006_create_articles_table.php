@@ -73,8 +73,6 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->uuid('uuid')->nullable()->after('id');
                 }
 
-
-
                 if (! $this->hasColumn('closed_at')) {
                     $table->dateTime('closed_at')->nullable();
                 }

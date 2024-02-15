@@ -110,7 +110,7 @@ class Lists extends Component
         return $query;
     }
 
-    private function refreshArticles():void
+    private function refreshArticles(): void
     {
         // This will force the update of the `post-chunk` child components
         ++$this->queryCount;

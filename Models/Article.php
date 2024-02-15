@@ -159,7 +159,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         'published_at',
         'closed_at',
         'category_id',
-        //'is_closed', => closet_at
+        // 'is_closed', => closet_at
 
         /*
         'title',
@@ -225,7 +225,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         'content_blocks' => 'array',
         'footer_blocks' => 'array',
         'sidebar_blocks' => 'array',
-        //'is_closed'=> 'boolean',
+        // 'is_closed'=> 'boolean',
     ];
 
     // public function path()
