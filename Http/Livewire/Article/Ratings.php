@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Filament\Actions\Action;
+use Filament\Facades\Filament;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
-use Filament\Actions\Action;
-use Webmozart\Assert\Assert;
-use Filament\Facades\Filament;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Filament\Forms\Concerns\InteractsWithForms;
+use Webmozart\Assert\Assert;
 
 /**
  * @property ComponentContainer $form
