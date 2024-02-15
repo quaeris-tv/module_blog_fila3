@@ -18,9 +18,9 @@
         @foreach($_theme->getFeaturedArticles() as $article)
             <div class="card_part">
                 <div class="card_thumb mb28">
-                    <a href="javascript:void(0)"><img src="{{ $article->getMainImage() }}" alt="Image" style="aspect-ratio: 4/2;"></a>
+                    <a href="{{ $this->url('show', ['record' => $article]) }}"><img src="{{ $article->getMainImage() }}" alt="Image" style="aspect-ratio: 4/2;"></a>
                 </div>
-                <a href="javascript:void(0)"><span class="f18 mb16 card_title">{{ $article->title }}</span></a>
+                <a href="{{ $this->url('show', ['record' => $article]) }}"><span class="f18 mb16 card_title">{{ $article->title }}</span></a>
                 <div class="balance_group d-flex gap-2 gap-md-3">
                     @foreach($article->getOptionRatingsIdTitle() as $rating)
                         @if($loop->index == 0)
