@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands;
 
+use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Article;
 
@@ -31,7 +32,7 @@ class ShowArticleCommand extends Command
     public function handle()
     {
         $articleId = (string) $this->argument('articleId');
-        $article = Article::firstWhere(['id' => $articleId]);
+        Assert::notNull($article = Article::firstWhere(['id' => $articleId]));
 
         $ratings = $article->ratings()
             ->where('user_id', null)

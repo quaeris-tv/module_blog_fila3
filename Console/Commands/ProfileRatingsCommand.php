@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands;
 
+use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Profile;
 
@@ -32,7 +33,7 @@ class ProfileRatingsCommand extends Command
     {
         $userId = (string) $this->argument('userId');
 
-        $profile = Profile::firstWhere(['user_id' => $userId]);
+        Assert::notNull($profile = Profile::firstWhere(['user_id' => $userId]));
 
         $rows = $profile->ratings()
             ->select('value', 'user_id', 'title as answer', 'model_id', 'model_type')

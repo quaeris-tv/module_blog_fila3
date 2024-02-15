@@ -53,6 +53,7 @@ class ProfileResource extends XotBaseResource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                /* ---deve essere uno scherzone
                 Tables\Actions\Action::make('getCredits')
                     // ->icon('heroicon-o-trash')
                     ->requiresConfirmation()
@@ -71,6 +72,7 @@ class ProfileResource extends XotBaseResource
                             ->numeric()
                             ->label('Quanti crediti vuoi assegnare?'),
                     ]),
+                */
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

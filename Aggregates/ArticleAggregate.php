@@ -24,10 +24,10 @@ class ArticleAggregate extends AggregateRoot
 {
     public function winner(RatingArticleWinnerData $command): self
     {
-        $article = Article::find($command->articleId);
+        $article = Article::firstWhere(['id'=>$command->articleId]);
 
         if (null == $article) {
-            throw new NullArticleError(articleId: $command->productId);
+            throw new NullArticleError(articleId: $command->articleId);
         }
 
         if (Carbon::now() <= $article->closed_at) {

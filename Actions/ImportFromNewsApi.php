@@ -24,7 +24,7 @@ class ImportFromNewsApi
         $response = Http::get($url);
         Assert::isArray($res = $response->json());
         $posts = $res['articles'];
-
+        /* --- from POST to ARTICLE
         foreach ($posts as $post) {
             $res = Post::create([
                 'title' => $post['title'],
@@ -36,6 +36,7 @@ class ImportFromNewsApi
             $res->addMediaFromUrl($post['urlToImage'])
                 ->toMediaCollection();
         }
+        */
     }
 }
 

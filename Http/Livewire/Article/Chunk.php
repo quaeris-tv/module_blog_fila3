@@ -11,7 +11,7 @@ use Modules\Xot\Actions\GetViewAction;
 
 class Chunk extends Component
 {
-    public $postIds;
+    public array $postIds;
 
     public string $tpl = 'v1';
 

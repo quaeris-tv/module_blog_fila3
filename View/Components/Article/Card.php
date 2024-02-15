@@ -7,7 +7,6 @@ namespace Modules\Blog\View\Components\Article;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\View\Component;
 use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Post;
 use Modules\Xot\Actions\GetViewAction;
 
 // use Modules\Xot\View\Components\XotBaseComponent;
@@ -18,7 +17,7 @@ use Modules\Xot\Actions\GetViewAction;
 class Card extends Component
 {
     public function __construct(
-        public Article|Post $article,
+        public Article$article,
         public bool $showAuthor = false,
         public string $tpl = 'v1')
     {

@@ -501,6 +501,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         return 'slug';
     }
 
+    /* ----
     public function getOnlyContentBlocks(array $name_blocks): array
     {
         $filtered = collect($this->content_blocks)->filter(function (array $value, int $key) use ($name_blocks) {
@@ -526,6 +527,7 @@ class Article extends BaseModel implements Feedable, HasMedia
 
         return $filtered;
     }
+    */
 
     /**
      * Scope a query to only include articles.

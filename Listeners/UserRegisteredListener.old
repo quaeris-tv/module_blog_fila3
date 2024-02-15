@@ -1,4 +1,7 @@
 <?php
+/**
+ * --- questo evento e' di socialite .. non c'entra con evento di registrazione
+ */
 
 declare(strict_types=1);
 
@@ -22,9 +25,9 @@ class UserRegisteredListener
     public function handle(Registered $event): void
     {
         dddx('a');
-        Profile::firstOrCreate([
-            ['user_id' => $event->user->id],
-            ['email' => $event->user->email],
-        ]);
+        Profile::firstOrCreate(
+            ['user_id' => $event->user->id,
+            'email' => $event->user->email],
+        );
     }
 }

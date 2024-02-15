@@ -4,27 +4,31 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Xot\Actions\GetViewAction;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Collection;
 
 class Lists extends Component
 {
     public const ITEMS_PER_PAGE = 10;
 
     // All categories
-    public array $categories;
+    /**
+     * @var Collection<Category>
+     */
+    public Collection $categories;
 
     // Variables keeping track of the current post query
-    public $postCount;
+    public int $postCount = 0;
 
-    public $postChunks;
+    public Collection $postChunks;
 
-    public $queryCount = 0;
+    public int $queryCount = 0;
 
-    public $currentChunk = 0;
+    public int $currentChunk = 0;
 
     // Currently selected category
     public $category;
@@ -39,7 +43,7 @@ class Lists extends Component
 
     public string $tpl;
 
-    public function mount()
+    public function mount():void
     {
         $this->categories = Category::all();
         $this->tpl = 'v1';
@@ -61,22 +65,22 @@ class Lists extends Component
         return view($view, $view_params);
     }
 
-    public function updatedCategory()
+    public function updatedCategory():void
     {
         $this->refreshArticles();
     }
 
-    public function updatedOrder()
+    public function updatedOrder():void
     {
         $this->refreshArticles();
     }
 
-    public function loadMore()
+    public function loadMore():void
     {
         ++$this->currentChunk;
     }
 
-    private function getActiveCategory()
+    private function getActiveCategory():Category|null
     {
         return $this->categories->first(fn ($i) => $i->slug === $this->category);
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
 
 use function Safe\preg_replace;
+use function Safe\json_decode;
 
 class ArticleFactory extends Factory
 {

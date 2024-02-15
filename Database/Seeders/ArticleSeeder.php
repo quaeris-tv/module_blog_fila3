@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Database\Seeders;
 
 use Carbon\Carbon;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 
 class ArticleSeeder extends Seeder
 {
@@ -21,7 +22,10 @@ class ArticleSeeder extends Seeder
 
     private Carbon $date;
 
-    private function createArticle($data = [])
+    /**
+     * @return Collection <Article>
+     */
+    private function createArticle($data = []): Collection
     {
         $date = $this->date->subDay();
 

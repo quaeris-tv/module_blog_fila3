@@ -50,10 +50,10 @@ class RatingArticleWinnerCommand extends Command
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
             $this->newLine();
-        } catch (\NullArticleError $error) {
+        } /*catch (\NullArticleError $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
             $this->newLine();
-        }
+        }*/
     }
 }

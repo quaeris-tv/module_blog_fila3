@@ -25,7 +25,6 @@ use Modules\User\Models\User;
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
- * @property Post|null                                              $post
  * @property User|null                                              $user
  *
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
@@ -69,10 +68,6 @@ class Comment extends BaseModel
         return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
     }
 
-    public function post(): BelongsTo
-    {
-        return $this->belongsTo(Post::class);
-    }
 
     /**
      * The comment that belong to the article.
