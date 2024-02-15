@@ -67,7 +67,7 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
-        if (false == $article->is_closed) {
+        if ($article->closet_at > Carbon::now()) {
             $event = new RatingArticle(
                 userId: $command->userId,
                 articleId: $command->articleId,

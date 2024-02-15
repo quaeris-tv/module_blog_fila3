@@ -152,12 +152,14 @@ class Article extends BaseModel implements Feedable, HasMedia
 
         'content_blocks',
         'footer_blocks',
+        'sidebar_blocks',
         'is_featured',
         'main_image_upload',
         'main_image_url',
         'published_at',
         'closed_at',
         'category_id',
+        //'is_closed', => closet_at
 
         /*
         'title',
@@ -192,6 +194,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         'title',
         // 'description',
         'content_blocks',
+        'sidebar_blocks',
         'footer_blocks',
     ];
 
@@ -218,8 +221,11 @@ class Article extends BaseModel implements Feedable, HasMedia
         'active' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'closet_at' => 'datetime',
         'content_blocks' => 'array',
         'footer_blocks' => 'array',
+        'sidebar_blocks' => 'array',
+        //'is_closed'=> 'boolean',
     ];
 
     // public function path()

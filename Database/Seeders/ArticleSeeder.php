@@ -44,6 +44,9 @@ class ArticleSeeder extends Seeder
         return Article::factory()->create($data);
     }
 
+    /**
+     * @return void
+     */
     public function run()
     {
         $this->date = Carbon::now();

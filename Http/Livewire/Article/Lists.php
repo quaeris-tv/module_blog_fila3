@@ -25,7 +25,10 @@ class Lists extends Component
     // Variables keeping track of the current post query
     public int $postCount = 0;
 
-    public Collection $postChunks;
+    /**
+     * @var \Illuminate\Support\Collection<int,\Illuminate\Support\Collection>
+     */
+    public \Illuminate\Support\Collection $postChunks;
 
     public int $queryCount = 0;
 
@@ -37,6 +40,9 @@ class Lists extends Component
     // Currently selected order
     public string $order = 'date_desc';
 
+    /**
+     * @var array
+     */
     protected $queryString = [
         'category' => ['except' => ''],
         'order' => ['except' => 'date_desc'],
@@ -104,7 +110,7 @@ class Lists extends Component
         return $query;
     }
 
-    private function refreshArticles()
+    private function refreshArticles():void
     {
         // This will force the update of the `post-chunk` child components
         ++$this->queryCount;
