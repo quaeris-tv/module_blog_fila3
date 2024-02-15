@@ -1,0 +1,1 @@
+<livewire:article.ratings :article="$model" tpl="v2"/>
