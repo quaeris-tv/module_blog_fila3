@@ -221,7 +221,7 @@ class Article extends BaseModel implements Feedable, HasMedia
         'active' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        'closet_at' => 'datetime',
+        'closed_at' => 'datetime',
         'content_blocks' => 'array',
         'footer_blocks' => 'array',
         'sidebar_blocks' => 'array',

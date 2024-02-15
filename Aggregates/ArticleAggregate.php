@@ -67,7 +67,7 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
-        if ($article->closet_at > Carbon::now()) {
+        //if ($article->closed_at > Carbon::now()) {
             $event = new RatingArticle(
                 userId: $command->userId,
                 articleId: $command->articleId,
@@ -75,18 +75,18 @@ class ArticleAggregate extends AggregateRoot
                 credit: $command->credit);
 
             $this->recordThat($event);
-        } else {
+        //} else {
             // dddx('l\'utente ha scommesso su articolo chiuso');
-            $this->recordThat(
-                new RatingClosedArticle(
-                    articleId: $command->articleId,
-                    userId: $command->userId,
-                    ratingId: $command->ratingId,
-                    credit: $command->credit
-                ));
+        //    $this->recordThat(
+        //        new RatingClosedArticle(
+        //            articleId: $command->articleId,
+        //            userId: $command->userId,
+        //            ratingId: $command->ratingId,
+        //            credit: $command->credit
+        //        ));
 
-            throw new RatingClosedArticleError(articleId: $command->articleId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
-        }
+        //    throw new RatingClosedArticleError(articleId: $command->articleId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
+        //}
 
         $this->persist();
 
