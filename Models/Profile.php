@@ -36,6 +36,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property int|null                                                                                                   $articles_count
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
+ *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                 newModelQuery()
  * @method static Builder|Profile                                 newQuery()
@@ -55,11 +56,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static Builder|Profile                                 whereUserId($value)
  * @method static Builder|Profile                                 withTrashed()
  * @method static Builder|Profile                                 withoutTrashed()
- * @property float $credits
- * @property-read \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
- * @property-read int|null $ratings_count
- * @property-read User|null $user
+ *
+ * @property float                                                 $credits
+ * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
+ * @property int|null                                              $ratings_count
+ * @property User|null                                             $user
+ *
  * @method static Builder|Profile whereCredits($value)
+ *
  * @mixin \Eloquent
  */
 class Profile extends BaseModel implements HasMedia

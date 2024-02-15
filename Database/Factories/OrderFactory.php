@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-
 use Modules\Blog\Models\Order;
 
-class OrderFactory extends Factory {
+class OrderFactory extends Factory
+{
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,15 +21,14 @@ class OrderFactory extends Factory {
      *
      * @return array
      */
-    public function definition() {
-
-
+    public function definition()
+    {
         return [
             'date' => $this->faker->date,
             'model_type' => $this->faker->word,
             'model_id' => $this->faker->integer,
             'rating_id' => $this->faker->integer,
-            'credits' => $this->faker->randomNumber
+            'credits' => $this->faker->randomNumber,
         ];
     }
 }
