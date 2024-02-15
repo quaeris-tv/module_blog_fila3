@@ -58,7 +58,10 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
         }
 
-        $article = Article::find($command->articleId);
+        $article = Article::firstWhere(['id' => $command->articleId]);
+        if($article==null) {
+            throw new NullArticleError(articleId: $command->articleId);
+        }
 
         if (Carbon::now() >= $article->closed_at) {
             throw new \Exception('bets ended on ['.$article->closed_at.']');
@@ -76,13 +79,13 @@ class ArticleAggregate extends AggregateRoot
             // dddx('l\'utente ha scommesso su articolo chiuso');
             $this->recordThat(
                 new RatingClosedArticle(
-                    articleId: $command->productId,
+                    articleId: $command->articleId,
                     userId: $command->userId,
                     ratingId: $command->ratingId,
                     credit: $command->credit
                 ));
 
-            throw new RatingClosedArticleError(articleId: $command->productId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
+            throw new RatingClosedArticleError(articleId: $command->articleId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
         }
 
         $this->persist();

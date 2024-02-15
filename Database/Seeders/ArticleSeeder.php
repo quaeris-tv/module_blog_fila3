@@ -25,7 +25,7 @@ class ArticleSeeder extends Seeder
     /**
      * @return Collection <Article>
      */
-    private function createArticle($data = []): Collection
+    private function createArticle(array $data = []): Collection
     {
         $date = $this->date->subDay();
 

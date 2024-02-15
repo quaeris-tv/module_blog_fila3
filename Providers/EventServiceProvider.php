@@ -22,9 +22,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array<string, array<int, string>>
      */
     protected $listen = [
-        Registered::class => [
-            UserRegisteredListener::class,
-        ],
+        //Registered::class => [ //questo e' per socialite
+        //    UserRegisteredListener::class,
+        //],
 
         // SocialiteWasCalled::class => [
         //     Auth0ExtendSocialite::class.'@handle',

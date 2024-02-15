@@ -84,8 +84,7 @@ class ProfileResource extends XotBaseResource
 
                             foreach ($users as $user) {
                                 Profile::firstOrCreate(
-                                    ['user_id' => $user->id],
-                                    ['email' => $user->email],
+                                    ['user_id' => $user->id, 'email' => $user->email],
                                     ['credits' => 1000]
                                 );
                             }

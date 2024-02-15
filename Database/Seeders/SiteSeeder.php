@@ -10,6 +10,9 @@ use Modules\Blog\Models\Page;
 
 class SiteSeeder extends Seeder
 {
+    /**
+     * @return void
+     */
     public function run()
     {
         Page::factory()->create([

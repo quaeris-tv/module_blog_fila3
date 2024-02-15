@@ -24,15 +24,6 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-<<<<<<< HEAD
-            'date' => $this->faker->date,
-            'model_type' => $this->faker->word,
-            'model_id' => $this->faker->integer,
-            'rating_id' => $this->faker->integer,
-            'credits' => $this->faker->randomNumber,
-=======
-
->>>>>>> 37f5d7a (up)
         ];
     }
 }

@@ -29,7 +29,7 @@ class Ratings extends Page implements HasForms
 
     public string $tpl = 'v1';
     public string $user_id;
-    public ?array $data = [];
+    public array $data = [];
     public Profile $profile;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -31,10 +32,10 @@ class Lists extends Component
     public int $currentChunk = 0;
 
     // Currently selected category
-    public $category;
+    public ?Category $category=null;
 
     // Currently selected order
-    public $order = 'date_desc';
+    public string $order = 'date_desc';
 
     protected $queryString = [
         'category' => ['except' => ''],
@@ -82,10 +83,11 @@ class Lists extends Component
 
     private function getActiveCategory():Category|null
     {
-        return $this->categories->first(fn ($i) => $i->slug === $this->category);
+        //return $this->categories->first(fn ($i) => $i->slug === $this->category);
+        return $this->category;
     }
 
-    private function getArticleQuery()
+    private function getArticleQuery():Builder
     {
         $query = Article::published();
 

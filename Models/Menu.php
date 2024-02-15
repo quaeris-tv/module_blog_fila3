@@ -16,7 +16,6 @@ namespace Modules\Blog\Models;
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
- *
  * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
@@ -33,7 +32,6 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
- *
  * @mixin \Eloquent
  */
 class Menu extends BaseModel

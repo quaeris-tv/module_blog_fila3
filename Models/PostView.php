@@ -14,7 +14,6 @@ namespace Modules\Blog\Models;
  * @property int                             $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Modules\Blog\Database\Factories\PostViewFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   newQuery()
@@ -29,7 +28,6 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   withoutTrashed()
- *
  * @mixin \Eloquent
  */
 class PostView extends BaseModel
