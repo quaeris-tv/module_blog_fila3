@@ -40,7 +40,10 @@
                         <a href="{{ $this->url('show', ['record' => $article]) }}">View market</a>
                     </div>
                 </div>
-            </div>
+
+                @include('blog::components.blocks.article_list.v7.info')
+
+              </div>
         </div>
     @endforeach
     {{-- <div class="col-sm-6 col-md-4 col-xl-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
