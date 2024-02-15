@@ -68,7 +68,6 @@ class Comment extends BaseModel
         return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
     }
 
-
     /**
      * The comment that belong to the article.
      */

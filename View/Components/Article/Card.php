@@ -17,7 +17,7 @@ use Modules\Xot\Actions\GetViewAction;
 class Card extends Component
 {
     public function __construct(
-        public Article$article,
+        public Article $article,
         public bool $showAuthor = false,
         public string $tpl = 'v1')
     {
