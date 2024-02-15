@@ -53,7 +53,6 @@ use Webmozart\Assert\Assert;
  * @property int|null                                                                                                   $statuses_count
  * @property int|null                                                                                                   $tags_count
  * @property User|null                                                                                                  $user
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Post   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   author(string $profile_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   category(string $id)
@@ -97,7 +96,6 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Post   withoutTrashed()
- *
  * @mixin \Eloquent
  */
 class Post extends BaseModel implements HasMedia

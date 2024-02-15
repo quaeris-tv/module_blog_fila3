@@ -51,7 +51,6 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $main_image_upload
  * @property string                                                                                                     $main_image_url
  * @property string                                                                                                     $content_blocks
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
@@ -75,7 +74,59 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
- *
+ * @property string $id
+ * @property string $uuid
+ * @property string|null $content
+ * @property string|null $picture
+ * @property int|null $category_id
+ * @property int|null $author_id
+ * @property string|null $status
+ * @property int $show_on_homepage
+ * @property int|null $read_time
+ * @property string|null $excerpt
+ * @property-read string $created_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property string|null $deleted_by
+ * @property array|null $footer_blocks
+ * @property int $is_featured
+ * @property string|null $closed_at
+ * @property-read \Modules\Blog\Models\Category|null $category
+ * @property-read string $main_image
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Order> $orders
+ * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
+ * @property-read int|null $ratings_count
+ * @property-read mixed $translations
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereClosedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereContentBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereExcerpt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereFooterBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsFeatured($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereLocale(string $column, string $locale)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereLocales(string $column, array $locales)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereMainImageUpload($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereMainImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePicture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereReadTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereShowOnHomepage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
  * @mixin \Eloquent
  */
 class Article extends BaseModel implements Feedable, HasMedia

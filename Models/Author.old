@@ -44,7 +44,7 @@ class Author extends Model
     ];
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $appends = [
         'photo_url',

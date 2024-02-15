@@ -18,7 +18,6 @@ use Spatie\Tags\Tag as BaseTag;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
- *
  * @method static Builder|Tag                               containing(string $name, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newQuery()
@@ -36,7 +35,7 @@ use Spatie\Tags\Tag as BaseTag;
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedBy($value)
  * @method static Builder|Tag                               withType(?string $type = null)
- *
+ * @property-read mixed $translations
  * @mixin \Eloquent
  */
 class Tag extends BaseTag

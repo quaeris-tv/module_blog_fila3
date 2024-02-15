@@ -67,7 +67,7 @@ class Post extends Model // implements TranslatableContract
     ];
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $appends = [
         'banner_url',
@@ -102,7 +102,7 @@ class Post extends Model // implements TranslatableContract
     {
         return $this->translatedAttributes;
     }
-    
+
     /*
 
 

@@ -29,7 +29,6 @@ use Spatie\Translatable\HasTranslations;
  * @property int|null                                                                                                   $posts_count
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Post>                                   $publishedPosts
  * @property int|null                                                                                                   $published_posts_count
- *
  * @method static \Modules\Blog\Database\Factories\CategoryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Category   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category   newQuery()
@@ -44,7 +43,55 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Category   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Category   withoutTrashed()
- *
+ * @property array|null $description
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null $deleted_by
+ * @property string|null $parent_id
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $children
+ * @property-read int|null $children_count
+ * @property-read \Modules\Blog\Models\Category|null $parent
+ * @property-read mixed $post_counter
+ * @property-read mixed $translations
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $ancestors The model's recursive parents.
+ * @property-read int|null $ancestors_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $ancestorsAndSelf The model's recursive parents and itself.
+ * @property-read int|null $ancestors_and_self_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $bloodline The model's ancestors, descendants and itself.
+ * @property-read int|null $bloodline_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $childrenAndSelf The model's direct children and itself.
+ * @property-read int|null $children_and_self_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $descendants The model's recursive children.
+ * @property-read int|null $descendants_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $descendantsAndSelf The model's recursive children and itself.
+ * @property-read int|null $descendants_and_self_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $parentAndSelf The model's direct parent and itself.
+ * @property-read int|null $parent_and_self_count
+ * @property-read \Modules\Blog\Models\Category|null $rootAncestor The model's topmost parent.
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $siblings The parent's other children.
+ * @property-read int|null $siblings_count
+ * @property-read \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection|\Modules\Blog\Models\Category[] $siblingsAndSelf All the parent's children.
+ * @property-read int|null $siblings_and_self_count
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category breadthFirst()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category depthFirst()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category doesntHaveChildren()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category getExpressionGrammar()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category hasChildren()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category hasParent()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category isLeaf()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category isRoot()
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category tree($maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category treeOf(\Illuminate\Database\Eloquent\Model|callable $constraint, $maxDepth = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereDeletedAt($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereDeletedBy($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereDepth($operator, $value = null)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereDescription($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereLocale(string $column, string $locale)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereLocales(string $column, array $locales)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category whereParentId($value)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category withGlobalScopes(array $scopes)
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category withRelationshipExpression($direction, callable $constraint, $initialDepth, $from = null, $maxDepth = null)
  * @mixin \Eloquent
  */
 class Category extends BaseModel implements HasMedia
