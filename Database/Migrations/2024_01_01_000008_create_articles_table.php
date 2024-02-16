@@ -55,7 +55,6 @@ class CreateArticlesTable extends XotBaseMigration
                 if (! $this->hasColumn('content_blocks')) {
                     // $table->text('content_blocks')->nullable();
                     $table->json('content_blocks')->default(new Expression('(JSON_ARRAY())'));
-
                 }
                 if (! $this->hasColumn('sidebar_blocks')) {
                     // $table->text('footer_blocks')->nullable();
