@@ -152,7 +152,7 @@ class ThemeComposer
         return $page->render();
     }
 
-    public function showSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
         Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class);
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
@@ -160,6 +160,16 @@ class ThemeComposer
         $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
 
         return $page->render();
+    }
+
+    public function showArticleSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
+    {
+        Assert::isInstanceOf($article = Article::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Article::class);
+        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
+
+        $article = new \Modules\UI\View\Components\Render\Blocks(blocks: $article->sidebar_blocks, model: $article);
+
+        return $article->render();
     }
 
     public function getPages(): Collection
