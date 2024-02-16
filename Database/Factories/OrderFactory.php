@@ -24,11 +24,11 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'date' => $this->faker->date,
-            'model_type' => $this->faker->word,
-            'model_id' => $this->faker->integer,
-            'rating_id' => $this->faker->integer,
-            'credits' => $this->faker->randomNumber,
+            // 'date' => $this->faker->date,
+            // 'model_type' => $this->faker->word,
+            // 'model_id' => $this->faker->integer,
+            // 'rating_id' => $this->faker->integer,
+            // 'credits' => $this->faker->randomNumber,
         ];
     }
 }
