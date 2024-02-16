@@ -38,17 +38,18 @@ class ArticleList
                     ])
                     ->required(),
                 TextInput::make('limit'),
-                Select::make('version')
-                ->label('version')
+                Select::make('layout')
+                ->label('layout')
                 ->options([
-                    'v1' => 'versione 1 (Tailwind)',
-                    'v2' => 'versione 2 (Tailwind)',
-                    'v3' => 'versione 3 (Tailwind)',
-                    'v4' => 'versione 4 (Tailwind)',
-                    'v5' => 'versione 5 (Tailwind)',
-                    'v6' => 'versione 6 (Tailwind)',
-                    'v7' => 'versione 7 (Bootstrap)',
+                    'v1' => 'layout 1 (Tailwind)',
+                    'v2' => 'layout 2 (Tailwind)',
+                    'v3' => 'layout 3 (Tailwind)',
+                    'v4' => 'layout 4 (Tailwind)',
+                    'v5' => 'layout 5 (Tailwind)',
+                    'v6' => 'layout 6 (Tailwind)',
+                    'v7' => 'layout 7 (Bootstrap)',
                 ])
+                ->default('v1')
                 ->required(),
             ])
             ->label('article list')
