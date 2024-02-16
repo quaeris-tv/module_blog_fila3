@@ -120,7 +120,7 @@ class ArticleResource extends XotBaseResource
 
                 ArticleSidebar::make('sidebar_blocks')
                     ->label('Sidebar')
-                    //->required()
+                    // ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
 
