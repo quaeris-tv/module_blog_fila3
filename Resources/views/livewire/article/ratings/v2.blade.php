@@ -5,7 +5,10 @@
         <span>Buy & Sell</span>
       </button>
     </div>
-    <div class="tow_area box">
+    <div class="tow_area box"
+      style="width:400px"
+      {{-- non so se va bene per tutti gli schermi --}}
+      >
       <div class="buysell wo fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
         {{-- <div class="buysell__markets d-flex align-items-center justify-content-between mb16">
           <div class="buysell__right">
