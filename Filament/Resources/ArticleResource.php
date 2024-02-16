@@ -15,7 +15,6 @@ use Illuminate\Support\Str;
 use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Blog\Filament\Fields\ArticleFooter;
 use Modules\Blog\Filament\Fields\ArticleSidebar;
-use Modules\Blog\Filament\Fields\RightSidebarContent;
 use Modules\Blog\Filament\Resources\ArticleResource\Pages;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -107,13 +106,6 @@ class ArticleResource extends XotBaseResource
                     ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
-
-            Forms\Components\Section::make('Sidebar Content')->schema([
-                RightSidebarContent::make('sidebar_blocks')
-                    ->label('Blocchi Sidebar')
-                    // ->required()
-                    ->columnSpanFull(),
-            ]),
 
             Forms\Components\Section::make('Article Sidebar')->schema([
                 Forms\Components\Actions::make([
