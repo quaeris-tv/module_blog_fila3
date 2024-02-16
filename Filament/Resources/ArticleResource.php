@@ -14,6 +14,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Blog\Filament\Fields\ArticleFooter;
+use Modules\Blog\Filament\Fields\ArticleSidebar;
 use Modules\Blog\Filament\Resources\ArticleResource\Pages;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -101,8 +102,25 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleContent::make('content_blocks')
-                    ->label('Blocks')
+                    ->label('Content')
                     ->required()
+                    ->columnSpanFull(),
+            ])->collapsible(),
+
+            Forms\Components\Section::make('Article Sidebar')->schema([
+                Forms\Components\Actions::make([
+                    /*
+                    InlinePreviewAction::make()
+                        ->label('Preview Content Blocks')
+                        ->builderName('content_blocks'),
+                    */
+                ])
+                    ->columnSpanFull()
+                    ->alignRight(),
+
+                ArticleSidebar::make('sidebar_blocks')
+                    ->label('Sidebar')
+                    //->required()
                     ->columnSpanFull(),
             ])->collapsible(),
 
@@ -118,7 +136,7 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleFooter::make('footer_blocks')
-                    ->label('Blocks')
+                    ->label('Footer')
                     ->columnSpanFull(),
             ])->collapsible(),
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
+use Illuminate\Database\Query\Expression;
 
 class CreateArticlesTable extends XotBaseMigration
 {
@@ -52,10 +53,16 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->string('title');
                 }
                 if (! $this->hasColumn('content_blocks')) {
-                    $table->text('content_blocks')->nullable();
+                    //$table->text('content_blocks')->nullable();
+                    $table->json('content_blocks')->default(new Expression('(JSON_ARRAY())'));
+                }
+                if (! $this->hasColumn('sidebar_blocks')) {
+                    //$table->text('footer_blocks')->nullable();
+                    $table->json('sidebar_blocks')->default(new Expression('(JSON_ARRAY())'));
                 }
                 if (! $this->hasColumn('footer_blocks')) {
-                    $table->text('footer_blocks')->nullable();
+                    //$table->text('footer_blocks')->nullable();
+                    $table->json('footer_blocks')->default(new Expression('(JSON_ARRAY())'));
                 }
                 if (! $this->hasColumn('main_image_url')) {
                     $table->text('main_image_url')->nullable();
