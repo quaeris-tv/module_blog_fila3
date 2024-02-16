@@ -33,7 +33,7 @@ class Chunk extends Component
         return view($view, $view_params);
     }
 
-    public function url(string $name, array $params)
+    public function url(string $name, array $params): string
     {
         return '#';
     }

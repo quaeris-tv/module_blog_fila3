@@ -58,32 +58,35 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
         }
 
-        $article = Article::find($command->articleId);
+        $article = Article::firstWhere(['id' => $command->articleId]);
+        if (null == $article) {
+            throw new NullArticleError(articleId: $command->articleId);
+        }
 
         if (Carbon::now() >= $article->closed_at) {
             throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
-        if (false == $article->is_closed) {
-            $event = new RatingArticle(
-                userId: $command->userId,
-                articleId: $command->articleId,
-                ratingId: $command->ratingId,
-                credit: $command->credit);
+        // if ($article->closed_at > Carbon::now()) {
+        $event = new RatingArticle(
+            userId: $command->userId,
+            articleId: $command->articleId,
+            ratingId: $command->ratingId,
+            credit: $command->credit);
 
-            $this->recordThat($event);
-        } else {
-            // dddx('l\'utente ha scommesso su articolo chiuso');
-            $this->recordThat(
-                new RatingClosedArticle(
-                    articleId: $command->productId,
-                    userId: $command->userId,
-                    ratingId: $command->ratingId,
-                    credit: $command->credit
-                ));
+        $this->recordThat($event);
+        // } else {
+        // dddx('l\'utente ha scommesso su articolo chiuso');
+        //    $this->recordThat(
+        //        new RatingClosedArticle(
+        //            articleId: $command->articleId,
+        //            userId: $command->userId,
+        //            ratingId: $command->ratingId,
+        //            credit: $command->credit
+        //        ));
 
-            throw new RatingClosedArticleError(articleId: $command->productId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
-        }
+        //    throw new RatingClosedArticleError(articleId: $command->articleId, userId: $command->userId, ratingId: $command->ratingId, credit: $command->credit);
+        // }
 
         $this->persist();
 

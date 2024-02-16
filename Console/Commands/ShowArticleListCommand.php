@@ -41,7 +41,7 @@ class ShowArticleListCommand extends Command
         $rows = Article::all(['id', 'title'])->map($map);
 
         if (\count($rows) > 0) {
-            $headers = array_keys($rows[0]);
+            $headers = array_keys($rows[0] ?? []);
 
             $this->newLine();
             $this->table($headers, $rows);

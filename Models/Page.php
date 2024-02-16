@@ -38,6 +38,12 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Page   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Page   withoutTrashed()
  *
+ * @property array|null $sidebar_blocks
+ * @property array      $footer_blocks
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereFooterBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereSidebarBlocks($value)
+ *
  * @mixin \Eloquent
  */
 class Page extends BaseModel

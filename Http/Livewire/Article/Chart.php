@@ -9,7 +9,7 @@ use Modules\Xot\Actions\GetViewAction;
 
 class Chart extends Component
 {
-    public ?string $tpl = 'v1';
+    public string $tpl = 'v1';
 
     public string $type;
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -24,18 +25,24 @@ class Lists extends Component
     // Variables keeping track of the current post query
     public int $postCount = 0;
 
-    public Collection $postChunks;
+    /**
+     * @var \Illuminate\Support\Collection<int,\Illuminate\Support\Collection>
+     */
+    public \Illuminate\Support\Collection $postChunks;
 
     public int $queryCount = 0;
 
     public int $currentChunk = 0;
 
     // Currently selected category
-    public $category;
+    public ?Category $category = null;
 
     // Currently selected order
-    public $order = 'date_desc';
+    public string $order = 'date_desc';
 
+    /**
+     * @var array
+     */
     protected $queryString = [
         'category' => ['except' => ''],
         'order' => ['except' => 'date_desc'],
@@ -82,10 +89,11 @@ class Lists extends Component
 
     private function getActiveCategory(): Category|null
     {
-        return $this->categories->first(fn ($i) => $i->slug === $this->category);
+        // return $this->categories->first(fn ($i) => $i->slug === $this->category);
+        return $this->category;
     }
 
-    private function getArticleQuery()
+    private function getArticleQuery(): Builder
     {
         $query = Article::published();
 
@@ -102,7 +110,7 @@ class Lists extends Component
         return $query;
     }
 
-    private function refreshArticles()
+    private function refreshArticles(): void
     {
         // This will force the update of the `post-chunk` child components
         ++$this->queryCount;

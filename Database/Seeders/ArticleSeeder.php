@@ -25,7 +25,7 @@ class ArticleSeeder extends Seeder
     /**
      * @return Collection <Article>
      */
-    private function createArticle($data = []): Collection
+    private function createArticle(array $data = []): Collection
     {
         $date = $this->date->subDay();
 
@@ -44,6 +44,9 @@ class ArticleSeeder extends Seeder
         return Article::factory()->create($data);
     }
 
+    /**
+     * @return void
+     */
     public function run()
     {
         $this->date = Carbon::now();

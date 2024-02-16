@@ -27,14 +27,13 @@ class CreateProfileByUsersCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $users = User::all();
 
         foreach ($users as $user) {
             Profile::firstOrCreate(
-                ['user_id' => $user->id],
-                ['email' => $user->email],
+                ['user_id' => $user->id, 'email' => $user->email],
                 ['credits' => 1000]
             );
         }

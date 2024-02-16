@@ -18,6 +18,7 @@ use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
+use Webmozart\Assert\Assert;
 
 /**
  * @property ComponentContainer $form
@@ -29,7 +30,7 @@ class Ratings extends Page implements HasForms
 
     public string $tpl = 'v1';
     public string $user_id;
-    public ?array $data = [];
+    public array $data = [];
     public Profile $profile;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -121,8 +122,8 @@ class Ratings extends Page implements HasForms
     {
         $data = $this->form->getState();
         $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-
-        foreach ($data['ratings_add'] as $rating_id => $rating) {
+        Assert::isArray($ratings_add = $data['ratings_add']);
+        foreach ($ratings_add as $rating_id => $rating) {
             $credit = $rating['value'];
             if (null != $credit) {
                 $command = RatingArticleData::from([

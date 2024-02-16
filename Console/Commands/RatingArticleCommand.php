@@ -7,6 +7,7 @@ namespace Modules\Blog\Console\Commands;
 use Illuminate\Console\Command;
 use Modules\Blog\Aggregates\ArticleAggregate;
 use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Error\RatingClosedArticleError;
 
 class RatingArticleCommand extends Command
 {
@@ -50,13 +51,13 @@ class RatingArticleCommand extends Command
             $this->newLine();
             $this->info("✓ Rating on article <fg=yellow>{$articleId}</> done");
             $this->newLine();
+        } catch (RatingClosedArticleError $error) {
+            $this->newLine();
+            $this->line("<bg=red;fg=black>✗ Rating not allowed:</> {$error->getMessage()}");
+            $this->newLine();
         } catch (\Exception $error) {
             $this->newLine();
             $this->line("<bg=red;fg=black>✗ Error:</> {$error->getMessage()}");
-            $this->newLine();
-        } catch (\RatingClosedArticleError $error) {
-            $this->newLine();
-            $this->line("<bg=red;fg=black>✗ Rating not allowed:</> {$error->getMessage()}");
             $this->newLine();
         }
     }
