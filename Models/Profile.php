@@ -6,20 +6,20 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
-use Illuminate\Support\Carbon;
-use Modules\Rating\Models\Rating;
-use Spatie\MediaLibrary\HasMedia;
-use Modules\Blog\Events\BetArticle;
-use Modules\Rating\Models\RatingMorph;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
+use Modules\User\Models\User;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -119,9 +119,7 @@ class Profile extends BaseModel implements HasMedia
                 // Assert::isInstanceOf($profile, ProfileContract::class);
                 $profile->slug = str_slug(strtolower($user->name));
                 $profile->update();
-                
-                
-                
+
                 return str_slug(strtolower($user->name));
             },
             // set: static function ($value, $attributes): string {
@@ -132,9 +130,7 @@ class Profile extends BaseModel implements HasMedia
             //     // // Assert::isInstanceOf($profile, ProfileContract::class);
             //     // $profile->slug = str_slug(strtolower($user->name));
             //     // $profile->save();
-                
-                
-                
+
             //     return str_slug(strtolower($user->name));
             // }
         );
