@@ -6,18 +6,20 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Support\Carbon;
-use Modules\Blog\Events\BetArticle;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
+use Webmozart\Assert\Assert;
 use Modules\User\Models\User;
+use Illuminate\Support\Carbon;
+use Modules\Rating\Models\Rating;
 use Spatie\MediaLibrary\HasMedia;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Database\Eloquent\Builder;
+use Modules\Xot\Contracts\ProfileContract;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -62,6 +64,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
  * @property int|null                                              $ratings_count
  * @property User|null                                             $user
+ * @property string                                                $slug
  *
  * @method static Builder|Profile whereCredits($value)
  *
@@ -78,6 +81,7 @@ class Profile extends BaseModel implements HasMedia
         'first_name',
         'last_name',
         'credits',
+        'slug',
     ];
 
     /*
@@ -100,6 +104,41 @@ class Profile extends BaseModel implements HasMedia
     //        }
     //    );
     // }
+
+    /**
+     * Get the user's first name.
+     */
+    protected function slug(): Attribute
+    {
+        return Attribute::make(
+            get: static function ($value, $attributes): string {
+                Assert::notNull($user = \Auth::user());
+                Assert::isInstanceOf($user, User::class);
+
+                Assert::notNull($profile = $user->profile);
+                // Assert::isInstanceOf($profile, ProfileContract::class);
+                $profile->slug = str_slug(strtolower($user->name));
+                $profile->update();
+                
+                
+                
+                return str_slug(strtolower($user->name));
+            },
+            // set: static function ($value, $attributes): string {
+            //     Assert::notNull($user = \Auth::user());
+            //     Assert::isInstanceOf($user, User::class);
+
+            //     // Assert::notNull($profile = $user->profile);
+            //     // // Assert::isInstanceOf($profile, ProfileContract::class);
+            //     // $profile->slug = str_slug(strtolower($user->name));
+            //     // $profile->save();
+                
+                
+                
+            //     return str_slug(strtolower($user->name));
+            // }
+        );
+    }
 
     public function user(): BelongsTo
     {
@@ -133,7 +172,7 @@ class Profile extends BaseModel implements HasMedia
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getFrontRouteKeyName()
     {
         return 'slug';
     }

@@ -92,6 +92,7 @@ use Webmozart\Assert\Assert;
  * @property string|null                                                               $created_by
  * @property string|null                                                               $deleted_by
  * @property array|null                                                                $footer_blocks
+ * @property array|null                                                                $sidebar_blocks
  * @property int                                                                       $is_featured
  * @property string|null                                                               $closed_at
  * @property Category|null                                                             $category
