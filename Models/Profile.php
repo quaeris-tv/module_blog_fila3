@@ -112,13 +112,14 @@ class Profile extends BaseModel implements HasMedia
     {
         return Attribute::make(
             get: function ($value): string {
-                if($value == null){
+                if (null == $value) {
                     Assert::notNull($this->user);
                     $this->email = $this->user->email;
                     $this->update();
                     // Assert::string($value = $this->email);
                 }
                 Assert::string($value);
+
                 return $value;
             }
         );
