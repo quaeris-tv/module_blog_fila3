@@ -38,7 +38,7 @@ class Profile extends Page implements HasForms
     // protected static string $view = 'filament.pages.edit-company';
 
     public function mount(
-        // Article $article, 
+        // Article $article,
         string $tpl = 'v1'): void
     {
         // $this->article = $article;
