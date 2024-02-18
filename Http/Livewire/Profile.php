@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire;
 
-use Filament\Actions\Action;
-use Filament\Facades\Filament;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Models\Article;
-// use Modules\Blog\Models\Profile;
-use Modules\Xot\Actions\GetViewAction;
+use Filament\Actions\Action;
 use Webmozart\Assert\Assert;
+use Filament\Facades\Filament;
+use Modules\Blog\Models\Profile as BlogProfile;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Contracts\HasForms;
+use Modules\Xot\Actions\GetViewAction;
+use Filament\Forms\Components\TextInput;
+// use Modules\Blog\Models\Profile;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 /**
  * @property ComponentContainer $form
@@ -31,16 +31,20 @@ class Profile extends Page implements HasForms
     public string $tpl = 'v1';
     // public string $user_id;
     // public array $data = [];
-    // public Profile $profile;
+    public BlogProfile $model;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     // protected static string $view = 'filament.pages.edit-company';
 
     public function mount(
-        // Article $article,
+        BlogProfile $model,
         string $tpl = 'v1'): void
     {
+        $this->model = $model;
+        $this->tpl = $tpl;
+        // dddx($this->model->toArray());
+
         // $this->article = $article;
         // $this->tpl = $tpl;
         // $this->user_id = (string) Filament::auth()->id();
@@ -52,11 +56,12 @@ class Profile extends Page implements HasForms
         //     ->keyBy('id')
         //     ->toArray();
         // // dddx($ratings);
-        // $data = [];
+        $data = [];
+        $data['profile'] = $this->model->toArray();
         // $data['ratings'] = $ratings;
 
         // // $this->form->fill(auth()->user()->company->attributesToArray());
-        // $this->form->fill($data);
+        $this->form->fill($data);
     }
 
     public function render(): \Illuminate\Contracts\View\View
@@ -80,35 +85,27 @@ class Profile extends Page implements HasForms
 
     public function form(Form $form): Form
     {
-        // $ratings = $this->article
-        //     ->ratings()
-        //     ->where('user_id', null)
-        //     ->distinct()
-        //     ->get();
-
-        // $schema = [];
-        // foreach ($ratings as $rating) {
-        //     /*
-        //     $schema[] = TextInput::make('ratings.'.$rating->id.'.value')
-        //         ->label($rating->title.' tot ')
-        //         ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-        //         ->disabled();
-        //     */
-        //     /*
-        //     $schema[]=TextInput::make('ratings_add.'.$rating->id.'.id')
-        //         ->default($rating->id);
-        //     */
-        //     $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
-        //         ->label($rating->title)
-        //         ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
+        $schema = [];
+        // foreach($this->model->toArray() as $field){
+        //         $schema[] = TextInput::make($field)
+        //         ->label($field)
+        //         // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
         //         // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
         //         // ->disabled()
-        //     ;
+        //         ;
         // }
+        // dddx($this->model->email);
+        $schema[] = TextInput::make($this->model->email)
+            ->label($this->model->email)
+            // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
+            // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+            // ->disabled()
+            ;
 
-        // return $form
-        //     ->schema($schema)
-        //     ->statePath('data');
+        // dddx($schema);
+        return $form
+            ->schema($schema)
+            ->statePath('data');
     }
 
     protected function getFormActions(): array
@@ -122,6 +119,7 @@ class Profile extends Page implements HasForms
 
     public function save(): void
     {
+        dddx('save');
         // $data = $this->form->getState();
         // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
         // Assert::isArray($ratings_add = $data['ratings_add']);

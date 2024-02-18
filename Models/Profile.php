@@ -106,6 +106,25 @@ class Profile extends BaseModel implements HasMedia
     // }
 
     /**
+     * Get the user's email.
+     */
+    protected function email(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value): string {
+                if($value == null){
+                    Assert::notNull($this->user);
+                    $this->email = $this->user->email;
+                    $this->update();
+                    // Assert::string($value = $this->email);
+                }
+                Assert::string($value);
+                return $value;
+            }
+        );
+    }
+
+    /**
      * Get the user's first name.
      */
     protected function slug(): Attribute

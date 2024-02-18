@@ -38,8 +38,16 @@
         <div class="lg:w-2/3 pr-4 pl-4">
           <div class="bioform wow fadeInDown">
             <h4>Account</h4>
-            <form>
+            {{-- <form> --}}
+            <x-filament-panels::form
+              wire:submit="save"
+              >
               <div class="flex flex-wrap  gape mt30">
+
+
+                {{ $this->form }}
+
+
                 <div class="md:w-1/2 pr-4 pl-4">
                   <label class="f18 mb-1 md:mb-2" for="fname">First name:</label>
                   <input type="text" id="fname" name="fname" placeholder="Brian ">
@@ -63,14 +71,22 @@
                     placeholder="Say something about you......."></textarea>
                 </div>
                 <div class="flex gap-2 gap-md-3 gap-xl-4">
-                  <button class="button-2 f18" type="submit">Edit profile</button>
+                  {{-- <button class="button-2 f18" type="submit">Edit profile</button> --}}
+
+                  <x-filament::button {{-- color="danger" --}} wire:click="save" class="button-2 f18">
+                    Edit profile
+                  </x-filament::button>
+
+
+
                   <button class="button-5 f18" type="submit">Cancel</button>
                 </div>
               </div>
-            </form>
+            {{-- </form> --}}
+            </x-filament-panels::form>
           </div>
         </div>
-        <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
+        {{-- <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
           <div class="leaderbordcard wow fadeInUp">
             <div class="leaderbordcard__thumb mb20">
               <img src="assets/images/icon/details6.png" alt="Icon">
@@ -244,7 +260,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> --}}
       </div>
       <!-- Profile heading name photo end-->
     </div>

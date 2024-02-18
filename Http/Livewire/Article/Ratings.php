@@ -103,7 +103,7 @@ class Ratings extends Page implements HasForms
                 // ->disabled()
             ;
         }
-
+        dddx($schema);
         return $form
             ->schema($schema)
             ->statePath('data');
