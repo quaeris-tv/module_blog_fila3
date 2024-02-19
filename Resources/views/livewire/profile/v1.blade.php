@@ -44,6 +44,27 @@
                   />
                 </div>
 
+
+
+                {{-- <div class="md:w-1/2 pr-4 pl-4">
+                  <label class="f18 mb-1 md:mb-2" for="email">Profile Image</label>
+                  <x-filament::input
+                      type="file"
+                      wire:model="data.photo_profile"
+                  />
+                </div> --}}
+
+
+
+  
+
+
+
+
+
+
+
+
                 <div class="md:w-1/2 pr-4 pl-4">
                   {{-- <label class="f18 mb-1 md:mb-2" for="location">Location</label>
                   <input type="text" id="location" name="location" placeholder="New york ny"> --}}
