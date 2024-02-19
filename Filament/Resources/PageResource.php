@@ -64,7 +64,7 @@ class PageResource extends Resource
             Forms\Components\Section::make('Sidebar Content')->schema([
                 LeftSidebarContent::make('sidebar_blocks')
                     ->label('Blocchi Sidebar')
-                    ->required()
+                    // ->required()
                     ->columnSpanFull(),
             ]),
         ]);
