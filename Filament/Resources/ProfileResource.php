@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
-use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Blog\Datas\AddedCreditsData;
-use Modules\Blog\Filament\Resources\ProfileResource\Pages;
-use Modules\Blog\Models\Profile;
 use Modules\User\Models\User;
+use Modules\Blog\Models\Profile;
+use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Columns\TextColumn;
+use Modules\Blog\Datas\AddedCreditsData;
+use Illuminate\Database\Eloquent\Collection;
+use Filament\Resources\Concerns\Translatable;
+use Modules\Blog\Aggregates\ProfileAggregate;
 use Modules\Xot\Filament\Resources\XotBaseResource;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Modules\Blog\Filament\Resources\ProfileResource\Pages;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class ProfileResource extends XotBaseResource
 {
@@ -35,6 +37,19 @@ class ProfileResource extends XotBaseResource
                 Forms\Components\TextInput::make('email'),
                 Forms\Components\TextInput::make('first_name'),
                 Forms\Components\TextInput::make('last_name'),
+                SpatieMediaLibraryFileUpload::make('photo_profile')
+                    // ->image()
+                    // ->maxSize(5000)
+                    // ->multiple()
+                    // ->enableReordering()
+                    ->openable()
+                    ->downloadable()
+                    ->columnSpanFull()
+                    // ->collection('avatars')
+                    // ->conversion('thumbnail')
+                    ->disk('uploads')
+                    ->directory('photos')
+                    ->collection('photo_profile')
             ]);
     }
 
@@ -47,6 +62,8 @@ class ProfileResource extends XotBaseResource
                 TextColumn::make('last_name'),
                 TextColumn::make('email'),
                 TextColumn::make('credits'),
+                SpatieMediaLibraryImageColumn::make('photo_profile')
+                    ->collection('photo_profile')
             ])
             ->filters([
             ])

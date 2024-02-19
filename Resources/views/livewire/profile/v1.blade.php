@@ -2,39 +2,8 @@
     <div class="container mx-auto sm:px-4 mb50 padding-top padding-bottoms">
       <!-- Profile heading name photo start-->
       <div class="flex flex-wrap  gape">
-        <div class="lg:w-1/3 pr-4 pl-4">
-          <div class="boardprofile bio wow fadeInDown">
-            <div class="boardprofile__thumb mb20 text-center">
-              <img src="assets/images/bio_profile.png" alt="Image">
-            </div>
-            <div class="boardprofile__profile-text bio__dotted text-center">
-              <span class="bio__name mb10 block">Brian Cumin</span>
-              <div class="parent justify-center">
-                <span class="tlt"></span>
-                <span class="left">2xS7C70e458024e8F8DA......</span>
-                <div class="right">
-                  <i class="material-symbols-outlined"> content_copy </i>
-                </div>
-              </div>
-              <p class="f14 mb-2 lg:mb-4">
-                Nam congue gravida justo. Morbi sed rhoncus ipsum, nec ven.
-              </p>
-            </div>
-            <div class="bio__info mt20 pb-2 lg:pb-4 bio__dotted">
-              <span class="mb10">BIO</span>
-              <p class="f14">
-                Nam congue gravida justo. Morbi sed rhoncus ipsum, nec ven.
-              </p>
-            </div>
-            <div class="bio__location bio__dotted mt20 pb-2 lg:pb-4">
-              <span class="mb-1 sm:mb-2 block">support@gmail.com</span>
-              <span>LONDON, United Kingdom</span>
-            </div>
-            <div class="bio__member-date mt20">
-              <span>Member since Mar 28, 2023</span>
-            </div>
-          </div>
-        </div>
+        @include('blog::livewire.profile.v1.heading_photo')
+
         <div class="lg:w-2/3 pr-4 pl-4">
           <div class="bioform wow fadeInDown">
             <h4>Account</h4>
