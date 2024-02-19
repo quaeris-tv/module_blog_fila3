@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire\Profile;
 
 use Filament\Actions\Action;
-use Filament\Facades\Filament;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -13,12 +12,8 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Modules\Blog\Datas\RatingArticleData;
 // use Modules\Blog\Models\Profile;
-use Modules\Blog\Models\Profile as BlogProfile;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
 
 /**
  * @property ComponentContainer $form
@@ -28,7 +23,7 @@ class Setting extends Page implements HasForms
     use InteractsWithForms;
 
     public string $tpl = 'setting';
-    public string $version= 'v1';
+    public string $version = 'v1';
     public array $data = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
