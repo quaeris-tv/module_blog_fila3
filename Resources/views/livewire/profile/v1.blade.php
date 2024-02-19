@@ -71,45 +71,9 @@
         </div>
 
 
+        @include('blog::livewire.profile.v1.profile_stats')
 
-
-        {{-- <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
-          <div class="leaderbordcard wow fadeInUp">
-            <div class="leaderbordcard__thumb mb20">
-              <img src="assets/images/icon/details6.png" alt="Icon">
-            </div>
-            <h5 class="mb-1 md:mb-2">Volume traded</h5>
-            <span>$145,591.80</span>
-          </div>
-        </div>
-        <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
-          <div class="leaderbordcard wow fadeInUp">
-            <div class="leaderbordcard__thumb mb20">
-              <img src="assets/images/icon/details7.png" alt="Icon">
-            </div>
-            <h5 class="mb-1 md:mb-2">Markets traded</h5>
-            <span>34</span>
-          </div>
-        </div>
-        <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
-          <div class="leaderbordcard wow fadeInUp">
-            <div class="leaderbordcard__thumb mb20">
-              <img src="assets/images/icon/details8.png" alt="Icon">
-            </div>
-            <h5 class="mb-1 md:mb-2">Profit/loss</h5>
-            <span>-$3,219.48</span>
-          </div>
-        </div>
-        <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
-          <div class="leaderbordcard wow fadeInUp">
-            <div class="leaderbordcard__thumb mb20">
-              <img src="assets/images/icon/details9.png" alt="Icon">
-            </div>
-            <h5 class="mb-1 md:mb-2">Member since</h5>
-            <span>Jul 2023</span>
-          </div>
-        </div>
-        <div class="w-full">
+        {{-- <div class="w-full">
           <div class="leaderboardtable block w-full overflow-auto scrolling-touch">
             <h4 class="mb-3 md:mb-6 leaderboardtable__heading-title wow fadeInDown">Recent activity</h4>
             <table class="w-full max-w-full mb-4 bg-transparent wow fadeInUp">

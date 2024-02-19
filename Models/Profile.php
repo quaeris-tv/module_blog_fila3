@@ -118,6 +118,25 @@ class Profile extends BaseModel implements HasMedia
         );
     }
 
+    /*
+     * Get the user's full name.
+     */
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: function (): string {
+                $value = $this->first_name.' '.$this->last_name;
+                // dddx($value);
+                // if (null == $value) {
+                //     $value = 'Mio Cognome';
+                // }
+                // Assert::string($value);
+
+                return $value;
+            }
+        );
+    }
+
     /**
      * Get the user's email.
      */
@@ -155,17 +174,6 @@ class Profile extends BaseModel implements HasMedia
 
                 return str_slug(strtolower($user->name));
             },
-            // set: static function ($value, $attributes): string {
-            //     Assert::notNull($user = \Auth::user());
-            //     Assert::isInstanceOf($user, User::class);
-
-            //     // Assert::notNull($profile = $user->profile);
-            //     // // Assert::isInstanceOf($profile, ProfileContract::class);
-            //     // $profile->slug = str_slug(strtolower($user->name));
-            //     // $profile->save();
-
-            //     return str_slug(strtolower($user->name));
-            // }
         );
     }
 

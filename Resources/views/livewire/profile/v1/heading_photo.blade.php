@@ -4,14 +4,14 @@
         <img src="{{ $this->model->getFirstMediaUrl('photo_profile') }}" alt="Image">
       </div>
       <div class="boardprofile__profile-text bio__dotted text-center">
-        <span class="bio__name mb10 block">{{ $this->model->first_name }}</span>
-        <div class="parent justify-center">
+        <span class="bio__name mb10 block">{{ $this->model->full_name }}</span>
+        {{-- <div class="parent justify-center">
           <span class="tlt"></span>
           <span class="left">2xS7C70e458024e8F8DA......</span>
           <div class="right">
             <i class="material-symbols-outlined"> content_copy </i>
           </div>
-        </div>
+        </div> --}}
         {{-- <p class="f14 mb-2 lg:mb-4">
           Nam congue gravida justo. Morbi sed rhoncus ipsum, nec ven.
         </p> --}}
