@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Modules\User\Models\User;
-use Modules\Blog\Models\Profile;
-use Illuminate\Support\Facades\Auth;
-use Filament\Tables\Columns\TextColumn;
-use Modules\Blog\Datas\AddedCreditsData;
-use Illuminate\Database\Eloquent\Collection;
-use Filament\Resources\Concerns\Translatable;
-use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Xot\Filament\Resources\XotBaseResource;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Modules\Blog\Filament\Resources\ProfileResource\Pages;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
+use Modules\Blog\Aggregates\ProfileAggregate;
+use Modules\Blog\Datas\AddedCreditsData;
+use Modules\Blog\Filament\Resources\ProfileResource\Pages;
+use Modules\Blog\Models\Profile;
+use Modules\User\Models\User;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class ProfileResource extends XotBaseResource
 {
@@ -49,7 +49,7 @@ class ProfileResource extends XotBaseResource
                     // ->conversion('thumbnail')
                     ->disk('uploads')
                     ->directory('photos')
-                    ->collection('photo_profile')
+                    ->collection('photo_profile'),
             ]);
     }
 
@@ -63,7 +63,7 @@ class ProfileResource extends XotBaseResource
                 TextColumn::make('email'),
                 TextColumn::make('credits'),
                 SpatieMediaLibraryImageColumn::make('photo_profile')
-                    ->collection('photo_profile')
+                    ->collection('photo_profile'),
             ])
             ->filters([
             ])
