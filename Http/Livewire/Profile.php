@@ -123,8 +123,6 @@ class Profile extends Page implements HasForms
     {
         $data = $this->form->getState();
 
-        dddx($data);
-
         $this->model->update($data);
 
         // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
