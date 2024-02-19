@@ -178,4 +178,14 @@ class ThemeComposer
 
         return $pages;
     }
+
+    public function getUrlPage(string $slug): string
+    {
+        $page = $this->getPages()->where('slug', $slug)->first();
+        if($page != null){
+            return '/'.app()->getLocale().'/pages/'.$slug;
+        }
+
+        return '#';
+    }
 }
