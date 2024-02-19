@@ -30,7 +30,7 @@ class Profile extends Page implements HasForms
 
     public string $tpl = 'v1';
     // public string $user_id;
-    // public array $data = [];
+    public array $data = [];
     public BlogProfile $model;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -45,23 +45,25 @@ class Profile extends Page implements HasForms
         $this->tpl = $tpl;
         // dddx($this->model->toArray());
 
-        // $this->article = $article;
-        // $this->tpl = $tpl;
-        // $this->user_id = (string) Filament::auth()->id();
-        // $this->profile = Profile::firstOrCreate(['user_id' => $this->user_id]);
-        // $ratings = $this->profile
-        //     ->ratings()
-        //     ->select('rating_id as id', 'value')
-        //     ->get()
-        //     ->keyBy('id')
-        //     ->toArray();
-        // // dddx($ratings);
-        $data = [];
-        $data['profile'] = $this->model->toArray();
-        // $data['ratings'] = $ratings;
+        $this->data = [];
+        $this->data = $this->model->toArray();
+        unset(
+            $this->data['id'], 
+            $this->data['user_id'], 
+            $this->data['created_at'], 
+            $this->data['updated_at'], 
+            $this->data['updated_by'], 
+            $this->data['created_by'],
+            $this->data['deleted_at'],
+            $this->data['deleted_by'],
 
-        // // $this->form->fill(auth()->user()->company->attributesToArray());
-        $this->form->fill($data);
+            $this->data['credits'],
+
+            $this->data['slug']
+        );
+        // dddx($this->data);
+
+        $this->form->fill($this->data);
     }
 
     public function render(): \Illuminate\Contracts\View\View
@@ -86,21 +88,18 @@ class Profile extends Page implements HasForms
     public function form(Form $form): Form
     {
         $schema = [];
-        // foreach($this->model->toArray() as $field){
-        //         $schema[] = TextInput::make($field)
-        //         ->label($field)
-        //         // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-        //         // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-        //         // ->disabled()
-        //         ;
-        // }
-        // dddx($this->model->email);
-        $schema[] = TextInput::make($this->model->email)
-            ->label($this->model->email)
+        foreach($this->data as $key => $field){
+            // dddx([$key, $field, $this->data]);
+            // if(gettype($field) == 'float'){
+            //     dddx([$key, $field]);
+            // }
+            $schema[] = TextInput::make($key)
+                ->label($this->data[$key])
             // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
             // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
             // ->disabled()
-        ;
+            ;
+        }
 
         // dddx($schema);
         return $form
@@ -119,8 +118,12 @@ class Profile extends Page implements HasForms
 
     public function save(): void
     {
-        dddx('save');
-        // $data = $this->form->getState();
+        $data = $this->form->getState();
+
+        // dddx($data);
+
+        $this->model->update($data);
+
         // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
         // Assert::isArray($ratings_add = $data['ratings_add']);
         // foreach ($ratings_add as $rating_id => $rating) {
@@ -137,9 +140,5 @@ class Profile extends Page implements HasForms
         //     }
         // }
 
-        //    auth()->user()->company->update($data);
-        // } catch (Halt $exception) {
-        //    return;
-        // }
     }
 }

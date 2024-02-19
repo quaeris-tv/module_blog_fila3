@@ -45,31 +45,45 @@
               <div class="flex flex-wrap  gape mt30">
 
 
-                {{ $this->form }}
+                {{-- {{ $this->form }} --}}
 
 
                 <div class="md:w-1/2 pr-4 pl-4">
                   <label class="f18 mb-1 md:mb-2" for="fname">First name:</label>
-                  <input type="text" id="fname" name="fname" placeholder="Brian ">
+                  {{-- <input type="text" id="fname" name="fname" placeholder="Brian "> --}}
+                  <x-filament::input
+                      type="text"
+                      wire:model="data.first_name"
+                  />
+
                 </div>
                 <div class="md:w-1/2 pr-4 pl-4">
                   <label class="f18 mb-1 md:mb-2" for="lname">Last name:</label>
-                  <input type="text" id="lname" name="lname" placeholder="Cumin">
+                  {{-- <input type="text" id="lname" name="lname" placeholder="Cumin"> --}}
+                  <x-filament::input
+                      type="text"
+                      wire:model="data.last_name"
+                  />
                 </div>
   
                 <div class="md:w-1/2 pr-4 pl-4">
                   <label class="f18 mb-1 md:mb-2" for="email">Email address</label>
-                  <input type="email" id="email" name="email" placeholder="info@example.com">
+                  {{-- <input type="email" id="email" name="email" placeholder="info@example.com"> --}}
+                  <x-filament::input
+                      type="text"
+                      wire:model="data.email"
+                  />
                 </div>
+
                 <div class="md:w-1/2 pr-4 pl-4">
-                  <label class="f18 mb-1 md:mb-2" for="location">Location</label>
-                  <input type="text" id="location" name="location" placeholder="New york ny">
+                  {{-- <label class="f18 mb-1 md:mb-2" for="location">Location</label>
+                  <input type="text" id="location" name="location" placeholder="New york ny"> --}}
                 </div>
-                <div class="w-full">
+                {{-- <div class="w-full">
                   <label class="f18 mb-1 md:mb-2" for="textarea">Location</label>
                   <textarea name="textarea" id="textarea" cols="30" rows="5"
                     placeholder="Say something about you......."></textarea>
-                </div>
+                </div> --}}
                 <div class="flex gap-2 gap-md-3 gap-xl-4">
                   {{-- <button class="button-2 f18" type="submit">Edit profile</button> --}}
 
@@ -86,6 +100,10 @@
             </x-filament-panels::form>
           </div>
         </div>
+
+
+
+
         {{-- <div class="w375 w-1/2 lg:w-1/4 pr-4 pl-4">
           <div class="leaderbordcard wow fadeInUp">
             <div class="leaderbordcard__thumb mb20">

@@ -87,23 +87,34 @@ class Profile extends BaseModel implements HasMedia
     /*
      * Get the user's first name.
      */
-    // protected function email(): Attribute
-    // {
-    // return Attribute::make(
-    //     get: fn (string $value) => ucfirst($value),
-    // );
+    protected function firstName(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value): string {
+                if($value == null){
+                    $value = 'Mio Nome';
+                }
+                Assert::string($value);
+                return $value;
+            }
+        );
+    }
 
-    //    return new Attribute(
-    //        get: static function ($value, $attributes): string {
-    //            dddx([$value, $attributes]);
-    // $words = Str::wordCount(strip_tags((string) $attributes['body']));
-    // $minutes = ceil($words / 200);
-
-    // return $minutes.' '.str('min')->plural((int) $minutes).', '
-    //     .$words.' '.str('word')->plural($words);
-    //        }
-    //    );
-    // }
+    /*
+     * Get the user's last name.
+     */
+    protected function lastName(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value): string {
+                if($value == null){
+                    $value = 'Mio Cognome';
+                }
+                Assert::string($value);
+                return $value;
+            }
+        );
+    }
 
     /**
      * Get the user's email.
