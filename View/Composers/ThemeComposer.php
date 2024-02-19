@@ -192,6 +192,7 @@ class ThemeComposer
     public function rankingProfilesByCredits(): Collection
     {
         $profiles = Profile::all()->sortByDesc('credits');
+
         return $profiles;
     }
 }

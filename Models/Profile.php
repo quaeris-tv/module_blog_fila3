@@ -95,6 +95,7 @@ class Profile extends BaseModel implements HasMedia
                     $value = 'Mio Nome';
                 }
                 Assert::string($value);
+
                 return $value;
             }
         );
@@ -111,6 +112,7 @@ class Profile extends BaseModel implements HasMedia
                     $value = 'Mio Cognome';
                 }
                 Assert::string($value);
+
                 return $value;
             }
         );
@@ -124,6 +126,7 @@ class Profile extends BaseModel implements HasMedia
         return Attribute::make(
             get: function (): string {
                 $value = $this->first_name.' '.$this->last_name;
+
                 return $value;
             }
         );
@@ -138,6 +141,7 @@ class Profile extends BaseModel implements HasMedia
             get: function (): string {
                 Assert::notNull($user = $this->user);
                 $value = $user->name;
+
                 return $value;
             }
         );
@@ -151,6 +155,7 @@ class Profile extends BaseModel implements HasMedia
         return Attribute::make(
             get: function (): string {
                 $value = $this->getFirstMediaUrl('photo_profile');
+
                 return $value;
             }
         );
