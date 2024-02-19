@@ -62,7 +62,7 @@
                     </div>
                   </div>
                 </div>
-                <span class="mb-3 mb-lg-4">Be notified about markets in the following
+                {{-- <span class="mb-3 mb-lg-4">Be notified about markets in the following
                   categories.</span>
                 <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
                   <div class="settings__switch-left">
@@ -129,7 +129,7 @@
                       <label></label>
                     </div>
                   </div>
-                </div>
+                </div> --}}
                 <div class="settings__button-two text-center">
                   <button class="f18 button-2" type="submit">Save Changes</button>
                 </div>
