@@ -95,7 +95,6 @@ class Profile extends BaseModel implements HasMedia
                     $value = 'Mio Nome';
                 }
                 Assert::string($value);
-
                 return $value;
             }
         );
@@ -112,7 +111,6 @@ class Profile extends BaseModel implements HasMedia
                     $value = 'Mio Cognome';
                 }
                 Assert::string($value);
-
                 return $value;
             }
         );
@@ -126,12 +124,33 @@ class Profile extends BaseModel implements HasMedia
         return Attribute::make(
             get: function (): string {
                 $value = $this->first_name.' '.$this->last_name;
-                // dddx($value);
-                // if (null == $value) {
-                //     $value = 'Mio Cognome';
-                // }
-                // Assert::string($value);
+                return $value;
+            }
+        );
+    }
 
+    /*
+     * Get the user's user_name.
+     */
+    protected function userName(): Attribute
+    {
+        return Attribute::make(
+            get: function (): string {
+                Assert::notNull($user = $this->user);
+                $value = $user->name;
+                return $value;
+            }
+        );
+    }
+
+    /*
+     * Get the user's avatar.
+     */
+    protected function avatar(): Attribute
+    {
+        return Attribute::make(
+            get: function (): string {
+                $value = $this->getFirstMediaUrl('photo_profile');
                 return $value;
             }
         );

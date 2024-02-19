@@ -188,4 +188,10 @@ class ThemeComposer
 
         return '#';
     }
+
+    public function rankingProfilesByCredits(): Collection
+    {
+        $profiles = Profile::all()->sortByDesc('credits');
+        return $profiles;
+    }
 }

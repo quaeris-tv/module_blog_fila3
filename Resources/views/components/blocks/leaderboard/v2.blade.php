@@ -453,7 +453,7 @@
             </a>
             </div>
             <div id="menu3" class="container tab-pane fade"><br>
-                <a href="leaderboard_details.html" class="userpart__userlist">
+                {{-- <a href="leaderboard_details.html" class="userpart__userlist"> --}}
                 <ul>
                     <li class="d-flex align-items-center justify-content-between mb-1">
                         <div class="userpart__rightside d-flex align-items-center gap-2 pb-1">
