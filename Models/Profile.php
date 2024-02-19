@@ -91,10 +91,11 @@ class Profile extends BaseModel implements HasMedia
     {
         return Attribute::make(
             get: function ($value): string {
-                if($value == null){
+                if (null == $value) {
                     $value = 'Mio Nome';
                 }
                 Assert::string($value);
+
                 return $value;
             }
         );
@@ -107,10 +108,11 @@ class Profile extends BaseModel implements HasMedia
     {
         return Attribute::make(
             get: function ($value): string {
-                if($value == null){
+                if (null == $value) {
                     $value = 'Mio Cognome';
                 }
                 Assert::string($value);
+
                 return $value;
             }
         );

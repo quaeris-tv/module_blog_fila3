@@ -48,11 +48,11 @@ class Profile extends Page implements HasForms
         $this->data = [];
         $this->data = $this->model->toArray();
         unset(
-            $this->data['id'], 
-            $this->data['user_id'], 
-            $this->data['created_at'], 
-            $this->data['updated_at'], 
-            $this->data['updated_by'], 
+            $this->data['id'],
+            $this->data['user_id'],
+            $this->data['created_at'],
+            $this->data['updated_at'],
+            $this->data['updated_by'],
             $this->data['created_by'],
             $this->data['deleted_at'],
             $this->data['deleted_by'],
@@ -88,7 +88,7 @@ class Profile extends Page implements HasForms
     public function form(Form $form): Form
     {
         $schema = [];
-        foreach($this->data as $key => $field){
+        foreach ($this->data as $key => $field) {
             // dddx([$key, $field, $this->data]);
             // if(gettype($field) == 'float'){
             //     dddx([$key, $field]);
@@ -139,6 +139,5 @@ class Profile extends Page implements HasForms
         //         $article_aggregate->rating($command);
         //     }
         // }
-
     }
 }
