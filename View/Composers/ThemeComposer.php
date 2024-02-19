@@ -182,7 +182,7 @@ class ThemeComposer
     public function getUrlPage(string $slug): string
     {
         $page = $this->getPages()->where('slug', $slug)->first();
-        if($page != null){
+        if (null != $page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
 
