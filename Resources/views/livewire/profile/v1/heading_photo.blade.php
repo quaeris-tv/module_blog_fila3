@@ -1,7 +1,23 @@
 <div class="lg:w-1/3 pr-4 pl-4">
     <div class="boardprofile bio wow fadeInDown">
       <div class="boardprofile__thumb mb20 text-center">
-        <img src="{{ $this->model->getFirstMediaUrl('photo_profile') }}" alt="Image">
+
+        @php
+            if($this->model->avatar = ''){
+              $url = $_theme->asset('pub_theme::assets/images/bio_profile.png');
+            }else{
+              $url = $this->model->avatar;
+            }
+        @endphp
+
+
+        <img src="
+          {{-- {{ $this->model->getFirstMediaUrl('photo_profile') }} --}}
+          {{-- {{ $_theme->asset('pub_theme::assets/images/bio_profile.png') }} --}}
+          {{ $url }}
+          " alt="Image"
+          {{-- style="wight:180px;height:180px;aspect-ratio: 1/1;" --}}
+          >
       </div>
       <div class="boardprofile__profile-text bio__dotted text-center">
         <span class="bio__name mb10 block">{{ $this->model->full_name }}</span>
