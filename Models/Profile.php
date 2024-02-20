@@ -6,22 +6,22 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
-use Illuminate\Support\Carbon;
-use Modules\Rating\Models\Rating;
-use Spatie\MediaLibrary\HasMedia;
-use Modules\Blog\Events\BetArticle;
-use Modules\Rating\Models\RatingMorph;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\SchemalessAttributes\SchemalessAttributes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Carbon;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
+use Modules\User\Models\User;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
 use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Blog\Models\Profile.
