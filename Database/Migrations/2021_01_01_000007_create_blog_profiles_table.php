@@ -48,6 +48,10 @@ class CreateBlogProfilesTable extends XotBaseMigration
                 if (! $this->hasColumn('slug')) {
                     $table->string('slug')->nullable();
                 }
+
+                if (! $this->hasColumn('extra')) {
+                    $table->schemalessAttributes('extra');
+                }
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
