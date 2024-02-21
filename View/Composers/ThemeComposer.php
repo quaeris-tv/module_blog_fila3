@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Category;
-use Modules\Blog\Models\Page;
-use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Page;
+use Modules\Blog\Models\Order;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Category;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class ThemeComposer
 {
@@ -195,4 +196,11 @@ class ThemeComposer
 
         return $profiles;
     }
+
+    // public function rankingArticlesByBets(): Collection
+    // {
+    //     $orders = Order::all()->groupBy('model_id');
+    //     dddx($orders);
+    //     return $profiles;
+    // }
 }
