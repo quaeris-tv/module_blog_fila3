@@ -6,22 +6,22 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Support\Carbon;
-use Modules\Blog\Events\BetArticle;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\User;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\SchemalessAttributes\SchemalessAttributes;
-use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\User;
+use Illuminate\Support\Carbon;
+use Modules\Rating\Models\Rating;
+use Spatie\MediaLibrary\HasMedia;
+use Modules\Blog\Events\BetArticle;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Database\Eloquent\Builder;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -75,7 +75,7 @@ use Webmozart\Assert\Assert;
 class Profile extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
-    use SchemalessAttributesTrait;
+    // use SchemalessAttributesTrait;
 
     protected $fillable = [
         'id',
@@ -85,6 +85,7 @@ class Profile extends BaseModel implements HasMedia
         'last_name',
         'credits',
         'slug',
+        'extra',
     ];
 
     public $casts = [
@@ -93,7 +94,7 @@ class Profile extends BaseModel implements HasMedia
 
     public function scopeWithExtraAttributes(): Builder
     {
-        return $this->extra_attributes->modelScope();
+        return $this->extra->modelScope();
     }
 
     /*

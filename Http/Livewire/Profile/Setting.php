@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Profile;
 
-use Filament\Actions\Action;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
-// use Modules\Blog\Models\Profile;
+use Filament\Actions\Action;
+use Modules\Blog\Models\Profile;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 /**
  * @property ComponentContainer $form
@@ -24,18 +24,29 @@ class Setting extends Page implements HasForms
 
     public string $tpl = 'setting';
     public string $version = 'v1';
+    public Profile $model;
     public array $data = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     public function mount(
-        string $tpl = 'v1'): void
+        Profile $model,
+        string $tpl = 'v1'
+
+        ): void
     {
-        // $this->model = $model;
+        $this->model = $model;
         $this->tpl = $tpl;
         // dddx($this->model->toArray());
 
-        $this->data = [];
+        $this->data['name'] = $this->model->user_name;
+
+
+        // dddx($model->extra_attributes);
+        $this->data['extra'] = $model->extra_attributes->get('non_existing', 'default');
+        dddx($this->data);
+
+
         // $this->data = $this->model->toArray();
         // unset(
         //     $this->data['id'],
@@ -78,27 +89,27 @@ class Setting extends Page implements HasForms
         return '#';
     }
 
-    public function form(Form $form): Form
-    {
-        $schema = [];
-        foreach ($this->data as $key => $field) {
-            // dddx([$key, $field, $this->data]);
-            // if(gettype($field) == 'float'){
-            //     dddx([$key, $field]);
-            // }
-            $schema[] = TextInput::make($key)
-                ->label($this->data[$key])
-            // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-            // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-            // ->disabled()
-            ;
-        }
+    // public function form(Form $form): Form
+    // {
+    //     $schema = [];
+    //     foreach ($this->data as $key => $field) {
+    //         // dddx([$key, $field, $this->data]);
+    //         // if(gettype($field) == 'float'){
+    //         //     dddx([$key, $field]);
+    //         // }
+    //         $schema[] = TextInput::make($key)
+    //             ->label($this->data[$key])
+    //         // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
+    //         // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+    //         // ->disabled()
+    //         ;
+    //     }
 
-        // dddx($schema);
-        return $form
-            ->schema($schema)
-            ->statePath('data');
-    }
+    //     // dddx($schema);
+    //     return $form
+    //         ->schema($schema)
+    //         ->statePath('data');
+    // }
 
     protected function getFormActions(): array
     {
@@ -112,7 +123,14 @@ class Setting extends Page implements HasForms
     public function save(): void
     {
         $data = $this->form->getState();
-        dddx('save');
-        $this->model->update($data);
+        // dddx($data);
+        $this->model->user->update($data);
+    }
+
+    public function saveExtra(): void
+    {
+        $data = $this->form->getState();
+        dddx($data);
+        // $this->model->user->update($data);
     }
 }

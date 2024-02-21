@@ -10,23 +10,47 @@
               <h4 class="mb30">Account</h4>
               <span class="mb10 f18 display-name">Display name</span>
               <div class="settings__saveinput mb10">
-                <form class="d-flex align-items-center gap-2 gap-md-3 gap-xl-4">
-                  <input type="text" id="exampleInputEmail134" placeholder="Brian Cumin">
-                  <button type="submit" class="button-2 f18">Save</button>
-                </form>
+                {{-- <form class="d-flex align-items-center gap-2 gap-md-3 gap-xl-4"> --}}
+                <x-filament-panels::form class="d-flex align-items-center gap-2 gap-md-3 gap-xl-4">
+                  {{-- <input type="text" id="exampleInputEmail134" placeholder="Brian Cumin"> --}}
+                  <x-filament::input
+                      type="text"
+                      wire:model="data.name"
+                  />
+
+
+
+                  {{-- <button type="submit" class="button-2 f18">Save</button> --}}
+                  <x-filament::button wire:click="save" class="button-2 f18">
+                    Save
+                  </x-filament::button>
+                {{-- </form> --}}
+                </x-filament-panels::form>
               </div>
               <span class="f12 mb-3 mb-md-4">This is publicly visible</span>
+
+
+
+
               <div class="settings__email-notification">
+
+                <x-filament-panels::form>
+
                 <h4 class="mb-3 mb-md-4">Email Notifications</h4>
                 <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
                   <div class="settings__switch-left">
                     <span class="f18">Newsletter</span>
                   </div>
                   <div class="settings__switch-right">
-                    <div class="toggle">
+                    {{-- <div class="toggle">
                       <input type="checkbox">
                       <label></label>
-                    </div>
+                    </div> --}}
+                    <x-filament::input.checkbox
+                        type="checkbox"
+                        {{-- class="toggle" --}}
+                        wire:model="data.extra.newsletter"
+                    />
                   </div>
                 </div>
                 <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
@@ -62,6 +86,11 @@
                     </div>
                   </div>
                 </div>
+
+
+
+
+
                 {{-- <span class="mb-3 mb-lg-4">Be notified about markets in the following
                   categories.</span>
                 <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
@@ -131,8 +160,16 @@
                   </div>
                 </div> --}}
                 <div class="settings__button-two text-center">
-                  <button class="f18 button-2" type="submit">Save Changes</button>
+                  {{-- <button class="f18 button-2" type="submit">Save Changes</button> --}}
+                  <x-filament::button wire:click="saveExtra" class="button-2 f18">
+                    Save Changes
+                  </x-filament::button>
                 </div>
+
+
+                </x-filament-panels::form>
+
+
               </div>
             </div>
             

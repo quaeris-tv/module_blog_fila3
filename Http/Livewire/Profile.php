@@ -59,7 +59,8 @@ class Profile extends Page implements HasForms
 
             $this->data['credits'],
 
-            $this->data['slug']
+            $this->data['slug'],
+            $this->data['extra']
         );
 
         // $this->data['photo_profile'] = $this->model->getFirstMedia('photo_profile');
