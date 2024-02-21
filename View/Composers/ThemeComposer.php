@@ -197,10 +197,14 @@ class ThemeComposer
         return $profiles;
     }
 
-    // public function rankingArticlesByBets(): Collection
-    // {
-    //     $orders = Order::all()->groupBy('model_id');
-    //     dddx($orders);
-    //     return $profiles;
-    // }
+    public function rankingArticlesByBets(): Collection
+    {
+        // $orders = Order::all()->groupBy('model_id');
+        // dddx($orders);
+
+        $articles = Article::withCount('ratings')->get()->sortByDesc('ratings_count');
+        // dddx($articles);
+        return $articles;
+
+    }
 }
