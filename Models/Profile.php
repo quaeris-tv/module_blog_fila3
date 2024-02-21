@@ -68,6 +68,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                              $ratings_count
  * @property User|null                                             $user
  * @property string                                                $slug
+ * @property string                                                $user_name
+ * @property \Illuminate\Database\Eloquent\Collection<string, bool> $extra
  *
  * @method static Builder|Profile whereCredits($value)
  *
@@ -94,7 +96,7 @@ class Profile extends BaseModel implements HasMedia
         'extra' => SchemalessAttributes::class,
     ];
 
-    public function scopeWithExtra(): Builder
+    public function scopeWithExtraAttributes(): Builder
     {
         return $this->extra->modelScope();
     }

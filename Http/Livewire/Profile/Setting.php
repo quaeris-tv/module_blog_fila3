@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
 use Filament\Actions\Action;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Profile;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\ComponentContainer;
@@ -42,27 +43,6 @@ class Setting extends Page implements HasForms
 
         $this->data['name'] = $this->model->user_name;
 
-
-        // $this->data = $this->model->toArray();
-        // unset(
-        //     $this->data['id'],
-        //     $this->data['user_id'],
-        //     $this->data['created_at'],
-        //     $this->data['updated_at'],
-        //     $this->data['updated_by'],
-        //     $this->data['created_by'],
-        //     $this->data['deleted_at'],
-        //     $this->data['deleted_by'],
-
-        //     $this->data['credits'],
-
-        //     $this->data['slug']
-        // );
-
-        // $this->data['photo_profile'] = $this->model->getFirstMedia('photo_profile');
-
-        // dddx($this->data);
-
         $this->form->fill($this->data);
     }
 
@@ -87,57 +67,40 @@ class Setting extends Page implements HasForms
 
     public function form(Form $form): Form
     {
+        if(count($this->model->extra->all()) == 0){
+            $this->data['extra'] = [
+                $this->model->extra->get('newsletter', ['newsletter' => false]),
+                $this->model->extra->get('predix_updates', ['predix_updates' => false]),
+                $this->model->extra->get('market_updates', ['market_updates' => false])
+            ];
 
-        // dddx($this->model->extra->get('non_existing', 'default'));
-        // $this->data['extra'] = $this->model->extra->get('newsletter', ['newsletter' => false]);
-        // $this->data['extra'] = $this->model->extra->get('predix_updates', ['predix_updates' => false]);
-        // $this->data['extra'] = $this->model->extra->get('market_updates', ['market_updates' => false]);
+            // dddx($this->data['extra']);
+        }else{
+            $this->data['extra'] = [$this->model->extra->all()];
+            // dddx($this->data['extra']);
+        }
 
-        // $this->data['extra'] = [
-        //     $this->model->extra->get('newsletter', ['newsletter' => false]),
-        //     $this->model->extra->get('predix_updates', ['predix_updates' => false]),
-        //     $this->model->extra->get('market_updates', ['market_updates' => false])
-        // ];
-
-        // $this->model->extra->get('newsletter', ['newsletter' => false]);
-        // $this->model->extra->get('predix_updates', ['predix_updates' => false]);
-        // $this->model->extra->get('market_updates', ['market_updates' => false]);
-
-        $this->model->extra->get('newsletter', false);
-        $this->model->extra->get('predix_updates', false);
-        $this->model->extra->get('market_updates', false);
-
-        // dddx($this->model->extra->all());
-        // dddx($this->data['extra']);
+        // dddx($this->data['extra'][0]);
 
 
         $schema = [];
-        foreach ($this->model->extra->all() as $key => $field) {
 
+        // $schema[] = Toggle::make($this->data['extra'][0]['newsletter'])
+        //             ->label('aaa')
+        //         ;
+        foreach ($this->data['extra'] as $key => $field) {
             // dddx([$key, $field]);
-            // if(gettype($field) == 'float'){
-            //     dddx([$key, $field]);
-            // }
-            // foreach($field as $key => $f){
-                // dddx([$key, $f]);
+            foreach($field as $key => $f){
                 $schema[] = Toggle::make($key)
                     ->label($key)
-                    // ->onColor('warning')
-                    // ->offColor('warning')
-
-                    // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-                    // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-                    // ->extraInputAttributes(['class' => 'toggle'])
-                    
-                    // ->disabled()
                 ;
-            // }
+            }
         }
 
         // dddx($schema);
         return $form
             ->schema($schema)
-            ->statePath('data');
+            ->statePath('data.extra.0');
     }
 
     protected function getFormActions(): array
@@ -153,6 +116,7 @@ class Setting extends Page implements HasForms
     {
         $data = $this->form->getState();
         // dddx($data);
+        Assert::notNull($this->model->user);
         $this->model->user->update($data);
     }
 
