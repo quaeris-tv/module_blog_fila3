@@ -52,7 +52,7 @@ class ArticleList
                 ->default('v1')
                 ->required(),
             ])
-            ->label('article list')
+            ->label('Lista Articoli')
             ->columns('form' === $context ? 3 : 1);
     }
 }
