@@ -16,11 +16,12 @@ use Modules\Rating\Models\RatingMorph;
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Xot\Contracts\ProfileContract;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\User\Models\Traits\IsProfileTrait;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
@@ -74,6 +75,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  */
 class Profile extends BaseModel implements HasMedia
 {
+    use IsProfileTrait;
     use InteractsWithMedia;
     // use SchemalessAttributesTrait;
 
@@ -92,7 +94,7 @@ class Profile extends BaseModel implements HasMedia
         'extra' => SchemalessAttributes::class,
     ];
 
-    public function scopeWithExtraAttributes(): Builder
+    public function scopeWithExtra(): Builder
     {
         return $this->extra->modelScope();
     }

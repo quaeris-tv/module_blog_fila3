@@ -33,138 +33,130 @@
 
 
               <div class="settings__email-notification">
-
                 <x-filament-panels::form>
+                  <h4 class="mb-3 mb-md-4">Email Notifications</h4>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
 
-                <h4 class="mb-3 mb-md-4">Email Notifications</h4>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Newsletter</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    {{-- <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                    {{ $this->form }}
+
+
+                    {{-- <div class="settings__switch-left">
+                      <span class="f18">Newsletter</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div> --}}
-                    <x-filament::input.checkbox
-                        type="checkbox"
-                        {{-- class="toggle" --}}
-                        wire:model="data.extra.newsletter"
-                    />
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Contests & Promotions</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  {{-- <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Contests & Promotions</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Predix Updates</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Predix Updates</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb-3 mb-lg-4">
-                  <div class="settings__switch-left">
-                    <span class="f18">Market Updates</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb-3 mb-lg-4">
+                    <div class="settings__switch-left">
+                      <span class="f18">Market Updates</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
+                    </div>
+                  </div> --}}
+                  {{-- <span class="mb-3 mb-lg-4">Be notified about markets in the following
+                    categories.</span>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Business</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-
-
-
-
-                {{-- <span class="mb-3 mb-lg-4">Be notified about markets in the following
-                  categories.</span>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Business</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Politics</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Politics</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Crypto</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Crypto</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Science & Technology</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Science & Technology</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
+                    <div class="settings__switch-left">
+                      <span class="f18">Sports</span>
+                    </div>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb20">
-                  <div class="settings__switch-left">
-                    <span class="f18">Sports</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                  <div class="settings__toggle d-flex align-items-center justify-content-between mb30">
+                    <div class="settings__switch-left">
+                      <span class="f18">Pop Culture</span>
                     </div>
-                  </div>
-                </div>
-                <div class="settings__toggle d-flex align-items-center justify-content-between mb30">
-                  <div class="settings__switch-left">
-                    <span class="f18">Pop Culture</span>
-                  </div>
-                  <div class="settings__switch-right">
-                    <div class="toggle">
-                      <input type="checkbox">
-                      <label></label>
+                    <div class="settings__switch-right">
+                      <div class="toggle">
+                        <input type="checkbox">
+                        <label></label>
+                      </div>
                     </div>
+                  </div> --}}
+                  <div class="settings__button-two text-center">
+                    {{-- <button class="f18 button-2" type="submit">Save Changes</button> --}}
+                    <x-filament::button wire:click="saveExtra" class="button-2 f18">
+                      Save Changes
+                    </x-filament::button>
                   </div>
-                </div> --}}
-                <div class="settings__button-two text-center">
-                  {{-- <button class="f18 button-2" type="submit">Save Changes</button> --}}
-                  <x-filament::button wire:click="saveExtra" class="button-2 f18">
-                    Save Changes
-                  </x-filament::button>
-                </div>
 
 
                 </x-filament-panels::form>

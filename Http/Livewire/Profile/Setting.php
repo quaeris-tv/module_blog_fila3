@@ -9,6 +9,7 @@ use Filament\Pages\Page;
 use Illuminate\Support\Arr;
 use Filament\Actions\Action;
 use Modules\Blog\Models\Profile;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
@@ -40,11 +41,6 @@ class Setting extends Page implements HasForms
         // dddx($this->model->toArray());
 
         $this->data['name'] = $this->model->user_name;
-
-
-        // dddx($model->extra_attributes);
-        $this->data['extra'] = $model->extra_attributes->get('non_existing', 'default');
-        dddx($this->data);
 
 
         // $this->data = $this->model->toArray();
@@ -89,27 +85,60 @@ class Setting extends Page implements HasForms
         return '#';
     }
 
-    // public function form(Form $form): Form
-    // {
-    //     $schema = [];
-    //     foreach ($this->data as $key => $field) {
-    //         // dddx([$key, $field, $this->data]);
-    //         // if(gettype($field) == 'float'){
-    //         //     dddx([$key, $field]);
-    //         // }
-    //         $schema[] = TextInput::make($key)
-    //             ->label($this->data[$key])
-    //         // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-    //         // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-    //         // ->disabled()
-    //         ;
-    //     }
+    public function form(Form $form): Form
+    {
 
-    //     // dddx($schema);
-    //     return $form
-    //         ->schema($schema)
-    //         ->statePath('data');
-    // }
+        // dddx($this->model->extra->get('non_existing', 'default'));
+        // $this->data['extra'] = $this->model->extra->get('newsletter', ['newsletter' => false]);
+        // $this->data['extra'] = $this->model->extra->get('predix_updates', ['predix_updates' => false]);
+        // $this->data['extra'] = $this->model->extra->get('market_updates', ['market_updates' => false]);
+
+        // $this->data['extra'] = [
+        //     $this->model->extra->get('newsletter', ['newsletter' => false]),
+        //     $this->model->extra->get('predix_updates', ['predix_updates' => false]),
+        //     $this->model->extra->get('market_updates', ['market_updates' => false])
+        // ];
+
+        // $this->model->extra->get('newsletter', ['newsletter' => false]);
+        // $this->model->extra->get('predix_updates', ['predix_updates' => false]);
+        // $this->model->extra->get('market_updates', ['market_updates' => false]);
+
+        $this->model->extra->get('newsletter', false);
+        $this->model->extra->get('predix_updates', false);
+        $this->model->extra->get('market_updates', false);
+
+        // dddx($this->model->extra->all());
+        // dddx($this->data['extra']);
+
+
+        $schema = [];
+        foreach ($this->model->extra->all() as $key => $field) {
+
+            // dddx([$key, $field]);
+            // if(gettype($field) == 'float'){
+            //     dddx([$key, $field]);
+            // }
+            // foreach($field as $key => $f){
+                // dddx([$key, $f]);
+                $schema[] = Toggle::make($key)
+                    ->label($key)
+                    // ->onColor('warning')
+                    // ->offColor('warning')
+
+                    // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
+                    // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+                    // ->extraInputAttributes(['class' => 'toggle'])
+                    
+                    // ->disabled()
+                ;
+            // }
+        }
+
+        // dddx($schema);
+        return $form
+            ->schema($schema)
+            ->statePath('data');
+    }
 
     protected function getFormActions(): array
     {
@@ -130,7 +159,8 @@ class Setting extends Page implements HasForms
     public function saveExtra(): void
     {
         $data = $this->form->getState();
-        dddx($data);
-        // $this->model->user->update($data);
+        // dddx($data);
+        $this->model->extra = $data;
+        $this->model->save();
     }
 }
