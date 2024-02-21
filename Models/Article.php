@@ -474,6 +474,16 @@ class Article extends BaseModel implements Feedable, HasMedia
         return $value;
     }
 
+    // public function getTimeLeft(): string 
+    // {
+    //     $time = $this->closed_at;
+
+    //     $days = Carbon::now()->diffInDays($time);
+    //     $hours = Carbon::now()->copy()->addDays($days)->diffInHours($time);
+    //     $minutes = Carbon::now()->copy()->addDays($days)->addHours($hours)->diffInMinutes($time);
+    //     return $days.'d'.$hours.'m'.$minutes.'s';
+    // }
+
     // /**
     //  * Get the path to the picture
     //  *
