@@ -5,9 +5,9 @@
 ])
 
 <!-- Leader Board Starts -->
-<div class="row">
+{{-- <div class="row">
     <h2 class="text-center leader-title mb40 wow fadeInDown" style="font-size: 40px;">{{ $title }}</h2>
-</div>
+</div> --}}
 <div class="row gape">
     <div class="col-xl-12">
         <div class="userpart wow fadeInUp">
@@ -15,7 +15,7 @@
                 <i class="material-symbols-outlined">
                     monitoring
                     </i>
-                <h4>Top Users Volume</h4>
+                <h4>Classifiche</h4>
             </div>
             <ul class="nav nav-tabs userpart__dayweek" role="tablist">
                 <li class="nav-item">
