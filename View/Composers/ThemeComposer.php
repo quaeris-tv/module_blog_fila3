@@ -12,8 +12,10 @@ use Modules\Blog\Models\Order;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Category;
+use Modules\Rating\Models\RatingMorph;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ThemeComposer
 {
@@ -199,12 +201,15 @@ class ThemeComposer
 
     public function rankingArticlesByBets(): Collection
     {
-        // $orders = Order::all()->groupBy('model_id');
-        // dddx($orders);
+        $var =  Article::withCount([
+                        'ratings' => function (Builder $builder) {
+                            $builder->where('user_id', '!=', null);
+                        },
+                    ])
+                ->get()
+                ->sortByDesc('ratings_count')
+                ;
 
-        $articles = Article::withCount('ratings')->get()->sortByDesc('ratings_count');
-        // dddx($articles);
-        return $articles;
-
+        return $var;
     }
 }
