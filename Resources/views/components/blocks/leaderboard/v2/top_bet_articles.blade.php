@@ -26,7 +26,7 @@
                     @endif
                 </div>
                 <div class="userpart__leftside">
-                    <span>$710.68</span>
+                    <span>{{ $article->ratings_count }}</span>
                 </div>
             </li>
         @endforeach

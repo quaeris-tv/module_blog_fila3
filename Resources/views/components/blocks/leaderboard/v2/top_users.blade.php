@@ -26,7 +26,7 @@
                     @endif
                 </div>
                 <div class="userpart__leftside">
-                    <span>$710.68</span>
+                    <span>{{ $profile->credits }}</span>
                 </div>
             </li>
         @endforeach
