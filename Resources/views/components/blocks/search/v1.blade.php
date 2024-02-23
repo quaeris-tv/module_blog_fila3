@@ -5,7 +5,7 @@
 @endsection --}}
 
 
-{{ dddx(get_defined_vars()) }}
+{{-- {{ dddx(get_defined_vars()) }} --}}
 
 {{-- <main class="liquidty_section">
     <div class="liquidty_sizeing padding-bottoms"> --}}
