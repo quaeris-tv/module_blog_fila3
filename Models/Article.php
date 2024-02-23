@@ -235,16 +235,16 @@ class Article extends BaseModel implements Feedable, HasMedia //, Searchable
     //    return "/article/$this->slug";
     // }
 
-    public function getSearchResult(): SearchResult
-    {
-        $url = route('test', ['lang'=>'it']);
+    // public function getSearchResult(): SearchResult
+    // {
+    //     $url = route('test', ['lang'=>'it']);
     
-        return new \Spatie\Searchable\SearchResult(
-           $this,
-           $this->title,
-           $url
-        );
-    }
+    //     return new \Spatie\Searchable\SearchResult(
+    //        $this,
+    //        $this->title,
+    //        $url
+    //     );
+    // }
 
     public function orders(): MorphMany
     {
