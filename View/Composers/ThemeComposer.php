@@ -10,8 +10,10 @@ use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Page;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Modules\UI\Datas\SliderData;
 use Modules\Blog\Models\Category;
 use Illuminate\Support\Facades\File;
+use Spatie\LaravelData\DataCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -220,6 +222,16 @@ class ThemeComposer
 
         $contents = File::get($path);
         // dddx($contents);
-        dddx(json_decode($contents));
+        // dddx(json_decode($contents));
+
+        $tmp = [];
+        foreach(json_decode($contents) as $content){
+            // dddx($content);
+            $tmp[] = SliderData::from($content);
+        }
+        // dddx($tmp);
+        // dddx(SliderDataCollection::collect($tmp,DataCollection::class));
+
+        return SliderDataCollection::collect($tmp,DataCollection::class);
     }
 }
