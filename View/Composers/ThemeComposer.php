@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Category;
-use Modules\Blog\Models\Page;
-use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Page;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Category;
+use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ThemeComposer
 {
@@ -211,5 +212,14 @@ class ThemeComposer
         ;
 
         return $var;
+    }
+
+    public function getBanners(){
+        $pub_theme = config('xra.pub_theme');
+        $path = base_path('Themes/'.$pub_theme.'/Resources/json/banner.json');
+
+        $contents = File::get($path);
+        // dddx($contents);
+        dddx(json_decode($contents));
     }
 }
