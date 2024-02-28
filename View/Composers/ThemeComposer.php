@@ -15,8 +15,10 @@ use Modules\Blog\Models\Category;
 use Illuminate\Support\Facades\File;
 use Spatie\LaravelData\DataCollection;
 use Illuminate\Database\Eloquent\Model;
+use Modules\UI\Datas\SliderDataCollection;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use function Safe\json_decode;
 
 class ThemeComposer
 {
@@ -216,22 +218,35 @@ class ThemeComposer
         return $var;
     }
 
-    public function getBanners(){
+    public function getMethodData(string $method, int $number = 6): array
+    {
+        return $this->{$method}($number);
+    }
+
+    public function getBanner(): array
+    {
         $pub_theme = config('xra.pub_theme');
         $path = base_path('Themes/'.$pub_theme.'/Resources/json/banner.json');
 
-        $contents = File::get($path);
+        Assert::isArray($contents = json_decode(File::get($path), true));
         // dddx($contents);
         // dddx(json_decode($contents));
-
+        // dddx(SliderDataCollection::from($contents));
         $tmp = [];
-        foreach(json_decode($contents) as $content){
+        foreach($contents as $content){
             // dddx($content);
             $tmp[] = SliderData::from($content);
         }
+
+        return $tmp;
         // dddx($tmp);
         // dddx(SliderDataCollection::collect($tmp,DataCollection::class));
+        // $results = SliderDataCollection::collect($tmp,DataCollection::class);
+        // foreach($results as $result){
+        //     dddx($result->slider_data);
+        // }
 
-        return SliderDataCollection::collect($tmp,DataCollection::class);
+
+        // return SliderDataCollection::collect($tmp,DataCollection::class);
     }
 }
