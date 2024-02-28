@@ -45,16 +45,10 @@ class Taggable extends BaseMorphPivot
      */
     protected $table = 'taggables';  // spatie vuol cosi'
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $connection = 'blog';
 
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string>
-     */
+    /** @var array<int, string> */
     protected $fillable = [
         'tag_id',
         'taggable_id',

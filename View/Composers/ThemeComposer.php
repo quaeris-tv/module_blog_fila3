@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Page;
+use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Page;
-use Modules\Blog\Models\Order;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Profile;
-use Modules\Blog\Models\Category;
-use Modules\Rating\Models\RatingMorph;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ThemeComposer
 {
@@ -82,6 +80,7 @@ class ThemeComposer
         return $rows;
     }
 
+    /*
     public function getAuthors(): Collection
     {
         $rows = Profile::ProfileIsAuthor()
@@ -90,6 +89,7 @@ class ThemeComposer
 
         return $rows;
     }
+    */
 
     public function getNavCategories(): Collection
     {
@@ -185,7 +185,7 @@ class ThemeComposer
     public function getUrlPage(string $slug): string
     {
         $page = $this->getPages()->where('slug', $slug)->first();
-        if (null != $page) {
+        if (null !== $page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
 
@@ -201,14 +201,14 @@ class ThemeComposer
 
     public function rankingArticlesByBets(): Collection
     {
-        $var =  Article::withCount([
-                        'ratings' => function (Builder $builder) {
-                            $builder->where('user_id', '!=', null);
-                        },
-                    ])
+        $var = Article::withCount([
+            'ratings' => function (Builder $builder) {
+                $builder->where('user_id', '!=', null);
+            },
+        ])
                 ->get()
                 ->sortByDesc('ratings_count')
-                ;
+        ;
 
         return $var;
     }

@@ -43,8 +43,6 @@ use Spatie\Tags\Tag as BaseTag;
  */
 class Tag extends BaseTag
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $connection = 'blog';
 }

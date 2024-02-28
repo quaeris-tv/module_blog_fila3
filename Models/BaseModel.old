@@ -28,11 +28,10 @@ abstract class BaseModel extends Model implements ModelContract
     // use Cachable;
     use HasFactory;
 
+    /** @var string */
     protected $connection = 'mysql';
     
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     protected $casts = [
         // 'published_at' => 'datetime:Y-m-d', // da verificare
     ];
@@ -42,14 +41,10 @@ abstract class BaseModel extends Model implements ModelContract
      */
     protected $dates = ['published_at', 'created_at', 'updated_at'];
     
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $primaryKey = 'id';
 
-    /**
-     * @var bool
-     */
+    /**  @var bool  */
     public $incrementing = true;
     
     /**
@@ -59,9 +54,7 @@ abstract class BaseModel extends Model implements ModelContract
         // 'password'
     ];
 
-    /**
-     * @var bool
-     */
+    /**  @var bool  */
     public $timestamps = true;
 
     /**

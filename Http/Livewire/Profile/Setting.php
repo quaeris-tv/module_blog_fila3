@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Profile;
 
+use Filament\Actions\Action;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Illuminate\Support\Arr;
-use Filament\Actions\Action;
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Profile;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
+use Webmozart\Assert\Assert;
 
 /**
  * @property ComponentContainer $form
@@ -34,9 +32,7 @@ class Setting extends Page implements HasForms
     public function mount(
         Profile $model,
         string $tpl = 'v1'
-
-        ): void
-    {
+    ): void {
         $this->model = $model;
         $this->tpl = $tpl;
         // dddx($this->model->toArray());
@@ -67,21 +63,20 @@ class Setting extends Page implements HasForms
 
     public function form(Form $form): Form
     {
-        if(count($this->model->extra->all()) == 0){
+        if (0 === \count($this->model->extra->all())) {
             $this->data['extra'] = [
                 $this->model->extra->get('newsletter', ['newsletter' => false]),
                 $this->model->extra->get('predix_updates', ['predix_updates' => false]),
-                $this->model->extra->get('market_updates', ['market_updates' => false])
+                $this->model->extra->get('market_updates', ['market_updates' => false]),
             ];
 
             // dddx($this->data['extra']);
-        }else{
+        } else {
             $this->data['extra'] = [$this->model->extra->all()];
             // dddx($this->data['extra']);
         }
 
         // dddx($this->data['extra'][0]);
-
 
         $schema = [];
 
@@ -90,7 +85,10 @@ class Setting extends Page implements HasForms
         //         ;
         foreach ($this->data['extra'] as $key => $field) {
             // dddx([$key, $field]);
-            foreach($field as $key => $f){
+            if (! is_iterable($field)) {
+                continue;
+            }
+            foreach ($field as $key => $f) {
                 $schema[] = Toggle::make($key)
                     ->label($key)
                 ;
@@ -123,8 +121,12 @@ class Setting extends Page implements HasForms
     public function saveExtra(): void
     {
         $data = $this->form->getState();
-        // dddx($data);
-        $this->model->extra = $data;
+        /* Property Modules\Blog\Models\Profile::$extra
+        (Illuminate\Database\Eloquent\Collection<string, bool>)
+        does not accept
+        array<string, mixed>.
+        */
+        $this->model->extra->set($data);
         $this->model->save();
     }
 }

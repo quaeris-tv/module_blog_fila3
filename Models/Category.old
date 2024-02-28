@@ -26,9 +26,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $table = 'blog_categories';
 
     /**
@@ -41,9 +39,7 @@ class Category extends Model
         'is_visible',
     ];
 
-    /**
-     * @var array<string, string>
-     */
+    /** @var array<string, string> */
     protected $casts = [
         'is_visible' => 'boolean',
     ];

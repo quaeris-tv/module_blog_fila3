@@ -26,9 +26,7 @@ class Author extends Model
 {
     use HasFactory;
 
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $table = 'blog_authors';
 
     /**

@@ -10,9 +10,7 @@ class BetArticle extends ShouldBeStored
 {
     public array $betAttributes;
 
-    /**
-     * @var string
-     */
+    /**  @var string */
     protected $connection = 'activity';
 
     public function __construct(array $betAttributes)

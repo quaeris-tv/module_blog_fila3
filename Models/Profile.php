@@ -6,23 +6,19 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Support\Carbon;
 use Modules\Rating\Models\Rating;
-use Spatie\MediaLibrary\HasMedia;
-use Modules\Blog\Events\BetArticle;
 use Modules\Rating\Models\RatingMorph;
-use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Modules\User\Models\Traits\IsProfileTrait;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\User\Models\User;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -63,12 +59,12 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static Builder|Profile                                 withTrashed()
  * @method static Builder|Profile                                 withoutTrashed()
  *
- * @property float                                                 $credits
- * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
- * @property int|null                                              $ratings_count
- * @property User|null                                             $user
- * @property string                                                $slug
- * @property string                                                $user_name
+ * @property float                                                  $credits
+ * @property \Illuminate\Database\Eloquent\Collection<int, Rating>  $ratings
+ * @property int|null                                               $ratings_count
+ * @property User|null                                              $user
+ * @property string                                                 $slug
+ * @property string                                                 $user_name
  * @property \Illuminate\Database\Eloquent\Collection<string, bool> $extra
  *
  * @method static Builder|Profile whereCredits($value)
@@ -77,10 +73,11 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  */
 class Profile extends BaseModel implements HasMedia
 {
-    use IsProfileTrait;
     use InteractsWithMedia;
-    // use SchemalessAttributesTrait;
+    use IsProfileTrait;
+    use SchemalessAttributesTrait;
 
+    /** @var array<int, string> */
     protected $fillable = [
         'id',
         'user_id',
@@ -92,135 +89,19 @@ class Profile extends BaseModel implements HasMedia
         'extra',
     ];
 
+    /** @var array<string, string> */
     public $casts = [
         'extra' => SchemalessAttributes::class,
+    ];
+
+    /** @var array */
+    protected $schemalessAttributes = [
+        'extra',
     ];
 
     public function scopeWithExtraAttributes(): Builder
     {
         return $this->extra->modelScope();
-    }
-
-    /*
-     * Get the user's first name.
-     */
-    protected function firstName(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value): string {
-                if (null == $value) {
-                    $value = 'Mio Nome';
-                }
-                Assert::string($value);
-
-                return $value;
-            }
-        );
-    }
-
-    /*
-     * Get the user's last name.
-     */
-    protected function lastName(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value): string {
-                if (null == $value) {
-                    $value = 'Mio Cognome';
-                }
-                Assert::string($value);
-
-                return $value;
-            }
-        );
-    }
-
-    /*
-     * Get the user's full name.
-     */
-    protected function fullName(): Attribute
-    {
-        return Attribute::make(
-            get: function (): string {
-                $value = $this->first_name.' '.$this->last_name;
-
-                return $value;
-            }
-        );
-    }
-
-    /*
-     * Get the user's user_name.
-     */
-    protected function userName(): Attribute
-    {
-        return Attribute::make(
-            get: function (): string {
-                Assert::notNull($user = $this->user);
-                $value = $user->name;
-
-                return $value;
-            }
-        );
-    }
-
-    /*
-     * Get the user's avatar.
-     */
-    protected function avatar(): Attribute
-    {
-        return Attribute::make(
-            get: function (): string {
-                $value = $this->getFirstMediaUrl('photo_profile');
-
-                return $value;
-            }
-        );
-    }
-
-    /**
-     * Get the user's email.
-     */
-    protected function email(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value): string {
-                if (null == $value) {
-                    Assert::notNull($this->user);
-                    $this->email = $this->user->email;
-                    $this->update();
-                    // Assert::string($value = $this->email);
-                }
-                Assert::string($value);
-
-                return $value;
-            }
-        );
-    }
-
-    /**
-     * Get the user's first name.
-     */
-    protected function slug(): Attribute
-    {
-        return Attribute::make(
-            get: static function ($value, $attributes): string {
-                Assert::notNull($user = \Auth::user());
-                Assert::isInstanceOf($user, User::class);
-
-                Assert::notNull($profile = $user->profile);
-                // Assert::isInstanceOf($profile, ProfileContract::class);
-                $profile->slug = str_slug(strtolower($user->name));
-                $profile->update();
-
-                return str_slug(strtolower($user->name));
-            },
-        );
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 
     /**
@@ -231,20 +112,6 @@ class Profile extends BaseModel implements HasMedia
         return $this->hasMany(Article::class);
     }
 
-    // /**
-    //  * Get the path to the profile picture
-    //  *
-    //  * @return string
-    //  */
-    // public function profilePicture()
-    // {
-    //     if ($this->picture) {
-    //         return "/storage/{$this->picture}";
-    //     }
-
-    //     return 'http://i.pravatar.cc/200';
-    // }
-
     /**
      * Get the route key for the user.
      *
@@ -254,53 +121,6 @@ class Profile extends BaseModel implements HasMedia
     {
         return 'slug';
     }
-
-    // /**
-    //  * Check if the user has admin role
-    //  *
-    //  * @return bool
-    //  */
-    // public function isAdmin()
-    // {
-    //     return 1 === $this->role_id;
-    // }
-
-    // /**
-    //  * Check if the user has creator role
-    //  *
-    //  * @return bool
-    //  */
-    // public function isAuthor()
-    // {
-    //     return 2 === $this->role_id;
-    // }
-
-    // /**
-    //  * Check if the user has user role
-    //  *
-    //  * @return bool
-    //  */
-    // public function isMember()
-    // {
-    //     return 3 === $this->role_id;
-    // }
-
-    /**
-     * Scope a query to only include users that are authors.
-     *
-     * @param Builder $query
-     *
-     * @return Builder
-     */
-    public function scopeProfileIsAuthor($query)
-    {
-        return $query; // ->where('role_id', '=', 2);
-    }
-
-    // public function betArticle(array $attributes): void
-    // {
-    //     event(new BetArticle($attributes));
-    // }
 
     public function ratings(): HasManyThrough
     {
