@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Modules\Blog\Models\Category;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Modules\Blog\Models\Menu.
  *
@@ -105,6 +108,12 @@ class Banner extends BaseModel
         'desktop_thumbnail_webp',
         'mobile_thumbnail_webp',
     ];
+
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
 
 /*

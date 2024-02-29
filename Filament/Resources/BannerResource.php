@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Modules\Blog\Models\Banner;
 use Filament\Resources\Resource;
+use Modules\Blog\Models\Category;
 use Filament\Resources\Concerns\Translatable;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
@@ -39,6 +40,24 @@ class BannerResource extends XotBaseResource
                     Forms\Components\TextInput::make('short_description')
                         ->columnSpan(1)
                         ->required(),
+                    Forms\Components\TextInput::make('action_text')
+                        ->columnSpan(1)
+                        ->required(),
+                    Forms\Components\Select::make('category_id')
+                        ->required()
+                        ->options(Category::getTreeCategoryOptions()),
+                    Forms\Components\TextInput::make('link')
+                        ->columnSpan(1)
+                        ->required(),
+                    Forms\Components\DateTimePicker::make('start_date')
+                        ->columnSpan(1),
+                    Forms\Components\DateTimePicker::make('end_date')
+                        ->columnSpan(1),
+                    Forms\Components\Toggle::make('hot_topic')
+                        ->columnSpan(1),
+                    Forms\Components\Toggle::make('landing_banner')
+                        ->columnSpan(1),
+                        // 'open_markets_count', // : 119,
                 ])
             ]);
         }
@@ -47,6 +66,9 @@ class BannerResource extends XotBaseResource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('title')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
             ])
