@@ -31,7 +31,6 @@ class ListBanners extends ListRecords
                         FileUpload::make('file')
                             ->label('')
                             // ->acceptedFileTypes(['application/json', 'json'])
-                            ->acceptedFileTypes(['application/json'])
                             ->imagePreviewHeight('250')
                             ->reactive()
                             ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state) {
@@ -46,10 +45,16 @@ class ListBanners extends ListRecords
                         Assert::isArray($json = json_decode($data['fileContent'], true));
                         // dddx($json);
                         foreach($json as $j){
-                            // dddx($j['title']);
-                            Banner::firstOrCreate(
-                                ['title' => 'aaaa']
-                            );
+                            // dddx($j);
+                            Banner::firstOrCreate([
+                                'title' => $j['title'],
+                                'description' => $j['short_description'],
+                                'action_text' => $j['action_text'],
+                                'link' => $j['link'],
+                                // 'start_date' => $j['start_date'],
+                                // 'end_date' => $j['end_date'],
+                                // 'hot_topic' => $j['hot_topic']
+                            ]);
                         }
                     }),
         ];
