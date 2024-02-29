@@ -14,6 +14,7 @@ use Filament\Resources\Pages\ListRecords;
 use Illuminate\Support\Facades\File;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Modules\Blog\Filament\Resources\BannerResource;
+use function Safe\json_decode;
 
 class ListBanners extends ListRecords
 {
