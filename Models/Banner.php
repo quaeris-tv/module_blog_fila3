@@ -126,17 +126,17 @@ class Banner extends BaseModel implements HasMedia
     //   'action_text'
     // ];
 
-    // /**
-    //  * https://dev.to/npesado/convert-images-to-webp-4i06
-    //  */
-    // public function registerMediaConversions(?Media $media = null): void
-    // {
-    //     $this->addMediaConversion('cover')
-    //         ->format(Manipulations::FORMAT_WEBP)
-    //         ->width(320)
-    //         ->height(200)
-    //         ->nonQueued();
-    // }
+    /**
+     * https://dev.to/npesado/convert-images-to-webp-4i06
+     */
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this->addMediaConversion('cover')
+            ->format(Manipulations::FORMAT_WEBP)
+            ->width(320)
+            ->height(200)
+            ->nonQueued();
+    }
 
     public function getDesktopThumbnailAttribute(): string
     {

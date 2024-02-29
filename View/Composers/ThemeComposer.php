@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Modules\Blog\Models\Tag;
 use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Page;
+use function Safe\json_decode;
+use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\UI\Datas\SliderData;
@@ -18,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\UI\Datas\SliderDataCollection;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use function Safe\json_decode;
 
 class ThemeComposer
 {
@@ -223,7 +224,7 @@ class ThemeComposer
         return $this->{$method}($number);
     }
 
-    public function getBanner(): array
+    public function getBanner_OLD(): array
     {
         $pub_theme = config('xra.pub_theme');
         $path = base_path('Themes/'.$pub_theme.'/Resources/json/banner.json');
@@ -248,5 +249,16 @@ class ThemeComposer
 
 
         // return SliderDataCollection::collect($tmp,DataCollection::class);
+    }
+
+    public function getBanner(): array
+    {
+        $results = Banner::all()->toArray();
+        $tmp = [];
+        foreach($results as $content){
+            $tmp[] = SliderData::from($content);
+        }
+
+        return $tmp;
     }
 }
