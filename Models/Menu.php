@@ -38,11 +38,13 @@ namespace Modules\Blog\Models;
  */
 class Menu extends BaseModel
 {
+    /** @var array<int, string> */
     protected $fillable = [
         'name',
         'items',
     ];
 
+    /** @var array<string, string> */
     protected $casts = [
         'items' => 'array',
     ];
