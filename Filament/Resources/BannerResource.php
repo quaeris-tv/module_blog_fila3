@@ -10,9 +10,11 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\Blog\Filament\Resources\BannerResource\Pages;
 use Modules\Blog\Models\Banner;
+use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 
 class BannerResource extends Resource
 {
+    use NavigationLabelTrait;
     protected static ?string $model = Banner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
