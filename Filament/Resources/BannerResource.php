@@ -71,7 +71,7 @@ class BannerResource extends XotBaseResource
                         // ->conversion('thumbnail')
                         ->disk('uploads')
                         ->directory('photos')
-                        ->collection('banner_image')
+                        ->collection('banner')
 
 
                         // 'open_markets_count', // : 119,

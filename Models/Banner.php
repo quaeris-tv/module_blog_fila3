@@ -126,22 +126,22 @@ class Banner extends BaseModel implements HasMedia
 
     public function getDesktopThumbnailAttribute(): string
     {
-        return $this->getFirstMediaUrl('banner_image');
+        return $this->getFirstMediaUrl('banner');
     }
 
     public function getMobileThumbnailAttribute(): string
     {
-        return $this->getFirstMediaUrl('banner_image');
+        return $this->getFirstMediaUrl('banner');
     }
 
     public function getDesktopThumbnailWebpAttribute(): string
     {
-        return $this->getFirstMediaUrl('banner_image');
+        return $this->getFirstMediaUrl('banner');
     }
 
     public function getMobileThumbnailWebpAttribute(): string
     {
-        return $this->getFirstMediaUrl('banner_image');
+        return $this->getFirstMediaUrl('banner');
     }
 
     public function category(): BelongsTo
