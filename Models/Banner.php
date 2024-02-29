@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Spatie\Image\Manipulations;
 use Modules\Blog\Models\Category;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Translatable\HasTranslations;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * Modules\Blog\Models\Menu.
@@ -124,6 +126,18 @@ class Banner extends BaseModel implements HasMedia
     //   'action_text'
     // ];
 
+    // /**
+    //  * https://dev.to/npesado/convert-images-to-webp-4i06
+    //  */
+    // public function registerMediaConversions(?Media $media = null): void
+    // {
+    //     $this->addMediaConversion('cover')
+    //         ->format(Manipulations::FORMAT_WEBP)
+    //         ->width(320)
+    //         ->height(200)
+    //         ->nonQueued();
+    // }
+
     public function getDesktopThumbnailAttribute(): string
     {
         return $this->getFirstMediaUrl('banner');
@@ -137,6 +151,7 @@ class Banner extends BaseModel implements HasMedia
     public function getDesktopThumbnailWebpAttribute(): string
     {
         return $this->getFirstMediaUrl('banner');
+        // $urlToFirstImage = $course->getFirstMediaUrl('images', 'cover');
     }
 
     public function getMobileThumbnailWebpAttribute(): string

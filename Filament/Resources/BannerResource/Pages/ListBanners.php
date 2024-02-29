@@ -54,7 +54,9 @@ class ListBanners extends ListRecords
                                 // 'start_date' => $j['start_date'],
                                 // 'end_date' => $j['end_date'],
                                 // 'hot_topic' => $j['hot_topic']
-                            ]);
+                            ])->addMediaFromUrl($j['desktop_thumbnail']);
+
+                            // $banner->addMediaFromUrl($j['desktop_thumbnail']);
                         }
                     }),
         ];
