@@ -8,13 +8,15 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\BannerResource\Pages;
 
 use Filament\Actions;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
-use Filament\Resources\Pages\ListRecords;
-use Illuminate\Support\Facades\File;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Modules\Blog\Filament\Resources\BannerResource;
+use Webmozart\Assert\Assert;
 use function Safe\json_decode;
+use Modules\Blog\Models\Banner;
+use Illuminate\Support\Facades\File;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
+use Filament\Resources\Pages\ListRecords;
+use Modules\Blog\Filament\Resources\BannerResource;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class ListBanners extends ListRecords
 {
@@ -28,7 +30,8 @@ class ListBanners extends ListRecords
                     ->form([
                         FileUpload::make('file')
                             ->label('')
-                            ->acceptedFileTypes(['application/json', 'json'])
+                            // ->acceptedFileTypes(['application/json', 'json'])
+                            ->acceptedFileTypes(['application/json'])
                             ->imagePreviewHeight('250')
                             ->reactive()
                             ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state) {
@@ -40,10 +43,13 @@ class ListBanners extends ListRecords
                     ->tooltip('Import')
                     ->icon('heroicon-o-folder-open')
                     ->action(static function ($data) {
-                        $json = json_decode($data['fileContent'], true);
+                        Assert::isArray($json = json_decode($data['fileContent'], true));
                         // dddx($json);
                         foreach($json as $j){
-                            dddx($j);
+                            // dddx($j['title']);
+                            Banner::firstOrCreate(
+                                ['title' => 'aaaa']
+                            );
                         }
                     }),
         ];
