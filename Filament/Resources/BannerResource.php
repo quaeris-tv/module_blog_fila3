@@ -15,19 +15,20 @@ use Filament\Resources\Concerns\Translatable;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 use Modules\Blog\Filament\Resources\BannerResource\Pages;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class BannerResource extends XotBaseResource
 {
     use NavigationLabelTrait;
-    use Translatable;
+    // use Translatable;
     protected static ?string $model = Banner::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function getTranslatableLocales(): array
-    {
-        return ['it', 'en'];
-    }
+    // public static function getTranslatableLocales(): array
+    // {
+    //     return ['it', 'en'];
+    // }
 
     public static function form(Form $form): Form
     {
@@ -37,7 +38,7 @@ class BannerResource extends XotBaseResource
                     Forms\Components\TextInput::make('title')
                         ->columnSpan(1)
                         ->required(),
-                    Forms\Components\TextInput::make('short_description')
+                    Forms\Components\TextInput::make('description')
                         ->columnSpan(1)
                         ->required(),
                     Forms\Components\TextInput::make('action_text')
@@ -57,6 +58,22 @@ class BannerResource extends XotBaseResource
                         ->columnSpan(1),
                     Forms\Components\Toggle::make('landing_banner')
                         ->columnSpan(1),
+
+                    SpatieMediaLibraryFileUpload::make('image')
+                        // ->image()
+                        // ->maxSize(5000)
+                        // ->multiple()
+                        // ->enableReordering()
+                        ->openable()
+                        ->downloadable()
+                        ->columnSpanFull()
+                        // ->collection('avatars')
+                        // ->conversion('thumbnail')
+                        ->disk('uploads')
+                        ->directory('photos')
+                        ->collection('banner_image')
+
+
                         // 'open_markets_count', // : 119,
                 ])
             ]);

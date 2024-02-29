@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Modules\Blog\Models\Category;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -39,8 +42,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin \Eloquent
  */
-class Banner extends BaseModel
+class Banner extends BaseModel implements HasMedia
 {
+    use InteractsWithMedia;
+    // use HasTranslations;
+
     /** @var array<int, string> */
     protected $fillable = [
         // "id", //: 40,
@@ -50,7 +56,7 @@ class Banner extends BaseModel
         // "mobile_thumbnail_webp",//: "https://futuur-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
         'link', // : "https://futuur.com/q/category/99/usa",
         'title', // : "American Politics",
-        'short_description', // : "Congress, White House, Elections and more",
+        'description', // : "Congress, White House, Elections and more",
         'action_text', // : "Make Your Forecasts",
         'category_id',
         /*
@@ -80,7 +86,7 @@ class Banner extends BaseModel
         'mobile_thumbnail_webp' => 'string',
         'link' => 'string',
         'title' => 'string',
-        'short_description' => 'string',
+        'description' => 'string',
         'action_text' => 'string',
         'category_id' => 'string',
         /*
@@ -108,6 +114,15 @@ class Banner extends BaseModel
         'desktop_thumbnail_webp',
         'mobile_thumbnail_webp',
     ];
+
+    // /**
+    //  * @var array<int, string>
+    //  */
+    // public $translatable = [
+    //   'title',
+    //   'short_description',
+    //   'action_text'
+    // ];
 
 
     public function category(): BelongsTo
