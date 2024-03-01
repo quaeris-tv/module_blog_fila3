@@ -124,7 +124,6 @@ class Category extends BaseModel implements HasMedia
         'title' => 'string',
         'slug' => 'string',
         'name' => 'string',
-        'slug' => 'string',
         'picture' => 'string',
         'description' => 'string',
         'parent_id' => 'string',
