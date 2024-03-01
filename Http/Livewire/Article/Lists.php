@@ -87,7 +87,7 @@ class Lists extends Component
         ++$this->currentChunk;
     }
 
-    private function getActiveCategory(): Category|null
+    private function getActiveCategory(): ?Category
     {
         // return $this->categories->first(fn ($i) => $i->slug === $this->category);
         return $this->category;

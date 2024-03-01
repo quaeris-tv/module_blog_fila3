@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Spatie\Image\Manipulations;
-use Modules\Blog\Models\Category;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Translatable\HasTranslations;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Blog\Models\Menu.
@@ -127,7 +126,7 @@ class Banner extends BaseModel implements HasMedia
     // ];
 
     /**
-     * https://dev.to/npesado/convert-images-to-webp-4i06
+     * https://dev.to/npesado/convert-images-to-webp-4i06.
      */
     public function registerMediaConversions(?Media $media = null): void
     {

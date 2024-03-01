@@ -4,22 +4,24 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Support\Str;
-use Modules\Blog\Models\Tag;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Page;
-use function Safe\json_decode;
-use Modules\Blog\Models\Banner;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Profile;
-use Modules\UI\Datas\SliderData;
-use Modules\Blog\Models\Category;
-use Illuminate\Support\Facades\File;
-use Spatie\LaravelData\DataCollection;
-use Illuminate\Database\Eloquent\Model;
-use Modules\UI\Datas\SliderDataCollection;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Banner;
+use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Page;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Tag;
+use Modules\UI\Datas\SliderData;
+use Modules\UI\Datas\SliderDataCollection;
+
+use function Safe\json_decode;
+
+use Spatie\LaravelData\DataCollection;
+use Webmozart\Assert\Assert;
 
 class ThemeComposer
 {
@@ -234,7 +236,7 @@ class ThemeComposer
         // dddx(json_decode($contents));
         // dddx(SliderDataCollection::from($contents));
         $tmp = [];
-        foreach($contents as $content){
+        foreach ($contents as $content) {
             // dddx($content);
             $tmp[] = SliderData::from($content);
         }
@@ -247,7 +249,6 @@ class ThemeComposer
         //     dddx($result->slider_data);
         // }
 
-
         // return SliderDataCollection::collect($tmp,DataCollection::class);
     }
 
@@ -255,7 +256,7 @@ class ThemeComposer
     {
         $results = Banner::all()->toArray();
         $tmp = [];
-        foreach($results as $content){
+        foreach ($results as $content) {
             $tmp[] = SliderData::from($content);
         }
 

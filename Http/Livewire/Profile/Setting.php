@@ -70,7 +70,7 @@ class Setting extends Page implements HasForms
                 $this->model->extra->get('market_updates', ['market_updates' => false]),
             ];
 
-            // dddx($this->data['extra']);
+        // dddx($this->data['extra']);
         } else {
             $this->data['extra'] = [$this->model->extra->all()];
             // dddx($this->data['extra']);
