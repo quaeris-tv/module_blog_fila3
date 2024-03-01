@@ -84,6 +84,18 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->dateTime('closed_at')->nullable();
                 }
 
+                if (! $this->hasColumn('status')) {
+                    $table->string('status')->nullable();
+                    $table->boolean('status_display')->default(false);
+                }
+
+                if (! $this->hasColumn('bet_end_date')){
+                    $table->dateTime('bet_end_date')->nullable();
+                    $table->dateTime('event_start_date')->nullable();
+                    $table->dateTime('event_end_date')->nullable();
+                    $table->boolean('is_wagerable')->default(false);
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
