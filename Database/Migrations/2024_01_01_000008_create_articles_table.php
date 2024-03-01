@@ -89,7 +89,7 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->boolean('status_display')->default(false);
                 }
 
-                if (! $this->hasColumn('bet_end_date')){
+                if (! $this->hasColumn('bet_end_date')) {
                     $table->dateTime('bet_end_date')->nullable();
                     $table->dateTime('event_start_date')->nullable();
                     $table->dateTime('event_end_date')->nullable();
