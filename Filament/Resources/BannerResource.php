@@ -5,21 +5,19 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Modules\Blog\Models\Banner;
-use Filament\Resources\Resource;
-use Modules\Blog\Models\Category;
-use Filament\Resources\Concerns\Translatable;
-use Modules\Xot\Filament\Resources\XotBaseResource;
-use Modules\Xot\Filament\Traits\NavigationLabelTrait;
-use Modules\Blog\Filament\Resources\BannerResource\Pages;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
+use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Table;
+use Modules\Blog\Filament\Resources\BannerResource\Pages;
+use Modules\Blog\Models\Banner;
+use Modules\Blog\Models\Category;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class BannerResource extends XotBaseResource
 {
-    use NavigationLabelTrait;
     // use Translatable;
     protected static ?string $model = Banner::class;
 
@@ -34,8 +32,9 @@ class BannerResource extends XotBaseResource
     {
         return $form
             ->schema([
-            Forms\Components\Grid::make()->columns(2)->schema([
+                Forms\Components\Grid::make()->columns(2)->schema([
                     Forms\Components\TextInput::make('title')
+                        ->label(static::trans('fields.title'))
                         ->columnSpan(1)
                         ->required(),
                     Forms\Components\TextInput::make('description')
@@ -71,21 +70,32 @@ class BannerResource extends XotBaseResource
                         // ->conversion('thumbnail')
                         ->disk('uploads')
                         ->directory('photos')
-                        ->collection('banner')
+                        ->collection('banner'),
 
-
-                        // 'open_markets_count', // : 119,
-                ])
+                    // 'open_markets_count', // : 119,
+                ]),
             ]);
-        }
+    }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('id')
+                    ->label(static::trans('fields.id'))
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('title')
+                    ->label(static::trans('fields.title'))
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('category.title')
+                    ->label(static::trans('fields.category.title'))
+                    ->sortable()
+                    ->searchable(),
+                SpatieMediaLibraryImageColumn::make('image')
+                    ->label(static::trans('fields.image'))
+                    ->collection('banner'),
             ])
             ->filters([
             ])

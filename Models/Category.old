@@ -29,9 +29,7 @@ class Category extends Model
     /**  @var string */
     protected $table = 'blog_categories';
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<int, string>  */
     protected $fillable = [
         'name',
         'slug',

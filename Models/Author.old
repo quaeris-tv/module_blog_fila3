@@ -29,9 +29,7 @@ class Author extends Model
     /**  @var string */
     protected $table = 'blog_authors';
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<int, string>  */
     protected $fillable = [
         'name',
         'email',
@@ -41,9 +39,7 @@ class Author extends Model
         'twitter_handle',
     ];
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<int, string>  */
     protected $appends = [
         'photo_url',
     ];

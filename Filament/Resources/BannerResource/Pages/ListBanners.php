@@ -8,15 +8,14 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\BannerResource\Pages;
 
 use Filament\Actions;
-use Webmozart\Assert\Assert;
-use function Safe\json_decode;
-use Modules\Blog\Models\Banner;
-use Illuminate\Support\Facades\File;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Pages\ListRecords;
-use Modules\Blog\Filament\Resources\BannerResource;
+use Illuminate\Support\Facades\File;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Modules\Blog\Actions\Banner\ImportBannerFromByJsonTextAction;
+use Modules\Blog\Filament\Resources\BannerResource;
+use Modules\Blog\Models\Banner;
 
 class ListBanners extends ListRecords
 {
@@ -41,28 +40,10 @@ class ListBanners extends ListRecords
                     ->label('')
                     ->tooltip('Import')
                     ->icon('heroicon-o-folder-open')
-                    ->action(static function ($data) {
-                        Assert::isArray($json = json_decode($data['fileContent'], true));
-                        // dddx($json);
-                        foreach($json as $j){
-                            // dddx($j);
-                            Banner::firstOrCreate([
-                                'title' => $j['title'],
-                                'description' => $j['short_description'],
-                                'action_text' => $j['action_text'],
-                                'link' => $j['link'],
-                                // 'start_date' => $j['start_date'],
-                                // 'end_date' => $j['end_date'],
-                                // 'hot_topic' => $j['hot_topic']
-                            ])->addMediaFromUrl($j['desktop_thumbnail'])->toMediaCollection('banner');
-
-                            // $banner->addMediaFromUrl($j['desktop_thumbnail']);
-                        }
-                    }),
+                    ->action(static fn (array $data) => app(ImportBannerFromByJsonTextAction::class)->execute($data['fileContent'])),
         ];
     }
 }
-
 
 // "photo11":{
 //     "id": 1,

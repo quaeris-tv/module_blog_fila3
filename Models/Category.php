@@ -101,11 +101,12 @@ use Spatie\Translatable\HasTranslations;
 class Category extends BaseModel implements HasMedia
 {
     use HasTranslations;
-    use InteractsWithMedia;
     use HasTranslations;
+    use InteractsWithMedia;
 
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
+    /** @var array<int, string> */
     protected $fillable = [
         'title',
         'slug',
@@ -114,11 +115,26 @@ class Category extends BaseModel implements HasMedia
         'picture',
         'description',
         'parent_id',
+        'in_leaderboard',
     ];
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<string, string> */
+    protected $casts = [
+        'id' => 'string',
+        'title' => 'string',
+        'slug' => 'string',
+        'name' => 'string',
+        'slug' => 'string',
+        'picture' => 'string',
+        'description' => 'string',
+        'parent_id' => 'string',
+        'in_leaderboard' => 'boolean',
+        'published_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /** @var array<int, string> */
     public $translatable = [
         'title',
         'description',
@@ -141,7 +157,7 @@ class Category extends BaseModel implements HasMedia
 
     public static function getTreeCategoryOptions(): array
     {
-        $categories = Category::tree()->get()->toTree();
+        $categories = self::tree()->get()->toTree();
         $results = [];
         foreach ($categories as $cat) {
             $results[$cat->id] = $cat->title;

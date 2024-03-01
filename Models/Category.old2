@@ -65,9 +65,7 @@ class Category extends BaseModel implements HasMedia
         'parent_id',
     ];
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var array<int, string>  */
     public $translatable = [
         'title',
         'description',

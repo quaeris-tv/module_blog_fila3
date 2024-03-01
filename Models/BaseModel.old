@@ -30,26 +30,24 @@ abstract class BaseModel extends Model implements ModelContract
 
     /** @var string */
     protected $connection = 'mysql';
-    
+
     /** @var array<string, string> */
     protected $casts = [
         // 'published_at' => 'datetime:Y-m-d', // da verificare
     ];
-    
+
     /**
      * @var string[]
      */
     protected $dates = ['published_at', 'created_at', 'updated_at'];
-    
+
     /**  @var string */
     protected $primaryKey = 'id';
 
     /**  @var bool  */
     public $incrementing = true;
-    
-    /**
-     * @var array<int, string>
-     */
+
+    /** @var array<int, string>  */
     protected $hidden = [
         // 'password'
     ];
