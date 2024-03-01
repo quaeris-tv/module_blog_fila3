@@ -16,7 +16,6 @@ class ImportArticlesFromByJsonTextAction
         Assert::isArray($json = json_decode($json_text, true));
 
         foreach ($json as $j) {
-
             $article_where = [
                 'title' => $j['title'],
                 'slug' => $j['slug'],
@@ -25,7 +24,6 @@ class ImportArticlesFromByJsonTextAction
             $article_data = [
                 'title' => $j['title'],
                 'slug' => $j['slug'],
-
             ];
         }
     }
