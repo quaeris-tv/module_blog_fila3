@@ -94,6 +94,19 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->dateTime('event_start_date')->nullable();
                     $table->dateTime('event_end_date')->nullable();
                     $table->boolean('is_wagerable')->default(false);
+                    $table->integer('wagers_count')->nullable();
+                    $table->integer('wagers_count_canonical')->nullable();
+                    $table->integer('wagers_count_total')->nullable();
+                    $table->boolean('wagers')->default(false);
+                }
+
+                if (! $this->hasColumn('brier_score')){
+                    $table->string('brier_score')->nullable();
+                    $table->string('brier_score_play_money')->nullable();
+                    $table->string('brier_score_real_money')->nullable();
+                    $table->float('volume_play_money')->nullable();
+                    $table->float('volume_real_money')->nullable();
+                    $table->boolean('is_following')->default(false);
                 }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);

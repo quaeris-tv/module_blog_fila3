@@ -186,6 +186,22 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         'read_time',
         'excerpt',
         */
+        'status',
+        'status_display',
+        'bet_end_date',
+        'event_start_date',
+        'event_end_date',
+        'is_wagerable',
+        'brier_score',
+        'brier_score_play_money',
+        'brier_score_real_money',
+        'wagers_count',
+        'wagers_count_canonical',
+        'wagers_count_total',
+        'wagers',
+        'volume_play_money',
+        'volume_real_money',
+        'is_following'
     ];
 
     /** @var array<int, string> */

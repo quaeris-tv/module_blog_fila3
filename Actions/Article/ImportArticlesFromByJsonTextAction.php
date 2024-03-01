@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Actions\Article;
 
 use Carbon\Carbon;
+use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Category;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
 
@@ -30,6 +33,16 @@ class ImportArticlesFromByJsonTextAction
                 $event_end_date = Carbon::parse($event_end_date);
             }
 
+
+            $cd = $j['category'] ?? [];
+            $category_data = [
+                'title' => $cd['title'] ?? '',
+                'slug' => $cd['slug'] ?? '',
+                'parent_id' => $cd['parent_id'] ?? null,
+            ];
+            $category_where = ['slug' => $category_data['slug']];
+            $category = Category::firstOrCreate($category_where, $category_data);
+
             $article_where = [
                 'title' => $j['title'],
                 'slug' => $j['slug'],
@@ -44,7 +57,20 @@ class ImportArticlesFromByJsonTextAction
                 'event_start_date' => $event_start_date,
                 'event_end_date' => $event_end_date,
                 'is_wagerable' => $is_wagerable,
+                'brier_score' => $j['brier_score'],
+                'brier_score_play_money' => $j['brier_score_play_money'],
+                'brier_score_real_money' => $j['brier_score_real_money'],
+                'wagers_count' => $j['wagers_count'],
+                'wagers_count_canonical' => $j['wagers_count_canonical'],
+                'wagers_count_total' => $j['wagers_count_total'],
+                'wagers' => $j['wagers'],
+                'volume_play_money' => $j['volume_play_money'],
+                'volume_real_money' => $j['volume_real_money'],
+                'is_following' => $j['volume_real_money']
             ];
+
+            dddx($article_data);
+            Article::firstOrCreate($article_where, $article_data);
         }
     }
 }
