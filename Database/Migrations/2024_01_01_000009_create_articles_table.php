@@ -100,7 +100,7 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->boolean('wagers')->default(false);
                 }
 
-                if (! $this->hasColumn('brier_score')){
+                if (! $this->hasColumn('brier_score')) {
                     $table->string('brier_score')->nullable();
                     $table->string('brier_score_play_money')->nullable();
                     $table->string('brier_score_real_money')->nullable();

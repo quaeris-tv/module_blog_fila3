@@ -201,7 +201,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         'wagers',
         'volume_play_money',
         'volume_real_money',
-        'is_following'
+        'is_following',
     ];
 
     /** @var array<int, string> */

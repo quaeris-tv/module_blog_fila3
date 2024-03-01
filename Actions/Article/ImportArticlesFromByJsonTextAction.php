@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Actions\Article;
 
 use Carbon\Carbon;
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 use Webmozart\Assert\Assert;
 
 class ImportArticlesFromByJsonTextAction
@@ -32,7 +32,6 @@ class ImportArticlesFromByJsonTextAction
             if (\is_string($event_end_date) && \strlen($event_end_date) > 3) {
                 $event_end_date = Carbon::parse($event_end_date);
             }
-
 
             $cd = $j['category'] ?? [];
             $category_data = [
@@ -66,7 +65,7 @@ class ImportArticlesFromByJsonTextAction
                 'wagers' => $j['wagers'],
                 'volume_play_money' => $j['volume_play_money'],
                 'volume_real_money' => $j['volume_real_money'],
-                'is_following' => $j['volume_real_money']
+                'is_following' => $j['volume_real_money'],
             ];
 
             dddx($article_data);
