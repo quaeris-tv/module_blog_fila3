@@ -6,10 +6,10 @@ namespace Modules\Blog\Actions\Article;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class ImportArticlesFromByJsonTextAction
 {
@@ -33,9 +33,8 @@ class ImportArticlesFromByJsonTextAction
                 $event_end_date = Carbon::parse($event_end_date);
             }
 
-
             $parent_category_id = null;
-            foreach($j['category'] as $cat){
+            foreach ($j['category'] as $cat) {
                 // dddx($category);
                 $cd = $cat ?? [];
                 $category_data = [
@@ -48,15 +47,6 @@ class ImportArticlesFromByJsonTextAction
                 $parent_category_id = $category->id;
                 // dddx($parent_category_id);
             }
-
-
-
-
-
-
-
-
-
 
             $article_where = [
                 'slug' => $j['slug'],
@@ -89,10 +79,9 @@ class ImportArticlesFromByJsonTextAction
 
             Article::firstOrCreate($article_where, $article_data);
 
-            foreach($j['outcomes'] as $rating){
+            foreach ($j['outcomes'] as $rating) {
                 dddx($rating);
             }
-
 
             dddx($j['outcomes']);
         }
