@@ -73,6 +73,7 @@ class ImportArticlesFromByJsonTextAction
                 'volume_real_money' => $j['volume_real_money'],
                 'is_following' => $j['volume_real_money'],
                 'category_id' => $parent_category_id,
+                'published_at' => Carbon::today()->toDateString(),
             ];
 
             // dddx($article_data);

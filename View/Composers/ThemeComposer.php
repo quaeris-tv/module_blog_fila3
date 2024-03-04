@@ -4,24 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Banner;
-use Modules\Blog\Models\Category;
-use Modules\Blog\Models\Page;
-use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
-use Modules\UI\Datas\SliderData;
-use Modules\UI\Datas\SliderDataCollection;
-
-use function Safe\json_decode;
-
-use Spatie\LaravelData\DataCollection;
 use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Page;
+use function Safe\json_decode;
+use Modules\Blog\Models\Banner;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
+use Modules\UI\Datas\SliderData;
+use Modules\Blog\Models\Category;
+use Modules\Blog\Datas\ArticleData;
+use Illuminate\Support\Facades\File;
+use Spatie\LaravelData\DataCollection;
+
+use Illuminate\Database\Eloquent\Model;
+
+use Modules\UI\Datas\SliderDataCollection;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class ThemeComposer
 {
@@ -262,4 +263,24 @@ class ThemeComposer
 
         return $tmp;
     }
+
+    public function getArticlesFeatured(int $number = 6): Collection
+    {
+        dddx('wip con article data');
+        return $this->getFeaturedArticles($number);
+    }
+
+    public function getArticlesLatest(int $number = 6): array
+    {
+        $results = $this->getLatestArticles($number)->toArray();
+
+        $tmp = [];
+        foreach ($results as $content) {
+            $tmp[] = ArticleData::from($content);
+        }
+        // dddx($tmp);
+        return $tmp;
+    }
+
+
 }
