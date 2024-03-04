@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Blog\Datas;
 
 use Spatie\LaravelData\Data;
-use Modules\Blog\Models\Article;
 
 class ArticleData extends Data
 {
