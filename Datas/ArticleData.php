@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
-use Modules\Blog\Models\Article;
 use Spatie\LaravelData\Data;
+use Modules\Blog\Models\Article;
 
 class ArticleData extends Data
 {
@@ -24,6 +24,6 @@ class ArticleData extends Data
         // public string $ratingId;
         // public int $credit;
     ) {
-        $this->class = Article::class;
+        $this->url = '/'.app()->getLocale().'/article/'.$slug;
     }
 }
