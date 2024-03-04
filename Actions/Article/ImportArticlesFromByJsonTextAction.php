@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Actions\Article;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Spatie\QueueableAction\QueueableAction;
-use Webmozart\Assert\Assert;
 
 class ImportArticlesFromByJsonTextAction
 {
@@ -32,21 +33,37 @@ class ImportArticlesFromByJsonTextAction
                 $event_end_date = Carbon::parse($event_end_date);
             }
 
-            $cd = $j['category'] ?? [];
-            $category_data = [
-                'title' => $cd['title'] ?? '',
-                'slug' => $cd['slug'] ?? '',
-                'parent_id' => $cd['parent_id'] ?? null,
-            ];
-            $category_where = ['slug' => $category_data['slug']];
-            $category = Category::firstOrCreate($category_where, $category_data);
+
+            $parent_category_id = null;
+            foreach($j['category'] as $cat){
+                // dddx($category);
+                $cd = $cat ?? [];
+                $category_data = [
+                    'title' => $cd['title'] ?? '',
+                    'slug' => $cd['slug'] ?? '',
+                    'parent_id' => $parent_category_id,
+                ];
+                $category_where = ['slug' => $category_data['slug']];
+                $category = Category::firstOrCreate($category_where, $category_data);
+                $parent_category_id = $category->id;
+                // dddx($parent_category_id);
+            }
+
+
+
+
+
+
+
+
+
 
             $article_where = [
-                'title' => $j['title'],
                 'slug' => $j['slug'],
             ];
 
             $article_data = [
+                'uuid' => Str::uuid(),
                 'title' => $j['title'],
                 'slug' => $j['slug'],
                 'status' => $j['status'],
@@ -54,7 +71,7 @@ class ImportArticlesFromByJsonTextAction
                 'bet_end_date' => $bet_end_date,
                 'event_start_date' => $event_start_date,
                 'event_end_date' => $event_end_date,
-                'is_wagerable' => $is_wagerable,
+                'is_wagerable' => $j['is_wagerable'],
                 'brier_score' => $j['brier_score'],
                 'brier_score_play_money' => $j['brier_score_play_money'],
                 'brier_score_real_money' => $j['brier_score_real_money'],
@@ -65,10 +82,19 @@ class ImportArticlesFromByJsonTextAction
                 'volume_play_money' => $j['volume_play_money'],
                 'volume_real_money' => $j['volume_real_money'],
                 'is_following' => $j['volume_real_money'],
+                'category_id' => $parent_category_id,
             ];
 
-            dddx($article_data);
+            // dddx($article_data);
+
             Article::firstOrCreate($article_where, $article_data);
+
+            foreach($j['outcomes'] as $rating){
+                dddx($rating);
+            }
+
+
+            dddx($j['outcomes']);
         }
     }
 }

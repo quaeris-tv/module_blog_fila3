@@ -86,6 +86,9 @@ class CreateArticlesTable extends XotBaseMigration
 
                 if (! $this->hasColumn('status')) {
                     $table->string('status')->nullable();
+                }
+
+                if (! $this->hasColumn('status_display')) {
                     $table->boolean('status_display')->default(false);
                 }
 
@@ -97,7 +100,10 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->integer('wagers_count')->nullable();
                     $table->integer('wagers_count_canonical')->nullable();
                     $table->integer('wagers_count_total')->nullable();
-                    $table->boolean('wagers')->default(false);
+                }
+
+                if (! $this->hasColumn('wagers')) {
+                    $table->boolean('wagers')->nullable();
                 }
 
                 if (! $this->hasColumn('brier_score')) {
