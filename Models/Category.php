@@ -161,7 +161,13 @@ class Category extends BaseModel implements HasMedia
         foreach ($categories as $cat) {
             $results[$cat->id] = $cat->title;
             foreach ($cat->children as $child) {
-                $results[$child->id] = '----------------->'.$child->title;
+                $results[$child->id] = '--------->'.$child->title;
+                foreach ($child->children as $cld) {
+                    $results[$cld->id] = '----------------->'.$cld->title;
+                    foreach ($cld->children as $c) {
+                        $results[$c->id] = '------------------------->'.$c->title;
+                    }
+                }
             }
         }
 
