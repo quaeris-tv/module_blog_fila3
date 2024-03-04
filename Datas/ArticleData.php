@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
-use Spatie\LaravelData\Data;
-use Modules\Blog\Models\Category;
 use Illuminate\Support\Collection;
+use Modules\Blog\Models\Category;
+use Spatie\LaravelData\Data;
 
 class ArticleData extends Data
 {
@@ -30,7 +30,7 @@ class ArticleData extends Data
         $this->categories = $this->getCategories();
     }
 
-    public function getCategories():Collection
+    public function getCategories(): Collection
     {
         return Category::find($this->category_id)->bloodline()->get()->reverse();
     }
