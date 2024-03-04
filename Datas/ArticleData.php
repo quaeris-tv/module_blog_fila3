@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Datas;
 
 use Spatie\LaravelData\Data;
+use Modules\Blog\Models\Category;
+use Illuminate\Support\Collection;
 
 class ArticleData extends Data
 {
@@ -18,11 +20,18 @@ class ArticleData extends Data
         public ?array $content_blocks,
         public ?array $sidebar_blocks,
         public ?array $footer_blocks,
+        public ?Collection $categories,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
         // public int $credit;
     ) {
         $this->url = '/'.app()->getLocale().'/article/'.$slug;
+        $this->categories = $this->getCategories();
+    }
+
+    public function getCategories():Collection
+    {
+        return Category::find($this->category_id)->bloodline()->get()->reverse();
     }
 }

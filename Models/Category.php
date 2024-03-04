@@ -101,7 +101,6 @@ use Spatie\Translatable\HasTranslations;
 class Category extends BaseModel implements HasMedia
 {
     use HasTranslations;
-    use HasTranslations;
     use InteractsWithMedia;
 
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
