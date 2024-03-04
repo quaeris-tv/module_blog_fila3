@@ -6,10 +6,11 @@ namespace Modules\Blog\Actions\Article;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
+use Modules\Rating\Models\Rating;
 use Spatie\QueueableAction\QueueableAction;
-use Webmozart\Assert\Assert;
 
 class ImportArticlesFromByJsonTextAction
 {
@@ -77,13 +78,23 @@ class ImportArticlesFromByJsonTextAction
 
             // dddx($article_data);
 
-            Article::firstOrCreate($article_where, $article_data);
+            $article = Article::firstOrCreate($article_where, $article_data);
 
             foreach ($j['outcomes'] as $rating) {
-                dddx($rating);
+                $rating_where = [
+                    'title' => $rating['title'],
+                ];
+                $rating_data = [
+                    'title' => $rating['title'],
+                    'is_disabled' => $rating['disabled'],
+                ];
+
+                $article->ratings()->firstOrCreate($rating_where, $rating_data)
+                    ->addMediaFromUrl($rating['thumbnail_2x'])
+                    ->toMediaCollection('rating');
             }
 
-            dddx($j['outcomes']);
+            // dddx($j['outcomes']);
         }
     }
 }
