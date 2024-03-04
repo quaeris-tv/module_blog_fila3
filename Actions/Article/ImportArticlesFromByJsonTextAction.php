@@ -6,11 +6,10 @@ namespace Modules\Blog\Actions\Article;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
-use Modules\Rating\Models\Rating;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class ImportArticlesFromByJsonTextAction
 {
