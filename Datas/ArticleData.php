@@ -38,11 +38,11 @@ class ArticleData extends Data
 
     public function url(string $type): string
     {
-        if($type == 'show'){
+        if ('show' == $type) {
             return '/'.app()->getLocale().'/article/'.$this->slug;
         }
 
-        if($type == 'edit'){
+        if ('edit' == $type) {
             return '/'.app()->getLocale().'/article/'.$this->slug.'/edit';
         }
     }
