@@ -6,22 +6,22 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Modules\User\Models\User;
-use Illuminate\Support\Carbon;
-use Modules\Rating\Models\Rating;
-use Spatie\MediaLibrary\HasMedia;
-use Modules\Rating\Models\RatingMorph;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\InteractsWithMedia;
-// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\User\Models\Traits\IsProfileTrait;
-use Modules\Xot\Contracts\ModelWithUserContract;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+use Illuminate\Support\Carbon;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
+use Modules\User\Models\Traits\IsProfileTrait;
+use Modules\User\Models\User;
+// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Modules\Xot\Contracts\ModelWithUserContract;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 
 /**
  * Modules\Blog\Models\Profile.
