@@ -6,19 +6,22 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Modules\User\Models\User;
 use Illuminate\Support\Carbon;
 use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\Traits\IsProfileTrait;
-use Modules\User\Models\User;
-// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Spatie\MediaLibrary\HasMedia;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Database\Eloquent\Builder;
+use Modules\Xot\Contracts\ProfileContract;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Modules\User\Models\Traits\IsProfileTrait;
+use Modules\Xot\Contracts\ModelWithUserContract;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Modules\Blog\Models\Profile.
@@ -71,8 +74,9 @@ use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
  *
  * @mixin \Eloquent
  */
-class Profile extends BaseModel implements HasMedia
+class Profile extends BaseModel implements HasMedia, ProfileContract, ModelWithUserContract
 {
+    use HasRoles;
     use InteractsWithMedia;
     use IsProfileTrait;
     use SchemalessAttributesTrait;
