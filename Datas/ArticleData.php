@@ -21,17 +21,29 @@ class ArticleData extends Data
         public ?array $sidebar_blocks,
         public ?array $footer_blocks,
         public ?Collection $categories,
+        public ?string $url,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
         // public int $credit;
     ) {
-        $this->url = '/'.app()->getLocale().'/article/'.$slug;
+        // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
     }
 
     public function getCategories(): Collection
     {
         return Category::find($this->category_id)->bloodline()->get()->reverse();
+    }
+
+    public function url(string $type): string
+    {
+        if($type == 'show'){
+            return '/'.app()->getLocale().'/article/'.$this->slug;
+        }
+
+        if($type == 'edit'){
+            return '/'.app()->getLocale().'/article/'.$this->slug.'/edit';
+        }
     }
 }
