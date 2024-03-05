@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
+use Illuminate\Support\Collection;
+use Modules\Blog\Models\Category;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Category;
-use Illuminate\Support\Collection;
 
 class ArticleData extends Data
 {
@@ -35,6 +35,7 @@ class ArticleData extends Data
     public function getCategories(): Collection
     {
         Assert::notNull($category = Category::find($this->category_id));
+
         return $category->bloodline()->get()->reverse();
     }
 

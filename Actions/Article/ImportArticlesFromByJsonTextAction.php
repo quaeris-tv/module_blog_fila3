@@ -8,9 +8,11 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
+
+use function Safe\json_decode;
+
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
-use function Safe\json_decode;
 
 class ImportArticlesFromByJsonTextAction
 {
