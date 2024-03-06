@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\Category;
 
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Category;
 use Illuminate\Support\Collection;
+use Modules\Blog\Models\Category;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class GetBloodline
 {
