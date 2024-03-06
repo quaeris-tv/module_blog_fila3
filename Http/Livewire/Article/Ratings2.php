@@ -4,23 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
-use Filament\Forms\Form;
-use Filament\Pages\Page;
-use Illuminate\Support\Arr;
 use Filament\Actions\Action;
-use Webmozart\Assert\Assert;
 use Filament\Facades\Filament;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Form;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Livewire\Component;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Illuminate\Support\Collection;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Filament\Forms\Concerns\InteractsWithForms;
+use Webmozart\Assert\Assert;
 
 class Ratings2 extends Component
 {
@@ -50,7 +47,6 @@ class Ratings2 extends Component
         // $data = [];
         // $data['ratings'] = $profile_ratings;
 
-
         $this->datas = $this->article
             ->ratings()
             // ->with('media')
@@ -58,11 +54,9 @@ class Ratings2 extends Component
             // ->distinct()
             ->get()
             // ->toArray()
-            ;
+        ;
 
         // dddx($ratings);
-
-
 
         // $this->form->fill(auth()->user()->company->attributesToArray());
         // $this->form->fill($data);
