@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Blog\Http\Livewire\Article;
+namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
 use Filament\Actions\Action;
 use Filament\Facades\Filament;
@@ -23,7 +23,7 @@ use Webmozart\Assert\Assert;
 /**
  * @property ComponentContainer $form
  */
-class RatingsForImage extends Page implements HasForms
+class ForImage extends Page implements HasForms
 {
     use InteractsWithForms;
     public Article $article;
