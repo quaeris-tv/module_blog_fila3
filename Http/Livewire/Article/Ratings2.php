@@ -35,7 +35,7 @@ class Ratings2 extends Component
     {
         $this->article = $article;
         $this->tpl = $tpl;
-        $this->user_id = (string) Filament::auth()->id();
+        // $this->user_id = (string) Filament::auth()->id();
         // $this->profile = Profile::firstOrCreate(['user_id' => $this->user_id]);
         // $profile_ratings = $this->profile
         //     ->ratings()
@@ -126,28 +126,29 @@ class Ratings2 extends Component
 
     public function bet(int $data_id): void
     {
+        $this->dispatch('bet-created', data_id: $data_id);
         dddx('bet '.$data_id);
     }
 
     public function save(): void
     {
         dddx('save');
-        $data = $this->form->getState();
-        $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-        Assert::isArray($ratings_add = $data['ratings_add']);
-        foreach ($ratings_add as $rating_id => $rating) {
-            $credit = $rating['value'];
-            if (null != $credit) {
-                $command = RatingArticleData::from([
-                    'userId' => $this->user_id,
-                    'articleId' => $this->article->id,
-                    'ratingId' => $rating_id,
-                    'credit' => $credit,
-                ]);
+        // $data = $this->form->getState();
+        // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
+        // Assert::isArray($ratings_add = $data['ratings_add']);
+        // foreach ($ratings_add as $rating_id => $rating) {
+        //     $credit = $rating['value'];
+        //     if (null != $credit) {
+        //         $command = RatingArticleData::from([
+        //             'userId' => $this->user_id,
+        //             'articleId' => $this->article->id,
+        //             'ratingId' => $rating_id,
+        //             'credit' => $credit,
+        //         ]);
 
-                $article_aggregate->rating($command);
-            }
-        }
+        //         $article_aggregate->rating($command);
+        //     }
+        // }
 
         //    auth()->user()->company->update($data);
         // } catch (Halt $exception) {
