@@ -30,10 +30,10 @@
 			</div>
 		</div>
 		<!-- filterlist -->
-		@include('pub_theme::layouts.home.play_money_markets.filter_list')
+		@include('blog::components.blocks.article_list.play_money_markets.filter_list')
 
 		<!-- list of markets -->
-		@include('pub_theme::layouts.home.play_money_markets.list_of_markets')
+		@include('blog::components.blocks.article_list.play_money_markets.list_of_markets')
 
 		<div class="py-12 flex justify-center">
 			<button type="button"
