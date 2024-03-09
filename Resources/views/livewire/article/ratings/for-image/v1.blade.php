@@ -1,5 +1,5 @@
 @if(Auth::guest())
-    @include('pub_theme::article.show.sidebar.guest')
+    @include('blog::livewire.article.ratings.for-image.v1.guest')
 @else
-    @include('pub_theme::article.show.sidebar.check')
+    @include('blog::livewire.article.ratings.for-image.v1.check')
 @endif

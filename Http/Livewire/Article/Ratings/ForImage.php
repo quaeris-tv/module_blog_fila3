@@ -32,6 +32,7 @@ class ForImage extends Page implements HasForms
     public string $user_id;
     public array $data = [];
     public Profile $profile;
+    public array $article_ratings = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -41,20 +42,29 @@ class ForImage extends Page implements HasForms
     {
         $this->article = $article;
         $this->tpl = $tpl;
-        $this->user_id = (string) Filament::auth()->id();
-        $this->profile = Profile::firstOrCreate(['user_id' => $this->user_id]);
-        $ratings = $this->profile
-            ->ratings()
-            ->select('rating_id as id', 'value')
-            ->get()
-            ->keyBy('id')
-            ->toArray();
-        // dddx($ratings);
-        $data = [];
-        $data['ratings'] = $ratings;
 
-        // $this->form->fill(auth()->user()->company->attributesToArray());
-        $this->form->fill($data);
+        // $this->user_id = (string) Filament::auth()->id();
+        // $this->profile = Profile::firstOrCreate(['user_id' => $this->user_id]);
+        // $profile_ratings = $this->profile
+        //     ->ratings()
+        //     ->select('rating_id as id', 'value')
+        //     ->get()
+        //     ->keyBy('id')
+        //     ->toArray();
+        // // dddx($ratings);
+        // $data = [];
+        // $data['ratings'] = $profile_ratings;
+        // dddx($data);
+
+
+        $this->article_ratings = $this->article
+            ->ratings()
+            ->where('user_id', null)
+            ->distinct()
+            ->get()
+            ->toArray();
+        // dddx($article_ratings);
+
     }
 
     public function render(): \Illuminate\Contracts\View\View
@@ -76,52 +86,53 @@ class ForImage extends Page implements HasForms
         return '#';
     }
 
-    public function form(Form $form): Form
-    {
-        $ratings = $this->article
-            ->ratings()
-            ->where('user_id', null)
-            ->distinct()
-            ->get();
+    // public function form(Form $form): Form
+    // {
+    //     $ratings = $this->article
+    //         ->ratings()
+    //         ->where('user_id', null)
+    //         ->distinct()
+    //         ->get();
 
-        $schema = [];
-        foreach ($ratings as $rating) {
-            /*
-            $schema[] = TextInput::make('ratings.'.$rating->id.'.value')
-                ->label($rating->title.' tot ')
-                ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-                ->disabled();
-            */
-            /*
-            $schema[]=TextInput::make('ratings_add.'.$rating->id.'.id')
-                ->default($rating->id);
-            */
-            $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
-                ->label($rating->title)
-                ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-                // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-                // ->disabled()
-            ;
-        }
+    //     $schema = [];
+    //     foreach ($ratings as $rating) {
+    //         /*
+    //         $schema[] = TextInput::make('ratings.'.$rating->id.'.value')
+    //             ->label($rating->title.' tot ')
+    //             ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+    //             ->disabled();
+    //         */
+    //         /*
+    //         $schema[]=TextInput::make('ratings_add.'.$rating->id.'.id')
+    //             ->default($rating->id);
+    //         */
+    //         $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
+    //             ->label($rating->title)
+    //             ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
+    //             // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+    //             // ->disabled()
+    //         ;
+    //     }
 
-        // dddx($schema);
-        return $form
-            ->schema($schema)
-            ->statePath('data');
-    }
+    //     // dddx($schema);
+    //     return $form
+    //         ->schema($schema)
+    //         ->statePath('data');
+    // }
 
-    protected function getFormActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-                ->submit('save'),
-        ];
-    }
+    // protected function getFormActions(): array
+    // {
+    //     return [
+    //         Action::make('save')
+    //             ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
+    //             ->submit('save'),
+    //     ];
+    // }
 
     public function save(): void
     {
         $data = $this->form->getState();
+        dddx($data);
         $article_aggregate = ArticleAggregate::retrieve($this->article->id);
         Assert::isArray($ratings_add = $data['ratings_add']);
         foreach ($ratings_add as $rating_id => $rating) {
