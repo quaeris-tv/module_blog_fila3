@@ -56,7 +56,6 @@ class ForImage extends Page implements HasForms
         // $data['ratings'] = $profile_ratings;
         // dddx($data);
 
-
         $this->article_ratings = $this->article
             ->ratings()
             ->where('user_id', null)
@@ -64,7 +63,6 @@ class ForImage extends Page implements HasForms
             ->get()
             ->toArray();
         // dddx($article_ratings);
-
     }
 
     public function render(): \Illuminate\Contracts\View\View
