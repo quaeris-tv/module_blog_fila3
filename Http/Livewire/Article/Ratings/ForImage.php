@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Filament\Actions\Action;
-use Filament\Facades\Filament;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Illuminate\Support\Arr;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Modules\Blog\Datas\RatingArticleData;
+use Livewire\Attributes\On;
+use Filament\Actions\Action;
+use Webmozart\Assert\Assert;
+use Filament\Facades\Filament;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
+use Filament\Forms\Components\TextInput;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 /**
  * @property ComponentContainer $form
@@ -30,9 +31,10 @@ class ForImage extends Page implements HasForms
 
     public string $tpl = 'v1';
     public string $user_id;
-    public array $data = [];
+    // public array $data = [];
     public Profile $profile;
     public array $article_ratings = [];
+    public array $chosen_bet = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -79,10 +81,18 @@ class ForImage extends Page implements HasForms
         return view($view, $view_params);
     }
 
-    public function url(string $name, array $params): string
+    #[On('bet-created')] 
+    public function myFunction(int $rating_id, string $rating_title)
     {
-        return '#';
+        $this->chosen_bet['rating_id'] = $rating_id;
+        $this->chosen_bet['rating_title'] = $rating_title;
+        dddx('listen bet-created id '.$this->chosen_bet['rating_id'].' with title '.$this->chosen_bet['rating_title']);
     }
+
+    // public function url(string $name, array $params): string
+    // {
+    //     return '#';
+    // }
 
     // public function form(Form $form): Form
     // {
@@ -131,25 +141,20 @@ class ForImage extends Page implements HasForms
     {
         $data = $this->form->getState();
         dddx($data);
-        $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-        Assert::isArray($ratings_add = $data['ratings_add']);
-        foreach ($ratings_add as $rating_id => $rating) {
-            $credit = $rating['value'];
-            if (null != $credit) {
-                $command = RatingArticleData::from([
-                    'userId' => $this->user_id,
-                    'articleId' => $this->article->id,
-                    'ratingId' => $rating_id,
-                    'credit' => $credit,
-                ]);
+        // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
+        // Assert::isArray($ratings_add = $data['ratings_add']);
+        // foreach ($ratings_add as $rating_id => $rating) {
+        //     $credit = $rating['value'];
+        //     if (null != $credit) {
+        //         $command = RatingArticleData::from([
+        //             'userId' => $this->user_id,
+        //             'articleId' => $this->article->id,
+        //             'ratingId' => $rating_id,
+        //             'credit' => $credit,
+        //         ]);
 
-                $article_aggregate->rating($command);
-            }
-        }
-
-        //    auth()->user()->company->update($data);
-        // } catch (Halt $exception) {
-        //    return;
+        //         $article_aggregate->rating($command);
+        //     }
         // }
     }
 }

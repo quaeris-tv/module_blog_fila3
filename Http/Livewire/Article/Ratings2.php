@@ -124,10 +124,9 @@ class Ratings2 extends Component
     //     ];
     // }
 
-    public function bet(int $data_id): void
+    public function bet(int $rating_id, string $rating_title): void
     {
-        $this->dispatch('bet-created', data_id: $data_id);
-        dddx('bet '.$data_id);
+        $this->dispatch('bet-created', rating_id: $rating_id, rating_title: $rating_title);
     }
 
     public function save(): void
