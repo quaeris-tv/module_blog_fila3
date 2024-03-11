@@ -10,15 +10,17 @@
                         
                         {{-- {{ $chosen_bet_title }} --}}
                         
-                        @if(isset($chosen_bet['rating_title']))
-                            {{ $chosen_bet['rating_title'] }}
-                        @endif
+                        {{-- @if(isset($this->chosen_bet['rating_title']))
+                            {{ $this->chosen_bet['rating_title'] }}
+                        @endif --}}
+
                         
+                        {{-- {{ $rating_title }} --}}
                   
-                    
+                        {{ $ratingTitle }}
                     
                     </span>
-                    <div class="">
+                    {{-- <div class="">
                         <button
                             id="dropdownHoverButton"
                             data-dropdown-toggle="dropdownHover"
@@ -47,7 +49,7 @@
                         <!-- Dropdown menu -->
                         @include('blog::livewire.article.ratings.for-image.v1.check.dropdown_menu')
 
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="w-full px-4 py-2.5 bg-white inline-flex items-center justify-between">

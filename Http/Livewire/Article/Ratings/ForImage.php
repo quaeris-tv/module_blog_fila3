@@ -34,7 +34,9 @@ class ForImage extends Page implements HasForms
     // public array $data = [];
     public Profile $profile;
     public array $article_ratings = [];
-    public array $chosen_bet = [];
+    // public array $chosen_bet = [];
+    public ?string $rating_title = '';
+    public ?int $rating_id = null;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -45,25 +47,12 @@ class ForImage extends Page implements HasForms
         $this->article = $article;
         $this->tpl = $tpl;
 
-        // $this->user_id = (string) Filament::auth()->id();
-        // $this->profile = Profile::firstOrCreate(['user_id' => $this->user_id]);
-        // $profile_ratings = $this->profile
+        // $this->article_ratings = $this->article
         //     ->ratings()
-        //     ->select('rating_id as id', 'value')
+        //     ->where('user_id', null)
+        //     ->distinct()
         //     ->get()
-        //     ->keyBy('id')
         //     ->toArray();
-        // // dddx($ratings);
-        // $data = [];
-        // $data['ratings'] = $profile_ratings;
-        // dddx($data);
-
-        $this->article_ratings = $this->article
-            ->ratings()
-            ->where('user_id', null)
-            ->distinct()
-            ->get()
-            ->toArray();
         // dddx($article_ratings);
     }
 
@@ -76,6 +65,7 @@ class ForImage extends Page implements HasForms
 
         $view_params = [
             'view' => $view,
+            'ratingTitle' => $this->rating_title,
             // 'chosen_bet_title' => $this->chosen_bet['rating_title'] ?? 'aaaaaaaa'
         ];
 
@@ -83,79 +73,27 @@ class ForImage extends Page implements HasForms
     }
 
     #[On('bet-created')]
-    public function myFunction(int $rating_id, string $rating_title)
+    public function myFunction(
+        // int $rating_id, 
+        string $rating_title)
     {
-        $this->chosen_bet['rating_id'] = $rating_id;
-        $this->chosen_bet['rating_title'] = $rating_title;
+        // $this->reset('rating_title');
+        // $this->reset('rating_id');
+
+        // $this->chosen_bet['rating_id'] = $rating_id;
+        // $this->chosen_bet['rating_title'] = $rating_title;
+
+        // $this->rating_id = $rating_id;
+        $this->rating_title = $rating_title;
+
+        // $this->render();
+
+
         // dddx('listen bet-created id '.$this->chosen_bet['rating_id'].' with title '.$this->chosen_bet['rating_title']);
+        // $this->reset('chosen_bet'); 
+
+        // dddx($this->chosen_bet);
+
     }
 
-    // public function url(string $name, array $params): string
-    // {
-    //     return '#';
-    // }
-
-    // public function form(Form $form): Form
-    // {
-    //     $ratings = $this->article
-    //         ->ratings()
-    //         ->where('user_id', null)
-    //         ->distinct()
-    //         ->get();
-
-    //     $schema = [];
-    //     foreach ($ratings as $rating) {
-    //         /*
-    //         $schema[] = TextInput::make('ratings.'.$rating->id.'.value')
-    //             ->label($rating->title.' tot ')
-    //             ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-    //             ->disabled();
-    //         */
-    //         /*
-    //         $schema[]=TextInput::make('ratings_add.'.$rating->id.'.id')
-    //             ->default($rating->id);
-    //         */
-    //         $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
-    //             ->label($rating->title)
-    //             ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-    //             // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-    //             // ->disabled()
-    //         ;
-    //     }
-
-    //     // dddx($schema);
-    //     return $form
-    //         ->schema($schema)
-    //         ->statePath('data');
-    // }
-
-    // protected function getFormActions(): array
-    // {
-    //     return [
-    //         Action::make('save')
-    //             ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-    //             ->submit('save'),
-    //     ];
-    // }
-
-    public function save(): void
-    {
-        $data = $this->form->getState();
-        dddx($data);
-        // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-        // Assert::isArray($ratings_add = $data['ratings_add']);
-        // foreach ($ratings_add as $rating_id => $rating) {
-        //     $credit = $rating['value'];
-        //     if (null != $credit) {
-        //         $command = RatingArticleData::from([
-        //             'userId' => $this->user_id,
-        //             'articleId' => $this->article->id,
-        //             'ratingId' => $rating_id,
-        //             'credit' => $credit,
-        //         ]);
-
-        //         $article_aggregate->rating($command);
-        //     }
-        // }
-    }
 }

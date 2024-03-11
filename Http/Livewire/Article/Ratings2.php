@@ -126,12 +126,15 @@ class Ratings2 extends Component
 
     public function bet(int $rating_id, string $rating_title): void
     {
-        $this->dispatch('bet-created', rating_id: $rating_id, rating_title: $rating_title);
+        $this->dispatch('bet-created', 
+            // rating_id: $rating_id, 
+            rating_title: $rating_title
+        );
     }
 
-    public function save(): void
-    {
-        dddx('save');
+    // public function save(): void
+    // {
+    //     dddx('save');
         // $data = $this->form->getState();
         // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
         // Assert::isArray($ratings_add = $data['ratings_add']);
@@ -153,5 +156,5 @@ class Ratings2 extends Component
         // } catch (Halt $exception) {
         //    return;
         // }
-    }
+    // }
 }
