@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Modules\Blog\Filament\Resources\MenuResource\Pages;
 use Modules\Blog\Models\Menu;
+use Filament\Resources\Resource;
+use Modules\Blog\Filament\Resources\MenuResource\Pages;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class MenuResource extends Resource
 {
@@ -45,6 +46,22 @@ class MenuResource extends Resource
                         ->default('internal')
                         ->required()
                         ->inline(),
+
+                    SpatieMediaLibraryFileUpload::make('image')
+                        // ->image()
+                        // ->maxSize(5000)
+                        // ->multiple()
+                        // ->enableReordering()
+                        ->openable()
+                        ->downloadable()
+                        ->columnSpanFull()
+                        // ->collection('avatars')
+                        // ->conversion('thumbnail')
+                        ->disk('uploads')
+                        ->directory('photos')
+                        ->collection('menu')
+                    // ->preserveFilenames()
+                    ,
                 ])
                 ->columnSpanFull(),
         ]);

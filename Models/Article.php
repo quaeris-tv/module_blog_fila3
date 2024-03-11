@@ -136,7 +136,8 @@ use Webmozart\Assert\Assert;
  * @mixin \Eloquent
  */
 class Article extends BaseModel implements Feedable, HasMedia // , Searchable
-{use HasStatuses;
+{
+    use HasStatuses;
     use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
