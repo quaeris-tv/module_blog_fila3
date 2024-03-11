@@ -126,8 +126,8 @@ class Ratings2 extends Component
 
     public function bet(int $rating_id, string $rating_title): void
     {
-        $this->dispatch('bet-created', 
-            // rating_id: $rating_id, 
+        $this->dispatch('bet-created',
+            // rating_id: $rating_id,
             rating_title: $rating_title
         );
     }
@@ -135,26 +135,26 @@ class Ratings2 extends Component
     // public function save(): void
     // {
     //     dddx('save');
-        // $data = $this->form->getState();
-        // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-        // Assert::isArray($ratings_add = $data['ratings_add']);
-        // foreach ($ratings_add as $rating_id => $rating) {
-        //     $credit = $rating['value'];
-        //     if (null != $credit) {
-        //         $command = RatingArticleData::from([
-        //             'userId' => $this->user_id,
-        //             'articleId' => $this->article->id,
-        //             'ratingId' => $rating_id,
-        //             'credit' => $credit,
-        //         ]);
+    // $data = $this->form->getState();
+    // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
+    // Assert::isArray($ratings_add = $data['ratings_add']);
+    // foreach ($ratings_add as $rating_id => $rating) {
+    //     $credit = $rating['value'];
+    //     if (null != $credit) {
+    //         $command = RatingArticleData::from([
+    //             'userId' => $this->user_id,
+    //             'articleId' => $this->article->id,
+    //             'ratingId' => $rating_id,
+    //             'credit' => $credit,
+    //         ]);
 
-        //         $article_aggregate->rating($command);
-        //     }
-        // }
+    //         $article_aggregate->rating($command);
+    //     }
+    // }
 
-        //    auth()->user()->company->update($data);
-        // } catch (Halt $exception) {
-        //    return;
-        // }
+    //    auth()->user()->company->update($data);
+    // } catch (Halt $exception) {
+    //    return;
+    // }
     // }
 }

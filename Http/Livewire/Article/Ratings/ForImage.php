@@ -4,22 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Filament\Actions\Action;
 use Filament\Facades\Filament;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Illuminate\Support\Arr;
 use Livewire\Attributes\On;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
 
 /**
  * @property ComponentContainer $form
@@ -74,7 +67,7 @@ class ForImage extends Page implements HasForms
 
     #[On('bet-created')]
     public function myFunction(
-        // int $rating_id, 
+        // int $rating_id,
         string $rating_title)
     {
         // $this->reset('rating_title');
@@ -88,12 +81,9 @@ class ForImage extends Page implements HasForms
 
         // $this->render();
 
-
         // dddx('listen bet-created id '.$this->chosen_bet['rating_id'].' with title '.$this->chosen_bet['rating_title']);
-        // $this->reset('chosen_bet'); 
+        // $this->reset('chosen_bet');
 
         // dddx($this->chosen_bet);
-
     }
-
 }
