@@ -76,9 +76,11 @@ class ForImage extends Page implements HasForms
         // $this->chosen_bet['rating_id'] = $rating_id;
         // $this->chosen_bet['rating_title'] = $rating_title;
 
+        // dddx($rating_title);
+
         // $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
-
+        // dddx($this->rating_title);
         // $this->render();
 
         // dddx('listen bet-created id '.$this->chosen_bet['rating_id'].' with title '.$this->chosen_bet['rating_title']);
