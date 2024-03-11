@@ -76,6 +76,7 @@ class ForImage extends Page implements HasForms
 
         $view_params = [
             'view' => $view,
+            // 'chosen_bet_title' => $this->chosen_bet['rating_title'] ?? 'aaaaaaaa'
         ];
 
         return view($view, $view_params);
@@ -86,7 +87,7 @@ class ForImage extends Page implements HasForms
     {
         $this->chosen_bet['rating_id'] = $rating_id;
         $this->chosen_bet['rating_title'] = $rating_title;
-        dddx('listen bet-created id '.$this->chosen_bet['rating_id'].' with title '.$this->chosen_bet['rating_title']);
+        // dddx('listen bet-created id '.$this->chosen_bet['rating_id'].' with title '.$this->chosen_bet['rating_title']);
     }
 
     // public function url(string $name, array $params): string

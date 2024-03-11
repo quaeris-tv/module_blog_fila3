@@ -6,7 +6,18 @@
         <div class="flex flex-col my-4 border gap-3 rounded-t justify-center items-center w-11/12 mx-auto">
             <div class="bg-neutral-1 w-full p-1 rounded mx-auto">
                 <div class="py-4 px-2 flex justify-between items-center">
-                    <span class="text-sm">Your bet</span>
+                    <span class="text-sm">Your bet 
+                        
+                        {{-- {{ $chosen_bet_title }} --}}
+                        
+                        @if(isset($chosen_bet['rating_title']))
+                            {{ $chosen_bet['rating_title'] }}
+                        @endif
+                        
+                  
+                    
+                    
+                    </span>
                     <div class="">
                         <button
                             id="dropdownHoverButton"
