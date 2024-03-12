@@ -1,5 +1,6 @@
 <div class="flex flex-nowrap overflow-x-auto lg:grid lg:grid-cols-3 gap-2 pl-6 lg:pl-0">
-    <template x-for="outcome in market.outcomes">
+    {{-- wip --}}
+    {{-- <template x-for="outcome in market.outcomes">
         <div
             class="p-1.5 flex flex-col justify-between gap-10 w-[128px] lg:w-auto min-w-[128px] isolate relative overflow-hidden rounded-lg group/outcome">
             <div class="absolute inset-0 -z-[1]">
@@ -14,5 +15,5 @@
             </div>
             <p x-text="outcome.title" class="text-sm font-medium text-white leading-[1.1]"></p>
         </div>
-    </template>
+    </template> --}}
 </div>

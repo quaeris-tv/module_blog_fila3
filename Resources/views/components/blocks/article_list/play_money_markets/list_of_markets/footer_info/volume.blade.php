@@ -15,7 +15,7 @@
                 fill="#1591ed"></path>
         </svg>
         <span class="text-sm text-neutral-3"
-            x-text="formatCurrency(market.volume_play_money)+' ø in play money'"></span>
+            {{-- x-text="formatCurrency(market.volume_play_money)+'øinplaymoney'" --}}></span>
     </div>
     <div class="flex items-center gap-2">
         <svg width="16px" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +24,6 @@
                 fill="#00D966"></path>
         </svg>
         <span class="text-sm text-neutral-3"
-            x-text="'≈'+formatCurrency(market.volume_real_money,'en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits: 2})+' in USD'"></span>
+            {{-- x-text="'≈'+formatCurrency(market.volume_real_money,'en-US',style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2)+'inUSD'" --}}></span>
     </div>
 </div>
