@@ -6,19 +6,19 @@
         <div class="flex flex-col my-4 border gap-3 rounded-t justify-center items-center w-11/12 mx-auto">
             <div class="bg-neutral-1 w-full p-1 rounded mx-auto">
                 <div class="py-4 px-2 flex justify-between items-center">
-                    <span class="text-sm">Your bet 
-                        
+                    <span class="text-sm">Your bet
+
                         {{-- {{ $chosen_bet_title }} --}}
-                        
+
                         {{-- @if(isset($this->chosen_bet['rating_title']))
                             {{ $this->chosen_bet['rating_title'] }}
                         @endif --}}
 
-                        
+
                         {{-- {{ $rating_title }} --}}
-                  
-                        {{ $ratingTitle }}
-                    
+
+                        {{ $rating_title }} {{ $rating_id }}
+
                     </span>
                     {{-- <div class="">
                         <button
