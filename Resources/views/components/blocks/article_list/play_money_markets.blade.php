@@ -1,5 +1,5 @@
 <div class="max-w-[calc(100%-30px)] sm:max-w-[calc(100%-80px)] lg:max-w-[996px] mx-auto pb-12">
-	<section class="pt-8" aria-label="Play Money Markets" x-data="playmarkets">
+	<section class="pt-8" aria-label="Play Money Markets" x-data="playmarkets" id="playmarkets">
 		<div class="flex justify-between items-center gap-4">
 			<div class="flex items-center gap-4">
 				<p class="text-neutral-5 text-base font-semibold">
@@ -22,11 +22,11 @@
 				focusAfter && focusAfter.focus()
 				}
 				}" x-on:keydown.escape.prevent.stop="close($refs.button)"
-				x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']"
+				{{-- x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" --}}
 				class="relative">
 
 				<!-- order select -->
-				{{-- @include('pub_theme::layouts.home.play_money_markets.order_select') --}}
+				@include('pub_theme::layouts.home.play_money_markets.order_select')
 			</div>
 		</div>
 		<!-- filterlist -->
