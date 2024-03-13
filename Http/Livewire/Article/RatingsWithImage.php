@@ -6,7 +6,6 @@ namespace Modules\Blog\Http\Livewire\Article;
 
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Form;
-use Illuminate\Support\Collection;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
