@@ -53,13 +53,14 @@ class ArticleData extends Data
 
     public function url(string $type): string
     {
+        $lang = app()->getLocale();
         if ('show' == $type) {
-            return '/'.app()->getLocale().'/article/'.$this->slug;
+            return '/'.$lang.'/article/'.$this->slug;
         }
 
-        if ('edit' == $type) {
-            return '/'.app()->getLocale().'/article/'.$this->slug.'/edit';
-        }
+        // if ('edit' == $type) { // NON ESISTE EDIT NEL FRONTEND !!!
+        //    return '/'.$lang.'/article/'.$this->slug.'/edit';
+        // }
 
         return '#';
     }
