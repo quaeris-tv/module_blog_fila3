@@ -278,6 +278,11 @@ class ThemeComposer
 
         $tmp = [];
         foreach ($results as $content) {
+            if (is_array($content['title'])) {
+                $lang = app()->getLocale();
+                $content['title'] = $content['title'][$lang] ?? last($content['title']);
+            }
+
             $tmp[] = ArticleData::from($content);
         }
 

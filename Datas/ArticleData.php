@@ -12,10 +12,12 @@ use Webmozart\Assert\Assert;
 
 class ArticleData extends Data
 {
+    public string $title = '';
+
     public function __construct(
-        public string $title,
+        array|string $title,
         public string $slug,
-        public int $category_id,
+        public ?int $category_id,
         public ?string $status,
         public bool $show_on_homepage,
         public string $published_at,
@@ -29,6 +31,13 @@ class ArticleData extends Data
         // public string $ratingId;
         // public int $credit;
     ) {
+        if (is_array($title)) {
+            $lang = app()->getLocale();
+            $title = $title[$lang] ?? last($title);
+        }
+        if (is_string($title)) {
+            $this->title = $title;
+        }
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
     }
