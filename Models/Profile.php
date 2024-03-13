@@ -17,6 +17,10 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 class Profile extends XotBaseProfile
 {
+
+     /** @var string */
+    protected $connection = 'blog';
+
     /** @var array<int, string> */
     protected $fillable = [
         'id',
