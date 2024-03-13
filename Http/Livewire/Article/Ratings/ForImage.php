@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Livewire\Component;
-use Filament\Pages\Page;
-use Livewire\Attributes\On;
-use Modules\Blog\Models\Article;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
-use Modules\Xot\Actions\GetViewAction;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Livewire\Attributes\On;
+use Livewire\Component;
+use Modules\Blog\Models\Article;
+use Modules\Xot\Actions\GetViewAction;
 
 class ForImage extends Component
 {
