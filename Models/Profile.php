@@ -17,8 +17,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 class Profile extends XotBaseProfile
 {
-
-     /** @var string */
+    /** @var string */
     protected $connection = 'blog';
 
     /** @var array<int, string> */
