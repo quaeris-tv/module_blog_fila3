@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
+use Livewire\Component;
 use Filament\Pages\Page;
 use Livewire\Attributes\On;
 use Modules\Blog\Models\Article;
+use Filament\Forms\ComponentContainer;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
+use Filament\Forms\Concerns\InteractsWithForms;
 
-/**
- * @property ComponentContainer $form
- */
-class ForImage extends Page implements HasForms
+class ForImage extends Component
 {
     use InteractsWithForms;
     public Article $article;
