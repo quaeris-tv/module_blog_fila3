@@ -119,10 +119,12 @@ class ThemeComposer
         return $footerCategories;
     }
 
+    //--- da fare con parental
     public function getFooterAuthors(): Collection
     {
-        $footerAuthors = Profile::profileIsAuthor()
-            ->take(8)
+        //$footerAuthors = Profile::profileIsAuthor()
+            //->take(8)
+        $footerAuthors = Profile::take(8)
             ->get();
 
         return $footerAuthors;
@@ -290,6 +292,12 @@ class ThemeComposer
         return $tmp;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $menu_name
+     * @return void
+     */
     public function getMenu(string $menu_name)
     {
         dddx(Menu::where('name', $menu_name)->first()->items);
