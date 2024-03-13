@@ -119,11 +119,11 @@ class ThemeComposer
         return $footerCategories;
     }
 
-    //--- da fare con parental
+    // --- da fare con parental
     public function getFooterAuthors(): Collection
     {
-        //$footerAuthors = Profile::profileIsAuthor()
-            //->take(8)
+        // $footerAuthors = Profile::profileIsAuthor()
+        // ->take(8)
         $footerAuthors = Profile::take(8)
             ->get();
 
@@ -293,9 +293,8 @@ class ThemeComposer
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param string $menu_name
      * @return void
      */
     public function getMenu(string $menu_name)

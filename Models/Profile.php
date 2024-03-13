@@ -6,28 +6,17 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Support\Carbon;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\Traits\IsProfileTrait;
 use Modules\User\Models\User;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\Xot\Contracts\ModelWithUserContract;
-use Modules\Xot\Contracts\ProfileContract;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Permission\Traits\HasRoles;
-use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
-use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-
 use Modules\Xot\Models\BaseProfile as XotBaseProfile;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 class Profile extends XotBaseProfile
 {
-
     /** @var array<int, string> */
     protected $fillable = [
         'id',
@@ -49,8 +38,6 @@ class Profile extends XotBaseProfile
     protected $schemalessAttributes = [
         'extra',
     ];
-
-
 
     /**
      * @return HasMany<Article>
