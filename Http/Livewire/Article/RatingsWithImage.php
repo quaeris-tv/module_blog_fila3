@@ -19,7 +19,7 @@ class RatingsWithImage extends Component
 
     public string $tpl = 'v1';
     // public string $user_id;
-    public Collection $datas;
+    public array $datas;
     // public Profile $profile;
     public int $rating_id = 0;
 
@@ -36,9 +36,9 @@ class RatingsWithImage extends Component
             ->where('user_id', null)
             // ->distinct()
             ->get()
-            // ->toArray()
+            ->toArray()
         ;
-
+        // dddx($this->datas);
         // dddx($ratings);
 
         // $this->form->fill(auth()->user()->company->attributesToArray());
