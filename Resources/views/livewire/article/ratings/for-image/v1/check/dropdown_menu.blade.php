@@ -7,12 +7,14 @@
         aria-labelledby="dropdownHoverButton"
         >
 
-        @foreach($article_ratings as $rating)
+        @foreach($article_ratings as $key => $rating)
             <li>
                 <a
                     href="#"
-                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    {{ $rating['title'] }}
+                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    wire:click="updateRating({{ $key }}, '{{ $rating }}')"
+                    >
+                    {{ $rating }}
                 </a>
             </li>
         @endforeach

@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Filament\Forms\Concerns\InteractsWithForms;
-use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
+use Filament\Facades\Filament;
 use Modules\Blog\Models\Article;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Filament\Forms\Concerns\InteractsWithForms;
 
-class ForImage extends Component
+class ForImage extends Component implements HasForms
 {
     use InteractsWithForms;
     public Article $article;
@@ -19,6 +24,8 @@ class ForImage extends Component
 
     public string $rating_title = '';
     public int $rating_id = 0;
+    public array $article_ratings = [];
+    public int $import = 0;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -26,6 +33,7 @@ class ForImage extends Component
     {
         $this->article = $article;
         $this->tpl = $tpl;
+        $this->article_ratings = $article->getOptionRatingsIdTitle();
     }
 
     public function render(): \Illuminate\Contracts\View\View
@@ -43,11 +51,32 @@ class ForImage extends Component
     }
 
     #[On('bet-created')]
-    public function myFunction(
+    public function updateRating(
         int $rating_id,
-        string $rating_title)
+        string $rating_title): void
     {
         $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
+    }
+
+    public function save(): void
+    {
+        $article_aggregate = ArticleAggregate::retrieve($this->article->id);
+        if (0 != $this->import && $this->rating_id != 0) {
+            $command = RatingArticleData::from([
+                'userId' => (string) Filament::auth()->id(),
+                'articleId' => $this->article->id,
+                'ratingId' => $this->rating_id,
+                'credit' => $this->import,
+            ]);
+
+            $article_aggregate->rating($command);
+        }
+
+        $this->rating_id = 0;
+        $this->rating_title = '';
+        $this->import = 0;
+
+        // $this->reset();
     }
 }
