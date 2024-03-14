@@ -78,7 +78,6 @@ class ForImage extends Component implements HasForms
         // $this->rating_title = '';
         // $this->import = 0;
 
-
         $this->form_data['credit'] = 0;
         dddx($this->form_data);
         // dddx([
