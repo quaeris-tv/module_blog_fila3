@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
-use Webmozart\Assert\Assert;
 use Filament\Facades\Filament;
-use Modules\Blog\Models\Article;
-use Filament\Forms\Contracts\HasForms;
-use Modules\Xot\Actions\GetViewAction;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\ArticleAggregate;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Livewire\Attributes\On;
+use Livewire\Component;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Models\Article;
+use Modules\Xot\Actions\GetViewAction;
 
 class ForImage extends Component implements HasForms
 {
@@ -62,7 +61,7 @@ class ForImage extends Component implements HasForms
     public function save(): void
     {
         $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-        if (0 != $this->import && $this->rating_id != 0) {
+        if (0 != $this->import && 0 != $this->rating_id) {
             $command = RatingArticleData::from([
                 'userId' => (string) Filament::auth()->id(),
                 'articleId' => $this->article->id,
