@@ -21,12 +21,11 @@
 									src="{{ $data['image'] }}"
 									sizes="144px"
 									/>
-
 								<div class="absolute inset-0 group-hover/outcome:bg-blue-1/50"></div>
 							</div>
 							</span>
-							<div class="bg-neutral-5 h-8 w-11 rounded-sm flex items-center justify-center text-white invisible">
-								<span>{{ $data['title'] }}</span>
+							<div class="bg-neutral-5 h-8 w-11 rounded-sm flex items-center justify-center text-white">
+								<span>66%</span>
 							</div>
 							<p class="text-sm font-medium text-white leading-[1.1]">
 								{{ $data['title'] }}

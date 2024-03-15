@@ -3,8 +3,13 @@
         <div
             class="p-1.5 flex flex-col justify-between gap-10 w-[128px] lg:w-auto min-w-[128px] isolate relative overflow-hidden rounded-lg group/outcome">
             <div class="absolute inset-0 -z-[1]">
-                {{-- <img class="object-cover h-full w-full" :alt="outcome.title" :title="outcome.title"
-                    :srcset="outcome.thumbnail_2x" sizes="144px" /> --}}
+                {{-- <img 
+                    class="object-cover h-full w-full" 
+                    :alt="outcome.title" 
+                    :title="outcome.title"
+                    :srcset="outcome.thumbnail_2x" 
+                    sizes="144px" 
+                    /> --}}
                 <div class="absolute inset-0 group-hover/outcome:bg-blue-1/50"></div>
             </div>
             {{-- <div>
