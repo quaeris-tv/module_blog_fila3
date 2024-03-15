@@ -68,10 +68,10 @@ class RatingsWithImage extends Component
             rating_title: $rating_title
         );
 
-        foreach($this->datas as $key => $data){
-            if($this->datas[$key]['id'] == $rating_id){
+        foreach ($this->datas as $key => $data) {
+            if ($this->datas[$key]['id'] == $rating_id) {
                 $this->datas[$key]['effect'] = true;
-            }else{
+            } else {
                 $this->datas[$key]['effect'] = false;
             }
         }
