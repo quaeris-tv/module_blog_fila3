@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
-use Illuminate\Support\Collection;
-use Modules\Blog\Actions\Category\GetBloodline;
-use Modules\Blog\Models\Category;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Category;
+use Illuminate\Support\Collection;
+use Modules\Blog\Actions\Category\GetBloodline;
 
 class ArticleData extends Data
 {
     public string $title = '';
 
     public function __construct(
+        public string $uuid,
         array|string $title,
         public string $slug,
         public ?int $category_id,
@@ -26,6 +28,7 @@ class ArticleData extends Data
         public ?array $footer_blocks,
         public ?Collection $categories,
         public ?string $url,
+        public ?array $ratings,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -40,6 +43,7 @@ class ArticleData extends Data
         }
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
+        $this->ratings = $this->getRatings();
     }
 
     public function getCategories(): Collection
@@ -49,6 +53,11 @@ class ArticleData extends Data
         // Assert::notNull($category = Category::find($this->category_id));
 
         // return $category->bloodline()->get()->reverse();
+    }
+
+    public function getRatings(): array
+    {
+        return Article::where('uuid', $this->uuid)->first()->getArrayRatingsWithImage();
     }
 
     public function url(string $type): string

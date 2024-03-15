@@ -23,7 +23,6 @@
 									/>
 								<div class="absolute inset-0 group-hover/outcome:bg-blue-1/50"></div>
 							</div>
-							</span>
 							<div class="bg-neutral-5 h-8 w-11 rounded-sm flex items-center justify-center text-white">
 								<span>66%</span>
 							</div>

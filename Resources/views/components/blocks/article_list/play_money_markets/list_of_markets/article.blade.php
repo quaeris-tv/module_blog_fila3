@@ -1,6 +1,5 @@
 {{-- {{ dddx($articles) }} --}}
 @foreach($articles as $article)
-
     <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6">
         <div class="pl-6 lg:pl-0">
 
@@ -21,7 +20,8 @@
             @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.categories')
         </div>
         <!-- outcomes -->
-        @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.outcomes')
+        {{-- questa blade è uguale a Blog\Resources\views\livewire\article\ratings-with-image\rating_with_image.blade.php --}}
+        @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.outcomes', ['datas' => $article->ratings])
         @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.footer_info')
     </article>
 @endforeach

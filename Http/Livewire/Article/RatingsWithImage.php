@@ -28,19 +28,21 @@ class RatingsWithImage extends Component
         $this->article = $article;
         $this->tpl = $tpl;
 
-        $ratings = $this->article
-            ->ratings()
-            // ->with('media')
-            ->where('user_id', null)
-            ->get()
-            // ->toArray()
-        ;
+        // $ratings = $this->article
+        //     ->ratings()
+        //     // ->with('media')
+        //     ->where('user_id', null)
+        //     ->get()
+        //     // ->toArray()
+        // ;
 
-        foreach ($ratings as $key => $rating) {
-            $this->datas[$key] = $rating->toArray();
-            $this->datas[$key]['image'] = $rating->getFirstMediaUrl('rating');
-            $this->datas[$key]['effect'] = false;
-        }
+        // foreach ($ratings as $key => $rating) {
+        //     $this->datas[$key] = $rating->toArray();
+        //     $this->datas[$key]['image'] = $rating->getFirstMediaUrl('rating');
+        //     $this->datas[$key]['effect'] = false;
+        // }
+
+        $this->datas = $this->article->getArrayRatingsWithImage();
 
         // dddx($this->datas);
     }

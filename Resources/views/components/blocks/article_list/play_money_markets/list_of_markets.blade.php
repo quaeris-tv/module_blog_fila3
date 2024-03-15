@@ -1,7 +1,6 @@
 <div class="py-4">
     @php
         $articles = $_theme->getMethodData($method);
-
     @endphp
 
     <template x-if="isOneCol">

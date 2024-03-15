@@ -301,6 +301,27 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
     }
 
+    public function getArrayRatingsWithImage(): array
+    {
+        $ratings = $this
+        ->ratings()
+        // ->with('media')
+        ->where('user_id', null)
+        ->get()
+        // ->toArray()
+        ;
+
+        $ratings_array = [];
+
+        foreach ($ratings as $key => $rating) {
+            $ratings_array[$key] = $rating->toArray();
+            $ratings_array[$key]['image'] = $rating->getFirstMediaUrl('rating');
+            $ratings_array[$key]['effect'] = false;
+        }
+
+        return $ratings_array;
+    }
+
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
