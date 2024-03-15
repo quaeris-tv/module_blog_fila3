@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
-use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Category;
 use Illuminate\Support\Collection;
 use Modules\Blog\Actions\Category\GetBloodline;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Category;
+use Spatie\LaravelData\Data;
+use Webmozart\Assert\Assert;
 
 class ArticleData extends Data
 {
