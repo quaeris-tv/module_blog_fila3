@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Filament\Forms\Concerns\InteractsWithForms;
 use Livewire\Component;
-use Filament\Forms\Form;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class RatingsWithImage extends Component
 {
@@ -38,7 +36,7 @@ class RatingsWithImage extends Component
             // ->toArray()
         ;
 
-        foreach($ratings as $key => $rating){
+        foreach ($ratings as $key => $rating) {
             $this->datas[$key] = $rating->toArray();
             $this->datas[$key]['image'] = $rating->getFirstMediaUrl('rating');
         }
