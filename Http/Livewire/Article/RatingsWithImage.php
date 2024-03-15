@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Form;
 use Livewire\Component;
+use Filament\Forms\Form;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class RatingsWithImage extends Component
 {
@@ -29,19 +30,20 @@ class RatingsWithImage extends Component
         $this->article = $article;
         $this->tpl = $tpl;
 
-        $this->datas = $this->article
+        $ratings = $this->article
             ->ratings()
             // ->with('media')
             ->where('user_id', null)
-            // ->distinct()
             ->get()
-            ->toArray()
+            // ->toArray()
         ;
-        // dddx($this->datas);
-        // dddx($ratings);
 
-        // $this->form->fill(auth()->user()->company->attributesToArray());
-        // $this->form->fill($data);
+        foreach($ratings as $key => $rating){
+            $this->datas[$key] = $rating->toArray();
+            $this->datas[$key]['image'] = $rating->getFirstMediaUrl('rating');
+        }
+
+        // dddx($this->datas);
     }
 
     public function render(): \Illuminate\Contracts\View\View
