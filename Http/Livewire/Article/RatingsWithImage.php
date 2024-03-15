@@ -41,6 +41,7 @@ class RatingsWithImage extends Component
         foreach($ratings as $key => $rating){
             $this->datas[$key] = $rating->toArray();
             $this->datas[$key]['image'] = $rating->getFirstMediaUrl('rating');
+            $this->datas[$key]['effect'] = false;
         }
 
         // dddx($this->datas);
@@ -68,5 +69,13 @@ class RatingsWithImage extends Component
             rating_id: $rating_id,
             rating_title: $rating_title
         );
+
+        foreach($this->datas as $key => $data){
+            if($this->datas[$key]['id'] == $rating_id){
+                $this->datas[$key]['effect'] = true;
+            }else{
+                $this->datas[$key]['effect'] = false;
+            }
+        }
     }
 }
