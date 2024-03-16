@@ -57,7 +57,8 @@ class ArticleData extends Data
 
     public function getRatings(): array
     {
-        return Article::where('uuid', $this->uuid)->first()->getArrayRatingsWithImage();
+        Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+        return $article->getArrayRatingsWithImage();
     }
 
     public function url(string $type): string

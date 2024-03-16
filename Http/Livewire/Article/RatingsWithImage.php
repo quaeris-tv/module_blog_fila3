@@ -13,37 +13,28 @@ use Modules\Xot\Actions\GetViewAction;
 class RatingsWithImage extends Component
 {
     use InteractsWithForms;
-    public Article $article;
+    public ?Article $article = null;
 
-    public string $tpl = 'v1';
+    // public string $tpl = 'v1';
     // public string $user_id;
     public array $datas;
     // public Profile $profile;
     public int $rating_id = 0;
+    public string $type = 'show';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public function mount(Article $article, string $tpl = 'v1'): void
+    public function mount(Article $article, string $type, ?array $ratings = null): void
     {
-        $this->article = $article;
-        $this->tpl = $tpl;
+        // $this->tpl = $tpl;
+        $this->type = $type;
 
-        // $ratings = $this->article
-        //     ->ratings()
-        //     // ->with('media')
-        //     ->where('user_id', null)
-        //     ->get()
-        //     // ->toArray()
-        // ;
-
-        // foreach ($ratings as $key => $rating) {
-        //     $this->datas[$key] = $rating->toArray();
-        //     $this->datas[$key]['image'] = $rating->getFirstMediaUrl('rating');
-        //     $this->datas[$key]['effect'] = false;
-        // }
-
-        $this->datas = $this->article->getArrayRatingsWithImage();
-
+        if($ratings == null){
+            $this->article = $article;
+            $this->datas = $this->article->getArrayRatingsWithImage();
+        }else{
+            $this->datas = $ratings;
+        }
         // dddx($this->datas);
     }
 
@@ -52,7 +43,7 @@ class RatingsWithImage extends Component
         /**
          * @phpstan-var view-string
          */
-        $view = app(GetViewAction::class)->execute($this->tpl);
+        $view = app(GetViewAction::class)->execute();
 
         $view_params = [
             'view' => $view,
@@ -65,17 +56,21 @@ class RatingsWithImage extends Component
     {
         $this->rating_id = $rating_id;
 
-        $this->dispatch('bet-created',
-            rating_id: $rating_id,
-            rating_title: $rating_title
-        );
+        if($this->type == 'show'){
+            $this->dispatch('bet-created',
+                rating_id: $rating_id,
+                rating_title: $rating_title
+            );
 
-        foreach ($this->datas as $key => $data) {
-            if ($this->datas[$key]['id'] == $rating_id) {
-                $this->datas[$key]['effect'] = true;
-            } else {
-                $this->datas[$key]['effect'] = false;
+            foreach ($this->datas as $key => $data) {
+                if ($this->datas[$key]['id'] == $rating_id) {
+                    $this->datas[$key]['effect'] = true;
+                } else {
+                    $this->datas[$key]['effect'] = false;
+                }
             }
+        }else{
+            dddx('wip');
         }
     }
 }
