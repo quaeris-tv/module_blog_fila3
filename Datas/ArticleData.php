@@ -58,6 +58,7 @@ class ArticleData extends Data
     public function getRatings(): array
     {
         Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+
         return $article->getArrayRatingsWithImage();
     }
 

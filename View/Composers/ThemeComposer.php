@@ -300,6 +300,5 @@ class ThemeComposer
     public function getMenu(string $menu_name)
     {
         // dddx(Menu::where('name', $menu_name)->first()->items);
-
     }
 }

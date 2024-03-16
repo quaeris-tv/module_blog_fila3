@@ -29,10 +29,10 @@ class RatingsWithImage extends Component
         // $this->tpl = $tpl;
         $this->type = $type;
 
-        if($ratings == null){
+        if (null == $ratings) {
             $this->article = $article;
             $this->datas = $this->article->getArrayRatingsWithImage();
-        }else{
+        } else {
             $this->datas = $ratings;
         }
         // dddx($this->datas);
@@ -56,7 +56,7 @@ class RatingsWithImage extends Component
     {
         $this->rating_id = $rating_id;
 
-        if($this->type == 'show'){
+        if ('show' == $this->type) {
             $this->dispatch('bet-created',
                 rating_id: $rating_id,
                 rating_title: $rating_title
@@ -69,7 +69,7 @@ class RatingsWithImage extends Component
                     $this->datas[$key]['effect'] = false;
                 }
             }
-        }else{
+        } else {
             dddx('wip');
         }
     }
