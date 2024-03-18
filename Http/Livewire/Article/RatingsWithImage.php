@@ -36,7 +36,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public function mount(Article $article, string $type, array $ratings = null): void
+    public function mount(Article $article, string $type, ?array $ratings = null): void
     {
         // $this->tpl = $tpl;
         $this->type = $type;
