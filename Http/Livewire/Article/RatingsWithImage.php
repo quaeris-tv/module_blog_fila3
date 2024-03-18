@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
+use Filament\Actions\Action;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
+use Filament\Forms\Components\TextInput;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Actions\Concerns\InteractsWithActions;
 
 class RatingsWithImage extends Component implements HasForms, HasActions
 {
@@ -34,9 +36,9 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     {
         // $this->tpl = $tpl;
         $this->type = $type;
-
+        $this->article = $article;
         if (null == $ratings) {
-            $this->article = $article;
+
             $this->datas = $this->article->getArrayRatingsWithImage();
         } else {
             $this->datas = $ratings;
@@ -80,10 +82,40 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         }
     }
 
-    public function deleteAction(): Action
+    public function betAction(): Action
     {
-        return Action::make('delete')
+        return Action::make('bet')
+            ->form([
+                Select::make('option')
+                    ->label('Selezione un opzione')
+                    // ->options([
+                    //     'draft' => 'Draft',
+                    //     'reviewing' => 'Reviewing',
+                    //     'published' => 'Published',
+                    // ]),
+                    ->options(function (){
+                        $options = [];
+                        foreach($this->datas as $key => $data){
+                            $options[$key] = $data['title'];
+                        }
+                        return $options;
+                    }),
+                TextInput::make('credit')
+                    ->label('')
+                    ->tel()
+            ])
             ->requiresConfirmation()
-            ->action(fn () => dddx('a'));
+            ->modalHeading('Effettua scommessa')
+            ->modalDescription('Punta la tua cifra')
+            ->modalSubmitActionLabel('confermo')
+            ->modalIcon('heroicon-o-banknotes')
+            // ->action(fn () => dddx('a'))
+            ->action(function (array $data): void {
+                // dddx($data);
+                dddx([
+                    $this->datas
+                ]);
+            })
+            ;
     }
 }
