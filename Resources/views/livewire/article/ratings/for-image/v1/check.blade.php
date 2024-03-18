@@ -43,20 +43,19 @@
                     </div>
                 </div>
                 <div class="w-full px-4 py-2.5 bg-white inline-flex items-center justify-between">
-                    {{-- <input
+                    <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
                         type="text"
                         value="0"
                         wire:model.live="import"
-                        /> --}}
+                        />
 
 
-                    <input
+                    {{-- <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
                         type="text"
-                        {{-- value="0" --}}
                         wire:model="form_data.credit"
-                        />
+                        /> --}}
 
 
 

@@ -40,16 +40,25 @@
 		</article>
 
 
+		{{-- {{ $article->uuid }} --}}
+        {{-- UUUU
+			{{ ($this->betAction)(['article_uuid' => 'aaaaaaaaaaaaaaaaaa']) }}
+		UUUUU --}}
+        {{-- UUUU
+			{{ ($this->betAction)(['article_uuid' => $article->uuid]) }}
+		UUUUU --}}
 
-        {{-- UUUU {{ $this->betAction }} UUUUU --}}
 
 
 		<button 
 			class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
 			type="button" 
 			wire:loading.attr="disabled" 
-			wire:click="mountAction('bet')"
-			{{-- :wire:key="$article->uuid" --}}
+			{{-- wire:click="mountAction('bet')(['article_uuid' => $article->uuid])" --}}
+			{{-- wire:click="mountAction('bet', JSON.parse('{'article_uuid' => $article->uuid}'))" --}}
+
+			wire:click="mountAction('bet', JSON.parse('{\u0022article_uuid\u0022:\u0022{{ $article->uuid }}\u0022}'))"
+
 			>
 			<span class="fi-btn-label">
 				bet
