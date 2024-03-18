@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
 use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Illuminate\Contracts\View\View;
+use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Illuminate\Contracts\View\View;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Actions\Concerns\InteractsWithActions;
 
 class RatingsWithImage extends Component implements HasForms, HasActions
 {
@@ -50,7 +50,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         // dddx($this->datas);
     }
 
-    public function render(): \Illuminate\Contracts\View\View
+    public function render(): View
     {
         /**
          * @phpstan-var view-string
@@ -70,18 +70,18 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         $this->rating_title = $rating_title;
 
         // if ('show' == $this->type) {
-            $this->dispatch('bet-created',
-                rating_id: $rating_id,
-                rating_title: $rating_title
-            );
+        $this->dispatch('bet-created',
+            rating_id: $rating_id,
+            rating_title: $rating_title
+        );
 
-            foreach ($this->datas as $key => $data) {
-                if ($this->datas[$key]['id'] == $rating_id) {
-                    $this->datas[$key]['effect'] = true;
-                } else {
-                    $this->datas[$key]['effect'] = false;
-                }
+        foreach ($this->datas as $key => $data) {
+            if ($this->datas[$key]['id'] == $rating_id) {
+                $this->datas[$key]['effect'] = true;
+            } else {
+                $this->datas[$key]['effect'] = false;
             }
+        }
         // } else {
         //     dddx('wip');
         // }
@@ -98,24 +98,20 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->action(fn (array $arguments) => dddx('a'))
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
-            ->modalContent(function(array $arguments){
-
-
+            ->modalContent(function (array $arguments) {
                 dddx($arguments);
 
-                return view('blog::livewire.article.ratings.for-image.v1.check', 
-                        [
-                            'rating_title' => $this->rating_title,
-                            // 'article_ratings' => $article_ratings
-                        ]);
+                return view('blog::livewire.article.ratings.for-image.v1.check',
+                    [
+                        'rating_title' => $this->rating_title,
+                        // 'article_ratings' => $article_ratings
+                    ]);
             })
             // ->modalContent(fn (Article $article): View => view(
             //     'blog::livewire.article.ratings.for-image.v1.check',
             //     ['record' => $record],
             // ))
-            ;
-
-
+        ;
 
         // return Action::make('bet')
         //     ->form([
