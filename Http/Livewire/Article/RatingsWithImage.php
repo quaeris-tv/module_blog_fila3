@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
 use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Actions\Concerns\InteractsWithActions;
 
 class RatingsWithImage extends Component implements HasForms, HasActions
 {
@@ -38,7 +38,6 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         $this->type = $type;
         $this->article = $article;
         if (null == $ratings) {
-
             $this->datas = $this->article->getArrayRatingsWithImage();
         } else {
             $this->datas = $ratings;
@@ -93,16 +92,17 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                     //     'reviewing' => 'Reviewing',
                     //     'published' => 'Published',
                     // ]),
-                    ->options(function (){
+                    ->options(function () {
                         $options = [];
-                        foreach($this->datas as $key => $data){
+                        foreach ($this->datas as $key => $data) {
                             $options[$key] = $data['title'];
                         }
+
                         return $options;
                     }),
                 TextInput::make('credit')
                     ->label('')
-                    ->tel()
+                    ->tel(),
             ])
             ->requiresConfirmation()
             ->modalHeading('Effettua scommessa')
@@ -113,9 +113,9 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->action(function (array $data): void {
                 // dddx($data);
                 dddx([
-                    $this->datas
+                    $this->datas,
                 ]);
             })
-            ;
+        ;
     }
 }
