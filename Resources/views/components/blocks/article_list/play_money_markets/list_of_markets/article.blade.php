@@ -19,17 +19,17 @@
             <!-- categories -->
             @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.categories')
         </div>
-        
-        
-        
+
+
+
         <!-- outcomes -->
         {{-- questa blade è uguale a Blog\Resources\views\livewire\article\ratings-with-image\rating_with_image.blade.php --}}
         {{-- @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.outcomes', ['datas' => $article->ratings]) --}}
         <livewire:article.ratings-with-image type="index" :ratings="$article->ratings" :wire:key="$article->uuid"/>
 
-
-
-
         @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.footer_info')
     </article>
 @endforeach
+
+
+

@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
 
-class RatingsWithImage extends Component
+class RatingsWithImage extends Component implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
+
     public ?Article $article = null;
 
     // public string $tpl = 'v1';
@@ -24,7 +30,7 @@ class RatingsWithImage extends Component
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public function mount(Article $article, string $type, ?array $ratings = null): void
+    public function mount(Article $article, string $type, array $ratings = null): void
     {
         // $this->tpl = $tpl;
         $this->type = $type;
@@ -72,5 +78,12 @@ class RatingsWithImage extends Component
         } else {
             dddx('wip');
         }
+    }
+
+    public function deleteAction(): Action
+    {
+        return Action::make('delete')
+            ->requiresConfirmation()
+            ->action(fn () => dddx('a'));
     }
 }

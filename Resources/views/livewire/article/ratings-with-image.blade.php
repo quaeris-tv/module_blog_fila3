@@ -7,7 +7,7 @@
 					@foreach($datas as $data)
 						<div wire:click="bet('{{ $data['id'] }}', '{{ $data['title'] }}')"
 							class="p-1.5 flex flex-col justify-between gap-10 w-[128px] lg:w-auto min-w-[128px] isolate relative overflow-hidden rounded-lg group/outcome">
-							<div class="absolute inset-0 -z-[1]" 
+							<div class="absolute inset-0 -z-[1]"
 								style="
 									@if($data['effect'])
 										-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */filter: grayscale(100%);
@@ -37,5 +37,9 @@
 				<!-- Placeholder for interactive elements such as tooltips -->
 			</div>
 		</article>
+        UUUU {{ $this->deleteAction }} UUUUU
+        <x-filament-actions::modals />
+
+
 	</div>
 </div>
