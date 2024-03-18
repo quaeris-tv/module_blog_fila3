@@ -26,7 +26,7 @@ class ForImage extends Component implements HasForms
     public array $article_ratings = [];
     public int $import = 0;
 
-    public array $form_data = ['credit' => 6];
+    // public array $form_data = ['credit' => 6];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -62,24 +62,24 @@ class ForImage extends Component implements HasForms
 
     public function save(): void
     {
-        // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
-        // if (0 != $this->import && 0 != $this->rating_id) {
-        //     $command = RatingArticleData::from([
-        //         'userId' => (string) Filament::auth()->id(),
-        //         'articleId' => $this->article->id,
-        //         'ratingId' => $this->rating_id,
-        //         'credit' => $this->import,
-        //     ]);
+        $article_aggregate = ArticleAggregate::retrieve($this->article->id);
+        if (0 != $this->import && 0 != $this->rating_id) {
+            $command = RatingArticleData::from([
+                'userId' => (string) Filament::auth()->id(),
+                'articleId' => $this->article->id,
+                'ratingId' => $this->rating_id,
+                'credit' => $this->import,
+            ]);
 
-        //     $article_aggregate->rating($command);
-        // }
+            $article_aggregate->rating($command);
+        }
 
-        // $this->rating_id = 0;
-        // $this->rating_title = '';
-        // $this->import = 0;
+        $this->rating_id = 0;
+        $this->rating_title = '';
+        $this->import = 0;
 
-        $this->form_data['credit'] = 0;
-        dddx($this->form_data);
+        // $this->form_data['credit'] = 0;
+        // dddx($this->form_data);
         // dddx([
         //     $this->rating_id,
         //     $this->rating_title,

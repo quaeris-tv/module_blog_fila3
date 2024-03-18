@@ -7,7 +7,7 @@
         aria-labelledby="dropdownHoverButton"
         >
 
-        @foreach($article_ratings as $key => $rating)
+        {{-- @foreach($article_ratings as $key => $rating)
             <li>
                 <a
                     href="#"
@@ -17,7 +17,7 @@
                     {{ $rating }}
                 </a>
             </li>
-        @endforeach
+        @endforeach --}}
 
         {{-- <li>
             <a

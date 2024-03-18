@@ -13,8 +13,11 @@ class GetBloodline
 {
     use QueueableAction;
 
-    public function execute(int $category_id): Collection
+    public function execute(?int $category_id): Collection
     {
+        if (null == $category_id) {
+            return collect([]);
+        }
         Assert::notNull($category = Category::find($category_id));
 
         return $category->bloodline()->get()->reverse();

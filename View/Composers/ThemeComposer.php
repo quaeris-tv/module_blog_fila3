@@ -13,6 +13,7 @@ use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Category;
+use Modules\Blog\Models\Menu;
 use Modules\Blog\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
@@ -118,10 +119,12 @@ class ThemeComposer
         return $footerCategories;
     }
 
+    // --- da fare con parental
     public function getFooterAuthors(): Collection
     {
-        $footerAuthors = Profile::profileIsAuthor()
-            ->take(8)
+        // $footerAuthors = Profile::profileIsAuthor()
+        // ->take(8)
+        $footerAuthors = Profile::take(8)
             ->get();
 
         return $footerAuthors;
@@ -277,10 +280,25 @@ class ThemeComposer
 
         $tmp = [];
         foreach ($results as $content) {
+            if (is_array($content['title'])) {
+                $lang = app()->getLocale();
+                $content['title'] = $content['title'][$lang] ?? last($content['title']);
+            }
+
             $tmp[] = ArticleData::from($content);
         }
 
         // dddx($tmp);
         return $tmp;
+    }
+
+    /**
+     * Undocumented function.
+     *
+     * @return void
+     */
+    public function getMenu(string $menu_name)
+    {
+        // dddx(Menu::where('name', $menu_name)->first()->items);
     }
 }

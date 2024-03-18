@@ -3,7 +3,7 @@
         <div class="w-full flex py-3 px-3 justify-between bg-blue-1 text-white font-bold">
             Place bet
         </div>
-        <form wire:submit="save"> 
+        <form wire:submit="save">
             <div class="flex flex-col my-4 border gap-3 rounded-t justify-center items-center w-11/12 mx-auto">
                 <div class="bg-neutral-1 w-full p-1 rounded mx-auto">
                     <div class="py-4 px-2 flex justify-between items-center">
@@ -43,20 +43,19 @@
                     </div>
                 </div>
                 <div class="w-full px-4 py-2.5 bg-white inline-flex items-center justify-between">
-                    {{-- <input
+                    <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
                         type="text"
                         value="0"
                         wire:model.live="import"
-                        /> --}}
+                        />
 
 
-                    <input
+                    {{-- <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
                         type="text"
-                        {{-- value="0" --}}
                         wire:model="form_data.credit"
-                        />
+                        /> --}}
 
 
 
