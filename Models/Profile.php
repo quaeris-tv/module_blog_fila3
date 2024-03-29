@@ -13,10 +13,14 @@ use Modules\Rating\Models\RatingMorph;
 use Modules\User\Models\User;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Modules\Xot\Models\BaseProfile as XotBaseProfile;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
-class Profile extends XotBaseProfile
+class Profile extends XotBaseProfile implements HasMedia
 {
+    use InteractsWithMedia;
+
     /** @var string */
     protected $connection = 'blog';
 
@@ -58,6 +62,18 @@ class Profile extends XotBaseProfile
     public function getFrontRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function getAvatarUrl(): string
+    {
+        if (null == $this->getFirstMediaUrl('photo_profile')) {
+            // in caso eseguire php artisan module:publish
+            // dddx($this);
+            // dddx(asset('blog/img/no_user.webp'));
+            return asset('modules/blog/img/no_user.webp');
+        }
+
+        return $this->getFirstMediaUrl('photo_profile');
     }
 
     public function ratings(): HasManyThrough

@@ -70,7 +70,7 @@
 
 
 <div class="">
-	<button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+	<button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" 
 		class="bg-transparent hover:bg-white focus:ring-4 focus:outline-none focus:bg-white font-medium rounded-lg text-sm px-3 py-2.5 text-center text-black inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
 		<span></span>
 		<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -78,10 +78,10 @@
 		</svg>
 	</button>
 	<!-- Dropdown menu -->
-	<div id="dropdownHover"
+	<div id="dropdownHover" 
 		class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 block" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(712px, 200px);" data-popper-placement="bottom">
 		<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
-			<!--[if BLOCK]><![endif]-->
+			<!--[if BLOCK]><![endif]-->            
 			<li>
 				<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
 				cccc
@@ -99,7 +99,7 @@
 
 
 <div class="">
-	<button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+	<button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" 
 		class="bg-transparent hover:bg-white focus:ring-4 focus:outline-none focus:bg-white font-medium rounded-lg text-sm px-3 py-2.5 text-center text-black inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
 		<span></span>
 		<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -107,10 +107,10 @@
 		</svg>
 	</button>
 	<!-- Dropdown menu -->
-	<div id="dropdownHover"
+	<div id="dropdownHover" 
 		class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1152px, 1107px);" data-popper-placement="bottom">
 		<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
-			<!--[if BLOCK]><![endif]-->
+			<!--[if BLOCK]><![endif]-->            
 			<li>
 				<a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
 				cccc

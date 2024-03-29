@@ -57,11 +57,21 @@ class ArticleData extends Data
         // return $category->bloodline()->get()->reverse();
     }
 
-    public function getRatings(): array
+    public function getArticle(): Article
     {
         Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
 
-        return $article->getArrayRatingsWithImage();
+        return $article;
+    }
+
+    public function getRatings(): array
+    {
+        return $this->getArticle()->getArrayRatingsWithImage();
+    }
+
+    public function getBettingUsers(): int
+    {
+        return $this->getArticle()->getBettingUsers();
     }
 
     public function url(string $type): string

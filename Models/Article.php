@@ -322,6 +322,14 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return $ratings_array;
     }
 
+    public function getBettingUsers(): int
+    {
+        return RatingMorph::where('user_id', '!=', null)
+                ->where('model_id', $this->id)
+                ->groupBy('user_id')
+                ->get()->count();
+    }
+
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
