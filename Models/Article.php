@@ -338,9 +338,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             ->get();
         $tmp = 0;
 
-        foreach($ratings as $rating){
+        foreach ($ratings as $rating) {
             $tmp += $rating->value;
         }
+
         return $tmp;
     }
 
