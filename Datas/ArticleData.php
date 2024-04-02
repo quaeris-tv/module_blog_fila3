@@ -32,6 +32,8 @@ class ArticleData extends Data
         public ?array $ratings,
         public ?string $closed_at,
         public ?string $closed_at_date,
+        public ?int $betting_users,
+        public ?string $time_left_for_humans,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -46,8 +48,13 @@ class ArticleData extends Data
         }
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
-        $this->ratings = $this->getRatings();
+        
         $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
+
+        Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+        $this->betting_users = $article->getBettingUsers();
+        $this->ratings = $article->getArrayRatingsWithImage();
+        $this->time_left_for_humans = $article->getTimeLeftForHumans();
     }
 
     public function getCategories(): Collection
@@ -59,22 +66,22 @@ class ArticleData extends Data
         // return $category->bloodline()->get()->reverse();
     }
 
-    public function getArticle(): Article
-    {
-        Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+    // public function getArticle(): Article
+    // {
+    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
 
-        return $article;
-    }
+    //     return $article;
+    // }
 
-    public function getRatings(): array
-    {
-        return $this->getArticle()->getArrayRatingsWithImage();
-    }
+    // public function getRatings(): array
+    // {
+    //     return $this->getArticle()->getArrayRatingsWithImage();
+    // }
 
-    public function getBettingUsers(): int
-    {
-        return $this->getArticle()->getBettingUsers();
-    }
+    // public function getBettingUsers(): int
+    // {
+    //     return $this->getArticle()->getBettingUsers();
+    // }
 
     public function url(string $type): string
     {
@@ -95,8 +102,8 @@ class ArticleData extends Data
     //     return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
     // }
 
-    public function getTimeLeftForHumans(): string
-    {
-        return $this->getArticle()->getTimeLeftForHumans();
-    }
+    // public function getTimeLeftForHumans(): string
+    // {
+    //     return $this->getArticle()->getTimeLeftForHumans();
+    // }
 }

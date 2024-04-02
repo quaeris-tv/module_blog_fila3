@@ -324,18 +324,11 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
     public function getBettingUsers(): int
     {
-        dddx(
-            RatingMorph::where('user_id', '!=', null)
-            ->where('model_id', $this->id)
+        return count(RatingMorph::where('model_id', $this->id)
+            ->where('user_id', '!=', null)
             ->groupBy('user_id')
-            // ->get()
-            ->count()
-        );
-
-        return RatingMorph::where('user_id', '!=', null)
-                ->where('model_id', $this->id)
-                ->groupBy('user_id')
-                ->get()->count();
+            ->get()
+            ->toArray());
     }
 
     // ----- Feed ------

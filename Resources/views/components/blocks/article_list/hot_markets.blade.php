@@ -30,7 +30,7 @@
                         </svg>
                         <span class="text-sm text-[#666666]">
                             {{-- 3212 --}}
-                            {{ $item->getBettingUsers() }}
+                            {{ $item->betting_users }}
                         </span>
                     </div>
                     <div class="flex items-center gap-1">
