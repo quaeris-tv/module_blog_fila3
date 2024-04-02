@@ -49,7 +49,7 @@ class ArticleData extends Data
         }
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
-        
+
         $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
 
         Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
