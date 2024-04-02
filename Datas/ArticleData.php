@@ -31,6 +31,7 @@ class ArticleData extends Data
         public ?string $url,
         public ?array $ratings,
         public ?string $closed_at,
+        public ?string $closed_at_date,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -46,6 +47,7 @@ class ArticleData extends Data
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
         $this->ratings = $this->getRatings();
+        $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
     }
 
     public function getCategories(): Collection
@@ -88,10 +90,10 @@ class ArticleData extends Data
         return '#';
     }
 
-    public function getClosedAt(): string
-    {
-        return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
-    }
+    // public function getClosedAt(): string
+    // {
+    //     return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
+    // }
 
     public function getTimeLeftForHumans(): string
     {

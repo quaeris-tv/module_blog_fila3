@@ -62,7 +62,7 @@
                                     ></path>
                             </svg>
                         </span>
-                        <span class="text-sm text-[#666666]">{{ $item->getClosedAt() }}</span>
+                        <span class="text-sm text-[#666666]">{{ $item->closed_at_date }}</span>
                     </div>
                 </div>
             </article>
