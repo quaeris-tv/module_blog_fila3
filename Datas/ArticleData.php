@@ -34,6 +34,7 @@ class ArticleData extends Data
         public ?string $closed_at_date,
         public ?int $betting_users,
         public ?string $time_left_for_humans,
+        public ?float $volume_credit,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -55,6 +56,7 @@ class ArticleData extends Data
         $this->betting_users = $article->getBettingUsers();
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
+        $this->volume_credit = $article->getVolumeCredit();
     }
 
     public function getCategories(): Collection

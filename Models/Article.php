@@ -331,6 +331,19 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             ->toArray());
     }
 
+    public function getVolumeCredit(): int
+    {
+        $ratings = RatingMorph::where('model_id', $this->id)
+            ->where('user_id', '!=', null)
+            ->get();
+        $tmp = 0;
+
+        foreach($ratings as $rating){
+            $tmp += $rating->value;
+        }
+        return $tmp;
+    }
+
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
