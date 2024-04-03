@@ -40,6 +40,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public ?string $article_uuid = null;
 
     public array $rating_opts = [];
+    public array $ratings_percentage = [];
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -57,6 +58,13 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             $this->article_uuid = $article_uuid;
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
+
+        // foreach($this->rating_opts as $key => $opt){
+        //     // dddx([$key, $opt]);
+        //     $this->ratings_percentage[$key] = $article->getRatingsPercentage($key);
+        // }
+
+        // dddx($this->datas);
     }
 
     public function render(): View
