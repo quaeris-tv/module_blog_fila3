@@ -354,27 +354,24 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         //     // dddx($rating);
         //     $a = $ratings->where('rating_id', $key_rating)->get()->count();
         // }
-        
-
-
 
         $ratings_query = RatingMorph::where('model_id', $this->id)
             ->where('user_id', '!=', null)
             // ->get()
             // ->count()
-            ;
+        ;
 
-        foreach($ratings_query->get() as $rating){
+        foreach ($ratings_query->get() as $rating) {
             dddx($rating);
         }
 
         $b = $ratings_query->get()->count();
-        if($b == 0){
+        if (0 == $b) {
             $b = 1;
         }
         $a = $ratings_query->where('rating_id', $key_rating)->get()->count();
 
-        return (100 * $a)/$b;
+        return (100 * $a) / $b;
     }
 
     // ----- Feed ------
