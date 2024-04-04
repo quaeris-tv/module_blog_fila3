@@ -1,31 +1,40 @@
 <div class="py-4">
 	<div class="flex flex-col gap-5">
-		<article class="bg-white p-6 lg:p-[18px] rounded-lg flex flex-col">
-			<div>
+		<article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6">
+			<div class="pl-6 lg:pl-0">
 				<!-- outcomes -->
-				<div class="flex gap-2 flex-nowrap lg:grid lg:grid-cols-3">
+				<div class="flex flex-nowrap overflow-x-auto lg:grid lg:grid-cols-3 gap-2 pl-6 lg:pl-0">
 					@foreach($datas as $data)
-						<button wire:click="bet('{{ $data['id'] }}', '{{ $data['title'] }}')" class="relative block w-full overflow-hidden rounded-lg aspect-[4/3] {{ $rating_title == $data['title'] ? 'border-[3px] border-blue-600 shadow-lg shadow-[0_0_4px_4px_rgba(21,145,237,.25)]' : '' }}">
-							<div class="absolute inset-0 z-10 grid pointer-events-none place-items-center">
-								<x-filament::loading-indicator class="w-5 h-5" wire:loading wire:target="bet('{{ $data['id'] }}', '{{ $data['title'] }}')"/>
+						<div wire:click="bet('{{ $data['id'] }}', '{{ $data['title'] }}')"
+							class="p-1.5 flex flex-col justify-between gap-10 w-[128px] lg:w-auto min-w-[128px] isolate relative overflow-hidden rounded-lg group/outcome">
+                            <x-filament::loading-indicator class="h-5 w-5"   wire:loading wire:target="bet('{{ $data['id'] }}', '{{ $data['title'] }}')"/>
+							<div class="absolute inset-0 -z-[1]"
+								style="
+									@if($data['effect'])
+										-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */filter: grayscale(100%);
+									@endif
+									"
+								>
+								<img
+									class="object-cover h-full w-full"
+									alt="{{ $data['title'] }}"
+									title="{{ $data['title'] }}"
+									src="{{ $data['image'] }}"
+									sizes="144px"
+									/>
+								<div class="absolute inset-0 group-hover/outcome:bg-blue-1/50"></div>
 							</div>
-							<div class="absolute inset-0">
-								<img class="object-cover aspect-[4/3]" alt="{{ $data['title'] }}" title="{{ $data['title'] }}" src="{{ $data['image'] }}" />
-								<div class="absolute inset-0 transition bg-transparent hover:bg-blue-500/30"></div>
+							<div class="bg-neutral-5 h-8 w-11 rounded-sm flex items-center justify-center text-white">
+								<span>66%</span>
 							</div>
-							<div class="p-1.5 absolute inset-0 flex flex-col text-start justify-between pointer-events-none">
-								<div class="flex items-center justify-center h-8 rounded-sm bg-neutral-5 w-11 {{ strlen($rating_title) && $rating_title != $data['title'] ? 'text-gray-400' : 'text-white'}}">
-									<span>66%</span>
-								</div>
-								<p class="text-sm font-medium text-white leading-[1.1] ">
-									{{ $data['title'] }}
-								</p>
-							</div>
-						</button>
+							<p class="text-sm font-medium text-white leading-[1.1]">
+								{{ $data['title'] }}
+							</p>
+						</div>
 					@endforeach
 				</div>
 			</div>
-			<div class="flex items-center justify-between px-6 lg:px-0">
+			<div class="px-6 lg:px-0 flex items-center justify-between">
 				<!-- Placeholder for interactive elements such as tooltips -->
 			</div>
 		</article>
@@ -71,7 +80,13 @@
 
 			*/
 			@endphp
+
 			<x-filament-actions::modals />
+
+
+
+
 		@endif
+
 	</div>
 </div>
