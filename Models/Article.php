@@ -347,20 +347,13 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
     public function getRatingsPercentage(): array
     {
-        // dddx('wip');
         $ratings_options = $this->getOptionRatingsIdTitle();
         $result = [];
 
         foreach($ratings_options as $key => $value){
             $b = RatingMorph::where('model_id', $this->id)
                 ->where('user_id', '!=', null)
-                // ->where('rating_id', $key)
                 ->count();
-            // dddx($b);
-
-            // if($b == 0){
-            //     dddx('null');
-            // }
 
             if (0 == $b) {
                 $b = 1;
@@ -371,29 +364,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
                 ->where('rating_id', $key)
                 ->count();
 
-            // if($a == 0){
-            //     dddx('null');
-            // }
-
             $result[$key] = (100 * $a) / $b;
         }
 
         return $result;
-
-        // $ratings_query = RatingMorph::where('model_id', $this->id)
-        //     ->where('user_id', '!=', null)
-        //     // ->get()
-        //     // ->count()
-        // ;
-
-
-        // $b = $ratings_query->get()->count();
-        // if (0 == $b) {
-        //     $b = 1;
-        // }
-        // $a = $ratings_query->where('rating_id', $key_rating)->get()->count();
-
-        // return (100 * $a) / $b;
     }
 
     // ----- Feed ------
