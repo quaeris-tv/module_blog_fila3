@@ -60,7 +60,6 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
 
         // foreach($this->rating_opts as $key => $opt){
-        //     // dddx([$key, $opt]);
         //     $this->ratings_percentage[$key] = $article->getRatingsPercentage($key);
         // }
 
