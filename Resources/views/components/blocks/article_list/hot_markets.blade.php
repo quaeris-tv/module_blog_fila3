@@ -45,7 +45,10 @@
                                 fill="#6B6A6A"
                                 ></path>
                         </svg>
-                        <span class="text-sm text-[#666666]">3364798 ø</span>
+                        <span class="text-sm text-[#666666]">
+                            {{-- 3364798  --}}
+                            {{ $item->volume_credit }} ø
+                        </span>
                     </div>
                     <!-- Bet end date -->
                     <div class="flex items-center gap-1">

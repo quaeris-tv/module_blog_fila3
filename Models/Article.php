@@ -347,31 +347,53 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
     public function getRatingsPercentage(): array
     {
-        dddx('wip');
-        // $ratings = $this->ratings()->where('user_id', '!=', null)->get();
-        // $percs = [];
-        // foreach($ratings as $rating){
-        //     // dddx($rating);
-        //     $a = $ratings->where('rating_id', $key_rating)->get()->count();
+        // dddx('wip');
+        $ratings_options = $this->getOptionRatingsIdTitle();
+        $result = [];
+
+        foreach($ratings_options as $key => $value){
+            $b = RatingMorph::where('model_id', $this->id)
+                ->where('user_id', '!=', null)
+                // ->where('rating_id', $key)
+                ->count();
+            // dddx($b);
+
+            // if($b == 0){
+            //     dddx('null');
+            // }
+
+            if (0 == $b) {
+                $b = 1;
+            }
+
+            $a = RatingMorph::where('model_id', $this->id)
+                ->where('user_id', '!=', null)
+                ->where('rating_id', $key)
+                ->count();
+
+            // if($a == 0){
+            //     dddx('null');
+            // }
+
+            $result[$key] = (100 * $a) / $b;
+        }
+
+        return $result;
+
+        // $ratings_query = RatingMorph::where('model_id', $this->id)
+        //     ->where('user_id', '!=', null)
+        //     // ->get()
+        //     // ->count()
+        // ;
+
+
+        // $b = $ratings_query->get()->count();
+        // if (0 == $b) {
+        //     $b = 1;
         // }
+        // $a = $ratings_query->where('rating_id', $key_rating)->get()->count();
 
-        $ratings_query = RatingMorph::where('model_id', $this->id)
-            ->where('user_id', '!=', null)
-            // ->get()
-            // ->count()
-        ;
-
-        foreach ($ratings_query->get() as $rating) {
-            dddx($rating);
-        }
-
-        $b = $ratings_query->get()->count();
-        if (0 == $b) {
-            $b = 1;
-        }
-        $a = $ratings_query->where('rating_id', $key_rating)->get()->count();
-
-        return (100 * $a) / $b;
+        // return (100 * $a) / $b;
     }
 
     // ----- Feed ------

@@ -26,9 +26,9 @@
 							</div>
 							<div class="bg-neutral-5 h-8 w-11 rounded-sm flex items-center justify-center text-white">
 								<span>
-									66%
-									{{-- {{ $ratings_percentage[$data['id']] }}% --}}
-								
+									{{-- 66% --}}
+									{{ $ratings_percentage[$data['id']] }}
+									%
 								</span>
 							</div>
 							<p class="text-sm font-medium text-white leading-[1.1]">

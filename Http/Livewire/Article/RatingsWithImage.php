@@ -56,15 +56,11 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             Assert::notNull($ratings);
             $this->datas = $ratings;
             $this->article_uuid = $article_uuid;
+            $this->article = Article::where('uuid', $article_uuid)->first();
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
 
-        // foreach($this->rating_opts as $key => $opt){
-        //     // dddx([$key, $opt]);
-        //     $this->ratings_percentage[$key] = $article->getRatingsPercentage($key);
-        // }
-
-        // dddx($this->datas);
+        $this->ratings_percentage = $this->article->getRatingsPercentage();
     }
 
     public function render(): View
