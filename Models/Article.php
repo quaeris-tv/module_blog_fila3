@@ -581,30 +581,27 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     //     return $days.'d'.$hours.'m'.$minutes.'s';
     // }
 
-    public function getTimeLeftForHumans(): string
+    public function getTimeLeftForHumans(): string|null
     {
-        // Definisci le due date di riferimento
-        $startDate = Carbon::parse('2024-03-29 12:00:00');
-        // $startDate = $this->closed_at;
-        $endDate = Carbon::parse('2024-04-10 18:30:00');
-
-        // dddx([
-        //     $this->closed_at,
-        //     $startDate,
-        //     $endDate
-        // ]);
+        $endDate = $this->closed_at;
+        $startDate = Carbon::now();
 
         // Calcola la differenza tra le due date
-        $diff = $endDate->diff($startDate);
+        $diff = $startDate->diff($endDate);
 
         // Ottieni il tempo rimasto in giorni, ore, minuti e secondi
-        $days = $diff->days;
+
+        $month = $diff->m;
+
+        if($month > 0){
+            return null;
+        }
+
+        $days = $diff->d;
         $hours = $diff->h;
         $minutes = $diff->i;
-        $seconds = $diff->s;
 
-        // Stampiamo il tempo rimasto
-        return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti e $seconds secondi.";
+        return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";
     }
 
     // /**

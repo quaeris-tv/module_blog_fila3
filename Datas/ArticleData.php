@@ -57,6 +57,7 @@ class ArticleData extends Data
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
         $this->volume_credit = $article->getVolumeCredit();
+        $this->time_left_for_humans = $article->getTimeLeftForHumans();
     }
 
     public function getCategories(): Collection
@@ -106,6 +107,7 @@ class ArticleData extends Data
 
     // public function getTimeLeftForHumans(): string
     // {
+    //     dddx('a');
     //     return $this->getArticle()->getTimeLeftForHumans();
     // }
 }
