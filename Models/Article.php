@@ -350,7 +350,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $ratings_options = $this->getOptionRatingsIdTitle();
         $result = [];
 
-        foreach($ratings_options as $key => $value){
+        foreach ($ratings_options as $key => $value) {
             $b = RatingMorph::where('model_id', $this->id)
                 ->where('user_id', '!=', null)
                 ->count();
