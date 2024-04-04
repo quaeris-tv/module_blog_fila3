@@ -581,7 +581,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     //     return $days.'d'.$hours.'m'.$minutes.'s';
     // }
 
-    public function getTimeLeftForHumans(): string|null
+    public function getTimeLeftForHumans(): ?string
     {
         $endDate = $this->closed_at;
         $startDate = Carbon::now();
@@ -593,7 +593,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
         $month = $diff->m;
 
-        if($month > 0){
+        if ($month > 0) {
             return null;
         }
 
