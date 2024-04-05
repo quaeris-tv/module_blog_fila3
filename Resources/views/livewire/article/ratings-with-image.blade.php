@@ -5,7 +5,7 @@
 				<!-- outcomes -->
 				<div class="flex gap-2 flex-nowrap lg:grid lg:grid-cols-3">
 					@foreach($datas as $data)
-						<button wire:click="bet('{{ $data['id'] }}', '{{ $data['title'] }}')" class="relative block w-full overflow-hidden rounded-lg aspect-[4/3] {{ $rating_title == $data['title'] ? 'border-[3px] border-blue-600 shadow-lg shadow-[0_0_4px_4px_rgba(21,145,237,.25)]' : '' }}">
+						<button wire:click="bet('{{ $data['id'] }}', '{{ $data['title'] }}')" class="relative block w-full overflow-hidden rounded-lg aspect-[4/3] {{ $rating_title == $data['title'] ? 'border-[3px] border-blue-600 shadow-lg shadow-blue-300' : '' }}">
 							<div class="absolute inset-0 z-10 grid pointer-events-none place-items-center">
 								<x-filament::loading-indicator class="w-5 h-5" wire:loading wire:target="bet('{{ $data['id'] }}', '{{ $data['title'] }}')"/>
 							</div>
