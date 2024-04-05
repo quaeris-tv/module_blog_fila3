@@ -590,7 +590,6 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $diff = $startDate->diff($endDate);
 
         // Ottieni il tempo rimasto in giorni, ore, minuti e secondi
-
         $month = $diff->m;
 
         if ($month > 0) {
@@ -600,6 +599,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $days = $diff->d;
         $hours = $diff->h;
         $minutes = $diff->i;
+
+        if($minutes == 0){
+            return "scaduto";
+        }
 
         return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";
     }
