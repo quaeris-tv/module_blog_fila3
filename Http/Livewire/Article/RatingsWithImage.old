@@ -11,7 +11,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Modules\Blog\Actions\Article\MakeBetAction;
@@ -119,23 +118,15 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->form([
                 Select::make('rating_id')
                     // ->label('Author')
-                    ->prefix('Your bet ')
-                    ->hiddenLabel()
                     ->options($this->rating_opts)
                     ->required(),
-                TextInput::make('credits')
-                    ->hiddenLabel()
-                    ->numeric()
-                    ->suffixIcon('heroicon-o-banknotes'),
+                TextInput::make('credits'),
             ])
-            ->modalHeading('Place bet')
+
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
-            ->modalWidth(MaxWidth::Small)
-            ->modalSubmitActionLabel('Please select an outcome')
-            ->modalCancelActionLabel('Cancel')
-            ->color('primary')
-            // ->modalIcon('heroicon-o-banknotes')
+            ->modalSubmitActionLabel('confermo')
+            ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
         ;

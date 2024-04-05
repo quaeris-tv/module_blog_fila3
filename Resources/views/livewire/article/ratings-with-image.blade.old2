@@ -1,6 +1,6 @@
 <div class="py-4">
 	<div class="flex flex-col gap-5">
-		<article class="bg-white p-6 lg:p-[18px] rounded-lg flex flex-col xot-modal-place-bet">
+		<article class="bg-white p-6 lg:p-[18px] rounded-lg flex flex-col">
 			<div>
 				<!-- outcomes -->
 				<div class="flex gap-2 flex-nowrap lg:grid lg:grid-cols-3">
