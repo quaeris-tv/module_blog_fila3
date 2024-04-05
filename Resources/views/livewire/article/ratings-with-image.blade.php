@@ -15,7 +15,7 @@
 							</div>
 							<div class="p-1.5 absolute inset-0 flex flex-col text-start justify-between pointer-events-none">
 								<div class="flex items-center justify-center h-8 rounded-sm bg-neutral-5 w-11 {{ strlen($rating_title) && $rating_title != $data['title'] ? 'text-gray-400' : 'text-white'}}">
-									<span>66%</span>
+									<span>{{ $ratings_percentage[$data['id']] }}%</span>
 								</div>
 								<p class="text-sm font-medium text-white leading-[1.1] ">
 									{{ $data['title'] }}
