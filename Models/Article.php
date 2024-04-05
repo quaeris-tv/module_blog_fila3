@@ -600,8 +600,8 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $hours = $diff->h;
         $minutes = $diff->i;
 
-        if($minutes == 0){
-            return "scaduto";
+        if (0 == $minutes) {
+            return 'scaduto';
         }
 
         return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";
