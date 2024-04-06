@@ -91,15 +91,12 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             rating_title: $rating_title
         );
 
-        foreach ($this->datas as $key => $data) {
-            if ($this->datas[$key]['id'] == $rating_id) {
-                $this->datas[$key]['effect'] = true;
-            } else {
-                $this->datas[$key]['effect'] = false;
-            }
-        }
-        // } else {
-        //     dddx('wip');
+        // foreach ($this->datas as $key => $data) {
+        //     if ($this->datas[$key]['id'] == $rating_id) {
+        //         $this->datas[$key]['effect'] = true;
+        //     } else {
+        //         $this->datas[$key]['effect'] = false;
+        //     }
         // }
     }
 
@@ -115,6 +112,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->action(fn (array $arguments) => app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id))
             ->fillForm(fn ($record, $arguments): array => [
                 'rating_id' => $arguments['rating_id'],
+                'credits' => 0,
             ])
             ->form([
                 Select::make('rating_id')
