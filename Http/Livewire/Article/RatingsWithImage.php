@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
 use Filament\Actions\Action;
-use Webmozart\Assert\Assert;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Enums\MaxWidth;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Blog\Actions\Article\MakeBetAction;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Illuminate\Contracts\View\View;
-use Filament\Support\Enums\MaxWidth;
-use Illuminate\Support\Facades\Auth;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Modules\Blog\Actions\Article\MakeBetAction;
-use Filament\Actions\Concerns\InteractsWithActions;
+use Webmozart\Assert\Assert;
 
 class RatingsWithImage extends Component implements HasForms, HasActions
 {
@@ -96,9 +96,9 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     // modal di filament
     public function betAction(): Action
     {
-        if(Auth::guest()){
+        if (Auth::guest()) {
             return $this->GuestModal();
-        }else{
+        } else {
             return $this->CheckModal();
         }
     }
@@ -107,9 +107,10 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     {
         return Action::make('bet')
             ->modalContent(function (array $arguments): View {
-                    $view = 'blog::livewire.article.ratings.for-image.v1.guest';
-                    return view($view);
-                })
+                $view = 'blog::livewire.article.ratings.for-image.v1.guest';
+
+                return view($view);
+            })
             ->modalHeading('Place bet')
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
@@ -120,10 +121,9 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->stickyModalHeader()
             ->stickyModalFooter()
             ->modalSubmitAction(false)
-            ;
-    }   
-   
-   
+        ;
+    }
+
     public function CheckModal(): Action
     {
         return Action::make('bet')
@@ -159,7 +159,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
-            ;
+        ;
     }
 
     // modal con custom blade
