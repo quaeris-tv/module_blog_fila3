@@ -364,7 +364,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
                 ->where('rating_id', $key)
                 ->count();
 
-            $result[$key] = (100 * $a) / $b;
+            $result[$key] = round((100 * $a) / $b, 0);
         }
 
         return $result;
