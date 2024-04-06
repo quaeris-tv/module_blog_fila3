@@ -11,7 +11,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Modules\Blog\Actions\Article\MakeBetAction;
@@ -91,12 +90,15 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             rating_title: $rating_title
         );
 
-        // foreach ($this->datas as $key => $data) {
-        //     if ($this->datas[$key]['id'] == $rating_id) {
-        //         $this->datas[$key]['effect'] = true;
-        //     } else {
-        //         $this->datas[$key]['effect'] = false;
-        //     }
+        foreach ($this->datas as $key => $data) {
+            if ($this->datas[$key]['id'] == $rating_id) {
+                $this->datas[$key]['effect'] = true;
+            } else {
+                $this->datas[$key]['effect'] = false;
+            }
+        }
+        // } else {
+        //     dddx('wip');
         // }
     }
 
@@ -112,28 +114,19 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->action(fn (array $arguments) => app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id))
             ->fillForm(fn ($record, $arguments): array => [
                 'rating_id' => $arguments['rating_id'],
-                'credits' => 0,
             ])
             ->form([
                 Select::make('rating_id')
                     // ->label('Author')
-                    ->prefix('Your bet ')
-                    ->hiddenLabel()
                     ->options($this->rating_opts)
                     ->required(),
-                TextInput::make('credits')
-                    ->hiddenLabel()
-                    ->numeric()
-                    ->suffixIcon('heroicon-o-banknotes'),
+                TextInput::make('credits'),
             ])
-            ->modalHeading('Place bet')
+
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
-            ->modalWidth(MaxWidth::Small)
-            ->modalSubmitActionLabel('Please select an outcome')
-            ->modalCancelActionLabel('Cancel')
-            ->color('primary')
-            // ->modalIcon('heroicon-o-banknotes')
+            ->modalSubmitActionLabel('confermo')
+            ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
         ;
