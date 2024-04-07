@@ -61,7 +61,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             $this->article = Article::where('uuid', $article_uuid)->first();
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
-
+        Assert::notNull($this->article);
         $this->ratings_percentage = $this->article->getRatingsPercentage();
     }
 
