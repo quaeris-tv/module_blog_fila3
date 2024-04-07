@@ -12,7 +12,7 @@
 
 		</div>
 		<!-- filterlist -->
-		@include('blog::components.blocks.article_list.play_money_markets.filter_list')
+		{{-- @include('blog::components.blocks.article_list.play_money_markets.filter_list') --}}
 
 		<!-- list of markets -->
 
