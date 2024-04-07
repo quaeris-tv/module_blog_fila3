@@ -7,27 +7,9 @@
 				</p>
 				<span class="text-sm text-neutral-3" x-text="markets.length+' Markets'"></span>
 			</div>
-			<div x-data="{
-				open: false,
-				toggle() {
-				if (this.open) {
-				return this.close()
-				}
-				this.$refs.button.focus()
-				this.open = true
-				},
-				close(focusAfter) {
-				if (! this.open) return
-				this.open = false
-				focusAfter && focusAfter.focus()
-				}
-				}" x-on:keydown.escape.prevent.stop="close($refs.button)"
-				{{-- x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" --}}
-				class="relative">
+			<!-- order list -->
+			@include('blog::components.blocks.article_list.play_money_markets.order_select')
 
-				<!-- order select -->
-				@include('pub_theme::layouts.home.play_money_markets.order_select')
-			</div>
 		</div>
 		<!-- filterlist -->
 		@include('blog::components.blocks.article_list.play_money_markets.filter_list')
