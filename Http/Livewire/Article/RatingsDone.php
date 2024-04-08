@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
-
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Article;
 use Illuminate\Contracts\View\View;
+use Livewire\Component;
+use Modules\Blog\Models\Article;
 use Modules\Xot\Actions\GetViewAction;
 
-class RatingsDone extends Component //implements HasForms, HasActions
-{
-    // use InteractsWithActions;
+class RatingsDone extends Component // implements HasForms, HasActions
+{// use InteractsWithActions;
     // use InteractsWithForms;
 
     public ?Article $article = null;
@@ -38,6 +35,4 @@ class RatingsDone extends Component //implements HasForms, HasActions
 
         return view($view, $view_params);
     }
-
-
 }
