@@ -31,7 +31,8 @@
 
         @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.footer_info')
 
-        {{-- @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.ratings') --}}
+        @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.ratings')
+        {{-- <livewire:article.ratings-done :article_uuid="$article->uuid"/> --}}
 
     </article>
 @endforeach
