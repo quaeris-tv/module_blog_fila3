@@ -67,6 +67,7 @@ class Bar extends ChartWidget
                 'borderColor' => $ratings_color[$rating_id],
             ];
         }
+
         // dddx($data_chart);
         return $data_chart;
     }
