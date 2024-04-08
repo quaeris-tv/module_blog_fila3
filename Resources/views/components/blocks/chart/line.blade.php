@@ -1,3 +1,3 @@
 <div>
-    <livewire:article.chart :data="$block['data']" :model="$model" />
+    <livewire:article.chart.line :data="$block['data']" :model="$model" />
 </div>
