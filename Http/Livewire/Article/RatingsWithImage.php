@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Filament\Actions\Action;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Support\Enums\MaxWidth;
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use Modules\Blog\Actions\Article\MakeBetAction;
+use Filament\Actions\Action;
+use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Illuminate\Contracts\View\View;
+use Filament\Support\Enums\MaxWidth;
+use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
+use Filament\Forms\Components\TextInput;
+use Filament\Actions\Contracts\HasActions;
+use Illuminate\Notifications\Notification;
+use Illuminate\Validation\ValidationException;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Modules\Blog\Actions\Article\MakeBetAction;
+use Filament\Actions\Concerns\InteractsWithActions;
 
 class RatingsWithImage extends Component implements HasForms, HasActions
 {
@@ -147,7 +149,12 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                 TextInput::make('credits')
                     ->hiddenLabel()
                     ->numeric()
-                    ->suffixIcon('heroicon-o-banknotes'),
+                    ->suffixIcon('heroicon-o-banknotes')
+                    ->rules('gt:0')
+                    // ->validationMessages([
+                    //     'gt' => 'The :attribute has already been registered.',
+                    // ])
+                    ,
             ])
             ->modalHeading('Place bet')
             ->closeModalByClickingAway(false)
@@ -161,6 +168,14 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->stickyModalFooter()
         ;
     }
+
+    // protected function onValidationError(ValidationException $exception): void
+    // {
+    //     Notification::make()
+    //         ->title($exception->getMessage())
+    //         ->danger()
+    //         ->send();
+    // }
 
     // modal con custom blade
     // public function betAction(): Action

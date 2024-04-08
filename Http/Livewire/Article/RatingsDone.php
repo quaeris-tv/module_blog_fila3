@@ -21,7 +21,7 @@ class RatingsDone extends Component //implements HasForms, HasActions
 
     public function mount(string $article_uuid): void
     {
-        $this->article = Article::where('uuid', $article_uuid)->first();
+        Assert::notNull($this->article = Article::where('uuid', $article_uuid)->first());
         $this->datas = $this->article->getArrayRatingsWithImage();
     }
 
