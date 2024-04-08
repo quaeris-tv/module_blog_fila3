@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Blocks;
 
-use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Builder\Block;
+use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 
 class Chart
 {
@@ -14,17 +15,22 @@ class Chart
         string $name = 'ratings_statistics_graph',
         string $context = 'form',
     ): Block {
+
+        $view = 'blog::components.blocks.chart.v1';
+        $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
+
         return Block::make($name)
             ->schema([
                 // TextInput::make('text')
                 //     ->required(),
 
                 Select::make('chart_type')
-                    ->options([
-                        'line' => 'Line Chart',
-                        // 'h3' => 'h3',
-                        // 'h4' => 'h4',
-                    ])
+                    // ->options([
+                    //     'line' => 'Line Chart',
+                    //     // 'h3' => 'h3',
+                    //     // 'h4' => 'h4',
+                    // ])
+                    ->options($views)
                     ->columnSpanFull(),
                 // ->afterStateHydrated(static fn ($state, $set) => $state || $set('level', 'h2')),
             ])
