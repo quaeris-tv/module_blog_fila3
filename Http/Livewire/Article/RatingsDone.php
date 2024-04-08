@@ -11,9 +11,9 @@ use Modules\Xot\Actions\GetViewAction;
 
 class RatingsDone extends Component // implements HasForms, HasActions
 {// use InteractsWithActions;
-        // use InteractsWithForms;
+            // use InteractsWithForms;
 
-        public ?Article $article = null;
+            public ?Article $article = null;
     public array $datas;
 
     public function mount(string $article_uuid): void
