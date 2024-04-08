@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
 use Filament\Actions\Action;
-use Webmozart\Assert\Assert;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Enums\MaxWidth;
+use Illuminate\Contracts\View\View;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Livewire\Component;
+use Modules\Blog\Actions\Article\MakeBetAction;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
-use Illuminate\Contracts\View\View;
-use Filament\Support\Enums\MaxWidth;
-use Illuminate\Support\Facades\Auth;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Contracts\HasForms;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Actions\Contracts\HasActions;
-use Illuminate\Notifications\Notification;
-use Illuminate\Validation\ValidationException;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Modules\Blog\Actions\Article\MakeBetAction;
-use Filament\Actions\Concerns\InteractsWithActions;
+use Webmozart\Assert\Assert;
 
 class RatingsWithImage extends Component implements HasForms, HasActions
 {
@@ -151,10 +151,10 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                     ->numeric()
                     ->suffixIcon('heroicon-o-banknotes')
                     ->rules('gt:0')
-                    // ->validationMessages([
-                    //     'gt' => 'The :attribute has already been registered.',
-                    // ])
-                    ,
+                // ->validationMessages([
+                //     'gt' => 'The :attribute has already been registered.',
+                // ])
+                ,
             ])
             ->modalHeading('Place bet')
             ->closeModalByClickingAway(false)
