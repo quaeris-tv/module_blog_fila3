@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Blocks;
 
+use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Builder\Block;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 
 class Chart
@@ -15,7 +15,6 @@ class Chart
         string $name = 'ratings_statistics_graph',
         string $context = 'form',
     ): Block {
-
         $view = 'blog::components.blocks.chart.v1';
         $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
 
