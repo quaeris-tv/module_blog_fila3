@@ -72,7 +72,7 @@ class Line extends ChartWidget
 
     protected function getType(): string
     {
-        return $this->data['chart_type'];
+        return 'line';
     }
 
     protected function getFilters(): ?array
