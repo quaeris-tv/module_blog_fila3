@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Chart;
 
-use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
-use Modules\Blog\Datas\RatingInfoData;
 use Modules\Blog\Models\Article;
-use Webmozart\Assert\Assert;
 
 class Bar extends ChartWidget
 {
@@ -26,26 +23,21 @@ class Bar extends ChartWidget
         // dddx($orders->groupBy('rating_id'));
 
         $data = [];
-        foreach($orders->groupBy('rating_id') as $key => $group){
-
+        foreach ($orders->groupBy('rating_id') as $key => $group) {
             // dddx([$key, $group]);
             $sum = 0;
-            foreach($group as $rating){
+            foreach ($group as $rating) {
                 $sum += $rating->credits;
             }
 
             $data[] = $sum;
 
-
-
             // $data[] = $sum;
             $chart_data['labels'][] = $ratings[$key];
             $chart_data['datasets']['label'] = $ratings[$key];
 
-
             // $chart_data['datasets'][]['backgroundColor'] = $ratings_color[$key];
             // $chart_data['datasets'][]['borderColor'] = $ratings_color[$key];
-
 
             // dddx([
             //     $ratings,
@@ -53,8 +45,6 @@ class Bar extends ChartWidget
             // ]);
         }
         $chart_data['datasets'][]['data'] = $data;
-
-
 
         // dddx([
         //     $chart_data,
@@ -66,7 +56,7 @@ class Bar extends ChartWidget
         //         ],
         //         'labels' => ['yes', 'no'],
         //     ]
-        
+
         // ]);
 
         // return $chart_data;
