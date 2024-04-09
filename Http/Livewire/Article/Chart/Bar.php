@@ -17,59 +17,68 @@ class Bar extends ChartWidget
     public Article $model;
     public array $data;
 
-    public ?string $filter = '-7';
-
     protected function getData(): array
     {
-        $activeFilter = $this->filter;
+        $chart_data = [];
         $orders = $this->model->orders;
-        // dddx($orders);
         $ratings = $this->model->getOptionRatingsIdTitle();
         $ratings_color = $this->model->getOptionRatingsIdColor();
+        // dddx($orders->groupBy('rating_id'));
 
         $data = [];
-        for ($i = $activeFilter++; $i <= 0; ++$i) {
-            $date = Carbon::now()->addDays((int) $i);
-            $key = $date->format('Y-m-d');
-            $tmp = [
-                'date' => $date,
-                'key' => $key,
-                'label' => $date->format('d/m/Y'),
-            ];
-            $tmp1 = [];
-            foreach ($ratings as $rating_id => $rating_title) {
-                $tmp1[] = RatingInfoData::from([
-                    'ratingId' => $rating_id,
-                    'title' => $rating_title,
-                    'credit' => $orders
-                        // ->where('date', $key)
-                        ->where('rating_id', $rating_id)
-                        ->first()?->credits ?? 0,
-                ]);
+        foreach($orders->groupBy('rating_id') as $key => $group){
+
+            // dddx([$key, $group]);
+            $sum = 0;
+            foreach($group as $rating){
+                $sum += $rating->credits;
             }
-            $tmp['ratings'] = $tmp1;
-            $data[] = $tmp;
+
+            $data[] = $sum;
+
+
+
+            // $data[] = $sum;
+            $chart_data['labels'][] = $ratings[$key];
+            $chart_data['datasets']['label'] = $ratings[$key];
+
+
+            // $chart_data['datasets'][]['backgroundColor'] = $ratings_color[$key];
+            // $chart_data['datasets'][]['borderColor'] = $ratings_color[$key];
+
+
+            // dddx([
+            //     $ratings,
+            //     $rating
+            // ]);
         }
-        // dddx($data);
-        $data_chart = [];
+        $chart_data['datasets'][]['data'] = $data;
 
-        $data_chart['labels'] = collect($data)->pluck('label')->toArray();
-        $data_chart['datasets'] = [];
-        foreach ($ratings as $rating_id => $rating_title) {
-            $data_chart['datasets'][] = [
-                'label' => $rating_title,
-                'data' => collect($data)->map(function ($item) use ($rating_id) {
-                    Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id));
 
-                    return $rating_info->credit;
-                })->toArray(),
-                'backgroundColor' => $ratings_color[$rating_id],
-                'borderColor' => $ratings_color[$rating_id],
-            ];
-        }
 
-        // dddx($data_chart);
-        return $data_chart;
+        // dddx([
+        //     $chart_data,
+        //     [
+        //         'datasets' => [
+        //             [
+        //                 'data' => [3, 10],
+        //             ],
+        //         ],
+        //         'labels' => ['yes', 'no'],
+        //     ]
+        
+        // ]);
+
+        // return $chart_data;
+
+        return [
+            'datasets' => [
+                [
+                    'data' => [3, 10],
+                ],
+            ],
+            'labels' => ['yes', 'no'],
+        ];
     }
 
     protected function getType(): string
@@ -77,26 +86,10 @@ class Bar extends ChartWidget
         return 'bar';
     }
 
-    protected function getFilters(): ?array
-    {
-        return [
-            '-1' => 'Ultimo Giorno',
-            '-7' => 'Ultima Settimana',
-            '-30' => 'Ultimo Mese',
-            '-90' => 'Ultimi 3 Mesi',
-            '-180' => 'Ultimi 6 Mesi',
-        ];
-    }
-
     protected function getOptions(): array
     {
         return [
             'indexAxis' => 'y',
-            // 'plugins' => [
-            //     'legend' => [
-            //         'display' => false,
-            //     ],
-            // ],
         ];
     }
 }
