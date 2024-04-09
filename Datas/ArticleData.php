@@ -17,6 +17,7 @@ class ArticleData extends Data
     public string $title = '';
 
     public function __construct(
+        public string $id,
         public string $uuid,
         array|string $title,
         public string $slug,

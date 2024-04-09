@@ -6,7 +6,6 @@ namespace Modules\Blog\Http\Livewire\Article\Chart;
 
 use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
-use Modules\Blog\Datas\RatingInfoData;
 use Modules\Blog\Models\Article;
 use Webmozart\Assert\Assert;
 
