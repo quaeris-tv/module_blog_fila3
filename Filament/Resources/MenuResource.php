@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Modules\Blog\Models\Menu;
-use Filament\Resources\Resource;
-use Modules\Blog\Filament\Resources\MenuResource\Pages;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Modules\Blog\Filament\Resources\MenuResource\Pages;
+use Modules\Blog\Models\Menu;
 
 class MenuResource extends Resource
 {
