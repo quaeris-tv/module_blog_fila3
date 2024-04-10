@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
-use Webmozart\Assert\Assert;
 use Illuminate\Contracts\View\View;
-use Modules\Blog\Datas\ArticleData;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Component;
 use Modules\Blog\Datas\RatingInfoData;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
+use Webmozart\Assert\Assert;
 
 class RatingsDone extends Component // implements HasForms, HasActions
-{
-    // use InteractsWithActions;
+{// use InteractsWithActions;
     // use InteractsWithForms;
 
     public array $user_ratings;
@@ -52,7 +50,7 @@ class RatingsDone extends Component // implements HasForms, HasActions
         // dddx($this->user_ratings);
     }
 
-    public function getUserRatings():array
+    public function getUserRatings(): array
     {
         $result = [];
 
@@ -83,7 +81,6 @@ class RatingsDone extends Component // implements HasForms, HasActions
         $this->user_ratings = $this->getUserRatings();
 
         $this->render();
-
     }
 
     public function render(): View
