@@ -69,8 +69,12 @@ class RatingsDone extends Component // implements HasForms, HasActions
                 'title' => $tmp['title'],
                 'credit' => $rating['value'],
                 'image' => $tmp['image'],
-            ])->toArray();
+            ])->toArray()
+            
+            ;
         }
+        $key_values = array_column($result, 'credit'); 
+        array_multisort($key_values, SORT_DESC, $result);
 
         return $result;
     }
@@ -79,8 +83,6 @@ class RatingsDone extends Component // implements HasForms, HasActions
     public function updateUserRatings(): void
     {
         $this->user_ratings = $this->getUserRatings();
-
-        $this->render();
     }
 
     public function render(): View
