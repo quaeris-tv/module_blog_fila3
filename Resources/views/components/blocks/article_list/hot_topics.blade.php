@@ -7,7 +7,7 @@
         <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
             <div class="h-[140px] relative">
                 <img class="absolute inset-0 w-full"
-                    src="https://futuur-media-production.s3.amazonaws.com/cache/42/ce/42ce8ed04bb6d4fcfe08be4505a9c4f6.webp"
+                    src="https://My_Company-media-production.s3.amazonaws.com/cache/42/ce/42ce8ed04bb6d4fcfe08be4505a9c4f6.webp"
                     alt="" />
             </div>
             <div class="bg-white py-6 px-3 relative z-[1]">
@@ -22,7 +22,7 @@
         <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
             <div class="h-[140px] relative">
                 <img class="absolute inset-0 w-full"
-                    src="https://futuur-media-production.s3.amazonaws.com/cache/6f/e1/6fe13ae83c0efbd89b20e024bb73d72e.webp"
+                    src="https://My_Company-media-production.s3.amazonaws.com/cache/6f/e1/6fe13ae83c0efbd89b20e024bb73d72e.webp"
                     alt="" />
             </div>
             <div class="bg-white py-6 px-3 relative z-[1]">
@@ -37,7 +37,7 @@
         <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
             <div class="h-[140px] relative">
                 <img class="absolute inset-0 w-full"
-                    src="https://futuur-media-production.s3.amazonaws.com/cache/ae/96/ae965c552888fdfbd055e2b4f55cd453.webp"
+                    src="https://My_Company-media-production.s3.amazonaws.com/cache/ae/96/ae965c552888fdfbd055e2b4f55cd453.webp"
                     alt="" />
             </div>
             <div class="bg-white py-6 px-3 relative z-[1]">

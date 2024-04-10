@@ -155,7 +155,7 @@
 			</li>
 			<li>
 				<a class="flex items-center justify-between py-2 space-x-6 transition-colors hover:text-blue-500" href="#">
-					<span class="text-sm font-bold">About Futuur</span>
+					<span class="text-sm font-bold">About My_Company</span>
 					<x-heroicon-o-academic-cap class="w-6 h-6 text-blue-500"/>
 				</a>
 			</li>
@@ -192,7 +192,7 @@
 			</li>
 			<li>
 				<a class="flex items-center justify-between py-2 space-x-6 transition-colors hover:text-blue-500" href="#">
-					<span class="text-sm font-bold">About Futuur</span>
+					<span class="text-sm font-bold">About My_Company</span>
 					<x-heroicon-o-academic-cap class="w-6 h-6 text-blue-500"/>
 				</a>
 			</li>
@@ -207,7 +207,7 @@
 			<li>
 				<div class="flex items-center justify-between py-2 space-x-6 transition-colors hover:text-blue-500" href="#">
 					<div class="text-sm text-gray-400 shrink">
-						Futuur’s public API is still in Beta. <a class="text-blue-500" href="#">Link to documentation</a>
+						My_Company’s public API is still in Beta. <a class="text-blue-500" href="#">Link to documentation</a>
 					</div>
 					<x-heroicon-o-key class="block w-6 h-6 text-blue-500"/>
 				</div>

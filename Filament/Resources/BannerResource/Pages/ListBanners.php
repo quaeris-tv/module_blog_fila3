@@ -48,14 +48,14 @@ class ListBanners extends ListRecords
 // "photo11":{
 //     "id": 1,
 //     "desktop_thumbnail":
-//       "https://futuur-media-production.s3.amazonaws.com/cache/69/96/699635b11663281902877af264b1f181.jpg",
+//       "https://My_Company-media-production.s3.amazonaws.com/cache/69/96/699635b11663281902877af264b1f181.jpg",
 //     "mobile_thumbnail":
-//       "https://futuur-media-production.s3.amazonaws.com/cache/cf/d2/cfd2f40883ddc7bab784f1b4162d975e.jpg",
+//       "https://My_Company-media-production.s3.amazonaws.com/cache/cf/d2/cfd2f40883ddc7bab784f1b4162d975e.jpg",
 //     "desktop_thumbnail_webp":
-//       "https://futuur-media-production.s3.amazonaws.com/cache/1c/a1/1ca118c81f4728ab80396eb457330671.webp",
+//       "https://My_Company-media-production.s3.amazonaws.com/cache/1c/a1/1ca118c81f4728ab80396eb457330671.webp",
 //     "mobile_thumbnail_webp":
-//       "https://futuur-media-production.s3.amazonaws.com/cache/45/95/459548c28cc7fe4c056af42a85ffc93e.webp",
-//     "link": "https://futuur.com/q/suggest",
+//       "https://My_Company-media-production.s3.amazonaws.com/cache/45/95/459548c28cc7fe4c056af42a85ffc93e.webp",
+//     "link": "https://My_Company.com/q/suggest",
 //     "title": "Suggest a Market! 🔮",
 //     "short_description":
 //       "What do you want to know?\r\nPut the crowd to work for you",

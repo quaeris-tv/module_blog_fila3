@@ -52,7 +52,7 @@
                                     class="object-cover h-full w-full"
                                     alt="Yes"
                                     title="Yes"
-                                    src="https://futuur-media-production.s3.amazonaws.com/cache/5f/97/5f97a5a9ea6a404ce35c310c3571a03f.jpg"
+                                    src="https://My_Company-media-production.s3.amazonaws.com/cache/5f/97/5f97a5a9ea6a404ce35c310c3571a03f.jpg"
                                     sizes="144px"
                                     />
                                 <div class="absolute inset-0 group-hover/outcome:bg-blue-1/50"></div>
@@ -73,7 +73,7 @@
                                     class="object-cover h-full w-full"
                                     alt="No"
                                     title="No"
-                                    src="https://futuur-media-production.s3.amazonaws.com/cache/73/a3/73a3e4925cc28db4a7be86ab79355246.jpg"
+                                    src="https://My_Company-media-production.s3.amazonaws.com/cache/73/a3/73a3e4925cc28db4a7be86ab79355246.jpg"
                                     sizes="144px"
                                     />
                                 <div class="absolute inset-0 group-hover/outcome:bg-blue-1/50"></div>
