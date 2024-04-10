@@ -11,4 +11,5 @@ class RatingInfoData extends Data
     public string $ratingId;
     public string $title;
     public int $credit;
+    public ?string $image = '#';
 }

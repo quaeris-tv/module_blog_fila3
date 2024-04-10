@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
 
 class Line extends ChartWidget
 {
-    protected static ?string $heading = 'Blog Posts';
+    protected static ?string $heading = 'Daily Forecasts';
 
     public Article $model;
     public array $data;
@@ -72,7 +72,7 @@ class Line extends ChartWidget
 
     protected function getType(): string
     {
-        return $this->data['chart_type'];
+        return 'line';
     }
 
     protected function getFilters(): ?array
