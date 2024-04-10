@@ -93,8 +93,6 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             rating_id: $rating_id,
             rating_title: $rating_title
         );
-
-        $this->dispatch('update-user-ratings');
     }
 
     // modal di filament
@@ -135,6 +133,8 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                 Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
                 $article_id = $rating_morph->model_id;
                 app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], (int) $data['rating_id']);
+                
+                $this->dispatch('update-user-ratings');
             })
             // ->action(fn (array $arguments) => app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id))
             ->fillForm(fn ($record, $arguments): array => [
