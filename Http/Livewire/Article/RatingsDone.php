@@ -15,9 +15,9 @@ use Webmozart\Assert\Assert;
 
 class RatingsDone extends Component // implements HasForms, HasActions
 {// use InteractsWithActions;
-            // use InteractsWithForms;
+                // use InteractsWithForms;
 
-            public array $user_ratings;
+                public array $user_ratings;
     public array $article_data;
     public array $user;
 
@@ -70,10 +70,10 @@ class RatingsDone extends Component // implements HasForms, HasActions
                 'credit' => $rating['value'],
                 'image' => $tmp['image'],
             ])->toArray()
-            
+
             ;
         }
-        $key_values = array_column($result, 'credit'); 
+        $key_values = array_column($result, 'credit');
         array_multisort($key_values, SORT_DESC, $result);
 
         return $result;
