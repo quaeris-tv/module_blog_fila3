@@ -93,6 +93,8 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             rating_id: $rating_id,
             rating_title: $rating_title
         );
+
+        $this->dispatch('update-user-ratings');
     }
 
     // modal di filament

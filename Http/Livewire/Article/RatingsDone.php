@@ -4,54 +4,86 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
+use Illuminate\Contracts\View\View;
 use Modules\Blog\Datas\ArticleData;
+use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Datas\RatingInfoData;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 
 class RatingsDone extends Component // implements HasForms, HasActions
-{// use InteractsWithActions;
+{
+    // use InteractsWithActions;
     // use InteractsWithForms;
 
-    // public ?array $article = null;
     public array $user_ratings;
+    public array $article_data;
+    public array $user;
 
-    public function mount(ArticleData $article_data): void
+    public function mount(array $article_data): void
     {
-        // $this->article = $article_data->toArray();
+        $this->article_data = $article_data;
 
-        $user_ratings = RatingMorph::where('user_id', Auth::user()->id)
-                ->where('model_id', $article_data->id)
+        Assert::notNull($user = Auth::user());
+        $this->user = $user->toArray();
+
+        $this->user_ratings = $this->getUserRatings();
+
+        // $user_ratings = RatingMorph::where('user_id', $user->id)
+        //         ->where('model_id', $this->article_data['id'])
+        //         ->get()->toArray();
+
+        // $ratings_options = collect($this->article_data['ratings']);
+
+        // foreach ($user_ratings as $key => $rating) {
+        //     Assert::isArray($rating);
+        //     $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
+        //     $this->user_ratings[] = RatingInfoData::from([
+        //         'ratingId' => $rating['rating_id'],
+        //         'title' => $tmp['title'],
+        //         'credit' => $rating['value'],
+        //         'image' => $tmp['image'],
+        //     ])->toArray();
+        // }
+
+        // dddx($this->user_ratings);
+    }
+
+    public function getUserRatings():array
+    {
+        $result = [];
+
+        $user_ratings = RatingMorph::where('user_id', $this->user['id'])
+                ->where('model_id', $this->article_data['id'])
                 ->get()->toArray();
 
-        $ratings_options = collect($article_data->ratings);
-        // dddx($ratings_options->where('id', 170)->first());
-        foreach ($user_ratings as $rating) {
-            // dddx($rating);
-            // dddx([
-            //     $rating,
-            //     $this->article
-            // ]);
-            $tmp = $ratings_options->where('id', $rating['id'])->first();
-            dddx($tmp);
-            $this->user_ratings[] = RatingInfoData::from([
+        Assert::isArray($this->article_data['ratings']);
+        $ratings_options = collect($this->article_data['ratings']);
+
+        foreach ($user_ratings as $key => $rating) {
+            Assert::isArray($rating);
+            $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
+            $result[] = RatingInfoData::from([
                 'ratingId' => $rating['rating_id'],
                 'title' => $tmp['title'],
                 'credit' => $rating['value'],
                 'image' => $tmp['image'],
-            ]);
+            ])->toArray();
         }
 
-        dddx($this->user_ratings);
+        return $result;
+    }
 
-        // dddx([
-        //     $this->article,
-        //     $this->user_ratings,
-        //     // collect($this->article->ratings)->where('id', 170)->first()['image']
-        // ]);
+    #[On('update-user-ratings')]
+    public function updateUserRatings(): void
+    {
+        $this->user_ratings = $this->getUserRatings();
+
+        $this->render();
+
     }
 
     public function render(): View
