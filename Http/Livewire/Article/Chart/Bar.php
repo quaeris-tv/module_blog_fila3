@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Chart;
 
-use Carbon\Carbon;
 use Filament\Widgets\ChartWidget;
 use Modules\Blog\Models\Article;
-use Webmozart\Assert\Assert;
 
 class Bar extends ChartWidget
 {
@@ -24,19 +22,17 @@ class Bar extends ChartWidget
         $ratings_color = $this->model->getOptionRatingsIdColor();
         $data = [];
 
-
-        foreach($ratings as $key => $value){
+        foreach ($ratings as $key => $value) {
             $tmp = $orders->where('rating_id', $key);
             $data['data'][] = $tmp->sum('credits');
             $data['backgroundColor'][] = $ratings_color[$key];
             $data['borderColor'][] = $ratings_color[$key];
-            
+
             $chart_data['labels'][] = $ratings[$key];
         }
         // $data['label'] = 'Volume';
 
         $chart_data['datasets'][] = $data;
-
 
         // dddx([
         //     $chart_data,
@@ -83,8 +79,8 @@ class Bar extends ChartWidget
                     // labels: [
                     //     color: 'rgb(255, 99, 132)'
                     // ]
-                ]
-            ]
+                ],
+            ],
         ];
     }
 }

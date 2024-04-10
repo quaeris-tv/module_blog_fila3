@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
-use Webmozart\Assert\Assert;
 use Illuminate\Contracts\View\View;
-use Modules\Blog\Datas\ArticleData;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Datas\RatingInfoData;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 
 class RatingsDone extends Component // implements HasForms, HasActions
-{
-    // use InteractsWithActions;
+{// use InteractsWithActions;
     // use InteractsWithForms;
 
     // public ?array $article = null;
@@ -31,7 +29,7 @@ class RatingsDone extends Component // implements HasForms, HasActions
 
         $ratings_options = collect($article_data->ratings);
         // dddx($ratings_options->where('id', 170)->first());
-        foreach($user_ratings as $rating){
+        foreach ($user_ratings as $rating) {
             // dddx($rating);
             // dddx([
             //     $rating,
@@ -43,7 +41,7 @@ class RatingsDone extends Component // implements HasForms, HasActions
                 'ratingId' => $rating['rating_id'],
                 'title' => $tmp['title'],
                 'credit' => $rating['value'],
-                'image' => $tmp['image']
+                'image' => $tmp['image'],
             ]);
         }
 
@@ -54,7 +52,6 @@ class RatingsDone extends Component // implements HasForms, HasActions
         //     $this->user_ratings,
         //     // collect($this->article->ratings)->where('id', 170)->first()['image']
         // ]);
-
     }
 
     public function render(): View
