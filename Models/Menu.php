@@ -6,6 +6,7 @@ namespace Modules\Blog\Models;
 
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 
 /**
  * Modules\Blog\Models\Menu.
@@ -42,15 +43,23 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
+    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
     /** @var array<int, string> */
     protected $fillable = [
-        'name',
+        'title',
         'items',
+        'parent_id',
     ];
 
     /** @var array<string, string> */
     protected $casts = [
         'items' => 'array',
     ];
+
+    public static function getTreeMenuOptions(): array
+    {
+        $instance = new self();
+        return app(GetTreeOptions::class)->execute($instance);
+    }
 }

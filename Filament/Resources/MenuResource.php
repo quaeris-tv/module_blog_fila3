@@ -62,6 +62,12 @@ class MenuResource extends Resource
                         ->collection('menu')
                     // ->preserveFilenames()
                     ,
+                    Forms\Components\Select::make('parent_id')
+                        ->label('link Padre')
+                        ->options(
+                            Menu::getTreeMenuOptions()
+                        )
+                        ->searchable(),
                     \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
                         ->columns([
                             'default' => 1,

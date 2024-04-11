@@ -31,6 +31,13 @@ class CreateMenusTable extends XotBaseMigration
                     $table->text('items')->nullable();
                 }
 
+                if (! $this->hasColumn('parent_id')) {
+                    $table->unsignedBigInteger('parent_id')->nullable();
+                }
+                if ($this->hasColumn('name')) {
+                    $table->renameColumn('name', 'title');
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );

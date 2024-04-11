@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Category.
@@ -155,21 +156,27 @@ class Category extends BaseModel implements HasMedia
 
     public static function getTreeCategoryOptions(): array
     {
-        $categories = self::tree()->get()->toTree();
-        $results = [];
-        foreach ($categories as $cat) {
-            $results[$cat->id] = $cat->title;
-            foreach ($cat->children as $child) {
-                $results[$child->id] = '--------->'.$child->title;
-                foreach ($child->children as $cld) {
-                    $results[$cld->id] = '----------------->'.$cld->title;
-                    foreach ($cld->children as $c) {
-                        $results[$c->id] = '------------------------->'.$c->title;
-                    }
-                }
-            }
-        }
+        $instance = new self();
+        // dddx($instance);
+        return app(GetTreeOptions::class)->execute($instance);
 
-        return $results;
+
+
+        // $categories = self::tree()->get()->toTree();
+        // $results = [];
+        // foreach ($categories as $cat) {
+        //     $results[$cat->id] = $cat->title;
+        //     foreach ($cat->children as $child) {
+        //         $results[$child->id] = '--------->'.$child->title;
+        //         foreach ($child->children as $cld) {
+        //             $results[$cld->id] = '----------------->'.$cld->title;
+        //             foreach ($cld->children as $c) {
+        //                 $results[$c->id] = '------------------------->'.$c->title;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return $results;
     }
 }
