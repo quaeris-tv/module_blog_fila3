@@ -268,6 +268,11 @@ class ThemeComposer
         return $tmp;
     }
 
+    public function getSingleBanner(Banner $banner): SliderData
+    {
+        return SliderData::from($banner->toArray());
+    }
+
     public function getArticlesFeatured(int $number = 6): Collection
     {
         dddx('wip con article data');

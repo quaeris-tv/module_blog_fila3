@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Modules\Blog\Models\Banner;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Category.
@@ -152,6 +154,11 @@ class Category extends BaseModel implements HasMedia
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class);
+    }
+
+    public function banner(): HasOne
+    {
+        return $this->hasOne(Banner::class);
     }
 
     public static function getTreeCategoryOptions(): array
