@@ -26,6 +26,12 @@ class MenuResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(2048)
+                // ->reactive()
+                // ->unique()
+                ,
             Forms\Components\Repeater::make('items')
                 ->schema([
                     Forms\Components\Grid::make(2)->schema([
@@ -63,7 +69,7 @@ class MenuResource extends Resource
                     // ->preserveFilenames()
                     ,
                     Forms\Components\Select::make('parent_id')
-                        ->label('link Padre')
+                        ->label('link/menu Padre')
                         ->options(
                             Menu::getTreeMenuOptions()
                         )
@@ -84,7 +90,7 @@ class MenuResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('title'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

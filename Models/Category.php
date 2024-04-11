@@ -158,7 +158,6 @@ class Category extends BaseModel implements HasMedia
     {
         $instance = new self();
 
-        // dddx($instance);
         return app(GetTreeOptions::class)->execute($instance);
 
         // $categories = self::tree()->get()->toTree();
