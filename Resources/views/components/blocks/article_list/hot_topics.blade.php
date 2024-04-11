@@ -4,6 +4,11 @@
         Hot topics 🔥
     </h2>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        {{-- {{ dddx($_theme->getHotTopics()) }} --}}
+
+
+
         <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
             <div class="h-[140px] relative">
                 <img class="absolute inset-0 w-full"
