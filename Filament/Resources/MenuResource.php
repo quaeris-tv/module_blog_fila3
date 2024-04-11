@@ -29,9 +29,9 @@ class MenuResource extends Resource
             Forms\Components\TextInput::make('title')
                 ->required()
                 ->maxLength(2048)
-                // ->reactive()
-                // ->unique()
-                ,
+            // ->reactive()
+            // ->unique()
+            ,
             Forms\Components\Repeater::make('items')
                 ->schema([
                     Forms\Components\Grid::make(2)->schema([

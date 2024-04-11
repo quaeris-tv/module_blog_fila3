@@ -79,7 +79,5 @@ class Menu extends BaseModel implements HasMedia
         // }
 
         // return $results;
-
-
     }
 }
