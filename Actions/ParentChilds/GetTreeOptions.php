@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\ParentChilds;
 
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Category;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\QueueableAction\QueueableAction;
 

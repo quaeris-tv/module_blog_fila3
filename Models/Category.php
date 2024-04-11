@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Translatable\HasTranslations;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Blog\Models\Category.
@@ -157,10 +157,9 @@ class Category extends BaseModel implements HasMedia
     public static function getTreeCategoryOptions(): array
     {
         $instance = new self();
+
         // dddx($instance);
         return app(GetTreeOptions::class)->execute($instance);
-
-
 
         // $categories = self::tree()->get()->toTree();
         // $results = [];

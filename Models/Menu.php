@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 
 /**
  * Modules\Blog\Models\Menu.
@@ -60,6 +60,7 @@ class Menu extends BaseModel implements HasMedia
     public static function getTreeMenuOptions(): array
     {
         $instance = new self();
+
         return app(GetTreeOptions::class)->execute($instance);
     }
 }
