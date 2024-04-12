@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Livewire\Component;
+use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\On;
-use Livewire\Component;
 use Modules\Blog\Datas\RatingInfoData;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
 
 class RatingsDone extends Component // implements HasForms, HasActions
 {// use InteractsWithActions;
@@ -61,6 +62,8 @@ class RatingsDone extends Component // implements HasForms, HasActions
         Assert::isArray($this->article_data['ratings']);
         $ratings_options = collect($this->article_data['ratings']);
 
+        $percs = $this->getPercs();
+        
         foreach ($user_ratings as $key => $rating) {
             Assert::isArray($rating);
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
@@ -69,6 +72,7 @@ class RatingsDone extends Component // implements HasForms, HasActions
                 'title' => $tmp['title'],
                 'credit' => $rating['value'],
                 'image' => $tmp['image'],
+                'predict_victory' => $rating['value'] * $percs[$rating['rating_id']]
             ])->toArray()
 
             ;
@@ -77,6 +81,34 @@ class RatingsDone extends Component // implements HasForms, HasActions
         array_multisort($key_values, SORT_DESC, $result);
 
         return $result;
+    }
+
+    public function getPercs(): array
+    {
+        $result = [];
+        Assert::notNull($article = Article::find($this->article_data['id']));
+        Assert::isInstanceOf($article, Article::class);
+        $total_volume = $article->getVolumeCredit();
+
+        foreach($this->article_data['ratings'] as $rating){
+            $result[$rating['id']] = 0;
+            if($total_volume != 0){
+                $perc = $article->getVolumeCredit($rating['id'])/$total_volume;
+                if($perc != 0){
+                    $result[$rating['id']] = round(1/$perc, 2);
+                }
+            }
+        }
+
+        return $result;
+        // dddx($result);
+
+        // dddx([
+        //     $this->article_data,
+        //     $article->getVolumeCredit(),
+        //     $article->getVolumeCredit(171),
+        //     $article->getVolumeCredit(170),
+        // ]);
     }
 
     #[On('update-user-ratings')]
