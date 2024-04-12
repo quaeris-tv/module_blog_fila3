@@ -40,19 +40,19 @@ class BannerResource extends XotBaseResource
                     Forms\Components\TextInput::make('description')
                         ->columnSpan(1)
                         ->required(),
-                    Forms\Components\TextInput::make('action_text')
-                        ->columnSpan(1)
-                        ->required(),
+                    // Forms\Components\TextInput::make('action_text')
+                    //     ->columnSpan(1)
+                    //     ->required(),
                     Forms\Components\Select::make('category_id')
                         ->required()
                         ->options(Category::getTreeCategoryOptions()),
                     Forms\Components\TextInput::make('link')
                         ->columnSpan(1)
                         ->required(),
-                    Forms\Components\DateTimePicker::make('start_date')
-                        ->columnSpan(1),
-                    Forms\Components\DateTimePicker::make('end_date')
-                        ->columnSpan(1),
+                    // Forms\Components\DateTimePicker::make('start_date')
+                    //     ->columnSpan(1),
+                    // Forms\Components\DateTimePicker::make('end_date')
+                    //     ->columnSpan(1),
                     Forms\Components\Toggle::make('hot_topic')
                         ->columnSpan(1),
                     Forms\Components\Toggle::make('landing_banner')
