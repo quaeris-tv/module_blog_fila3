@@ -1,6 +1,10 @@
 <div class="py-4">
     @php
-        $articles = $_theme->getMethodData($method);
+        if(!isset($method)){
+            $articles = $_theme->getArticlesLatest();
+        }else{
+            $articles = $_theme->getMethodData($method);
+        }
         // dddx($articles);
     @endphp
 
