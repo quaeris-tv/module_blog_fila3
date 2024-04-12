@@ -120,7 +120,7 @@ class Category extends BaseModel implements HasMedia
         'in_leaderboard',
     ];
 
-    /** @var array<string, string> */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [

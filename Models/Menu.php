@@ -52,7 +52,7 @@ class Menu extends BaseModel implements HasMedia
         'parent_id',
     ];
 
-    /** @var array<string, string> */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [

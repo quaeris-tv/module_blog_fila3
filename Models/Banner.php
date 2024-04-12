@@ -78,7 +78,7 @@ class Banner extends BaseModel implements HasMedia
         'landing_banner', // : false
     ];
 
-    /** @var array<string, string> */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [

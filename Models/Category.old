@@ -37,7 +37,7 @@ class Category extends Model
         'is_visible',
     ];
 
-    /** @var array<string, string> */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [
