@@ -225,8 +225,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array<string, string>
-     */
+     * @return array<string, string> */
     protected function casts(): array
     {
         return [
