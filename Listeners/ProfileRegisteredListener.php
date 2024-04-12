@@ -23,9 +23,8 @@ class ProfileRegisteredListener
     {
         Profile::create([
             'email' => $event->user->email,
-            'credits' => 1000
+            'credits' => 1000,
         ]);
-
 
         // Profile::firstOrCreate(
         //     [
@@ -34,6 +33,5 @@ class ProfileRegisteredListener
         //     'credits' => 1000
         //     ],
         // );
-
     }
 }

@@ -4,27 +4,26 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Tag;
-use Webmozart\Assert\Assert;
+use Modules\Blog\Datas\ArticleData;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Banner;
+use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Menu;
 use Modules\Blog\Models\Page;
-use function Safe\json_decode;
-use Modules\Blog\Models\Banner;
-use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;
-use Modules\Blog\Models\Category;
-use Modules\Blog\Datas\ArticleData;
-use Illuminate\Support\Facades\File;
-use Modules\Rating\Models\RatingMorph;
-use Spatie\LaravelData\DataCollection;
-
-use Illuminate\Database\Eloquent\Model;
-
 use Modules\UI\Datas\SliderDataCollection;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+
+use function Safe\json_decode;
+
+use Spatie\LaravelData\DataCollection;
+use Webmozart\Assert\Assert;
 
 class ThemeComposer
 {
@@ -313,8 +312,7 @@ class ThemeComposer
     {
         $result = Category::with('articles')
             // ->join('categories', 'posts.user_id', '=', 'users.id')
-            
-            
+
             ->first()
             // ->groupBy('model_id')
             // ->map(function($items){
@@ -323,8 +321,7 @@ class ThemeComposer
             //     }
             // })
 
-
-            ;
+        ;
 
         dddx($result);
     }

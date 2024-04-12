@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Modules\Blog\Models\Banner;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Translatable\HasTranslations;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * Modules\Blog\Models\Category.
