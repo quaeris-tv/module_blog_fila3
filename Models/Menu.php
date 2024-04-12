@@ -53,9 +53,14 @@ class Menu extends BaseModel implements HasMedia
     ];
 
     /** @var array<string, string> */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'items' => 'array',
-    ];
+
+        ];
+    }
 
     public static function getTreeMenuOptions(): array
     {

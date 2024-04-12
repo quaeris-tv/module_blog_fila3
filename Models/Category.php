@@ -121,7 +121,10 @@ class Category extends BaseModel implements HasMedia
     ];
 
     /** @var array<string, string> */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'id' => 'string',
         'title' => 'string',
         'slug' => 'string',
@@ -133,7 +136,9 @@ class Category extends BaseModel implements HasMedia
         'published_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-    ];
+
+        ];
+    }
 
     /** @var array<int, string> */
     public $translatable = [

@@ -62,7 +62,10 @@ class Page extends BaseModel
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         // 'images' => 'array',
         'id' => 'string',
         'uuid' => 'string',
@@ -74,7 +77,9 @@ class Page extends BaseModel
         'content_blocks' => 'array',
         'sidebar_blocks' => 'array',
         'footer_blocks' => 'array',
-    ];
+
+        ];
+    }
 
     /**
      * Get the path key to the item for the frontend only.

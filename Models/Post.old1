@@ -101,10 +101,15 @@ class Post extends BaseModel implements HasMedia
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'date' => 'datetime',
         'published_at' => 'datetime',
-    ];
+
+        ];
+    }
 
     public function user(): BelongsTo
     {

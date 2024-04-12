@@ -79,7 +79,10 @@ class Banner extends BaseModel implements HasMedia
     ];
 
     /** @var array<string, string> */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'id' => 'string',
         'desktop_thumbnail' => 'string',
         'mobile_thumbnail' => 'string',
@@ -106,7 +109,9 @@ class Banner extends BaseModel implements HasMedia
         'hot_topic' => 'boolean',
         'open_markets_count' => 'integer',
         'landing_banner' => 'boolean',
-    ];
+
+        ];
+    }
 
     /** @var array<int, string> */
     protected $appends = [

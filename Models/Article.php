@@ -227,7 +227,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         // 'images' => 'array',
         'id' => 'string',
         'uuid' => 'string',
@@ -241,7 +244,9 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         'footer_blocks' => 'array',
         'sidebar_blocks' => 'array',
         // 'is_closed'=> 'boolean',
-    ];
+
+        ];
+    }
 
     // public function path()
     // {

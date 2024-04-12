@@ -84,9 +84,14 @@ class User extends Authenticatable implements MustVerifyEmail, FilamentUser
      *
      * @var array<string, string>
      */
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'email_verified_at' => 'datetime',
-    ];
+
+        ];
+    }
 
     public function canAccessPanel(\Filament\Panel $panel): bool
     {
