@@ -298,34 +298,35 @@ class ThemeComposer
         return $tmp;
     }
 
-    /**
-     * Undocumented function.
-     *
-     * @return void
-     */
-    public function getMenu(string $menu_name)
-    {
-        // dddx(Menu::where('title', $menu_name)->first()->items);
-        return Menu::where('title', $menu_name)->first()->items;
-    }
+    // /**
+    //  * Undocumented function.
+    //  *
+    //  * @return void
+    //  */
+    // public function getMenu(string $menu_name): array
+    // {
+    //     // dddx(Menu::where('title', $menu_name)->first()->items);
+    //     Assert::notNull($menu = Menu::where('title', $menu_name)->first());
+    //     return $menu->items;
+    // }
 
-    public function getHotTopics()
-    {
-        $result = Category::with('articles')
-            // ->join('categories', 'posts.user_id', '=', 'users.id')
+    // public function getHotTopics()
+    // {
+    //     $result = Category::with('articles')
+    //         // ->join('categories', 'posts.user_id', '=', 'users.id')
             
             
-            ->first()
-            // ->groupBy('model_id')
-            // ->map(function($items){
-            //     foreach($items as $item){
-            //         dddx($item->value);
-            //     }
-            // })
+    //         ->first()
+    //         // ->groupBy('model_id')
+    //         // ->map(function($items){
+    //         //     foreach($items as $item){
+    //         //         dddx($item->value);
+    //         //     }
+    //         // })
 
 
-            ;
+    //         ;
 
-        dddx($result);
-    }
+    //     dddx($result);
+    // }
 }
