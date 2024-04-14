@@ -85,6 +85,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     {
         $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
+        // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
         $this->ratings_percentage = $this->article->getRatingsPercentage();
         if ('index' == $this->type) {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
