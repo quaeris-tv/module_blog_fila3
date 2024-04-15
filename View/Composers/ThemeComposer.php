@@ -204,9 +204,15 @@ class ThemeComposer
         return $pages;
     }
 
+    public function getPageModel(string $slug): Page|null
+    {
+        return Page::where('slug', $slug)->first();
+    }
+
+
     public function getUrlPage(string $slug): string
     {
-        $page = $this->getPages()->where('slug', $slug)->first();
+        $page = $this->getPageModel();
         if (null !== $page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
