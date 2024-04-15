@@ -313,8 +313,7 @@ class ThemeComposer
     // {
     //     $result = Category::with('articles')
     //         // ->join('categories', 'posts.user_id', '=', 'users.id')
-            
-            
+
     //         ->first()
     //         // ->groupBy('model_id')
     //         // ->map(function($items){
@@ -322,7 +321,6 @@ class ThemeComposer
     //         //         dddx($item->value);
     //         //     }
     //         // })
-
 
     //         ;
 

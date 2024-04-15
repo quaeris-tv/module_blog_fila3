@@ -135,7 +135,7 @@ trait HasPathByParentId
 
         $value = $this->getBreads();
         if (null != $this->getKey()) {
-            if (null == $value ) {
+            if (null == $value) {
                 $value = $this->name;
             }
             $this->update(['breads' => $value]);

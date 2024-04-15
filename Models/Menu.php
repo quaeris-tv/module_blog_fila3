@@ -56,9 +56,7 @@ class Menu extends BaseModel implements HasMedia
     protected function casts(): array
     {
         return [
-
-        'items' => 'array',
-
+            'items' => 'array',
         ];
     }
 

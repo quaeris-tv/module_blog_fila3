@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Headernav;
 
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Contracts\Support\Renderable;
 
 class SearchBar extends Component
 {
@@ -23,14 +23,12 @@ class SearchBar extends Component
 
         $results = [];
 
-
-        if (!empty($this->search)) {
-            $results = Article::where('title', 'like', '%' . $this->search . '%')->get();
+        if (! empty($this->search)) {
+            $results = Article::where('title', 'like', '%'.$this->search.'%')->get();
         }
 
-
         $view_params = [
-            'results' => $results
+            'results' => $results,
         ];
 
         return view($view, $view_params);

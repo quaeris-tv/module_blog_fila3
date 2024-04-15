@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Listeners;
 
-use Modules\Blog\Models\Profile;
 use Illuminate\Auth\Events\Registered;
+use Modules\Blog\Models\Profile;
 
 class ProfileRegisteredListener
 {

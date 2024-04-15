@@ -82,18 +82,17 @@ class Banner extends BaseModel implements HasMedia
     protected function casts(): array
     {
         return [
-
-        'id' => 'string',
-        'desktop_thumbnail' => 'string',
-        'mobile_thumbnail' => 'string',
-        'desktop_thumbnail_webp' => 'string',
-        'mobile_thumbnail_webp' => 'string',
-        'link' => 'string',
-        'title' => 'string',
-        'description' => 'string',
-        'action_text' => 'string',
-        'category_id' => 'string',
-        /*
+            'id' => 'string',
+            'desktop_thumbnail' => 'string',
+            'mobile_thumbnail' => 'string',
+            'desktop_thumbnail_webp' => 'string',
+            'mobile_thumbnail_webp' => 'string',
+            'link' => 'string',
+            'title' => 'string',
+            'description' => 'string',
+            'action_text' => 'string',
+            'category_id' => 'string',
+            /*
         "category",//: 99,
         "category_dict": {
             "id": 99,
@@ -104,12 +103,11 @@ class Banner extends BaseModel implements HasMedia
             "icon": null
         },
         */
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-        'hot_topic' => 'boolean',
-        'open_markets_count' => 'integer',
-        'landing_banner' => 'boolean',
-
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'hot_topic' => 'boolean',
+            'open_markets_count' => 'integer',
+            'landing_banner' => 'boolean',
         ];
     }
 

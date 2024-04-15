@@ -229,21 +229,19 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     protected function casts(): array
     {
         return [
-
-        // 'images' => 'array',
-        'id' => 'string',
-        'uuid' => 'string',
-        'date' => 'datetime',
-        'published_at' => 'datetime',
-        'active' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'closed_at' => 'datetime',
-        'content_blocks' => 'array',
-        'footer_blocks' => 'array',
-        'sidebar_blocks' => 'array',
-        // 'is_closed'=> 'boolean',
-
+            // 'images' => 'array',
+            'id' => 'string',
+            'uuid' => 'string',
+            'date' => 'datetime',
+            'published_at' => 'datetime',
+            'active' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'closed_at' => 'datetime',
+            'content_blocks' => 'array',
+            'footer_blocks' => 'array',
+            'sidebar_blocks' => 'array',
+            // 'is_closed'=> 'boolean',
         ];
     }
 
@@ -340,7 +338,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $ratings = RatingMorph::where('model_id', $this->id)
             ->where('user_id', '!=', null);
 
-        if($rating_id != null){
+        if (null != $rating_id) {
             $ratings = $ratings->where('rating_id', $rating_id);
         }
 

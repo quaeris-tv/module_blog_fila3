@@ -64,19 +64,17 @@ class Page extends BaseModel
     protected function casts(): array
     {
         return [
-
-        // 'images' => 'array',
-        'id' => 'string',
-        'uuid' => 'string',
-        'date' => 'datetime',
-        'published_at' => 'datetime',
-        'active' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'content_blocks' => 'array',
-        'sidebar_blocks' => 'array',
-        'footer_blocks' => 'array',
-
+            // 'images' => 'array',
+            'id' => 'string',
+            'uuid' => 'string',
+            'date' => 'datetime',
+            'published_at' => 'datetime',
+            'active' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'content_blocks' => 'array',
+            'sidebar_blocks' => 'array',
+            'footer_blocks' => 'array',
         ];
     }
 

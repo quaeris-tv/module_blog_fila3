@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Modules\Xot\Traits\Updater;
-use Illuminate\Database\Eloquent\Model;
-// ---------- traits
-use Modules\Xot\Services\FactoryService;
-// //use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Xot\Actions\Factory\GetFactoryAction;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\Factory;
+// ---------- traits
+// //use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Xot\Actions\Factory\GetFactoryAction;
+use Modules\Xot\Traits\Updater;
 
 /**
  * Class BaseModel.
@@ -45,7 +44,7 @@ abstract class BaseModel extends Model
     protected function casts(): array
     {
         return [
-                'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'
+            'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime',
         ];
     }
 

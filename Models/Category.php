@@ -123,19 +123,17 @@ class Category extends BaseModel implements HasMedia
     protected function casts(): array
     {
         return [
-
-        'id' => 'string',
-        'title' => 'string',
-        'slug' => 'string',
-        'name' => 'string',
-        'picture' => 'string',
-        'description' => 'string',
-        'parent_id' => 'string',
-        'in_leaderboard' => 'boolean',
-        'published_at' => 'datetime',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-
+            'id' => 'string',
+            'title' => 'string',
+            'slug' => 'string',
+            'name' => 'string',
+            'picture' => 'string',
+            'description' => 'string',
+            'parent_id' => 'string',
+            'in_leaderboard' => 'boolean',
+            'published_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
         ];
     }
 

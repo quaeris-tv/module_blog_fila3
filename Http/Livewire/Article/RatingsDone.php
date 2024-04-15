@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Component;
 use Modules\Blog\Datas\RatingInfoData;
+use Modules\Blog\Models\Article;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
+use Webmozart\Assert\Assert;
 
 class RatingsDone extends Component // implements HasForms, HasActions
 {// use InteractsWithActions;
-                                        // use InteractsWithForms;
+                                            // use InteractsWithForms;
 
-                                        public array $user_ratings;
+                                            public array $user_ratings;
     public array $article_data;
     public array $user;
 
@@ -63,7 +63,7 @@ class RatingsDone extends Component // implements HasForms, HasActions
         $ratings_options = collect($this->article_data['ratings']);
 
         $percs = $this->getPercs();
-        
+
         foreach ($user_ratings as $key => $rating) {
             Assert::isArray($rating);
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
@@ -72,7 +72,7 @@ class RatingsDone extends Component // implements HasForms, HasActions
                 'title' => $tmp['title'],
                 'credit' => $rating['value'],
                 'image' => $tmp['image'],
-                'predict_victory' => $rating['value'] * $percs[$rating['rating_id']]
+                'predict_victory' => $rating['value'] * $percs[$rating['rating_id']],
             ])->toArray()
 
             ;
@@ -90,12 +90,12 @@ class RatingsDone extends Component // implements HasForms, HasActions
         Assert::isInstanceOf($article, Article::class);
         $total_volume = $article->getVolumeCredit();
 
-        foreach($this->article_data['ratings'] as $rating){
+        foreach ($this->article_data['ratings'] as $rating) {
             $result[$rating['id']] = 0;
-            if($total_volume != 0){
-                $perc = $article->getVolumeCredit($rating['id'])/$total_volume;
-                if($perc != 0){
-                    $result[$rating['id']] = round(1/$perc, 2);
+            if (0 != $total_volume) {
+                $perc = $article->getVolumeCredit($rating['id']) / $total_volume;
+                if (0 != $perc) {
+                    $result[$rating['id']] = round(1 / $perc, 2);
                 }
             }
         }
