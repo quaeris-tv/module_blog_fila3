@@ -12,7 +12,7 @@ use Modules\Blog\Filament\Blocks\Filter;
 use Modules\Blog\Filament\Blocks\Image;
 use Modules\Blog\Filament\Blocks\ImagesGallery;
 use Modules\Blog\Filament\Blocks\Leaderboard;
-use Modules\Blog\Filament\Blocks\Paragraph;
+use Modules\UI\Filament\Blocks\Paragraph;
 use Modules\Blog\Filament\Blocks\Search;
 use Modules\Blog\Filament\Blocks\Setting;
 use Modules\Rating\Filament\Blocks\Rating;
