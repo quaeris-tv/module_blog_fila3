@@ -68,6 +68,9 @@ class CategoryResource extends XotBaseResource
                     // ->conversion('thumbnail')
                     ->disk('uploads')
                     ->directory('photos'),
+                \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    ->columnSpanFull()
+                    ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
             ]);
     }
 

@@ -112,11 +112,11 @@ class Category extends BaseModel implements HasMedia
         'title',
         'slug',
         'name',
-        'slug',
         'picture',
         'description',
         'parent_id',
         'in_leaderboard',
+        'icon',
     ];
 
     /** @return array<string, string> */
@@ -134,6 +134,7 @@ class Category extends BaseModel implements HasMedia
             'published_at' => 'datetime',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
+            'icon' => 'string',
         ];
     }
 
