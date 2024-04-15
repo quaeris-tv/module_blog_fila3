@@ -1,13 +1,4 @@
-<section class="space-y-8">
-    <div class="flex items-center gap-6">
-		<div class="grid w-20 h-20 bg-gray-200 rounded-full place-items-center">
-			<x-heroicon-o-user class="w-8 h-8 text-gray-400"/>
-		</div>
-		<div>
-			<h2 class="text-2xl">Davide</h2>
-			<a class="flex items-center space-x-1 text-blue-500" href=""><span>Go to profile</span> <x-heroicon-o-chevron-right class="inline w-4 h-4"/></a>
-		</div>
-	</div>
+<section class="space-y-12">
 	<div>
 		<h6 class="text-xs text-gray-400 mb-2.5">PERSONAL INFO</h6>
 		<hr>
