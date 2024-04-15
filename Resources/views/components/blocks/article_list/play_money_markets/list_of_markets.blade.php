@@ -1,7 +1,7 @@
 <div class="py-4">
     @php
         if(!isset($method)){
-            $articles = $_theme->getArticlesLatest();
+            $articles = $_theme->getArticlesByCategory($category->id);
         }else{
             $articles = $_theme->getMethodData($method);
         }

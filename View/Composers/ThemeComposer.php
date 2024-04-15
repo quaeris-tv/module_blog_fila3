@@ -90,6 +90,16 @@ class ThemeComposer
         return $rows;
     }
 
+    public function getArticlesByCategory(string $category_id, int $number = 6): array
+    {
+        $rows = Article::where('category_id', $category_id)
+            ->orderBy('published_at', 'desc')
+            ->take($number)
+            ->get();
+
+        return $this->getArticleDataArray($rows);
+    }
+
     /*
     public function getAuthors(): Collection
     {
@@ -281,10 +291,15 @@ class ThemeComposer
 
     public function getArticlesLatest(int $number = 6): array
     {
-        $results = $this->getLatestArticles($number)->toArray();
+        $results = $this->getLatestArticles($number); //->toArray();
 
+        return $this->getArticleDataArray($results);
+    }
+
+    public function getArticleDataArray(Collection $rows):array
+    {
         $tmp = [];
-        foreach ($results as $content) {
+        foreach ($rows->toArray() as $content) {
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);

@@ -11,6 +11,7 @@ use Modules\User\Listeners\LoginListener;
 use Modules\User\Listeners\LogoutListener;
 use SocialiteProviders\Auth0\Auth0ExtendSocialite;
 use SocialiteProviders\Manager\SocialiteWasCalled;
+use Modules\Blog\Listeners\ProfileRegisteredListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
