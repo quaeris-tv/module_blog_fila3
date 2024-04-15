@@ -1,24 +1,25 @@
 <section class="space-y-12">
     <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
 		<div class="grid w-20 h-20 bg-gray-200 rounded-full place-items-center">
-			<x-heroicon-o-user class="w-8 h-8 text-gray-400"/>
+			{{-- <x-heroicon-o-user class="w-8 h-8 text-gray-400"/> --}}
+            <img class="w-8 h-8 text-gray-400" src="{{ $_profile->getAvatarUrl() }}" alt="">
 		</div>
 		<div class="space-y-2 text-center grow sm:text-left">
 			<h2 class="text-2xl">{{ $_profile->user->name }}</h2>
-            <div class="flex space-x-4">
+            {{-- <div class="flex space-x-4">
                 <div>0 <small class="text-sm text-gray-500">Followers</small></div>
                 <div>0 <small class="text-sm text-gray-500">Following</small></div>
-            </div>
+            </div> --}}
 		</div>
         <div class="flex flex-wrap gap-2">
             <a href="#" class="flex items-center px-3 py-2 space-x-2 text-sm font-semibold transition rounded-lg text-nowrap ring-1 ring-gray-200 bg-gray-50 ring-inset hover:bg-gray-100 hover:no-underline">
                 <x-heroicon-o-pencil class="size-4"/>
                 <span>Edit</span>
             </a>
-            <a href="#" class="flex items-center px-3 py-2 space-x-2 text-sm font-semibold transition rounded-lg text-nowrap ring-1 ring-gray-200 bg-gray-50 ring-inset hover:bg-gray-100 hover:no-underline">
+            {{-- <a href="#" class="flex items-center px-3 py-2 space-x-2 text-sm font-semibold transition rounded-lg text-nowrap ring-1 ring-gray-200 bg-gray-50 ring-inset hover:bg-gray-100 hover:no-underline">
                 <x-heroicon-o-power class="text-red-500 size-4"/>
                 <span>Logout</span>
-            </a>
+            </a> --}}
         </div>
 	</div>
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -26,7 +27,10 @@
             <x-heroicon-o-arrows-up-down class="text-blue-500 size-8"/>
             <div>
                 <div class="text-gray-500">Market traded</div>
-                <h2 class="text-4xl font-bold">14</h2>
+                <h2 class="text-4xl font-bold">
+                    14
+                    {{-- {{ dddx($_profile->getArticleTraded()) }} --}}
+                </h2>
             </div>
         </div>
         <div class="flex items-center p-4 space-x-4 border rounded-xl">
@@ -43,15 +47,15 @@
                 <h2 class="text-4xl font-bold">4K <span class="text-3xl font-medium text-gray-400">ø</span></h2>
             </div>
         </div>
-        <div class="flex items-center p-4 space-x-4 border rounded-xl">
+        {{-- <div class="flex items-center p-4 space-x-4 border rounded-xl">
             <x-heroicon-o-wallet class="text-blue-500 size-8"/>
             <div>
                 <div class="text-gray-500">Open Position</div>
                 <h2 class="text-4xl font-bold">2</h2>
             </div>
-        </div>
+        </div> --}}
     </div>
-    <div>
+    {{-- <div>
         <h6 class="mb-2 text-xs text-gray-400">OPEN POSITIONS</h6>
         <div class="py-2 overflow-x-auto">
             <table class="w-full" cellpadding="12">
@@ -78,7 +82,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
 
     <div>
         <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">(1)</span></h6>
