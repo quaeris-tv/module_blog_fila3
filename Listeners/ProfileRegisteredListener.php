@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Listeners;
 
 use Modules\Blog\Models\Profile;
-use Modules\User\Events\Registered;
+use Illuminate\Auth\Events\Registered;
 
 class ProfileRegisteredListener
 {
@@ -21,7 +21,7 @@ class ProfileRegisteredListener
      */
     public function handle(Registered $event): void
     {
-        Profile::create([
+        $event->user->profile()->create([
             'email' => $event->user->email,
             'credits' => 1000,
         ]);

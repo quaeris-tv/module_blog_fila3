@@ -133,14 +133,9 @@ trait HasPathByParentId
             return $value;
         }
 
-        // if (isset($this->extra->breads)) {
-        //    return $this->extra->breads;
-        // }
         $value = $this->getBreads();
         if (null != $this->getKey()) {
-            // $extra = AssetExtra::create(['breads' => $str]);
-            // $this->extra()->save($extra); // $breads = $str;
-            if (null == $value || '' == $value) {
+            if (null == $value ) {
                 $value = $this->name;
             }
             $this->update(['breads' => $value]);

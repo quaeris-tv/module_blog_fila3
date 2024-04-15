@@ -225,9 +225,11 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array<string, string>
-     */
-    protected $casts = [
+     * @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+
         // 'images' => 'array',
         'id' => 'string',
         'uuid' => 'string',
@@ -241,7 +243,9 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         'footer_blocks' => 'array',
         'sidebar_blocks' => 'array',
         // 'is_closed'=> 'boolean',
-    ];
+
+        ];
+    }
 
     // public function path()
     // {
@@ -331,11 +335,17 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             ->toArray());
     }
 
-    public function getVolumeCredit(): int
+    public function getVolumeCredit(?int $rating_id = null): int
     {
         $ratings = RatingMorph::where('model_id', $this->id)
-            ->where('user_id', '!=', null)
-            ->get();
+            ->where('user_id', '!=', null);
+
+        if($rating_id != null){
+            $ratings = $ratings->where('rating_id', $rating_id);
+        }
+
+        $ratings = $ratings->get();
+
         $tmp = 0;
 
         foreach ($ratings as $rating) {

@@ -6,9 +6,7 @@ namespace Modules\Blog\Providers;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Modules\Blog\Listeners\ProfileRegisteredListener;
-use Modules\User\Events\Registered;
+use Illuminate\Auth\Events\Registered;
 use Modules\User\Listeners\LoginListener;
 use Modules\User\Listeners\LogoutListener;
 use SocialiteProviders\Auth0\Auth0ExtendSocialite;

@@ -2,7 +2,7 @@
     @foreach($user_ratings as $rating)
         <div class="p-4 space-y-2 border rounded-2xl">
             {{-- Line 1 --}}
-                <div class="grid grid-cols-3">
+                <div class="grid grid-cols-4">
                     <div class="flex items-center col-span-2 space-x-4">
                         <div class="relative w-10 h-10 rounded-lg overflow-clip">
                             <img src="{{ asset($rating['image']) }}" class="absolute inset-0 object-cover border-none aspect-square" alt="">
@@ -27,9 +27,18 @@
                             <div class="font-bold">{{ $rating['credit'] }}</div>
                         </div>
                     </div>
+
+                    <div>
+                        <div>
+                            <div class="text-sm text-gray-500">If you win</div>
+                            <div class="font-bold text-teal-500">{{ $rating['predict_victory'] }} Ooms</div>
+                        </div>
+                    </div>
+
+
                 </div>
                 {{-- Line 2 --}}
-                <div class="grid grid-cols-3">
+                {{-- <div class="grid grid-cols-3">
                     <div class="flex items-center col-span-2 space-x-4">
                         <div>
                             <div class="text-sm text-gray-500">If you win</div>
@@ -40,7 +49,7 @@
                         <div class="text-sm text-gray-500">Sell for</div>
                         <div class="font-bold text-pink-500">0.76 Ooms</div>
                     </div>
-                </div>
+                </div> --}}
         </div>
     @endforeach
 </div>

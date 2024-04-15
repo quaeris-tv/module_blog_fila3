@@ -55,10 +55,15 @@ class Post extends Model // implements TranslatableContract
         'published_at',
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+
         'published_at' => 'date',
-    ];
+
+        ];
+    }
 
     /** @var array<int, string>  */
     protected $appends = [

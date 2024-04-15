@@ -37,10 +37,15 @@ class Category extends Model
         'is_visible',
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+
         'is_visible' => 'boolean',
-    ];
+
+        ];
+    }
 
     public function posts(): HasMany
     {

@@ -10,7 +10,7 @@
 								<x-filament::loading-indicator class="w-5 h-5" wire:loading wire:target="bet('{{ $data['id'] }}', '{{ $data['title'] }}')"/>
 							</div>
 							<div class="absolute inset-0">
-								<img class="object-cover aspect-[4/3]" alt="{{ $data['title'] }}" title="{{ $data['title'] }}" src="{{ $data['image'] }}" />
+								<img class="absolute inset-0 object-cover w-full h-full" alt="{{ $data['title'] }}" title="{{ $data['title'] }}" src="{{ $data['image'] }}" />
 								<div class="absolute inset-0 transition bg-transparent hover:bg-blue-500/30"></div>
 							</div>
 							<div class="p-1.5 absolute inset-0 flex flex-col text-start justify-between pointer-events-none">

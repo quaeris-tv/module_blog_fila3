@@ -17,33 +17,24 @@
     class="relative">
     <button x-ref="button" x-on:click="toggle()" :aria-expanded="open" :aria-controls="$id('dropdown-button')"
         type="button"
-        class="flex items-center gap-2 hover:bg-white px-4 h-10 text-neutral-5 rounded-lg transition-colors duration-200 [&>svg]:aria-expanded:rotate-180">
-        Order By
-        <svg class="transition-transform duration-200" width="11px" height="7px" fillcolor="currentColor"
-            viewBox="0 0 12 8" xmlns="http://www.w3.org/2000/svg">
-            <path
-                d="M5.99999 4.97667L10.125 0.851669L11.3033 2.03L5.99999 7.33334L0.696655 2.03L1.87499 0.851669L5.99999 4.97667Z"
-                fill="currentColor"></path>
-        </svg>
+        class="flex items-center px-4 py-2 space-x-2 text-sm font-semibold rounded ring-1 ring-gray-300">
+        <span class="text-nowrap">Order By</span>
+        <x-heroicon-o-chevron-down class="transition-transform duration-200 size-4"/>
     </button>
     <div x-ref="panel" x-show="open" x-transition.origin.top.left x-on:click.outside="close($refs.button)"
-        :id="$id('dropdown-button')" style="display: none"
-        class="absolute right-0 mt-2.5 rounded-md bg-white shadow-md min-w-[270px]">
-        <button type="button"
-            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md p-4 text-left text-sm hover:bg-blue-2 text-[#212121] transition-colors duration-75 ease-out whitespace-nowrap font-medium hover:text-blue-1">
-        Recently created
+        :id="$id('dropdown-button')"
+        class="absolute right-0 mt-2.5 space-y-1 rounded bg-white border border-gray-200 backdrop-blur min-w-[270px] p-2">
+        <button type="button" class="block w-full p-2 text-sm font-semibold rounded hover:bg-gray-100 text-start">
+            Recently created
         </button>
-        <button type="button"
-            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md p-4 text-left text-sm hover:bg-blue-2 text-[#212121] transition-colors duration-75 ease-out whitespace-nowrap font-medium hover:text-blue-1">
-        Coming Soon
+        <button type="button" class="block w-full p-2 text-sm font-semibold rounded hover:bg-gray-100 text-start">
+            Coming Soon
         </button>
-        <button type="button"
-            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md p-4 text-left text-sm hover:bg-blue-2 text-[#212121] transition-colors duration-75 ease-out whitespace-nowrap font-medium hover:text-blue-1">
-        Number Of Bets
+        <button type="button" class="block w-full p-2 text-sm font-semibold rounded hover:bg-gray-100 text-start">
+            Number Of Bets
         </button>
-        <button type="button"
-            class="flex items-center gap-2 w-full first-of-type:rounded-t-md last-of-type:rounded-b-md p-4 text-left text-sm hover:bg-blue-2 text-[#212121] transition-colors duration-75 ease-out whitespace-nowrap font-medium hover:text-blue-1">
-        Volume
+        <button type="button" class="block w-full p-2 text-sm font-semibold rounded hover:bg-gray-100 text-start">
+            Volume
         </button>
     </div>
 </div>

@@ -60,9 +60,11 @@ class Page extends BaseModel
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array<string, string>
-     */
-    protected $casts = [
+     * @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+
         // 'images' => 'array',
         'id' => 'string',
         'uuid' => 'string',
@@ -74,7 +76,9 @@ class Page extends BaseModel
         'content_blocks' => 'array',
         'sidebar_blocks' => 'array',
         'footer_blocks' => 'array',
-    ];
+
+        ];
+    }
 
     /**
      * Get the path key to the item for the frontend only.
