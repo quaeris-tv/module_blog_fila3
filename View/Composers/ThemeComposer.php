@@ -297,17 +297,17 @@ class ThemeComposer
         return $tmp;
     }
 
-    // /**
-    //  * Undocumented function.
-    //  *
-    //  * @return void
-    //  */
-    // public function getMenu(string $menu_name): array
-    // {
-    //     // dddx(Menu::where('title', $menu_name)->first()->items);
-    //     Assert::notNull($menu = Menu::where('title', $menu_name)->first());
-    //     return $menu->items;
-    // }
+    /**
+     * Undocumented function.
+     *
+     * @return void
+     */
+    public function getMenu(string $menu_name): array|null
+    {
+        // dddx(Menu::where('title', $menu_name)->first()->items);
+        Assert::notNull($menu = Menu::where('title', $menu_name)->first());
+        return $menu->items;
+    }
 
     // public function getHotTopics()
     // {
