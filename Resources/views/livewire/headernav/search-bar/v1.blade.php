@@ -8,9 +8,10 @@
 
         <x-heroicon-o-magnifying-glass class="w-6 h-6" />
     </div>
+
     @if(!empty($results))
         <div class="absolute inset-0 z-50 top-16 h-min max-h-[80vh] max-w-lg p-2 space-y-2 overflow-hidden text-sm border border-white rounded-lg search-results bg-gray-50/85 backdrop-blur overflow-y-auto">
-            <div class="space-y-4" x-show="filteredMarkets.length > 0" x-cloak>
+            <div class="space-y-4" {{-- x-show="filteredMarkets.length>0" --}} x-cloak>
                 <div class="flex items-center justify-between px-2">
                     <span class="text-sm text-gray-400">Markets</span>
                     <a href="#" class="text-sm text-blue-500">{{ $results->count() }}</a>
