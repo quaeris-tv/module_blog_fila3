@@ -20,6 +20,7 @@ use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Modules\Blog\Actions\Article\MakeBetAction;
 use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 
 class Setting extends Component implements HasForms, HasActions
 {
@@ -35,6 +36,7 @@ class Setting extends Component implements HasForms, HasActions
 
     public function mount(Profile $model, string $tpl = 'v1'): void {
         $this->model = $model;
+
         $this->tpl = $tpl;
         // dddx($this->model->toArray());
 
@@ -57,23 +59,25 @@ class Setting extends Component implements HasForms, HasActions
         return view($view, $view_params);
     }
 
-    public function editt()
+    public function editProfile()
     {
-        $this->mountAction('editt');
+        $this->mountAction('edit');
     }
 
-    public function edittAction(): Action
+    public function editAction(): Action
     {
-        return Action::make('editt')
+        return Action::make('edit')
             ->action(function (array $arguments, array $data) {
                 dddx('a');
             })
-            // ->fillForm(fn ($record, $arguments): array => [
-            //     'name' => $this->model->user_name
-            //     // 'credits' => 0,
-            // ])
+            ->fillForm(fn ($record, $arguments): array => [
+                'user_name' => $this->model->user_name,
+                'first_name' => $this->model->first_name,
+                'last_name' => $this->model->last_name
+            ])
             ->form([
-                TextInput::make('name')
+                TextInput::make('user_name')
+                    ->label('User Name')
                     // ->hiddenLabel()
                     // ->numeric()
                     // ->suffixIcon('heroicon-o-banknotes')
@@ -82,17 +86,34 @@ class Setting extends Component implements HasForms, HasActions
                 //     'gt' => 'The :attribute has already been registered.',
                 // ])
                 ,
+                TextInput::make('first_name')
+                    ->label('First Name'),
+                TextInput::make('last_name')
+                    ->label('Last Name'),
+                SpatieMediaLibraryFileUpload::make('photo_profile')
+                    // ->image()
+                    // ->maxSize(5000)
+                    // ->multiple()
+                    // ->enableReordering()
+                    ->openable()
+                    ->downloadable()
+                    ->columnSpanFull()
+                    // ->collection('avatars')
+                    // ->conversion('thumbnail')
+                    ->disk('uploads')
+                    ->directory('photos')
+                    ->collection('photo_profile'),
             ])
             ->modalHeading('Edit Profile')
-            // ->closeModalByClickingAway(false)
-            // ->modalCloseButton(false)
-            // ->modalWidth(MaxWidth::Small)
-            // ->modalSubmitActionLabel('Please select an outcome')
-            // ->modalCancelActionLabel('Cancel')
-            // ->color('primary')
-            // // ->modalIcon('heroicon-o-banknotes')
-            // ->stickyModalHeader()
-            // ->stickyModalFooter()
+            ->closeModalByClickingAway(false)
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Please select an outcome')
+            ->modalCancelActionLabel('Cancel')
+            ->color('primary')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
         ;
     }
 
