@@ -12,10 +12,11 @@
             </div> --}}
 		</div>
         <div class="flex flex-wrap gap-2">
-            <a href="#" class="flex items-center px-3 py-2 space-x-2 text-sm font-semibold transition rounded-lg text-nowrap ring-1 ring-gray-200 bg-gray-50 ring-inset hover:bg-gray-100 hover:no-underline">
+            <button wire:click="editt" class="flex items-center px-3 py-2 space-x-2 text-sm font-semibold transition rounded-lg text-nowrap ring-1 ring-gray-200 bg-gray-50 ring-inset hover:bg-gray-100 hover:no-underline">
                 <x-heroicon-o-pencil class="size-4"/>
+                <x-filament::loading-indicator class="w-5 h-5" wire:loading wire:target="editt"/>
                 <span>Edit</span>
-            </a>
+            </button>
             {{-- <a href="#" class="flex items-center px-3 py-2 space-x-2 text-sm font-semibold transition rounded-lg text-nowrap ring-1 ring-gray-200 bg-gray-50 ring-inset hover:bg-gray-100 hover:no-underline">
                 <x-heroicon-o-power class="text-red-500 size-4"/>
                 <span>Logout</span>

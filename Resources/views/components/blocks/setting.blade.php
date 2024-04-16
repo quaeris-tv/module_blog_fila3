@@ -7,6 +7,6 @@
 <div>
   {{-- @include('blog::components.blocks.'.$tpl.'.'.$version) --}}
   @if(Auth::check())
-    <livewire:profile.setting :tpl="$tpl" :version="$version" :model="$_profile" />
+    <livewire:profile.setting :tpl="$tpl" :version="$version" :model="$_profile" wire:key="$profile->id"/>
   @endif
 </div>
