@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
         <div class="relative grid w-20 h-20 bg-gray-200 rounded-full place-items-center overflow-clip">
             {{-- <x-heroicon-o-user class="w-8 h-8 text-gray-400"/> --}}
-            <img class="absolute object-cover w-full h-full text-gray-400" src="{{ $_profile->getAvatarUrl() }}" alt="">
+            <img class="absolute object-cover w-full h-full text-gray-400" src="{{ $_profile?->getAvatarUrl() ?? 'https://placehold.co/200x200' }}" alt="">
         </div>
 		<div class="space-y-2 text-center grow sm:text-left">
 			<h2 class="text-2xl">{{ $_profile->user->name }}</h2>

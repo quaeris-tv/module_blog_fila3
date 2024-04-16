@@ -69,18 +69,21 @@ class Setting extends Component implements HasForms, HasActions
     {
         return Action::make('edit')
             ->action(function (array $arguments, array $data) {
-                // dddx($this->form->getState());
-                dddx([$arguments, $data]);
-                // dddx(get_defined_vars());
                 $this->save($data);
             })
             ->fillForm(fn ($record, $arguments): array => [
                 'user_name' => $this->model->user_name,
                 'first_name' => $this->model->first_name,
                 'last_name' => $this->model->last_name,
-                // 'photo_profile' => $this->model->getMedia('photo_profile')->first()->file_name,
             ])
             ->form([
+                FileUpload::make('extra.photo_profile')
+                    ->hiddenLabel()
+                    ->alignCenter()
+                    ->avatar()
+                    ->hidden(fn ($state) => $this->model->extra->photo_profile)
+                    ->disk('uploads')
+                    ->directory('photos'),
                 TextInput::make('user_name')
                     ->label('User Name'),
                 TextInput::make('first_name')
@@ -101,9 +104,7 @@ class Setting extends Component implements HasForms, HasActions
                 //     ->collection('photo_profile'),
 
 
-                FileUpload::make('photo_profile')
-                    ->disk('uploads')
-                    ->directory('photos')
+                
                 //     // ->panelLayout('grid')
                 //     // ->validationAttribute(__('Files'))
                 //     // ->multiple()
@@ -127,11 +128,10 @@ class Setting extends Component implements HasForms, HasActions
 
     public function save(array $data): void
     {
-        dddx($data);
-
         $this->model->update([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'extra' => $data['extra']
         ]);
 
         // dddx($data);
