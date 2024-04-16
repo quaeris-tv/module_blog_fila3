@@ -16,6 +16,7 @@ use Filament\Forms\ComponentContainer;
 use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Modules\Blog\Actions\Article\MakeBetAction;
@@ -68,14 +69,16 @@ class Setting extends Component implements HasForms, HasActions
     {
         return Action::make('edit')
             ->action(function (array $arguments, array $data) {
-                dddx([$arguments, $data, $this, 'aaa']);
+                // dddx($this->form->getState());
+                dddx([$arguments, $data]);
                 // dddx(get_defined_vars());
+                $this->save($data);
             })
             ->fillForm(fn ($record, $arguments): array => [
                 'user_name' => $this->model->user_name,
                 'first_name' => $this->model->first_name,
                 'last_name' => $this->model->last_name,
-                'photo_profile' => '',
+                // 'photo_profile' => $this->model->getMedia('photo_profile')->first()->file_name,
             ])
             ->form([
                 TextInput::make('user_name')
@@ -84,18 +87,30 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('First Name'),
                 TextInput::make('last_name')
                     ->label('Last Name'),
-                SpatieMediaLibraryFileUpload::make('photo_profile')
-                    ->image()
-                    // ->maxSize(5000)
-                    // ->multiple()
-                    // ->enableReordering()
-                    ->openable()
-                    ->downloadable()
-                    ->columnSpanFull()
-                    // ->conversion('thumbnail')
+                // SpatieMediaLibraryFileUpload::make('media')
+                //     ->image()
+                //     // ->maxSize(5000)
+                //     // ->multiple()
+                //     // ->enableReordering()
+                //     ->openable()
+                //     ->downloadable()
+                //     ->columnSpanFull()
+                //     // ->conversion('thumbnail')
+                //     ->disk('uploads')
+                //     ->directory('photos')
+                //     ->collection('photo_profile'),
+
+
+                FileUpload::make('photo_profile')
                     ->disk('uploads')
                     ->directory('photos')
-                    ->collection('photo_profile'),
+                //     // ->panelLayout('grid')
+                //     // ->validationAttribute(__('Files'))
+                //     // ->multiple()
+                //     // ->acceptedFileTypes(['application/json'])
+
+
+
             ])
             ->modalHeading('Edit Profile')
             ->closeModalByClickingAway(false)
@@ -110,66 +125,20 @@ class Setting extends Component implements HasForms, HasActions
         ;
     }
 
-    // public function url(string $name, array $params): string
-    // {
-    //     return '#';
-    // }
-
-    // public function form(Form $form): Form
-    // {
-    //     if (0 === \count($this->model->extra->all())) {
-    //         $this->data['extra'] = [
-    //             $this->model->extra->get('newsletter', ['newsletter' => false]),
-    //             $this->model->extra->get('predix_updates', ['predix_updates' => false]),
-    //             $this->model->extra->get('market_updates', ['market_updates' => false]),
-    //         ];
-
-    //     // dddx($this->data['extra']);
-    //     } else {
-    //         $this->data['extra'] = [$this->model->extra->all()];
-    //         // dddx($this->data['extra']);
-    //     }
-
-    //     // dddx($this->data['extra'][0]);
-
-    //     $schema = [];
-
-    //     // $schema[] = Toggle::make($this->data['extra'][0]['newsletter'])
-    //     //             ->label('aaa')
-    //     //         ;
-    //     foreach ($this->data['extra'] as $key => $field) {
-    //         // dddx([$key, $field]);
-    //         if (! is_iterable($field)) {
-    //             continue;
-    //         }
-    //         foreach ($field as $key => $f) {
-    //             $schema[] = Toggle::make($key)
-    //                 ->label($key)
-    //             ;
-    //         }
-    //     }
-
-    //     // dddx($schema);
-    //     return $form
-    //         ->schema($schema)
-    //         ->statePath('data.extra.0');
-    // }
-
-    // protected function getFormActions(): array
-    // {
-    //     return [
-    //         Action::make('save')
-    //             ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-    //             ->submit('save'),
-    //     ];
-    // }
-
-    public function save(): void
+    public function save(array $data): void
     {
-        $data = $this->form->getState();
+        dddx($data);
+
+        $this->model->update([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+        ]);
+
         // dddx($data);
         Assert::notNull($this->model->user);
-        $this->model->user->update($data);
+        $this->model->user->update(['name' => $data['user_name']]);
+
+        // dddx('done');
     }
 
     public function saveExtra(): void
