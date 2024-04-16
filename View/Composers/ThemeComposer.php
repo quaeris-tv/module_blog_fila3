@@ -212,7 +212,7 @@ class ThemeComposer
 
     public function getUrlPage(string $slug): string
     {
-        $page = $this->getPageModel();
+        $page = $this->getPageModel($slug);
         if (null !== $page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
@@ -321,13 +321,15 @@ class ThemeComposer
     /**
      * Undocumented function.
      *
-     * @return void
+     * @return array|null
      */
-    public function getMenu(string $menu_name): array|null
+    public function getMenu(string $menu_name)
     {
-        // dddx(Menu::where('title', $menu_name)->first()->items);
-        Assert::notNull($menu = Menu::where('title', $menu_name)->first());
-        return $menu->items;
+        $menu = Menu::where('title', $menu_name)->first();
+        if($menu == null){
+            $menu = Menu::create(['title' => $menu_name]);
+        }
+        return $menu->items ?? [];
     }
 
     // public function getHotTopics()
