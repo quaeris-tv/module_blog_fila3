@@ -68,37 +68,30 @@ class Setting extends Component implements HasForms, HasActions
     {
         return Action::make('edit')
             ->action(function (array $arguments, array $data) {
-                dddx('a');
+                dddx([$arguments, $data, $this, 'aaa']);
+                // dddx(get_defined_vars());
             })
             ->fillForm(fn ($record, $arguments): array => [
                 'user_name' => $this->model->user_name,
                 'first_name' => $this->model->first_name,
-                'last_name' => $this->model->last_name
+                'last_name' => $this->model->last_name,
+                'photo_profile' => '',
             ])
             ->form([
                 TextInput::make('user_name')
-                    ->label('User Name')
-                    // ->hiddenLabel()
-                    // ->numeric()
-                    // ->suffixIcon('heroicon-o-banknotes')
-                    // ->rules('gt:0')
-                // ->validationMessages([
-                //     'gt' => 'The :attribute has already been registered.',
-                // ])
-                ,
+                    ->label('User Name'),
                 TextInput::make('first_name')
                     ->label('First Name'),
                 TextInput::make('last_name')
                     ->label('Last Name'),
                 SpatieMediaLibraryFileUpload::make('photo_profile')
-                    // ->image()
+                    ->image()
                     // ->maxSize(5000)
                     // ->multiple()
                     // ->enableReordering()
                     ->openable()
                     ->downloadable()
                     ->columnSpanFull()
-                    // ->collection('avatars')
                     // ->conversion('thumbnail')
                     ->disk('uploads')
                     ->directory('photos')
