@@ -204,11 +204,10 @@ class ThemeComposer
         return $pages;
     }
 
-    public function getPageModel(string $slug): Page|null
+    public function getPageModel(string $slug): ?Page
     {
         return Page::where('slug', $slug)->first();
     }
-
 
     public function getUrlPage(string $slug): string
     {
@@ -297,12 +296,12 @@ class ThemeComposer
 
     public function getArticlesLatest(int $number = 6): array
     {
-        $results = $this->getLatestArticles($number); //->toArray();
+        $results = $this->getLatestArticles($number); // ->toArray();
 
         return $this->getArticleDataArray($results);
     }
 
-    public function getArticleDataArray(Collection $rows):array
+    public function getArticleDataArray(Collection $rows): array
     {
         $tmp = [];
         foreach ($rows->toArray() as $content) {
@@ -318,12 +317,12 @@ class ThemeComposer
         return $tmp;
     }
 
-    public function getArticleModel(string $slug): Article|null
+    public function getArticleModel(string $slug): ?Article
     {
         return Article::where('slug', $slug)->first();
     }
 
-    public function getCategoryModel(string $slug): Category|null
+    public function getCategoryModel(string $slug): ?Category
     {
         return Category::where('slug', $slug)->first();
     }
@@ -336,9 +335,10 @@ class ThemeComposer
     public function getMenu(string $menu_name)
     {
         $menu = Menu::where('title', $menu_name)->first();
-        if($menu == null){
+        if (null == $menu) {
             $menu = Menu::create(['title' => $menu_name]);
         }
+
         return $menu->items ?? [];
     }
 
