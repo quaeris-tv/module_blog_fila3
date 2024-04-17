@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Fields;
 
+use Modules\UI\Filament\Blocks\Title;
 use Filament\Forms\Components\Builder;
 use Modules\Blog\Filament\Blocks\Chart;
 use Modules\Blog\Filament\Blocks\Image;
-use Modules\Blog\Filament\Blocks\ImagesGallery;
-use Modules\Blog\Filament\Blocks\ImageSpatie;
-use Modules\Blog\Filament\Blocks\Paragraph;
+use Modules\UI\Filament\Blocks\Paragraph;
 use Modules\Rating\Filament\Blocks\Rating;
-use Modules\UI\Filament\Blocks\Title;
+use Modules\Blog\Filament\Blocks\ImageSpatie;
+use Modules\Blog\Filament\Blocks\ImagesGallery;
 
 class ArticleContent
 {
