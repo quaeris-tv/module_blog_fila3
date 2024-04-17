@@ -28,11 +28,7 @@ class Chart extends ChartWidget
 
         $data = [];
         for ($i = $activeFilter++; $i <= 0; ++$i) {
-<<<<<<< HEAD
-            $date = Carbon::now()->addDays($i);
-=======
             $date = Carbon::now()->addDays((int) $i);
->>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
             $key = $date->format('Y-m-d');
             $tmp = [
                 'date' => $date,
