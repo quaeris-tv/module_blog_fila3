@@ -317,6 +317,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
         foreach ($ratings as $key => $rating) {
             $ratings_array[$key] = $rating->toArray();
+            if(empty($rating->getFirstMediaUrl('rating'))) {
+                $rating->addMediaFromUrl('https://picsum.photos/id/'.$rating->id.'/300/200')
+                       ->toMediaCollection('rating');
+            }
             $ratings_array[$key]['image'] = $rating->getFirstMediaUrl('rating');
             $ratings_array[$key]['effect'] = false;
         }
