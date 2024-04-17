@@ -23,9 +23,9 @@ class MenuResource extends Resource
 
     protected static ?string $navigationLabel = 'Navigation';
 
-    public static function form(Form $form): Form
-    {
-        return $form->schema([
+
+    public static function getFormSchema():array{
+        return [
             Forms\Components\TextInput::make('title')
                 ->required()
                 ->maxLength(2048)
@@ -84,7 +84,12 @@ class MenuResource extends Resource
                         ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
                 ])
                 ->columnSpanFull(),
-        ]);
+                        ];
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form->schema(static::getFormSchema());
     }
 
     public static function table(Table $table): Table
