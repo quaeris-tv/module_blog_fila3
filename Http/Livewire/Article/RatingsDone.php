@@ -17,6 +17,7 @@ use Webmozart\Assert\Assert;
 class RatingsDone extends Component // implements HasForms, HasActions
 {// use InteractsWithActions;
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                         // use InteractsWithForms;
 
                                                         public array $user_ratings;
@@ -25,6 +26,16 @@ class RatingsDone extends Component // implements HasForms, HasActions
 
                                                     public array $user_ratings;
 >>>>>>> 866338f (Lint)
+=======
+                                                    // use InteractsWithForms;
+
+                                                    public array $user_ratings;
+=======
+                                                        // use InteractsWithForms;
+
+                                                        public array $user_ratings;
+>>>>>>> master
+>>>>>>> dev
     public array $article_data;
     public array $user;
 

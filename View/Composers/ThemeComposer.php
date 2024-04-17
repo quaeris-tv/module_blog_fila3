@@ -337,6 +337,18 @@ class ThemeComposer
 =======
 
 <<<<<<< HEAD
+    public function getArticleModel(string $slug): ?Article
+    {
+        return Article::where('slug', $slug)->first();
+    }
+
+    public function getCategoryModel(string $slug): ?Category
+    {
+        return Category::where('slug', $slug)->first();
+    }
+
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -363,6 +375,7 @@ class ThemeComposer
     //     return $menu->items;
     // }
 =======
+<<<<<<< HEAD
 =======
     public function getArticleModel(string $slug): Article|null
 =======
@@ -378,6 +391,9 @@ class ThemeComposer
     }
 
 >>>>>>> 0bd21d9 (Theme Composer getCategoryModel/getArticleModel)
+=======
+>>>>>>> master
+>>>>>>> dev
     /**
      * Undocumented function.
      *
