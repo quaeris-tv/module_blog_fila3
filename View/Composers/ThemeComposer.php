@@ -338,6 +338,7 @@ class ThemeComposer
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /**
      * Undocumented function.
      *
@@ -361,6 +362,18 @@ class ThemeComposer
     //     return $menu->items;
     // }
 =======
+=======
+    public function getArticleModel(string $slug): Article|null
+    {
+        return Article::where('slug', $slug)->first();
+    }
+
+    public function getCategoryModel(string $slug): Category|null
+    {
+        return Category::where('slug', $slug)->first();
+    }
+
+>>>>>>> 0bd21d9 (Theme Composer getCategoryModel/getArticleModel)
     /**
      * Undocumented function.
      *
