@@ -23,8 +23,8 @@ class MenuResource extends Resource
 
     protected static ?string $navigationLabel = 'Navigation';
 
-
-    public static function getFormSchema():array{
+    public static function getFormSchema(): array
+    {
         return [
             Forms\Components\TextInput::make('title')
                 ->required()
@@ -84,7 +84,7 @@ class MenuResource extends Resource
                         ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
                 ])
                 ->columnSpanFull(),
-                        ];
+        ];
     }
 
     public static function form(Form $form): Form
