@@ -318,6 +318,16 @@ class ThemeComposer
         return $tmp;
     }
 
+    public function getArticleModel(string $slug): Article|null
+    {
+        return Article::where('slug', $slug)->first();
+    }
+
+    public function getCategoryModel(string $slug): Category|null
+    {
+        return Category::where('slug', $slug)->first();
+    }
+
     /**
      * Undocumented function.
      *
