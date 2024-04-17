@@ -303,6 +303,8 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
     }
 
+<<<<<<< HEAD
+=======
     public function getArrayRatingsWithImage(): array
     {
         $ratings = $this
@@ -378,6 +380,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return $result;
     }
 
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
@@ -569,6 +572,13 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         if (null !== $value && '' !== $value) {
             return $value;
         }
+<<<<<<< HEAD
+        $value = (string) Str::uuid();
+        $this->uuid = $value;
+        $this->save();
+
+        return $value;
+=======
         // dddx($value);
         // $value = (string) Str::uuid();
         // $this->uuid = $value;
@@ -577,6 +587,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         // return $value;
 
         return '##';
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     }
 
     // public function getTimeLeft(): string
@@ -589,7 +600,13 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     //     return $days.'d'.$hours.'m'.$minutes.'s';
     // }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public function getTimeLeftForHumans(): string
+=======
     public function getTimeLeftForHumans(): ?string
+>>>>>>> dev
     {
         $endDate = $this->closed_at;
         $startDate = Carbon::now();
@@ -615,6 +632,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";
     }
 
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     // /**
     //  * Get the path to the picture
     //  *

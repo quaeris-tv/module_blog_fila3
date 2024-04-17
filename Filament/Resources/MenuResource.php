@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
+<<<<<<< HEAD
+=======
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -52,6 +55,8 @@ class MenuResource extends Resource
                         ->default('internal')
                         ->required()
                         ->inline(),
+<<<<<<< HEAD
+=======
 
                     SpatieMediaLibraryFileUpload::make('image')
                         // ->image()
@@ -68,6 +73,9 @@ class MenuResource extends Resource
                         ->collection('menu')
                     // ->preserveFilenames()
                     ,
+<<<<<<< HEAD
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
                     Forms\Components\Select::make('parent_id')
                         ->label('link/menu Padre')
                         ->options(
@@ -82,6 +90,7 @@ class MenuResource extends Resource
                             '2xl' => 5,
                         ])
                         ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+>>>>>>> dev
                 ])
                 ->columnSpanFull(),
         ]);

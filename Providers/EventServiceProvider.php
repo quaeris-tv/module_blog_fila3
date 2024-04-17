@@ -8,7 +8,14 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+<<<<<<< HEAD
 use Modules\Blog\Listeners\ProfileRegisteredListener;
+=======
+<<<<<<< HEAD
+=======
+use Modules\Blog\Listeners\ProfileRegisteredListener;
+>>>>>>> cs0.2.00
+>>>>>>> master
 use Modules\User\Listeners\LoginListener;
 use Modules\User\Listeners\LogoutListener;
 use SocialiteProviders\Auth0\Auth0ExtendSocialite;

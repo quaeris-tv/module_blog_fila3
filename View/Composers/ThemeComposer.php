@@ -13,7 +13,10 @@ use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Category;
+<<<<<<< HEAD
+=======
 use Modules\Blog\Models\Menu;
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 use Modules\Blog\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
@@ -129,12 +132,19 @@ class ThemeComposer
         return $footerCategories;
     }
 
+<<<<<<< HEAD
+    public function getFooterAuthors(): Collection
+    {
+        $footerAuthors = Profile::profileIsAuthor()
+            ->take(8)
+=======
     // --- da fare con parental
     public function getFooterAuthors(): Collection
     {
         // $footerAuthors = Profile::profileIsAuthor()
         // ->take(8)
         $footerAuthors = Profile::take(8)
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
             ->get();
 
         return $footerAuthors;
@@ -304,19 +314,29 @@ class ThemeComposer
     public function getArticleDataArray(Collection $rows): array
     {
         $tmp = [];
+<<<<<<< HEAD
+        foreach ($results as $content) {
+<<<<<<< HEAD
+=======
+=======
         foreach ($rows->toArray() as $content) {
+>>>>>>> cs0.2.00
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
             }
 
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
             $tmp[] = ArticleData::from($content);
         }
 
         // dddx($tmp);
         return $tmp;
     }
+<<<<<<< HEAD
+=======
 
+<<<<<<< HEAD
     public function getArticleModel(string $slug): ?Article
     {
         return Article::where('slug', $slug)->first();
@@ -327,6 +347,33 @@ class ThemeComposer
         return Category::where('slug', $slug)->first();
     }
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /**
+     * Undocumented function.
+     *
+     * @return void
+     */
+    public function getMenu(string $menu_name)
+    {
+        // dddx(Menu::where('name', $menu_name)->first()->items);
+    }
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
+    // /**
+    //  * Undocumented function.
+    //  *
+    //  * @return void
+    //  */
+    // public function getMenu(string $menu_name): array
+    // {
+    //     // dddx(Menu::where('title', $menu_name)->first()->items);
+    //     Assert::notNull($menu = Menu::where('title', $menu_name)->first());
+    //     return $menu->items;
+    // }
+=======
+>>>>>>> master
     /**
      * Undocumented function.
      *
@@ -341,6 +388,7 @@ class ThemeComposer
 
         return $menu->items ?? [];
     }
+>>>>>>> cs0.2.00
 
     // public function getHotTopics()
     // {
@@ -359,4 +407,5 @@ class ThemeComposer
 
     //     dddx($result);
     // }
+>>>>>>> dev
 }

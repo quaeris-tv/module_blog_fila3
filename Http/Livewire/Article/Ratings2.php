@@ -124,6 +124,39 @@ class Ratings2 extends Component
     //     ];
     // }
 
+<<<<<<< HEAD
+    public function bet(int $data_id): void
+    {
+        $this->dispatch('bet-created', data_id: $data_id);
+        dddx('bet '.$data_id);
+    }
+
+    public function save(): void
+    {
+        dddx('save');
+        // $data = $this->form->getState();
+        // $article_aggregate = ArticleAggregate::retrieve($this->article->id);
+        // Assert::isArray($ratings_add = $data['ratings_add']);
+        // foreach ($ratings_add as $rating_id => $rating) {
+        //     $credit = $rating['value'];
+        //     if (null != $credit) {
+        //         $command = RatingArticleData::from([
+        //             'userId' => $this->user_id,
+        //             'articleId' => $this->article->id,
+        //             'ratingId' => $rating_id,
+        //             'credit' => $credit,
+        //         ]);
+
+        //         $article_aggregate->rating($command);
+        //     }
+        // }
+
+        //    auth()->user()->company->update($data);
+        // } catch (Halt $exception) {
+        //    return;
+        // }
+    }
+=======
     public function bet(int $rating_id, string $rating_title): void
     {
         $this->dispatch('bet-created',
@@ -157,4 +190,5 @@ class Ratings2 extends Component
     //    return;
     // }
     // }
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 }
