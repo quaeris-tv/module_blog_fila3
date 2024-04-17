@@ -225,23 +225,25 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        // 'images' => 'array',
-        'id' => 'string',
-        'uuid' => 'string',
-        'date' => 'datetime',
-        'published_at' => 'datetime',
-        'active' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'closed_at' => 'datetime',
-        'content_blocks' => 'array',
-        'footer_blocks' => 'array',
-        'sidebar_blocks' => 'array',
-        // 'is_closed'=> 'boolean',
-    ];
+     * @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            // 'images' => 'array',
+            'id' => 'string',
+            'uuid' => 'string',
+            'date' => 'datetime',
+            'published_at' => 'datetime',
+            'active' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'closed_at' => 'datetime',
+            'content_blocks' => 'array',
+            'footer_blocks' => 'array',
+            'sidebar_blocks' => 'array',
+            // 'is_closed'=> 'boolean',
+        ];
+    }
 
     // public function path()
     // {
@@ -326,10 +328,56 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
     public function getBettingUsers(): int
     {
-        return RatingMorph::where('user_id', '!=', null)
-                ->where('model_id', $this->id)
-                ->groupBy('user_id')
-                ->get()->count();
+        return count(RatingMorph::where('model_id', $this->id)
+            ->where('user_id', '!=', null)
+            ->groupBy('user_id')
+            ->get()
+            ->toArray());
+    }
+
+    public function getVolumeCredit(?int $rating_id = null): int
+    {
+        $ratings = RatingMorph::where('model_id', $this->id)
+            ->where('user_id', '!=', null);
+
+        if (null != $rating_id) {
+            $ratings = $ratings->where('rating_id', $rating_id);
+        }
+
+        $ratings = $ratings->get();
+
+        $tmp = 0;
+
+        foreach ($ratings as $rating) {
+            $tmp += $rating->value;
+        }
+
+        return $tmp;
+    }
+
+    public function getRatingsPercentage(): array
+    {
+        $ratings_options = $this->getOptionRatingsIdTitle();
+        $result = [];
+
+        foreach ($ratings_options as $key => $value) {
+            $b = RatingMorph::where('model_id', $this->id)
+                ->where('user_id', '!=', null)
+                ->count();
+
+            if (0 == $b) {
+                $b = 1;
+            }
+
+            $a = RatingMorph::where('model_id', $this->id)
+                ->where('user_id', '!=', null)
+                ->where('rating_id', $key)
+                ->count();
+
+            $result[$key] = round((100 * $a) / $b, 0);
+        }
+
+        return $result;
     }
 
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
@@ -553,31 +601,35 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     // }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     public function getTimeLeftForHumans(): string
+=======
+    public function getTimeLeftForHumans(): ?string
+>>>>>>> dev
     {
-        // Definisci le due date di riferimento
-        $startDate = Carbon::parse('2024-03-29 12:00:00');
-        // $startDate = $this->closed_at;
-        $endDate = Carbon::parse('2024-04-10 18:30:00');
-
-        // dddx([
-        //     $this->closed_at,
-        //     $startDate,
-        //     $endDate
-        // ]);
+        $endDate = $this->closed_at;
+        $startDate = Carbon::now();
 
         // Calcola la differenza tra le due date
-        $diff = $endDate->diff($startDate);
+        $diff = $startDate->diff($endDate);
 
         // Ottieni il tempo rimasto in giorni, ore, minuti e secondi
-        $days = $diff->days;
+        $month = $diff->m;
+
+        if ($month > 0) {
+            return null;
+        }
+
+        $days = $diff->d;
         $hours = $diff->h;
         $minutes = $diff->i;
-        $seconds = $diff->s;
 
-        // Stampiamo il tempo rimasto
-        return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti e $seconds secondi.";
+        if (0 == $minutes) {
+            return 'scaduto';
+        }
+
+        return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";
     }
 
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083

@@ -29,6 +29,12 @@ class MenuResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(2048)
+            // ->reactive()
+            // ->unique()
+            ,
             Forms\Components\Repeater::make('items')
                 ->schema([
                     Forms\Components\Grid::make(2)->schema([
@@ -67,7 +73,23 @@ class MenuResource extends Resource
                         ->collection('menu')
                     // ->preserveFilenames()
                     ,
+<<<<<<< HEAD
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
+                    Forms\Components\Select::make('parent_id')
+                        ->label('link/menu Padre')
+                        ->options(
+                            Menu::getTreeMenuOptions()
+                        )
+                        ->searchable(),
+                    \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                        ->columns([
+                            'default' => 1,
+                            'lg' => 3,
+                            '2xl' => 5,
+                        ])
+                        ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+>>>>>>> dev
                 ])
                 ->columnSpanFull(),
         ]);
@@ -77,7 +99,7 @@ class MenuResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('title'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

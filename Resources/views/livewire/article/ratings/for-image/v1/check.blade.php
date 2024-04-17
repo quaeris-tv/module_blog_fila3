@@ -25,7 +25,6 @@
                         value="0"
                         wire:model.live="import"
                         />
-
                     {{-- <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
                         type="text"
@@ -56,6 +55,7 @@
                     </span>
                     {{-- <span class="ml-1 place-bet__text-field__displayCode">Ooms</span> --}}
                 </div>
+                @error('import') <span>{{ $message }}</span> @enderror
             </div>
             {{-- <div class="flex w-full items-center justify-center py-3 mb-3">
                 <a href="/m/cash-in" class="text-blue-1 font-semibold">Add real money</a>

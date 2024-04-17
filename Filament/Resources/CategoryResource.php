@@ -64,7 +64,7 @@ class CategoryResource extends XotBaseResource
                     ->enableOpen()
                     ->enableDownload()
                     ->columnSpanFull()
-                    // ->collection('avatars')
+                    ->collection('category')
                     // ->conversion('thumbnail')
                     ->disk('uploads')
                     ->directory('photos'),

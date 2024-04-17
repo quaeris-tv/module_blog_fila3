@@ -18,7 +18,7 @@
             </p>
             <p class="text-sm leading-none text-neutral-3 font-roboto whitespace-nowrap"
                 {{-- x-text="formatDate(market.bet_end_date,year:'numeric',month:'long',day:'numeric')" --}}>
-                {{ $article->getClosedAt() }}
+                {{ $article->closed_at_date }}
             </p>
         </div>
         <div

@@ -28,6 +28,7 @@ class ArticleData extends Data
     public string $title = '';
 
     public function __construct(
+        public string $id,
         public string $uuid,
         array|string $title,
         public string $slug,
@@ -45,7 +46,14 @@ class ArticleData extends Data
 =======
         public ?array $ratings,
         public ?string $closed_at,
+<<<<<<< HEAD
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
+        public ?string $closed_at_date,
+        public ?int $betting_users,
+        public ?string $time_left_for_humans,
+        public ?float $volume_credit,
+>>>>>>> dev
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -64,8 +72,19 @@ class ArticleData extends Data
         }
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
+<<<<<<< HEAD
         $this->ratings = $this->getRatings();
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
+
+        $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
+
+        Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+        $this->betting_users = $article->getBettingUsers();
+        $this->ratings = $article->getArrayRatingsWithImage();
+        $this->time_left_for_humans = $article->getTimeLeftForHumans();
+        $this->volume_credit = $article->getVolumeCredit();
+>>>>>>> dev
     }
 
     public function getCategories(): Collection
@@ -77,6 +96,7 @@ class ArticleData extends Data
         // return $category->bloodline()->get()->reverse();
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public function url(string $type): string
     {
@@ -94,19 +114,24 @@ class ArticleData extends Data
     public function getArticle(): Article
     {
         Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+=======
+    // public function getArticle(): Article
+    // {
+    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+>>>>>>> dev
 
-        return $article;
-    }
+    //     return $article;
+    // }
 
-    public function getRatings(): array
-    {
-        return $this->getArticle()->getArrayRatingsWithImage();
-    }
+    // public function getRatings(): array
+    // {
+    //     return $this->getArticle()->getArrayRatingsWithImage();
+    // }
 
-    public function getBettingUsers(): int
-    {
-        return $this->getArticle()->getBettingUsers();
-    }
+    // public function getBettingUsers(): int
+    // {
+    //     return $this->getArticle()->getBettingUsers();
+    // }
 
     public function url(string $type): string
     {
@@ -122,14 +147,22 @@ class ArticleData extends Data
         return '#';
     }
 
-    public function getClosedAt(): string
-    {
-        return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
-    }
+    // public function getClosedAt(): string
+    // {
+    //     return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
+    // }
 
+<<<<<<< HEAD
     public function getTimeLeftForHumans(): string
     {
         return $this->getArticle()->getTimeLeftForHumans();
     }
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
+    // public function getTimeLeftForHumans(): string
+    // {
+    //     dddx('a');
+    //     return $this->getArticle()->getTimeLeftForHumans();
+    // }
+>>>>>>> dev
 }

@@ -6,7 +6,6 @@ class="flex max-lg:gap-4 max-lg:py-2 lg:flex-col lg:items-center text-neutral-5 
         class="lg:contents relative flex justify-center max-lg:h-max"
         >
         <img
-            {{-- src="https://futuur-media-production.s3.amazonaws.com/cache/b1/81/b1816fa03b437898ec58f5ea571c4d4a.jpg" --}}
             src="{{ $profile->getAvatarUrl() }}"
             class="size-10 
                 @if($loop->iteration == 2)
@@ -53,7 +52,7 @@ class="flex max-lg:gap-4 max-lg:py-2 lg:flex-col lg:items-center text-neutral-5 
         class="lg:contents relative flex justify-center max-lg:h-max"
         >
         <img
-            src="https://futuur-media-production.s3.amazonaws.com/cache/b1/81/b1816fa03b437898ec58f5ea571c4d4a.jpg"
+            src="https://My_Company-media-production.s3.amazonaws.com/cache/b1/81/b1816fa03b437898ec58f5ea571c4d4a.jpg"
             class="size-10 lg:size-20 rounded-full shrink-0 object-cover"
             alt="deagol"
             />
@@ -103,7 +102,7 @@ class="flex max-lg:gap-4 max-lg:py-2 lg:flex-col lg:items-center text-neutral-5 
         class="lg:contents relative flex justify-center max-lg:h-max"
         >
         <img
-            src="https://futuur-media-production.s3.amazonaws.com/cache/1a/3f/1a3faf36f6b5cc0e6c26a2aeffa44e4a.jpg"
+            src="https://My_Company-media-production.s3.amazonaws.com/cache/1a/3f/1a3faf36f6b5cc0e6c26a2aeffa44e4a.jpg"
             class="size-10 lg:size-20 rounded-full shrink-0 object-cover"
             alt="Cleiton5656"
             />

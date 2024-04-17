@@ -65,14 +65,13 @@ class Taggable extends BaseMorphPivot
         'custom_properties' => [],
     ];
 
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'custom_properties' => 'array',
-    ];
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'custom_properties' => 'array',
+        ];
+    }
 
     public function withCustomProperties(array $customProperties): self
     {

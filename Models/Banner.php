@@ -51,11 +51,11 @@ class Banner extends BaseModel implements HasMedia
     /** @var array<int, string> */
     protected $fillable = [
         // "id", //: 40,
-        // "desktop_thumbnail",//: "https://futuur-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
-        // "mobile_thumbnail",//: "https://futuur-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
-        // "desktop_thumbnail_webp",//: "https://futuur-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
-        // "mobile_thumbnail_webp",//: "https://futuur-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
-        'link', // : "https://futuur.com/q/category/99/usa",
+        // "desktop_thumbnail",//: "https://My_Company-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
+        // "mobile_thumbnail",//: "https://My_Company-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
+        // "desktop_thumbnail_webp",//: "https://My_Company-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
+        // "mobile_thumbnail_webp",//: "https://My_Company-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
+        'link', // : "https://My_Company.com/q/category/99/usa",
         'title', // : "American Politics",
         'description', // : "Congress, White House, Elections and more",
         'action_text', // : "Make Your Forecasts",
@@ -78,19 +78,21 @@ class Banner extends BaseModel implements HasMedia
         'landing_banner', // : false
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
-        'id' => 'string',
-        'desktop_thumbnail' => 'string',
-        'mobile_thumbnail' => 'string',
-        'desktop_thumbnail_webp' => 'string',
-        'mobile_thumbnail_webp' => 'string',
-        'link' => 'string',
-        'title' => 'string',
-        'description' => 'string',
-        'action_text' => 'string',
-        'category_id' => 'string',
-        /*
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'desktop_thumbnail' => 'string',
+            'mobile_thumbnail' => 'string',
+            'desktop_thumbnail_webp' => 'string',
+            'mobile_thumbnail_webp' => 'string',
+            'link' => 'string',
+            'title' => 'string',
+            'description' => 'string',
+            'action_text' => 'string',
+            'category_id' => 'string',
+            /*
         "category",//: 99,
         "category_dict": {
             "id": 99,
@@ -101,12 +103,13 @@ class Banner extends BaseModel implements HasMedia
             "icon": null
         },
         */
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-        'hot_topic' => 'boolean',
-        'open_markets_count' => 'integer',
-        'landing_banner' => 'boolean',
-    ];
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'hot_topic' => 'boolean',
+            'open_markets_count' => 'integer',
+            'landing_banner' => 'boolean',
+        ];
+    }
 
     /** @var array<int, string> */
     protected $appends = [
@@ -167,14 +170,14 @@ class Banner extends BaseModel implements HasMedia
 /*
 "id": 40,
     "desktop_thumbnail":
-      "https://futuur-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
     "mobile_thumbnail":
-      "https://futuur-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
     "desktop_thumbnail_webp":
-      "https://futuur-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
     "mobile_thumbnail_webp":
-      "https://futuur-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
-    "link": "https://futuur.com/q/category/99/usa",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
+    "link": "https://My_Company.com/q/category/99/usa",
     "title": "American Politics",
     "short_description": "Congress, White House, Elections and more",
     "action_text": "Make Your Forecasts",

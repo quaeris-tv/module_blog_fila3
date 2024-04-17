@@ -11,7 +11,11 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Modules\Blog\Actions\Article\MakeBetAction;
 use Modules\Blog\Models\Article;
@@ -40,6 +44,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public ?string $article_uuid = null;
 
     public array $rating_opts = [];
+    public array $ratings_percentage = [];
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -55,8 +60,11 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             Assert::notNull($ratings);
             $this->datas = $ratings;
             $this->article_uuid = $article_uuid;
+            $this->article = Article::where('uuid', $article_uuid)->first();
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
+        Assert::notNull($this->article);
+        $this->ratings_percentage = $this->article->getRatingsPercentage();
     }
 
     public function render(): View
@@ -77,6 +85,8 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     {
         $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
+        // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
+        $this->ratings_percentage = $this->article->getRatingsPercentage();
         if ('index' == $this->type) {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
@@ -85,48 +95,91 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             rating_id: $rating_id,
             rating_title: $rating_title
         );
-
-        foreach ($this->datas as $key => $data) {
-            if ($this->datas[$key]['id'] == $rating_id) {
-                $this->datas[$key]['effect'] = true;
-            } else {
-                $this->datas[$key]['effect'] = false;
-            }
-        }
-        // } else {
-        //     dddx('wip');
-        // }
     }
 
     // modal di filament
     public function betAction(): Action
     {
+        if (Auth::guest()) {
+            return $this->GuestModal();
+        } else {
+            return $this->CheckModal();
+        }
+    }
+
+    public function GuestModal(): Action
+    {
+        return Action::make('bet')
+            ->modalContent(function (array $arguments): View {
+                $view = 'blog::livewire.article.ratings.for-image.v1.guest';
+
+                return view($view);
+            })
+            ->modalHeading('Place bet')
+            ->closeModalByClickingAway(false)
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalCancelActionLabel('Cancel')
+            ->color('primary')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+            ->modalSubmitAction(false)
+        ;
+    }
+
+    public function CheckModal(): Action
+    {
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
                 Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
                 $article_id = $rating_morph->model_id;
-                app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], $data['rating_id']);
+                app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], (int) $data['rating_id']);
+
+                $this->dispatch('update-user-ratings');
             })
             // ->action(fn (array $arguments) => app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id))
             ->fillForm(fn ($record, $arguments): array => [
                 'rating_id' => $arguments['rating_id'],
+                'credits' => 0,
             ])
             ->form([
                 Select::make('rating_id')
                     // ->label('Author')
+                    ->prefix('Your bet ')
+                    ->hiddenLabel()
                     ->options($this->rating_opts)
                     ->required(),
-                TextInput::make('credits'),
+                TextInput::make('credits')
+                    ->hiddenLabel()
+                    ->numeric()
+                    ->suffixIcon('heroicon-o-banknotes')
+                    ->rules('gt:0')
+                // ->validationMessages([
+                //     'gt' => 'The :attribute has already been registered.',
+                // ])
+                ,
             ])
-
+            ->modalHeading('Place bet')
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
-            ->modalSubmitActionLabel('confermo')
-            ->modalIcon('heroicon-o-banknotes')
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Please select an outcome')
+            ->modalCancelActionLabel('Cancel')
+            ->color('primary')
+            // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
         ;
     }
+
+    // protected function onValidationError(ValidationException $exception): void
+    // {
+    //     Notification::make()
+    //         ->title($exception->getMessage())
+    //         ->danger()
+    //         ->send();
+    // }
 
     // modal con custom blade
     // public function betAction(): Action

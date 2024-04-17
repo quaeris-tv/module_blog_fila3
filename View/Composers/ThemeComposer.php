@@ -277,6 +277,11 @@ class ThemeComposer
         return $tmp;
     }
 
+    public function getSingleBanner(Banner $banner): SliderData
+    {
+        return SliderData::from($banner->toArray());
+    }
+
     public function getArticlesFeatured(int $number = 6): Collection
     {
         dddx('wip con article data');
@@ -307,6 +312,7 @@ class ThemeComposer
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
     /**
      * Undocumented function.
      *
@@ -317,4 +323,35 @@ class ThemeComposer
         // dddx(Menu::where('name', $menu_name)->first()->items);
     }
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
+=======
+    // /**
+    //  * Undocumented function.
+    //  *
+    //  * @return void
+    //  */
+    // public function getMenu(string $menu_name): array
+    // {
+    //     // dddx(Menu::where('title', $menu_name)->first()->items);
+    //     Assert::notNull($menu = Menu::where('title', $menu_name)->first());
+    //     return $menu->items;
+    // }
+
+    // public function getHotTopics()
+    // {
+    //     $result = Category::with('articles')
+    //         // ->join('categories', 'posts.user_id', '=', 'users.id')
+
+    //         ->first()
+    //         // ->groupBy('model_id')
+    //         // ->map(function($items){
+    //         //     foreach($items as $item){
+    //         //         dddx($item->value);
+    //         //     }
+    //         // })
+
+    //         ;
+
+    //     dddx($result);
+    // }
+>>>>>>> dev
 }

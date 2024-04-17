@@ -6,9 +6,8 @@ namespace Modules\Blog\Providers;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Modules\Blog\Listeners\UserRegisteredListener;
-use Modules\User\Events\Registered;
 use Modules\User\Listeners\LoginListener;
 use Modules\User\Listeners\LogoutListener;
 use SocialiteProviders\Auth0\Auth0ExtendSocialite;
@@ -22,9 +21,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array<string, array<int, string>>
      */
     protected $listen = [
-        // Registered::class => [ //questo e' per socialite
-        //    UserRegisteredListener::class,
-        // ],
+        Registered::class => [
+            ProfileRegisteredListener::class,
+        ],
 
         // SocialiteWasCalled::class => [
         //     Auth0ExtendSocialite::class.'@handle',

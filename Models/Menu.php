@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+>>>>>>> dev
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -49,16 +53,45 @@ class Menu extends BaseModel
 class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
+    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 >>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     /** @var array<int, string> */
     protected $fillable = [
-        'name',
+        'title',
         'items',
+        'parent_id',
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
-        'items' => 'array',
-    ];
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'items' => 'array',
+        ];
+    }
+
+    public static function getTreeMenuOptions(): array
+    {
+        $instance = new self();
+
+        return app(GetTreeOptions::class)->execute($instance);
+
+        // $categories = self::tree()->get()->toTree();
+        // $results = [];
+        // foreach ($categories as $cat) {
+        //     $results[$cat->id] = $cat->title;
+        //     foreach ($cat->children as $child) {
+        //         $results[$child->id] = '--------->'.$child->title;
+        //         foreach ($child->children as $cld) {
+        //             $results[$cld->id] = '----------------->'.$cld->title;
+        //             foreach ($cld->children as $c) {
+        //                 $results[$c->id] = '------------------------->'.$c->title;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return $results;
+    }
 }

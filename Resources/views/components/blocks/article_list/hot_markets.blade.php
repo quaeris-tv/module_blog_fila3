@@ -30,7 +30,7 @@
                         </svg>
                         <span class="text-sm text-[#666666]">
                             {{-- 3212 --}}
-                            {{ $item->getBettingUsers() }}
+                            {{ $item->betting_users }}
                         </span>
                     </div>
                     <div class="flex items-center gap-1">
@@ -45,7 +45,10 @@
                                 fill="#6B6A6A"
                                 ></path>
                         </svg>
-                        <span class="text-sm text-[#666666]">3364798 ø</span>
+                        <span class="text-sm text-[#666666]">
+                            {{-- 3364798  --}}
+                            {{ $item->volume_credit }} ø
+                        </span>
                     </div>
                     <!-- Bet end date -->
                     <div class="flex items-center gap-1">
@@ -62,7 +65,7 @@
                                     ></path>
                             </svg>
                         </span>
-                        <span class="text-sm text-[#666666]">{{ $item->getClosedAt() }}</span>
+                        <span class="text-sm text-[#666666]">{{ $item->closed_at_date }}</span>
                     </div>
                 </div>
             </article>

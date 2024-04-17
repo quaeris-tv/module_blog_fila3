@@ -7,11 +7,11 @@ namespace Modules\Blog\Models;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 // ---------- traits
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 // //use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Xot\Services\FactoryService;
+use Modules\Xot\Actions\Factory\GetFactoryAction;
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -40,8 +40,13 @@ abstract class BaseModel extends Model
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<string, string> */
-    protected $casts = ['published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime',
+        ];
+    }
 
     /** @var string */
     protected $primaryKey = 'id';
@@ -64,6 +69,6 @@ abstract class BaseModel extends Model
      */
     protected static function newFactory()
     {
-        return FactoryService::newFactory(static::class);
+        return app(GetFactoryAction::class)->execute(static::class);
     }
 }

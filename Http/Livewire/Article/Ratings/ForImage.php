@@ -8,6 +8,7 @@ use Filament\Facades\Filament;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Modules\Blog\Actions\Article\MakeBetAction;
 use Modules\Blog\Aggregates\ArticleAggregate;
@@ -25,6 +26,7 @@ class ForImage extends Component implements HasForms
     public string $rating_title = '';
     public int $rating_id = 0;
     public array $article_ratings = [];
+    #[Validate('required|gt:0')]
     public int $import = 0;
     public string $type = 'show';
 
@@ -64,6 +66,12 @@ class ForImage extends Component implements HasForms
 
     public function save(): void
     {
+        // $this->validate([
+        //     'import' => 'required|gt:0',
+        //     // 'email' => 'required|email|unique:users,email',
+        // ]);
+        $this->validate();
+
         app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id);
 
         // $article_aggregate = ArticleAggregate::retrieve($this->article->id);

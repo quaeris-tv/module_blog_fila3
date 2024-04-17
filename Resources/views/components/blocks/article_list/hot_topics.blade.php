@@ -1,54 +1,21 @@
-<div class="max-w-[calc(100%-30px)] sm:max-w-[calc(100%-80px)] lg:max-w-[996px] mx-auto pb-12">
-<section aria-label="Hot topics">
-    <h2 class="text-neutral-5 mb-4 text-2xl font-semibold leading-[1.33]">
-        Hot topics 🔥
+<div class="container max-w-6xl p-6 mx-auto space-y-4">
+    <h2 class="flex items-center space-x-2 text-xl font-semibold">
+        <x-heroicon-o-fire class="text-blue-500 size-8"/>
+        <span>Hot Topics</span>
     </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
-            <div class="h-[140px] relative">
-                <img class="absolute inset-0 w-full"
-                    src="https://futuur-media-production.s3.amazonaws.com/cache/42/ce/42ce8ed04bb6d4fcfe08be4505a9c4f6.webp"
-                    alt="" />
-            </div>
-            <div class="bg-white py-6 px-3 relative z-[1]">
-                <h3 class="text-neutral-5 mb-4 text-base font-semibold leading-[21px]">
-                    World Politics
-                </h3>
-                <p class="text-neutral-3 text-base font-bold leading-[19px]">
-                    71 markets
-                </p>
-            </div>
-        </a>
-        <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
-            <div class="h-[140px] relative">
-                <img class="absolute inset-0 w-full"
-                    src="https://futuur-media-production.s3.amazonaws.com/cache/6f/e1/6fe13ae83c0efbd89b20e024bb73d72e.webp"
-                    alt="" />
-            </div>
-            <div class="bg-white py-6 px-3 relative z-[1]">
-                <h3 class="text-neutral-5 mb-4 text-base font-semibold leading-[21px]">
-                    Brazilian Politics
-                </h3>
-                <p class="text-neutral-3 text-base font-bold leading-[19px]">
-                    55 markets
-                </p>
-            </div>
-        </a>
-        <a class="rounded-2xl overflow-hidden" href="/q/category/103/world-politics">
-            <div class="h-[140px] relative">
-                <img class="absolute inset-0 w-full"
-                    src="https://futuur-media-production.s3.amazonaws.com/cache/ae/96/ae965c552888fdfbd055e2b4f55cd453.webp"
-                    alt="" />
-            </div>
-            <div class="bg-white py-6 px-3 relative z-[1]">
-                <h3 class="text-neutral-5 mb-4 text-base font-semibold leading-[21px]">
-                    Football
-                </h3>
-                <p class="text-neutral-3 text-base font-bold leading-[19px]">
-                    117 markets
-                </p>
-            </div>
-        </a>
-    </div>
-</section>
+    <section aria-label="Hot topics">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+            @foreach([1, 2, 3] as $o)
+            <a class="bg-white rounded-lg overflow-clip" href="/q/category/103/world-politics">
+                <div class="h-[240px] relative">
+                    <img class="absolute inset-0 object-cover w-full h-full" src="https://placehold.co/600x400" alt=""/>
+                </div>
+                <div class="flex flex-col justify-between p-4 space-y-2">
+                    <span class="inline px-3 py-1 text-blue-600 rounded w-max bg-blue-200/20">{{ fake()->numberBetween(10, 100) }} markets</span>
+                    <h3 class="font-semibold grow">{{ fake()->sentence() }}</h3>
+                </div>
+            </a>
+            @endforeach
+        </div>
+    </section>
 </div>

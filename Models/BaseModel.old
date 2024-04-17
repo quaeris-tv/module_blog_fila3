@@ -31,10 +31,15 @@ abstract class BaseModel extends Model implements ModelContract
     /** @var string */
     protected $connection = 'mysql';
 
-    /** @var array<string, string> */
-    protected $casts = [
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+
         // 'published_at' => 'datetime:Y-m-d', // da verificare
-    ];
+
+        ];
+    }
 
     /**
      * @var string[]
