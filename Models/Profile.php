@@ -6,6 +6,7 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
+<<<<<<< HEAD
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -80,6 +81,25 @@ class Profile extends BaseModel implements HasMedia, ProfileContract, ModelWithU
     use InteractsWithMedia;
     use IsProfileTrait;
     use SchemalessAttributesTrait;
+=======
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\RatingMorph;
+use Modules\User\Models\User;
+// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Modules\Xot\Models\BaseProfile as XotBaseProfile;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+
+class Profile extends XotBaseProfile implements HasMedia
+{
+    use InteractsWithMedia;
+
+    /** @var string */
+    protected $connection = 'blog';
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 
     /** @var array<int, string> */
     protected $fillable = [
@@ -103,11 +123,14 @@ class Profile extends BaseModel implements HasMedia, ProfileContract, ModelWithU
         'extra',
     ];
 
+<<<<<<< HEAD
     public function scopeWithExtraAttributes(): Builder
     {
         return $this->extra->modelScope();
     }
 
+=======
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     /**
      * @return HasMany<Article>
      */
@@ -126,6 +149,21 @@ class Profile extends BaseModel implements HasMedia, ProfileContract, ModelWithU
         return 'slug';
     }
 
+<<<<<<< HEAD
+=======
+    public function getAvatarUrl(): string
+    {
+        if (null == $this->getFirstMediaUrl('photo_profile')) {
+            // in caso eseguire php artisan module:publish
+            // dddx($this);
+            // dddx(asset('blog/img/no_user.webp'));
+            return asset('modules/blog/img/no_user.webp');
+        }
+
+        return $this->getFirstMediaUrl('photo_profile');
+    }
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     public function ratings(): HasManyThrough
     {
         $firstKey = 'user_id';

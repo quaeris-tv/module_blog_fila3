@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
+<<<<<<< HEAD
+=======
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -45,6 +49,25 @@ class MenuResource extends Resource
                         ->default('internal')
                         ->required()
                         ->inline(),
+<<<<<<< HEAD
+=======
+
+                    SpatieMediaLibraryFileUpload::make('image')
+                        // ->image()
+                        // ->maxSize(5000)
+                        // ->multiple()
+                        // ->enableReordering()
+                        ->openable()
+                        ->downloadable()
+                        ->columnSpanFull()
+                        // ->collection('avatars')
+                        // ->conversion('thumbnail')
+                        ->disk('uploads')
+                        ->directory('photos')
+                        ->collection('menu')
+                    // ->preserveFilenames()
+                    ,
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
                 ])
                 ->columnSpanFull(),
         ]);

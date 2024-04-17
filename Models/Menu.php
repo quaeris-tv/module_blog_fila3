@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+<<<<<<< HEAD
+=======
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 /**
  * Modules\Blog\Models\Menu.
  *
@@ -36,8 +42,15 @@ namespace Modules\Blog\Models;
  *
  * @mixin \Eloquent
  */
+<<<<<<< HEAD
 class Menu extends BaseModel
 {
+=======
+class Menu extends BaseModel implements HasMedia
+{
+    use InteractsWithMedia;
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     /** @var array<int, string> */
     protected $fillable = [
         'name',

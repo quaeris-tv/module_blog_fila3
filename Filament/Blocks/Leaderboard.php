@@ -7,6 +7,10 @@ namespace Modules\Blog\Filament\Blocks;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+<<<<<<< HEAD
+=======
+use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 
 class Leaderboard
 {
@@ -14,6 +18,12 @@ class Leaderboard
         string $name = 'leaderboard',
         string $context = 'form',
     ): Block {
+<<<<<<< HEAD
+=======
+        $view = 'blog::components.blocks.leaderboard.v1';
+        $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
         return Block::make($name)
             ->schema([
                 TextInput::make('title')
@@ -31,6 +41,7 @@ class Leaderboard
                 //     ])
                 //     ->required(),
                 TextInput::make('limit'),
+<<<<<<< HEAD
                 Select::make('version')
                 ->label('version')
                 ->options([
@@ -40,6 +51,24 @@ class Leaderboard
                     // 'v4' => 'versione 4',
                     // 'v5' => 'versione 5',
                 ]),
+=======
+                // Select::make('version')
+                // ->label('version')
+                // ->options([
+                //     'v1' => 'versione 1 (Tailwind)',
+                //     'v2' => 'versione 2 (Bootstrap)',
+                //     // 'v3' => 'versione 3',
+                //     // 'v4' => 'versione 4',
+                //     // 'v5' => 'versione 5',
+                // ]),
+
+                Select::make('_tpl')
+                    ->label('layout')
+                    ->options($views)
+                    ->default('v1')
+                    ->required(),
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
                 // ->required(),
             ])
             ->label('leaderboard')

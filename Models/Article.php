@@ -301,6 +301,38 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
     }
 
+<<<<<<< HEAD
+=======
+    public function getArrayRatingsWithImage(): array
+    {
+        $ratings = $this
+        ->ratings()
+        // ->with('media')
+        ->where('user_id', null)
+        ->get()
+        // ->toArray()
+        ;
+
+        $ratings_array = [];
+
+        foreach ($ratings as $key => $rating) {
+            $ratings_array[$key] = $rating->toArray();
+            $ratings_array[$key]['image'] = $rating->getFirstMediaUrl('rating');
+            $ratings_array[$key]['effect'] = false;
+        }
+
+        return $ratings_array;
+    }
+
+    public function getBettingUsers(): int
+    {
+        return RatingMorph::where('user_id', '!=', null)
+                ->where('model_id', $this->id)
+                ->groupBy('user_id')
+                ->get()->count();
+    }
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
@@ -492,11 +524,22 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         if (null !== $value && '' !== $value) {
             return $value;
         }
+<<<<<<< HEAD
         $value = (string) Str::uuid();
         $this->uuid = $value;
         $this->save();
 
         return $value;
+=======
+        // dddx($value);
+        // $value = (string) Str::uuid();
+        // $this->uuid = $value;
+        // $this->save();
+
+        // return $value;
+
+        return '##';
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     }
 
     // public function getTimeLeft(): string
@@ -509,6 +552,35 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
     //     return $days.'d'.$hours.'m'.$minutes.'s';
     // }
 
+<<<<<<< HEAD
+=======
+    public function getTimeLeftForHumans(): string
+    {
+        // Definisci le due date di riferimento
+        $startDate = Carbon::parse('2024-03-29 12:00:00');
+        // $startDate = $this->closed_at;
+        $endDate = Carbon::parse('2024-04-10 18:30:00');
+
+        // dddx([
+        //     $this->closed_at,
+        //     $startDate,
+        //     $endDate
+        // ]);
+
+        // Calcola la differenza tra le due date
+        $diff = $endDate->diff($startDate);
+
+        // Ottieni il tempo rimasto in giorni, ore, minuti e secondi
+        $days = $diff->days;
+        $hours = $diff->h;
+        $minutes = $diff->i;
+        $seconds = $diff->s;
+
+        // Stampiamo il tempo rimasto
+        return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti e $seconds secondi.";
+    }
+
+>>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
     // /**
     //  * Get the path to the picture
     //  *
