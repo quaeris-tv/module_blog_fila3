@@ -93,6 +93,16 @@ class ThemeComposer
         return $rows;
     }
 
+    public function getArticlesByCategory(string $category_id, int $number = 6): array
+    {
+        $rows = Article::where('category_id', $category_id)
+            ->orderBy('published_at', 'desc')
+            ->take($number)
+            ->get();
+
+        return $this->getArticleDataArray($rows);
+    }
+
     /*
     public function getAuthors(): Collection
     {
@@ -204,9 +214,14 @@ class ThemeComposer
         return $pages;
     }
 
+    public function getPageModel(string $slug): ?Page
+    {
+        return Page::where('slug', $slug)->first();
+    }
+
     public function getUrlPage(string $slug): string
     {
-        $page = $this->getPages()->where('slug', $slug)->first();
+        $page = $this->getPageModel($slug);
         if (null !== $page) {
             return '/'.app()->getLocale().'/pages/'.$slug;
         }
@@ -291,12 +306,21 @@ class ThemeComposer
 
     public function getArticlesLatest(int $number = 6): array
     {
-        $results = $this->getLatestArticles($number)->toArray();
+        $results = $this->getLatestArticles($number); // ->toArray();
 
+        return $this->getArticleDataArray($results);
+    }
+
+    public function getArticleDataArray(Collection $rows): array
+    {
         $tmp = [];
+<<<<<<< HEAD
         foreach ($results as $content) {
 <<<<<<< HEAD
 =======
+=======
+        foreach ($rows->toArray() as $content) {
+>>>>>>> cs0.2.00
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
@@ -312,6 +336,7 @@ class ThemeComposer
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     /**
      * Undocumented function.
@@ -335,6 +360,22 @@ class ThemeComposer
     //     Assert::notNull($menu = Menu::where('title', $menu_name)->first());
     //     return $menu->items;
     // }
+=======
+    /**
+     * Undocumented function.
+     *
+     * @return array|null
+     */
+    public function getMenu(string $menu_name)
+    {
+        $menu = Menu::where('title', $menu_name)->first();
+        if (null == $menu) {
+            $menu = Menu::create(['title' => $menu_name]);
+        }
+
+        return $menu->items ?? [];
+    }
+>>>>>>> cs0.2.00
 
     // public function getHotTopics()
     // {

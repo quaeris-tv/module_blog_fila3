@@ -6,6 +6,8 @@ namespace Modules\Blog\Listeners;
 
 use Illuminate\Auth\Events\Registered;
 use Modules\Blog\Models\Profile;
+use Modules\User\Models\User;
+use Webmozart\Assert\Assert;
 
 class ProfileRegisteredListener
 {
@@ -21,8 +23,11 @@ class ProfileRegisteredListener
      */
     public function handle(Registered $event): void
     {
-        $event->user->profile()->create([
-            'email' => $event->user->email,
+        Assert::notNull($user = $event->user);
+        Assert::isInstanceOf($user, User::class);
+
+        $user->profile()->create([
+            'email' => $user->email,
             'credits' => 1000,
         ]);
 

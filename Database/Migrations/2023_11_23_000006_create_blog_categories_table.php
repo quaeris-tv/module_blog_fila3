@@ -40,6 +40,10 @@ class CreateBlogCategoriesTable extends XotBaseMigration
                 if (! $this->hasColumn('parent_id')) {
                     $table->unsignedBigInteger('parent_id')->nullable();
                 }
+
+                if (! $this->hasColumn('icon')) {
+                    $table->text('icon')->nullable();
+                }
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );

@@ -84,6 +84,7 @@ class Profile extends BaseModel implements HasMedia, ProfileContract, ModelWithU
 =======
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Facades\Storage;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
 use Modules\User\Models\User;
@@ -153,6 +154,10 @@ class Profile extends XotBaseProfile implements HasMedia
 =======
     public function getAvatarUrl(): string
     {
+        if (isset($this->extra->photo_profile)) {
+            return Storage::disk('uploads')->url($this->extra->photo_profile);
+        }
+
         if (null == $this->getFirstMediaUrl('photo_profile')) {
             // in caso eseguire php artisan module:publish
             // dddx($this);
@@ -174,5 +179,16 @@ class Profile extends XotBaseProfile implements HasMedia
         return $this->hasManyThrough(Rating::class, RatingMorph::class, $firstKey, $secondKey, $localKey, $secondLocalKey)
             // ->withPivot(['value'])
         ;
+    }
+
+    public function getArticleTraded() // : int
+    {$result = RatingMorph::where('user_id', $this->user_id)
+                ->groupBy('model_id')
+                ->pluck('model_id')
+                // ->get()
+                // ->count()
+        ;
+
+        return $result;
     }
 }

@@ -83,6 +83,7 @@ class MenuResource extends Resource
                         )
                         ->searchable(),
                     \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                        ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
                         ->columns([
                             'default' => 1,
                             'lg' => 3,
@@ -104,6 +105,7 @@ class MenuResource extends Resource
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
                 ]),
             ])
             ->filters([])
