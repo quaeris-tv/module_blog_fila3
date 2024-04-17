@@ -133,7 +133,15 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
                 Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
-                $article_id = $rating_morph->model_id;
+                // $article_id = $rating_morph->model_id;
+                $article_id = $this->article->id;
+                // dddx([
+                //     $this->article->id,
+                //     $article_id,
+                //     $rating_morph,
+                //     $data['credits'],
+                //     $data['rating_id']
+                // ]);
                 app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], (int) $data['rating_id']);
 
                 $this->dispatch('update-user-ratings');
