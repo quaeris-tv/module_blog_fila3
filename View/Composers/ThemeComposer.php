@@ -13,10 +13,7 @@ use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Category;
-<<<<<<< HEAD
-=======
 use Modules\Blog\Models\Menu;
->>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
 use Modules\Blog\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
@@ -132,19 +129,12 @@ class ThemeComposer
         return $footerCategories;
     }
 
-<<<<<<< HEAD
-    public function getFooterAuthors(): Collection
-    {
-        $footerAuthors = Profile::profileIsAuthor()
-            ->take(8)
-=======
     // --- da fare con parental
     public function getFooterAuthors(): Collection
     {
         // $footerAuthors = Profile::profileIsAuthor()
         // ->take(8)
         $footerAuthors = Profile::take(8)
->>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
             ->get();
 
         return $footerAuthors;
@@ -214,10 +204,11 @@ class ThemeComposer
         return $pages;
     }
 
-    public function getPageModel(string $slug): ?Page
+    public function getPageModel(string $slug): Page|null
     {
         return Page::where('slug', $slug)->first();
     }
+
 
     public function getUrlPage(string $slug): string
     {
@@ -306,61 +297,37 @@ class ThemeComposer
 
     public function getArticlesLatest(int $number = 6): array
     {
-        $results = $this->getLatestArticles($number); // ->toArray();
+        $results = $this->getLatestArticles($number); //->toArray();
 
         return $this->getArticleDataArray($results);
     }
 
-    public function getArticleDataArray(Collection $rows): array
+    public function getArticleDataArray(Collection $rows):array
     {
         $tmp = [];
-<<<<<<< HEAD
-        foreach ($results as $content) {
-<<<<<<< HEAD
-=======
-=======
         foreach ($rows->toArray() as $content) {
->>>>>>> cs0.2.00
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
             }
 
->>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
             $tmp[] = ArticleData::from($content);
         }
 
         // dddx($tmp);
         return $tmp;
     }
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    /**
-     * Undocumented function.
-     *
-     * @return void
-     */
-    public function getMenu(string $menu_name)
+    public function getArticleModel(string $slug): Article|null
     {
-        // dddx(Menu::where('name', $menu_name)->first()->items);
+        return Article::where('slug', $slug)->first();
     }
->>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
-=======
-    // /**
-    //  * Undocumented function.
-    //  *
-    //  * @return void
-    //  */
-    // public function getMenu(string $menu_name): array
-    // {
-    //     // dddx(Menu::where('title', $menu_name)->first()->items);
-    //     Assert::notNull($menu = Menu::where('title', $menu_name)->first());
-    //     return $menu->items;
-    // }
-=======
+
+    public function getCategoryModel(string $slug): Category|null
+    {
+        return Category::where('slug', $slug)->first();
+    }
+
     /**
      * Undocumented function.
      *
@@ -369,13 +336,11 @@ class ThemeComposer
     public function getMenu(string $menu_name)
     {
         $menu = Menu::where('title', $menu_name)->first();
-        if (null == $menu) {
+        if($menu == null){
             $menu = Menu::create(['title' => $menu_name]);
         }
-
         return $menu->items ?? [];
     }
->>>>>>> cs0.2.00
 
     // public function getHotTopics()
     // {
@@ -394,5 +359,4 @@ class ThemeComposer
 
     //     dddx($result);
     // }
->>>>>>> dev
 }

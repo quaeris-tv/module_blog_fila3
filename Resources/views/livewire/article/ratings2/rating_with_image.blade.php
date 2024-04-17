@@ -9,11 +9,7 @@
 
 
                         @foreach($datas as $data)
-<<<<<<< HEAD
-                            <div wire:click="bet({{ $data->id }})"
-=======
                             <div wire:click="bet({{ $data->id }}, '{{ $data->title }}')"
->>>>>>> 7412b571dbd0d1aeed5cc5b29b0f126002e09083
                                 class="p-1.5 flex flex-col justify-between gap-10 w-[128px] lg:w-auto min-w-[128px] isolate relative overflow-hidden rounded-lg group/outcome">
                                 <div class="absolute inset-0 -z-[1]">
                                     <img
