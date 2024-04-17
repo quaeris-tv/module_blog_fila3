@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Listeners;
 
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
-use Modules\Blog\Models\Profile;
 use Illuminate\Auth\Events\Registered;
+use Modules\Blog\Models\Profile;
+use Modules\User\Models\User;
+use Webmozart\Assert\Assert;
 
 class ProfileRegisteredListener
 {

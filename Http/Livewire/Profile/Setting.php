@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Profile;
 
-use Livewire\Component;
-use Filament\Forms\Form;
-use Filament\Pages\Page;
 use Filament\Actions\Action;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Profile;
-use Filament\Support\Enums\MaxWidth;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\ComponentContainer;
-use Filament\Forms\Contracts\HasForms;
-use Modules\Xot\Actions\GetViewAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\FileUpload;
-use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Modules\Blog\Actions\Article\MakeBetAction;
 use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Support\Enums\MaxWidth;
+use Livewire\Component;
+use Modules\Blog\Models\Profile;
+use Modules\Xot\Actions\GetViewAction;
+use Webmozart\Assert\Assert;
 
 class Setting extends Component implements HasForms, HasActions
 {
@@ -35,7 +30,8 @@ class Setting extends Component implements HasForms, HasActions
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public function mount(Profile $model, string $tpl = 'v1'): void {
+    public function mount(Profile $model, string $tpl = 'v1'): void
+    {
         $this->model = $model;
 
         $this->tpl = $tpl;
@@ -103,15 +99,10 @@ class Setting extends Component implements HasForms, HasActions
                 //     ->directory('photos')
                 //     ->collection('photo_profile'),
 
-
-                
                 //     // ->panelLayout('grid')
                 //     // ->validationAttribute(__('Files'))
                 //     // ->multiple()
                 //     // ->acceptedFileTypes(['application/json'])
-
-
-
             ])
             ->modalHeading('Edit Profile')
             ->closeModalByClickingAway(false)
@@ -131,7 +122,7 @@ class Setting extends Component implements HasForms, HasActions
         $this->model->update([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'extra' => $data['extra']
+            'extra' => $data['extra'],
         ]);
 
         // dddx($data);
