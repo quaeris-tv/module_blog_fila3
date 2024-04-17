@@ -67,8 +67,8 @@ class Profile extends XotBaseProfile implements HasMedia
 
     public function getAvatarUrl(): string
     {
-        if(isset($this->extra->photo_profile)) {
-             return Storage::disk('uploads')->url($this->extra->photo_profile);
+        if (isset($this->extra->photo_profile)) {
+            return Storage::disk('uploads')->url($this->extra->photo_profile);
         }
 
         if (null == $this->getFirstMediaUrl('photo_profile')) {
@@ -93,14 +93,14 @@ class Profile extends XotBaseProfile implements HasMedia
         ;
     }
 
-    public function getArticleTraded()//: int
-    {
-        $result = RatingMorph::where('user_id', $this->user_id)
-            ->groupBy('model_id')
-            ->pluck('model_id')
-            // ->get()
-            // ->count()
-            ;
+    public function getArticleTraded() // : int
+    {$result = RatingMorph::where('user_id', $this->user_id)
+                ->groupBy('model_id')
+                ->pluck('model_id')
+                // ->get()
+                // ->count()
+        ;
+
         return $result;
     }
 }
