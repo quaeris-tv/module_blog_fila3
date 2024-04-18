@@ -4,7 +4,7 @@
     @foreach($_articles as $article)
         <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded">
             <div class="pl-6 lg:pl-0">
-                
+
                 {{-- <template x-if="Boolean(market.event_start_date)"> --}}
                     @if($article->time_left_for_humans != null)
                         <div class="flex items-center gap-2 text-sm font-medium text-blue-1">
@@ -17,9 +17,9 @@
                     @endif
                 {{-- </template> --}}
                 {{-- <a :href="'#'+market.slug" x-text="market.title" --}}
-                <a href="
+                <a href="{{ route('article.show', ['article_slug' => $article->slug ]) }}
                     {{-- {{ $article->url('show') }} --}}
-                    {{ url('articles/'.$article->slug) }}
+                    {{-- url('articles/'.$article->slug) --}}
                     "
                     class="mt-1 sm:max-w-[310px] text-xl font-semibold text-neutral-4 block">
                     {{ $article->title }}
