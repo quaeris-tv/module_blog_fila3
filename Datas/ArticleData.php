@@ -110,4 +110,7 @@ class ArticleData extends Data
     //     dddx('a');
     //     return $this->getArticle()->getTimeLeftForHumans();
     // }
+    public function __toString(): string{
+        return '['.__LINE__.']['.__FILE__.']';
+    }
 }
