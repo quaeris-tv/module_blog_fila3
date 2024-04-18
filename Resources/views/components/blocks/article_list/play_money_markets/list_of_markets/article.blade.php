@@ -17,9 +17,10 @@
                     @endif
                 {{-- </template> --}}
                 {{-- <a :href="'#'+market.slug" x-text="market.title" --}}
-                <a href="{{ route('article.show', ['article_slug' => $article->slug ]) }}
+                <a href="
+                    {{-- {{ route('article.show', ['article_slug' => $article->slug ]) }} --}}
                     {{-- {{ $article->url('show') }} --}}
-                    {{-- url('articles/'.$article->slug) --}}
+                    {{ url('articles/'.$article->slug) }}
                     "
                     class="mt-1 sm:max-w-[310px] text-xl font-semibold text-neutral-4 block">
                     {{ $article->title }}
