@@ -342,21 +342,21 @@ class ThemeComposer
         return $menu->items ?? [];
     }
 
-    // public function getHotTopics()
-    // {
-    //     $result = Category::with('articles')
-    //         // ->join('categories', 'posts.user_id', '=', 'users.id')
-
-    //         ->first()
-    //         // ->groupBy('model_id')
-    //         // ->map(function($items){
-    //         //     foreach($items as $item){
-    //         //         dddx($item->value);
-    //         //     }
-    //         // })
-
-    //         ;
-
-    //     dddx($result);
-    // }
+    public function getHotTopics(): array
+    {
+        return $categories = Category::with([
+                'categoryArticles' => fn ($article) => $article->withCount('ratings'),
+                // 'banner'
+            ])
+            ->get()
+            ->map(fn ($category) => [
+                'image' => $category->getFirstMediaUrl('category'), // ?? 'https://placehold.co/300x200',
+                'slug' => $category->slug,
+                'title' => $category->title,
+                'ratings_sum' => $category->categoryArticles->sum('ratings_count')
+            ])
+            ->sortByDesc('ratings_sum')
+            ->take(3)
+            ->toArray();
+    }
 }
