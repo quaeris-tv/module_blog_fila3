@@ -345,15 +345,15 @@ class ThemeComposer
     public function getHotTopics(): array
     {
         return $categories = Category::with([
-                'categoryArticles' => fn ($article) => $article->withCount('ratings'),
-                // 'banner'
-            ])
+            'categoryArticles' => fn ($article) => $article->withCount('ratings'),
+            // 'banner'
+        ])
             ->get()
             ->map(fn ($category) => [
                 'image' => $category->getFirstMediaUrl('category'), // ?? 'https://placehold.co/300x200',
                 'slug' => $category->slug,
                 'title' => $category->title,
-                'ratings_sum' => $category->categoryArticles->sum('ratings_count')
+                'ratings_sum' => $category->categoryArticles->sum('ratings_count'),
             ])
             ->sortByDesc('ratings_sum')
             ->take(3)
