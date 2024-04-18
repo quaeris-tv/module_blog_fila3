@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Spatie\MediaLibrary\HasMedia;
@@ -157,6 +158,11 @@ class Category extends BaseModel implements HasMedia
     public function articles(): BelongsToMany
     {
         return $this->belongsToMany(Article::class);
+    }
+
+    public function categoryArticles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'category_id');
     }
 
     public function banner(): HasOne
