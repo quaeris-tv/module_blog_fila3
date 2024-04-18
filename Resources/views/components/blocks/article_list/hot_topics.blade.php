@@ -7,7 +7,7 @@ $categories = \Modules\Blog\Models\Category::with([
 ])
 ->get()
 ->map(fn ($category) => [
-    'image' => $category->banner?->getFirstMediaUrl('banner') ?: 'https://placehold.co/300x200',
+    'image' => $category?->getFirstMediaUrl('category') ?: 'https://placehold.co/300x200',
     'slug' => $category->slug,
     'title' => $category->title,
     'ratings_sum' => $category->categoryArticles->sum('ratings_count')
