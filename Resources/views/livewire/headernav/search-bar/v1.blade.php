@@ -21,7 +21,7 @@
                         <div>
                             <li>
                                 <a class="block p-2 text-base font-semibold transition rounded hover:bg-white hover:no-underline" 
-                                    href="{{ url(app()->getLocale().'/article/'.$article->slug) }}">
+                                    href="{{ url('articles/'.$article->slug) }}">
                                     {{ $article->title }}
                                 </a>
                             </li>
