@@ -304,6 +304,7 @@ class ThemeComposer
     public function getAllArticles(): array
     {
         $results = Article::orderBy('created_at', 'desc')->get();
+
         return $this->getArticleDataArray($results);
     }
 
