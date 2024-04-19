@@ -14,17 +14,17 @@ use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
-class RatingsDone extends Component // implements HasForms, HasActions
-{// use InteractsWithActions;
-<<<<<<< HEAD
-                                                                                                                                // use InteractsWithForms;
 
-                                                                                                                                public array $user_ratings;
-=======
-                                                                                                                        // use InteractsWithForms;
+// implements HasForms, HasActions
 
-                                                                                                                        public array $user_ratings;
->>>>>>> 3dec724 (Lint)
+class RatingsDone extends Component
+{
+
+
+    // use InteractsWithActions;
+    // use InteractsWithForms;
+
+    public array $user_ratings;
     public array $article_data;
     public array $user;
 
