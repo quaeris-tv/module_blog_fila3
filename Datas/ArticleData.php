@@ -24,7 +24,7 @@ class ArticleData extends Data
         public ?int $category_id,
         public ?string $status,
         public bool $show_on_homepage,
-        public string $published_at,
+        public ?string $published_at,
         public ?array $content_blocks,
         public ?array $sidebar_blocks,
         public ?array $footer_blocks,
