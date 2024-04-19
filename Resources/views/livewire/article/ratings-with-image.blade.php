@@ -30,7 +30,6 @@
 			</div>
 		</article>
 
-
 		@if($type == 'index')
 			<x-filament-actions::modals />
 		@endif
