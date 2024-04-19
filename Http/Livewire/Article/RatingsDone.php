@@ -14,13 +14,10 @@ use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
-
 // implements HasForms, HasActions
 
 class RatingsDone extends Component
 {
-
-
     // use InteractsWithActions;
     // use InteractsWithForms;
 
