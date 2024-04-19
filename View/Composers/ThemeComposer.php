@@ -325,7 +325,6 @@ class ThemeComposer
 
     public function getArticlesOrderByVolumes(int $number = 6): array
     {
-        
         $results = Article::published()
             ->publishedUntilToday()
             ->orderBy('volume_play_money', 'desc')
