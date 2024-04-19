@@ -14,13 +14,6 @@ use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
-<<<<<<< HEAD
-class RatingsDone extends Component // implements HasForms, HasActions
-{// use InteractsWithActions;
-                                                                                                                        // use InteractsWithForms;
-
-                                                                                                                        public array $user_ratings;
-=======
 // implements HasForms, HasActions
 
 class RatingsDone extends Component
@@ -29,7 +22,6 @@ class RatingsDone extends Component
     // use InteractsWithForms;
 
     public array $user_ratings;
->>>>>>> 3b08576ef905356ef486ae1c1d4304c0e7276a2d
     public array $article_data;
     public array $user;
 
