@@ -301,6 +301,40 @@ class ThemeComposer
         return $this->getArticleDataArray($results);
     }
 
+    public function getArticlesComingSoon(int $number = 6): array
+    {
+        $results = Article::published()
+            ->where('event_start_date', '>', now())
+            ->orderBy('event_start_date')
+            ->take($number)
+            ->get();
+
+        return $this->getArticleDataArray($results);
+    }
+
+    public function getArticlesOrderByNumberOfBets(int $number = 6): array
+    {
+        $results = Article::published()
+            ->publishedUntilToday()
+            ->orderBy('wagers_count', 'desc')
+            ->take($number)
+            ->get();
+
+        return $this->getArticleDataArray($results);
+    }
+
+    public function getArticlesOrderByVolumes(int $number = 6): array
+    {
+        
+        $results = Article::published()
+            ->publishedUntilToday()
+            ->orderBy('volume_play_money', 'desc')
+            ->take($number)
+            ->get();
+
+        return $this->getArticleDataArray($results);
+    }
+
     public function getAllArticles(): array
     {
         $results = Article::orderBy('created_at', 'desc')->get();
