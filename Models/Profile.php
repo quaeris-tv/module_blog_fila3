@@ -105,11 +105,18 @@ class Profile extends XotBaseProfile implements HasMedia
 =======
     public function getArticleTraded() // : int
     {$result = RatingMorph::where('user_id', $this->user_id)
+<<<<<<< HEAD
                                                                                         ->groupBy('model_id')
                                                                                         ->pluck('model_id')
                                                                                         // ->get()
                                                                                         // ->count()
 >>>>>>> 1470050 (Lint)
+=======
+                                                                                            ->groupBy('model_id')
+                                                                                            ->pluck('model_id')
+                                                                                            // ->get()
+                                                                                            // ->count()
+>>>>>>> cc01e30 (Lint)
         ;
 
         return $result;

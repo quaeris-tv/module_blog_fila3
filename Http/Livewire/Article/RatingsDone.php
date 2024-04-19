@@ -29,10 +29,14 @@ class RatingsDone extends Component
 =======
 class RatingsDone extends Component // implements HasForms, HasActions
 {// use InteractsWithActions;
-                                                                                                                            // use InteractsWithForms;
+                                                                                                                                // use InteractsWithForms;
 
+<<<<<<< HEAD
                                                                                                                             public array $user_ratings;
 >>>>>>> 1470050 (Lint)
+=======
+                                                                                                                                public array $user_ratings;
+>>>>>>> cc01e30 (Lint)
     public array $article_data;
     public array $user;
 
