@@ -349,7 +349,12 @@ class ThemeComposer
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
             }
-
+            // dddx([
+            //     $rows,
+            //     $rows->toArray(),
+            //     $content,
+            //     // ArticleData::from($content)
+            // ]);
             $tmp[] = ArticleData::from($content);
         }
 

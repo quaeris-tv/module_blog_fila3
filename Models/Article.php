@@ -574,9 +574,9 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             return $value;
         }
         // dddx($value);
-        // $value = (string) Str::uuid();
-        // $this->uuid = $value;
-        // $this->save();
+        $value = (string) Str::uuid();
+        $this->uuid = $value;
+        $this->save();
 
         // return $value;
 
