@@ -64,6 +64,7 @@ class Setting extends Component implements HasForms, HasActions
     public function editAction(): Action
     {
         return Action::make('edit')
+            ->record($this->model)
             ->action(function (array $arguments, array $data) {
                 $this->save($data);
             })
@@ -73,13 +74,14 @@ class Setting extends Component implements HasForms, HasActions
                 'last_name' => $this->model->last_name,
             ])
             ->form([
-                FileUpload::make('extra.photo_profile')
+                SpatieMediaLibraryFileUpload::make('photo_profile')
                     ->hiddenLabel()
                     ->alignCenter()
                     ->avatar()
-                    ->hidden(fn ($state) => $this->model->extra->photo_profile)
+                    ->collection('photo_profile')
                     ->disk('uploads')
-                    ->directory('photos'),
+                    ->directory('photo_profile')
+                    ->statePath('data'),
                 TextInput::make('user_name')
                     ->label('User Name'),
                 TextInput::make('first_name')
@@ -108,28 +110,22 @@ class Setting extends Component implements HasForms, HasActions
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
-            ->modalSubmitActionLabel('Please select an outcome')
+            ->modalSubmitActionLabel('Save changes')
             ->modalCancelActionLabel('Cancel')
             ->color('primary')
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
+            ->action(function (array $data, $arguments, Component $livewire) {
+                $this->model->update([
+                            'first_name' => $data['first_name'],
+                            'last_name' => $data['last_name']
+                        ]);
+
+                Assert::notNull($this->model->user);
+                $this->model->user->update(['name' => $data['user_name']]);
+            })
         ;
-    }
-
-    public function save(array $data): void
-    {
-        $this->model->update([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'extra' => $data['extra'],
-        ]);
-
-        // dddx($data);
-        Assert::notNull($this->model->user);
-        $this->model->user->update(['name' => $data['user_name']]);
-
-        // dddx('done');
     }
 
     public function saveExtra(): void
