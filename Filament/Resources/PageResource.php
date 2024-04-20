@@ -5,19 +5,18 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
+use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Models\Page;
-use Filament\Resources\Resource;
-use Filament\Resources\Concerns\Translatable;
-use Modules\Blog\Filament\Fields\PageContent;
-use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\Blog\Filament\Fields\LeftSidebarContent;
+use Modules\Blog\Filament\Fields\PageContent;
 use Modules\Blog\Filament\Resources\PageResource\Pages;
-use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
+use Modules\Blog\Models\Page;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
+use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
 
 class PageResource extends XotBaseResource
 {
