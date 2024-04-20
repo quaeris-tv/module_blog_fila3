@@ -11,6 +11,8 @@ use Pboivin\FilamentPeek\Pages\Concerns\HasPreviewModal;
 
 class ListPages extends ListRecords
 {
+    use ListRecords\Concerns\Translatable;
+
     use HasPreviewModal;
 
     protected static string $resource = PageResource::class;

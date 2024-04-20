@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Spatie\Translatable\HasTranslations;
+
 /**
  * Modules\Blog\Models\Page.
  *
@@ -48,6 +50,8 @@ namespace Modules\Blog\Models;
  */
 class Page extends BaseModel
 {
+    use HasTranslations;
+
     protected $fillable = [
         'content',
         'slug',
@@ -56,6 +60,24 @@ class Page extends BaseModel
         'sidebar_blocks',
         'footer_blocks',
     ];
+
+    /** @var array<int, string> */
+    public $translatable = [
+        'title',
+        // 'description',
+        'content_blocks',
+        'sidebar_blocks',
+        'footer_blocks',
+    ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ],
+        ];
+    }
 
     /**
      * The attributes that should be mutated to dates.

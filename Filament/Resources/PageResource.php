@@ -5,25 +5,34 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
-use Modules\Blog\Filament\Fields\LeftSidebarContent;
-use Modules\Blog\Filament\Fields\PageContent;
-use Modules\Blog\Filament\Resources\PageResource\Pages;
 use Modules\Blog\Models\Page;
-use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
+use Filament\Resources\Resource;
+use Filament\Resources\Concerns\Translatable;
+use Modules\Blog\Filament\Fields\PageContent;
+use Modules\Xot\Filament\Resources\XotBaseResource;
+use Modules\Blog\Filament\Fields\LeftSidebarContent;
+use Modules\Blog\Filament\Resources\PageResource\Pages;
 use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
+use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
 
-class PageResource extends Resource
+class PageResource extends XotBaseResource
 {
+    use Translatable;
+
     protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
     protected static ?string $navigationGroup = 'Site';
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['it', 'en'];
+    }
 
     public static function form(Form $form): Form
     {
