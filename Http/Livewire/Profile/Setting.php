@@ -7,7 +7,6 @@ namespace Modules\Blog\Http\Livewire\Profile;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -118,9 +117,9 @@ class Setting extends Component implements HasForms, HasActions
             ->stickyModalFooter()
             ->action(function (array $data, $arguments, Component $livewire) {
                 $this->model->update([
-                            'first_name' => $data['first_name'],
-                            'last_name' => $data['last_name']
-                        ]);
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                ]);
 
                 Assert::notNull($this->model->user);
                 $this->model->user->update(['name' => $data['user_name']]);
