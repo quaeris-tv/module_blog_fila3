@@ -86,7 +86,7 @@
     </div> --}}
 
     <div>
-        <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">(1)</span></h6>
+        <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">({{$_profile->ratingMorphs->count()}})</span></h6>
         <div class="py-2">
             <table class="w-full" cellpadding="12">
                 <thead>
