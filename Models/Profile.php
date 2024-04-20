@@ -8,7 +8,6 @@ namespace Modules\Blog\Models;
 // use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Support\Facades\Storage;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
 use Modules\User\Models\User;
