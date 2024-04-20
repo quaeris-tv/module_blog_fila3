@@ -100,7 +100,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
+                        <tr>
+                            <td>{{ $morph->created_at }}</td>
+                            <td class="text-center">{{ $morph->rating->title }}</td>
+                            <td><a href="{{ url("/{$lang}/articles/{$morph->model->slug}") }}" target="_blank" class="text-blue-500">{{ $morph->model->title }}</a></td>
+                            <td class="text-center">{{ $morph->value }}</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                        </tr>
+                    @endforeach
+                    {{-- <tr>
                         <td>2024-04-15</td>
                         <td class="text-center">
                             <span class="px-3 py-1 text-sm font-semibold text-blue-500 rounded-full bg-blue-50">Bet</span>
@@ -111,7 +121,7 @@
                         <td class="text-center">No</td>
                         <td class="text-center">~.95</td>
                         <td class="text-center">2 ø</td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>

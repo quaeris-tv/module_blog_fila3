@@ -89,6 +89,11 @@ class Profile extends XotBaseProfile implements HasMedia
         ;
     }
 
+    public function ratingMorphs(): HasMany
+    {
+        return $this->hasMany(RatingMorph::class, 'user_id', 'user_id');
+    }
+
     // : int
     public function getArticleTraded()
     {
