@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\PageResource\Pages;
 
+use Filament\Actions;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Modules\Blog\Filament\Resources\PageResource;
@@ -20,6 +21,7 @@ class ListPages extends ListRecords
     protected function getActions(): array
     {
         return [
+            Actions\LocaleSwitcher::make(),
             CreateAction::make(),
         ];
     }
