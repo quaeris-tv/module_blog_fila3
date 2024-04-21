@@ -4,16 +4,23 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\Article;
 
+use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Article;
 use Modules\Xot\Actions\GetModelByModelTypeAction;
+use Modules\Xot\Actions\GetModelClassByModelTypeAction;
 
 class TranslateContentAction
 {
-    public function execute(string $model_class, string $article_id, array $locales, array $data): void
+    public function execute(string $model_class, string $article_id, array $locales, array $data, string $class): void
     {
-        $model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id);
+        // dddx([app(GetModelClassByModelTypeAction::class)->execute($model_class), Article::class]);
+        // dddx(app($class));
+        Assert::isInstanceOf($model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id), app($class));
+
+        Assert::isArray($model_contents = $model->toArray());
 
         if ($data['content_blocks']) {
-            $model_content = $model->toArray()['content_blocks'];
+            $model_content = $model_contents['content_blocks'];
 
             // per ora do per scontato che la traduzione italiana esista
             foreach ($locales as $locale) {
@@ -25,7 +32,7 @@ class TranslateContentAction
         }
 
         if ($data['sidebar_blocks']) {
-            $model_content = $model->toArray()['sidebar_blocks'];
+            $model_content = $model_contents['sidebar_blocks'];
 
             // per ora do per scontato che la traduzione italiana esista
             foreach ($locales as $locale) {
@@ -37,7 +44,7 @@ class TranslateContentAction
         }
 
         if ($data['footer_blocks']) {
-            $model_content = $model->toArray()['footer_blocks'];
+            $model_content = $model_contents['footer_blocks'];
 
             // per ora do per scontato che la traduzione italiana esista
             foreach ($locales as $locale) {
