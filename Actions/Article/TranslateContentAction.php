@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\Article;
 
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
 use Modules\Xot\Actions\GetModelByModelTypeAction;
 use Modules\Xot\Actions\GetModelClassByModelTypeAction;
+use Webmozart\Assert\Assert;
 
 class TranslateContentAction
 {

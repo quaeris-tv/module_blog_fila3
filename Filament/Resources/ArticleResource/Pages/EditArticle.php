@@ -35,11 +35,11 @@ class EditArticle extends EditRecord
                 ])
                 ->action(function (Article $record, ArticleResource $article_resource, array $data) {
                     return app(TranslateContentAction::class)->execute(
-                            'article', 
-                            $record->id, $article_resource->getTranslatableLocales(),
-                            $data,
-                            Article::class
-                        );
+                        'article',
+                        $record->id, $article_resource->getTranslatableLocales(),
+                        $data,
+                        Article::class
+                    );
                 }),
         ];
     }
