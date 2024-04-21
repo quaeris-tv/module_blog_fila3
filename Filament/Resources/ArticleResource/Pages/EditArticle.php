@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
 use Filament\Actions;
-use Modules\Blog\Models\Article;
 use Filament\Resources\Pages\EditRecord;
-use Modules\Blog\Filament\Resources\ArticleResource;
 use Modules\Blog\Actions\Article\TranslateContentAction;
+use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Blog\Models\Article;
 
 class EditArticle extends EditRecord
 {
