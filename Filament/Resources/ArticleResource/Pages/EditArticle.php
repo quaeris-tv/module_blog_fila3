@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
 use Filament\Actions;
-use Modules\Blog\Models\Article;
 use Filament\Resources\Pages\EditRecord;
-use Modules\Xot\Actions\GetModelByModelTypeAction;
-use Modules\Blog\Filament\Resources\ArticleResource;
 use Modules\Blog\Actions\Article\TranslateContentAction;
+use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Blog\Models\Article;
 
 class EditArticle extends EditRecord
 {
@@ -28,9 +27,9 @@ class EditArticle extends EditRecord
                 ->icon('heroicon-o-language')
                 ->requiresConfirmation()
                 ->modalDescription('Assicurati che la versione italiana sia stata settata e salvata')
-                ->action(function(Article $record, ArticleResource $article_resource){
+                ->action(function (Article $record, ArticleResource $article_resource) {
                     return app(TranslateContentAction::class)->execute('article', $record->id, $article_resource->getTranslatableLocales());
-                })
+                }),
         ];
     }
 }
