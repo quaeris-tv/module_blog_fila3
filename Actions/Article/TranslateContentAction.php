@@ -12,7 +12,7 @@ class TranslateContentAction
     {
         $model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id);
 
-        if($data['content_blocks']){
+        if ($data['content_blocks']) {
             $model_content = $model->toArray()['content_blocks'];
 
             // per ora do per scontato che la traduzione italiana esista
@@ -24,7 +24,7 @@ class TranslateContentAction
             $model->content_blocks = $model_content;
         }
 
-        if($data['sidebar_blocks']){
+        if ($data['sidebar_blocks']) {
             $model_content = $model->toArray()['sidebar_blocks'];
 
             // per ora do per scontato che la traduzione italiana esista
@@ -36,7 +36,7 @@ class TranslateContentAction
             $model->sidebar_blocks = $model_content;
         }
 
-        if($data['footer_blocks']){
+        if ($data['footer_blocks']) {
             $model_content = $model->toArray()['footer_blocks'];
 
             // per ora do per scontato che la traduzione italiana esista
@@ -47,7 +47,6 @@ class TranslateContentAction
             }
             $model->footer_blocks = $model_content;
         }
-
 
         $model->update();
     }
