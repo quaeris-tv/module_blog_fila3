@@ -107,7 +107,7 @@
 
     <div>
         <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">({{$_profile->ratingMorphs->count()}})</span></h6>
-        <div class="py-2">
+        <div class="py-2 overflow-x-auto">
             <table class="w-full" cellpadding="12">
                 <thead>
                     <tr class="text-sm text-gray-400 bg-gray-50">
