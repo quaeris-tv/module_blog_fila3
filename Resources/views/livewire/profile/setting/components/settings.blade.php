@@ -107,10 +107,7 @@
 				<div class="flex items-center justify-between py-2 space-x-6">
 					<span class="text-sm font-bold">Language</span>
 					<div>
-						<select name="lang" class="font-bold text-blue-500 border-none rounded-none ring-0 focus:border-none focus:ring-0" id="">
-							<option value="EN" selected>EN</option>
-							<option value="ID">ID</option>
-						</select>
+						<livewire:lang.switcher />
 					</div>
 				</div>
 			</li>
