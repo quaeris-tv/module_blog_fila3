@@ -60,13 +60,50 @@ class Setting extends Component implements HasForms, HasActions
         $this->mountAction('edit');
     }
 
+    public function editPassword()
+    {
+        $this->mountAction('editPassword');
+    }
+
+    public function editPasswordAction()
+    {
+        return Action::make('editPassword')
+            ->record($this->model)
+            ->form([
+                TextInput::make('old_password')
+                    ->required()
+                    ->password()
+                    ->currentPassword(),
+                TextInput::make('password')
+                    ->required()
+                    ->password()
+                    ->rules(['confirmed']),
+                TextInput::make('password_confirmation')
+                    ->required()
+                    ->password(),
+            ])
+            ->modalHeading('Change password')
+            ->closeModalByClickingAway(false)
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Update password')
+            ->modalCancelActionLabel('Cancel')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+            ->action(function (array $data, $arguments, Component $livewire) {
+                Assert::notNull($this->model->user);
+                $this->model->user->update([
+                    'password' => bcrypt($data['password'])
+                ]);
+            });
+    }
+
     public function editAction(): Action
     {
         return Action::make('edit')
             ->record($this->model)
-            ->action(function (array $arguments, array $data) {
-                $this->save($data);
-            })
             ->fillForm(fn ($record, $arguments): array => [
                 'user_name' => $this->model->user_name,
                 'first_name' => $this->model->first_name,
@@ -125,17 +162,5 @@ class Setting extends Component implements HasForms, HasActions
                 $this->model->user->update(['name' => $data['user_name']]);
             })
         ;
-    }
-
-    public function saveExtra(): void
-    {
-        $data = $this->form->getState();
-        /* Property Modules\Blog\Models\Profile::$extra
-        (Illuminate\Database\Eloquent\Collection<string, bool>)
-        does not accept
-        array<string, mixed>.
-        */
-        $this->model->extra->set($data);
-        $this->model->save();
     }
 }
