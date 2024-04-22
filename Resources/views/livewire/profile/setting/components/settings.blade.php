@@ -1,6 +1,6 @@
 <section class="space-y-12">
 	<div>
-		<h6 class="text-xs text-gray-400 mb-2.5">PERSONAL INFO</h6>
+		{{-- <h6 class="text-xs text-gray-400 mb-2.5">PERSONAL INFO</h6>
 		<hr>
 		<ul>
 			<li>
@@ -22,7 +22,7 @@
 				</a>
 			</li>
 		</ul>
-	</div>
+	</div> --}}
 
 	<div>
 		<div class="flex justify-between">
