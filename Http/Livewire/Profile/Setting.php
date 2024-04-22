@@ -65,6 +65,47 @@ class Setting extends Component implements HasForms, HasActions
         $this->mountAction('editPassword');
     }
 
+    public function editEmail()
+    {
+        $this->mountAction('editEmail');
+    }
+
+    public function editEmailAction()
+    {
+        return Action::make('editEmail')
+            ->record($this->model)
+            ->fillForm(fn ($record, $arguments): array => [
+                'email' => $this->model->user->email
+            ])
+            ->form([
+                TextInput::make('email')
+                    ->required()
+                    ->email()
+                    ->unique(ignoreRecord: true)
+            ])
+            ->modalHeading('Change email')
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Update email')
+            ->modalCancelActionLabel('Cancel')
+            ->action(function (array $data) {
+                $verified = $this->model->email == $data['email'] ? $this->model->email_verified_at : null;
+
+                $this->model->update([
+                    'email' => $data['email']
+                ]);
+
+                Assert::notNull($this->model->user);
+                $this->model->user->update([
+                    'email' => $data['email'],
+                    'email_verified_at' => $verified
+                ]);
+
+                // NOT IMPLEMENTED: Send verification email
+            });
+    }
+
     public function editPasswordAction()
     {
         return Action::make('editPassword')
@@ -83,16 +124,12 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
-            ->closeModalByClickingAway(false)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
             ->modalCancelActionLabel('Cancel')
-            // ->modalIcon('heroicon-o-banknotes')
-            ->stickyModalHeader()
-            ->stickyModalFooter()
-            ->action(function (array $data, $arguments, Component $livewire) {
+            ->action(function (array $data) {
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
                     'password' => bcrypt($data['password'])
@@ -124,34 +161,13 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('First Name'),
                 TextInput::make('last_name')
                     ->label('Last Name'),
-                // SpatieMediaLibraryFileUpload::make('media')
-                //     ->image()
-                //     // ->maxSize(5000)
-                //     // ->multiple()
-                //     // ->enableReordering()
-                //     ->openable()
-                //     ->downloadable()
-                //     ->columnSpanFull()
-                //     // ->conversion('thumbnail')
-                //     ->disk('uploads')
-                //     ->directory('photos')
-                //     ->collection('photo_profile'),
-
-                //     // ->panelLayout('grid')
-                //     // ->validationAttribute(__('Files'))
-                //     // ->multiple()
-                //     // ->acceptedFileTypes(['application/json'])
             ])
             ->modalHeading('Edit Profile')
-            ->closeModalByClickingAway(false)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
             ->modalCancelActionLabel('Cancel')
-            // ->modalIcon('heroicon-o-banknotes')
-            ->stickyModalHeader()
-            ->stickyModalFooter()
             ->action(function (array $data, $arguments, Component $livewire) {
                 $this->model->update([
                     'first_name' => $data['first_name'],
