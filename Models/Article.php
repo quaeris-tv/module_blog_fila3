@@ -612,7 +612,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $hours = $diff->h;
         $minutes = $diff->i;
 
-        if (0 == $minutes) {
+        if ($month == 0 && $days == 0 && $hours == 0 && $minutes == 0) {
             return 'scaduto';
         }
 
