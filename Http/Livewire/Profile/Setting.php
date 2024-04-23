@@ -75,13 +75,21 @@ class Setting extends Component implements HasForms, HasActions
         return Action::make('editEmail')
             ->record($this->model)
             ->fillForm(fn ($record, $arguments): array => [
+<<<<<<< HEAD
                 'email' => $this->model->user->email,
+=======
+                'email' => $this->model->user->email
+>>>>>>> 0371739579f5fe289fac67dd21b443e32e0e361b
             ])
             ->form([
                 TextInput::make('email')
                     ->required()
                     ->email()
+<<<<<<< HEAD
                     ->unique(ignoreRecord: true),
+=======
+                    ->unique(ignoreRecord: true)
+>>>>>>> 0371739579f5fe289fac67dd21b443e32e0e361b
             ])
             ->modalHeading('Change email')
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
@@ -93,13 +101,21 @@ class Setting extends Component implements HasForms, HasActions
                 $verified = $this->model->email == $data['email'] ? $this->model->email_verified_at : null;
 
                 $this->model->update([
+<<<<<<< HEAD
                     'email' => $data['email'],
+=======
+                    'email' => $data['email']
+>>>>>>> 0371739579f5fe289fac67dd21b443e32e0e361b
                 ]);
 
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
                     'email' => $data['email'],
+<<<<<<< HEAD
                     'email_verified_at' => $verified,
+=======
+                    'email_verified_at' => $verified
+>>>>>>> 0371739579f5fe289fac67dd21b443e32e0e361b
                 ]);
 
                 // NOT IMPLEMENTED: Send verification email
@@ -132,7 +148,11 @@ class Setting extends Component implements HasForms, HasActions
             ->action(function (array $data) {
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
+<<<<<<< HEAD
                     'password' => bcrypt($data['password']),
+=======
+                    'password' => bcrypt($data['password'])
+>>>>>>> 0371739579f5fe289fac67dd21b443e32e0e361b
                 ]);
             });
     }
