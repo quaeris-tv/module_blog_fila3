@@ -598,6 +598,11 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $endDate = $this->closed_at;
         $startDate = Carbon::now();
 
+        $end = Carbon::createFromDate($this->closed_at);
+        if($startDate > $end){
+            return 'scaduto';
+        }
+
         // Calcola la differenza tra le due date
         $diff = $startDate->diff($endDate);
 
@@ -612,7 +617,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $hours = $diff->h;
         $minutes = $diff->i;
 
-        if ($month == 0 && $days == 0 && $hours == 0 && $minutes == 0) {
+        if (0 == $month && 0 == $days && 0 == $hours && 0 == $minutes) {
             return 'scaduto';
         }
 
