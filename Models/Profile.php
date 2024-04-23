@@ -93,6 +93,7 @@ class Profile extends XotBaseProfile implements HasMedia
         ;
     }
 
+<<<<<<< HEAD
     public function getArticleTraded() // : int
     {$result = RatingMorph::where('user_id', $this->user_id)
 <<<<<<< HEAD
@@ -106,6 +107,16 @@ class Profile extends XotBaseProfile implements HasMedia
                                                                                             // ->get()
                                                                                             // ->count()
 >>>>>>> cc01e30fcd703759bc4ed59e66eaee962bfb553f
+=======
+    // : int
+    public function getArticleTraded()
+    {
+        $result = RatingMorph::where('user_id', $this->user_id)
+            ->groupBy('model_id')
+            ->pluck('model_id')
+            // ->get()
+            // ->count()
+>>>>>>> 9e83f74bf34d0ec45d863a50ea3f570ad36fb19e
         ;
 
         return $result;

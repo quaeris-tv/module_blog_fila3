@@ -40,6 +40,7 @@ class MenuResource extends Resource
                             ->columnSpan(1),
 
                         Forms\Components\TextInput::make('url')
+                            ->helperText('Se di tipo internal inserisci lo slug del titolo, se external inserisci l\'url completo (https://dominio)')
                             ->required()
                             ->columnSpan(1),
                     ]),

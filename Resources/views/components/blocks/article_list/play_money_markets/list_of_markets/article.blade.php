@@ -1,4 +1,3 @@
-{{-- {{ dddx($articles) }} --}}
 @foreach(collect($articles)->split(2) as $_articles)
     <div class="grid gap-5">
     @foreach($_articles as $article)
