@@ -56,9 +56,15 @@
             <x-heroicon-o-receipt-percent class="text-blue-500 size-8"/>
             <div>
                 <div class="text-gray-500">Win Rate</div>
-                <h2 class="text-4xl font-bold">
-                    {{ number_format($_profile->ratingMorphs->where('is_winner')->count() / $_profile->ratingMorphs->count() * 100, 2) }}%
-                </h2>
+                @if($_profile->ratingMorphs->count() > 0)
+                    <h2 class="text-4xl font-bold">
+                        {{ number_format($_profile->ratingMorphs->where('is_winner')->count() / $_profile->ratingMorphs->count() * 100, 2) }}%
+                    </h2>
+                @else
+                    <h2 class="text-4xl font-bold">
+                        0%
+                    </h2>
+                @endif
             </div>
         </div>
         {{-- <div class="flex items-center p-4 space-x-4 border rounded-xl">

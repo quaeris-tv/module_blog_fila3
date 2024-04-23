@@ -21,7 +21,7 @@
 		<h2 class="flex items-center space-x-2 text-xl font-semibold">
 			<x-heroicon-o-play-circle class="text-blue-500 size-8"/>
 			<div class="flex flex-wrap gap-x-2">
-				<span>Play Money Markets</span>
+				<span>{{ $title }}</span>
 				<span class="mt-1 text-sm font-normal text-gray-500">{{ count($articles) }}</span>
 			</div>
 		</h2>
