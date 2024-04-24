@@ -65,6 +65,7 @@ class Setting extends Component implements HasForms, HasActions
         $this->mountAction('editPassword');
     }
 
+<<<<<<< HEAD
     public function editEmail()
     {
         $this->mountAction('editEmail');
@@ -106,6 +107,8 @@ class Setting extends Component implements HasForms, HasActions
             });
     }
 
+=======
+>>>>>>> ee244f6 (update password)
     public function editPasswordAction()
     {
         return Action::make('editPassword')
@@ -124,15 +127,29 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
+<<<<<<< HEAD
+=======
+            ->closeModalByClickingAway(false)
+>>>>>>> ee244f6 (update password)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
             ->modalCancelActionLabel('Cancel')
+<<<<<<< HEAD
             ->action(function (array $data) {
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
                     'password' => bcrypt($data['password']),
+=======
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+            ->action(function (array $data, $arguments, Component $livewire) {
+                Assert::notNull($this->model->user);
+                $this->model->user->update([
+                    'password' => bcrypt($data['password'])
+>>>>>>> ee244f6 (update password)
                 ]);
             });
     }
