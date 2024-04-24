@@ -12,7 +12,6 @@ return [
     ],
 
     'show' => [
-        'title' => 'Articoli della categoria '
-    ]
-
+        'title' => 'Articoli della categoria ',
+    ],
 ];
