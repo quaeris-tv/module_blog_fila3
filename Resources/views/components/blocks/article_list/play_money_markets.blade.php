@@ -24,7 +24,8 @@
 					@if(isset($title))
 						{{ $title }}
 					@else
-						Articoli della categoria
+						{{-- Articoli della categoria --}}
+						{{ __('blog::category.show.title') }} "{{ $category->title }}"
 					@endif
 				</span>
 				{{-- <span class="mt-1 text-sm font-normal text-gray-500">{{ $articles->total() }}</span> --}}

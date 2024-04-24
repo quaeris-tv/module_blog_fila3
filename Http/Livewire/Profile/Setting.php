@@ -75,7 +75,7 @@ class Setting extends Component implements HasForms, HasActions
         return Action::make('editEmail')
             ->record($this->model)
             ->fillForm(fn ($record, $arguments): array => [
-                'email' =>  $this->model->user->email,
+                'email' => $this->model->user->email,
             ])
             ->form([
                 TextInput::make('email')
