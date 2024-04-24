@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Auth;
+
 return [
     'navigation' => [
         'name' => 'Articolo',
@@ -10,6 +12,15 @@ return [
             'name' => 'Content',
         ],
     ],
+
+    'rating' => [
+        'no_import' => 'Nessuna cifra scelta',
+        'import_zero' => 'Nessuna cifra scelta',
+        'import_min' => 'Hai superato la cifra di '.Auth::user()->profile->credits.' crediti',
+        'no_choice' => 'Nessuna opzione scelta'
+    ],
+
+
     // 'fields' => [
     //     'name' => 'Nome',
     //     'guard_name' => 'Guard',
