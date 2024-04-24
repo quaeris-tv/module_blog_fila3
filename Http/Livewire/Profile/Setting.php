@@ -65,10 +65,6 @@ class Setting extends Component implements HasForms, HasActions
         $this->mountAction('editPassword');
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 0affb0f (add update email logic)
     public function editEmail()
     {
         $this->mountAction('editEmail');
@@ -79,21 +75,13 @@ class Setting extends Component implements HasForms, HasActions
         return Action::make('editEmail')
             ->record($this->model)
             ->fillForm(fn ($record, $arguments): array => [
-<<<<<<< HEAD
                 'email' => $this->model->user->email,
-=======
-                'email' => $this->model->user->email
->>>>>>> 0affb0f (add update email logic)
             ])
             ->form([
                 TextInput::make('email')
                     ->required()
                     ->email()
-<<<<<<< HEAD
                     ->unique(ignoreRecord: true),
-=======
-                    ->unique(ignoreRecord: true)
->>>>>>> 0affb0f (add update email logic)
             ])
             ->modalHeading('Change email')
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
@@ -105,32 +93,19 @@ class Setting extends Component implements HasForms, HasActions
                 $verified = $this->model->email == $data['email'] ? $this->model->email_verified_at : null;
 
                 $this->model->update([
-<<<<<<< HEAD
                     'email' => $data['email'],
-=======
-                    'email' => $data['email']
->>>>>>> 0affb0f (add update email logic)
                 ]);
 
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
                     'email' => $data['email'],
-<<<<<<< HEAD
                     'email_verified_at' => $verified,
-=======
-                    'email_verified_at' => $verified
->>>>>>> 0affb0f (add update email logic)
                 ]);
 
                 // NOT IMPLEMENTED: Send verification email
             });
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> ee244f6 (update password)
-=======
->>>>>>> 0affb0f (add update email logic)
     public function editPasswordAction()
     {
         return Action::make('editPassword')
@@ -149,36 +124,15 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            ->closeModalByClickingAway(false)
->>>>>>> ee244f6 (update password)
-=======
->>>>>>> 0affb0f (add update email logic)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
             ->modalCancelActionLabel('Cancel')
-<<<<<<< HEAD
-<<<<<<< HEAD
             ->action(function (array $data) {
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
                     'password' => bcrypt($data['password']),
-=======
-            // ->modalIcon('heroicon-o-banknotes')
-            ->stickyModalHeader()
-            ->stickyModalFooter()
-            ->action(function (array $data, $arguments, Component $livewire) {
-=======
-            ->action(function (array $data) {
->>>>>>> 0affb0f (add update email logic)
-                Assert::notNull($this->model->user);
-                $this->model->user->update([
-                    'password' => bcrypt($data['password'])
->>>>>>> ee244f6 (update password)
                 ]);
             });
     }
@@ -209,27 +163,11 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('Last Name'),
             ])
             ->modalHeading('Edit Profile')
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            ->closeModalByClickingAway(false)
->>>>>>> 5f95aea (update modal classes)
-=======
->>>>>>> 0affb0f (add update email logic)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
             ->modalCancelActionLabel('Cancel')
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            // ->modalIcon('heroicon-o-banknotes')
-            ->stickyModalHeader()
-            ->stickyModalFooter()
->>>>>>> 5f95aea (update modal classes)
-=======
->>>>>>> 0affb0f (add update email logic)
             ->action(function (array $data, $arguments, Component $livewire) {
                 $this->model->update([
                     'first_name' => $data['first_name'],
