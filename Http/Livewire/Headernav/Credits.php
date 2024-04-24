@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Headernav;
 
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Component;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Contracts\Support\Renderable;
 
 class Credits extends Component
 {
@@ -29,7 +29,7 @@ class Credits extends Component
         $credits = number_format($this->profile->credits, 0);
 
         $view_params = [
-            'credits' => $credits
+            'credits' => $credits,
         ];
 
         return view($view, $view_params);
