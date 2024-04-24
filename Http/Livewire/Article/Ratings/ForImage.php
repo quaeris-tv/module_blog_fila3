@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
 use Filament\Facades\Filament;
-use Modules\Blog\Models\Article;
-use Livewire\Attributes\Validate;
-use Illuminate\Support\Facades\Auth;
-use Filament\Forms\Contracts\HasForms;
-use Modules\Xot\Actions\GetViewAction;
-use Modules\Blog\Datas\RatingArticleData;
-use Modules\Blog\Aggregates\ArticleAggregate;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
 use Modules\Blog\Actions\Article\MakeBetAction;
+use Modules\Blog\Aggregates\ArticleAggregate;
+use Modules\Blog\Datas\RatingArticleData;
+use Modules\Blog\Models\Article;
+use Modules\Xot\Actions\GetViewAction;
 
 class ForImage extends Component implements HasForms
 {
@@ -73,17 +73,16 @@ class ForImage extends Component implements HasForms
         //     // 'email' => 'required|email|unique:users,email',
         // ]);
 
-
         // $this->validate();
 
-        $this->validate([ 
+        $this->validate([
             'import' => 'required|gt:0|lte:'.Auth::user()->profile->credits,
-            'rating_title' => 'required'
-        ],[
+            'rating_title' => 'required',
+        ], [
             'import.required' => __('blog::article.rating.no_import'),
             'import.gt' => __('blog::article.rating.import_zero'),
             'import.lte' => __('blog::article.rating.import_min'),
-            'rating_title.required' => __('blog::article.rating.no_choice')
+            'rating_title.required' => __('blog::article.rating.no_choice'),
         ]);
 
         app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id);
