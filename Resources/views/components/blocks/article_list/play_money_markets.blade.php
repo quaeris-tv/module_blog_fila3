@@ -13,6 +13,10 @@
 			if (!in_array($query, array_keys($mappedMethods))) {
 				$query = 'recent';
 			}
+			dddx([
+				$mappedMethods[$query],
+				$method
+			]);
 			$articles = $_theme->getMethodData($mappedMethods[$query]);
 		}
 	@endphp
@@ -24,7 +28,7 @@
 					@if(isset($title))
 						{{ $title }}
 					@else
-						Articoli della categ						{{-- Articoli della categoria --}}
+						{{-- Articoli della categoria --}}
 						{{ __('blog::category.show.title') }} "{{ $category->title }}"
 						{{-- <span class="mt-1 text-sm font-normal text-gray-500">{{ $articles->total() }}</span> --}}
 					@endif
