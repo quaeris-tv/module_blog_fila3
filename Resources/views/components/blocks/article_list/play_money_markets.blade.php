@@ -1,7 +1,8 @@
 <div class="py-8 mt-8 bg-white">
 	@php
+		$page = request()->query('page', 1);
 		if(!isset($method)){
-			$articles = $_theme->getArticlesByCategory($category->id);
+			$articles = $_theme->getArticlesByCategory($category->id, ($page * 6));
 		}else{
 			$mappedMethods = [
 				'recent' => 'getArticlesLatest',
@@ -13,7 +14,7 @@
 			if (!in_array($query, array_keys($mappedMethods))) {
 				$query = 'recent';
 			}
-			$articles = $_theme->getMethodData($mappedMethods[$query]);
+			$articles = $_theme->getMethodData($mappedMethods[$query], ($page * 6));
 		}
 		// dddx($articles);
 	@endphp
@@ -25,7 +26,8 @@
 					@if(isset($title))
 						{{ $title }}
 					@else
-						Articoli della categoria
+						{{-- Articoli della categoria --}}
+						{{ __('blog::category.show.title') }} "{{ $category->title }}"
 					@endif
 				
 				
@@ -40,10 +42,10 @@
 			</div>
 			@include('blog::components.blocks.article_list.play_money_markets.list_of_markets')
 			<div class="flex justify-center">
-				<button type="button" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
+				<a href="{{ url()->current().'?'.http_build_query(array_merge(request()->query(), ['page' => $page + 1])) }}" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
 					<span>Load more</span>
 					<x-heroicon-o-arrow-right class="size-4"/>
-				</button>
+				</a>
 			</div>
 		</section>
 	</div>
