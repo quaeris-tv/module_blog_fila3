@@ -28,7 +28,6 @@ class ForImage extends Component implements HasForms
     public int $rating_id = 0;
     public array $article_ratings = [];
     // #[Validate('required|gt:0')]
-    // #[Validate('required|gt:0|lte:10'.Auth::user()->profile->credits).'']
     public int $import = 0;
     public string $type = 'show';
 

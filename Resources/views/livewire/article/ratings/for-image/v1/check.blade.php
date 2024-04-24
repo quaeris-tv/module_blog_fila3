@@ -55,6 +55,7 @@
                     </span>
                     {{-- <span class="ml-1 place-bet__text-field__displayCode">Ooms</span> --}}
                 </div>
+                
                 @error('import') <span>{{ $message }}</span> @enderror
                 @error('rating_title') <span>{{ $message }}</span> @enderror
             </div>
