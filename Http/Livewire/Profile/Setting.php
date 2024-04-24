@@ -84,7 +84,6 @@ class Setting extends Component implements HasForms, HasActions
                     ->unique(ignoreRecord: true),
             ])
             ->modalHeading('Change email')
-            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update email')
@@ -124,7 +123,6 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
-            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
@@ -163,7 +161,6 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('Last Name'),
             ])
             ->modalHeading('Edit Profile')
-            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
