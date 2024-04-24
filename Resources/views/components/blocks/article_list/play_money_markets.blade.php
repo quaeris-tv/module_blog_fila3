@@ -10,10 +10,11 @@
 				'volume' => 'getArticlesOrderByVolumes',
 			];
 			$query = request()->query('order', 'recent');
+			$page = request()->query('page', 1);
 			if (!in_array($query, array_keys($mappedMethods))) {
 				$query = 'recent';
 			}
-			$articles = $_theme->getMethodData($mappedMethods[$query]);
+			$articles = $_theme->getMethodData($mappedMethods[$query], ($page * 6));
 		}
 		// dddx($articles);
 	@endphp
@@ -40,10 +41,10 @@
 			</div>
 			@include('blog::components.blocks.article_list.play_money_markets.list_of_markets')
 			<div class="flex justify-center">
-				<button type="button" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
+				<a href="{{ url()->current().'?'.http_build_query(array_merge(request()->query(), ['page' => $page + 1])) }}" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
 					<span>Load more</span>
 					<x-heroicon-o-arrow-right class="size-4"/>
-				</button>
+				</a>
 			</div>
 		</section>
 	</div>
