@@ -13,10 +13,6 @@
 			if (!in_array($query, array_keys($mappedMethods))) {
 				$query = 'recent';
 			}
-			dddx([
-				$mappedMethods[$query],
-				$method
-			]);
 			$articles = $_theme->getMethodData($mappedMethods[$query]);
 		}
 	@endphp
