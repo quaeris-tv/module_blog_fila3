@@ -55,27 +55,27 @@ class Setting extends Component implements HasForms, HasActions
         return view($view, $view_params);
     }
 
-    public function editProfile()
+    public function editProfile(): void
     {
         $this->mountAction('edit');
     }
 
-    public function editPassword()
+    public function editPassword(): void
     {
         $this->mountAction('editPassword');
     }
 
-    public function editEmail()
+    public function editEmail(): void
     {
         $this->mountAction('editEmail');
     }
 
-    public function editEmailAction()
+    public function editEmailAction(): Action
     {
         return Action::make('editEmail')
             ->record($this->model)
-            ->fillForm(fn ($record, $arguments): array => [
-                'email' => $this->model->user->email,
+            ->fillForm(fn ($record, $arguments, $user): array => [
+                'email' => $this->model->user,
             ])
             ->form([
                 TextInput::make('email')
@@ -106,7 +106,7 @@ class Setting extends Component implements HasForms, HasActions
             });
     }
 
-    public function editPasswordAction()
+    public function editPasswordAction(): Action
     {
         return Action::make('editPassword')
             ->record($this->model)
