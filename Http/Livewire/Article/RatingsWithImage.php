@@ -163,9 +163,11 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                     ->numeric()
                     ->suffixIcon('heroicon-o-banknotes')
                     ->rules('gt:0')
-                // ->validationMessages([
-                //     'gt' => 'The :attribute has already been registered.',
-                // ])
+                    ->rules('lte:'.Auth::user()->profile->credits)
+                    ->validationMessages([
+                        'gt' => __('blog::article.rating.no_import'),
+                        'lte' => __('blog::article.rating.import_min'),
+                    ])
                 ,
             ])
             ->modalHeading('Place bet')
