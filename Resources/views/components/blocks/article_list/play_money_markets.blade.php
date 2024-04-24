@@ -1,7 +1,8 @@
 <div class="py-8 mt-8 bg-white">
 	@php
+		$page = request()->query('page', 1);
 		if(!isset($method)){
-			$articles = $_theme->getArticlesByCategory($category->id);
+			$articles = $_theme->getArticlesByCategory($category->id, ($page * 6));
 		}else{
 			$mappedMethods = [
 				'recent' => 'getArticlesLatest',
@@ -10,7 +11,6 @@
 				'volume' => 'getArticlesOrderByVolumes',
 			];
 			$query = request()->query('order', 'recent');
-			$page = request()->query('page', 1);
 			if (!in_array($query, array_keys($mappedMethods))) {
 				$query = 'recent';
 			}
