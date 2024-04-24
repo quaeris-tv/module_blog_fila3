@@ -1,6 +1,9 @@
-@foreach(collect($articles)->split(2) as $_articles)
-    <div class="grid gap-5">
-    @foreach($_articles as $article)
+{{-- @foreach(collect(->toArray())->split(2) as $_articles) --}}
+    <div class="grid grid-cols-2 gap-5">
+    @foreach($articles as $article)
+        @php
+            $article = $_theme->mapArticle($article);
+        @endphp
         <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded">
             <div class="pl-6 lg:pl-0">
 
@@ -47,7 +50,4 @@
         </article>
     @endforeach
     </div>
-@endforeach
-
-
-
+{{-- @endforeach --}}

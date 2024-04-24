@@ -1,22 +1,20 @@
 <div class="py-8 mt-8 bg-white">
 	@php
-		$page = request()->query('page', 1);
 		if(!isset($method)){
-			$articles = $_theme->getArticlesByCategory($category->id, ($page * 6));
+			$articles = $_theme->paginateArticlesByCategory($category->id);
 		}else{
 			$mappedMethods = [
-				'recent' => 'getArticlesLatest',
-				'coming_soon' => 'getArticlesComingSoon',
-				'bets' => 'getArticlesOrderByNumberOfBets',
-				'volume' => 'getArticlesOrderByVolumes',
+				'recent' => 'paginatedArticlesLatest',
+				'coming_soon' => 'paginatedArticlesComingSoon',
+				'bets' => 'paginatedArticlesOrderByNumberOfBets',
+				'volume' => 'paginatedArticlesOrderByVolumes',
 			];
 			$query = request()->query('order', 'recent');
 			if (!in_array($query, array_keys($mappedMethods))) {
 				$query = 'recent';
 			}
-			$articles = $_theme->getMethodData($mappedMethods[$query], ($page * 6));
+			$articles = $_theme->getMethodData($mappedMethods[$query]);
 		}
-		// dddx($articles);
 	@endphp
 	<div class="container max-w-6xl p-6 mx-auto space-y-8" {{-- x-data="playmarkets" --}} id="playmarkets">
 		<h2 class="flex items-center space-x-2 text-xl font-semibold">
@@ -28,10 +26,8 @@
 					@else
 						Articoli della categoria
 					@endif
-				
-				
 				</span>
-				<span class="mt-1 text-sm font-normal text-gray-500">{{ count($articles) }}</span>
+				{{-- <span class="mt-1 text-sm font-normal text-gray-500">{{ $articles->total() }}</span> --}}
 			</div>
 		</h2>
 		<section class="space-y-4">
@@ -40,11 +36,8 @@
 				@include('blog::components.blocks.article_list.play_money_markets.order_select')
 			</div>
 			@include('blog::components.blocks.article_list.play_money_markets.list_of_markets')
-			<div class="flex justify-center">
-				<a href="{{ url()->current().'?'.http_build_query(array_merge(request()->query(), ['page' => $page + 1])) }}" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
-					<span>Load more</span>
-					<x-heroicon-o-arrow-right class="size-4"/>
-				</a>
+			<div>
+				{{ $articles->links() }}
 			</div>
 		</section>
 	</div>
