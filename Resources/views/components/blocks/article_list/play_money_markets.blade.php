@@ -26,7 +26,8 @@
 					@if(isset($title))
 						{{ $title }}
 					@else
-						Articoli della categoria
+						{{-- Articoli della categoria --}}
+						{{ __('blog::category.show.title') }} "{{ $category->title }}"
 					@endif
 				
 				
