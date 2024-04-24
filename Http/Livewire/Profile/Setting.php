@@ -65,7 +65,7 @@ class Setting extends Component implements HasForms, HasActions
         $this->mountAction('editPassword');
     }
 
-    public function editEmail(): void
+    public function editEmail()
     {
         $this->mountAction('editEmail');
     }
@@ -74,8 +74,8 @@ class Setting extends Component implements HasForms, HasActions
     {
         return Action::make('editEmail')
             ->record($this->model)
-            ->fillForm(fn ($record, $arguments, $user): array => [
-                'email' => $this->model->user,
+            ->fillForm(fn ($record, $arguments): array => [
+                'email' =>  $this->model->user->email,
             ])
             ->form([
                 TextInput::make('email')
@@ -84,6 +84,7 @@ class Setting extends Component implements HasForms, HasActions
                     ->unique(ignoreRecord: true),
             ])
             ->modalHeading('Change email')
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update email')
@@ -123,6 +124,7 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
@@ -161,6 +163,7 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('Last Name'),
             ])
             ->modalHeading('Edit Profile')
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
