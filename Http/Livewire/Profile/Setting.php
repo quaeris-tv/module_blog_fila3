@@ -163,11 +163,21 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('Last Name'),
             ])
             ->modalHeading('Edit Profile')
+<<<<<<< HEAD
+=======
+            ->closeModalByClickingAway(false)
+>>>>>>> 5f95aea (update modal classes)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
             ->modalCancelActionLabel('Cancel')
+<<<<<<< HEAD
+=======
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+>>>>>>> 5f95aea (update modal classes)
             ->action(function (array $data, $arguments, Component $livewire) {
                 $this->model->update([
                     'first_name' => $data['first_name'],
