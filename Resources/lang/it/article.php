@@ -17,9 +17,8 @@ return [
         'no_import' => 'Nessuna cifra scelta',
         'import_zero' => 'Nessuna cifra scelta',
         'import_min' => 'Hai superato la cifra di '.Auth::user()->profile->credits.' crediti',
-        'no_choice' => 'Nessuna opzione scelta'
+        'no_choice' => 'Nessuna opzione scelta',
     ],
-
 
     // 'fields' => [
     //     'name' => 'Nome',

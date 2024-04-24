@@ -167,8 +167,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                     ->validationMessages([
                         'gt' => __('blog::article.rating.no_import'),
                         'lte' => __('blog::article.rating.import_min'),
-                    ])
-                ,
+                    ]),
             ])
             ->modalHeading('Place bet')
             ->closeModalByClickingAway(false)
