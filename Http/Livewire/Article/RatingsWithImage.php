@@ -46,7 +46,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public array $rating_opts = [];
     public array $ratings_percentage = [];
 
-    // protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-text';;
 
     public function mount(Article $article, string $type, string $article_uuid, array $ratings = []): void
     {
