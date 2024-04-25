@@ -556,9 +556,9 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         );
     }
 
-    /**
+    /*
      * Get the article's description.
-     */
+     
     protected function createdAt(): Attribute
     {
         return new Attribute(
@@ -567,6 +567,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             }
         );
     }
+    */
 
     public function getUuidAttribute(?string $value): string
     {
