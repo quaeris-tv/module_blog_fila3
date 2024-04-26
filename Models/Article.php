@@ -136,7 +136,8 @@ use Webmozart\Assert\Assert;
  * @mixin \Eloquent
  */
 class Article extends BaseModel implements Feedable, HasMedia // , Searchable
-{use HasStatuses;
+{
+    // use HasStatuses;
     use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
@@ -556,9 +557,9 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         );
     }
 
-    /*
+    /**
      * Get the article's description.
-
+     */
     protected function createdAt(): Attribute
     {
         return new Attribute(
@@ -567,7 +568,6 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             }
         );
     }
-    */
 
     public function getUuidAttribute(?string $value): string
     {

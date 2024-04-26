@@ -1,10 +1,10 @@
 {{-- @foreach(collect(->toArray())->split(2) as $_articles) --}}
-    <div class="grid grid-cols-2 gap-5">
+    <div class="gap-5" style="column-count: 2; gap: 1rem; counter-reset: grid;">
     @foreach($articles as $article)
         @php
             $article = $_theme->mapArticle($article);
         @endphp
-        <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded">
+        <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded mb-5" style="break-inside: avoid;">
             <div class="pl-6 lg:pl-0">
 
                 {{-- <template x-if="Boolean(market.event_start_date)"> --}}
@@ -37,16 +37,6 @@
             {{-- @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.outcomes', ['datas' => $article->ratings]) --}}
             <livewire:article.ratings-with-image type="index" :ratings="$article->ratings" :wire:key="$article->uuid" :article_uuid="$article->uuid"/>
 
-            @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.footer_info')
-
-            {{-- @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.ratings') --}}
-            @if(Auth::check())
-                @php
-                    $art = $article->toArray();
-                @endphp
-                <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$art" wire:key="$article->uuid"/>
-            @endif
-
             @if($article->tags->count())
                 <div class="flex flex-wrap gap-1">
                     @foreach($article->tags as $tag)
@@ -55,6 +45,16 @@
                         </a>
                     @endforeach
                 </div>
+            @endif
+
+            @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.footer_info')
+
+            {{-- @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.ratings') --}}
+            @if(Auth::check())
+                @php
+                    $art = $article->toArray();
+                @endphp
+                <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$art" wire:key="$article->uuid"/>
             @endif
         </article>
     @endforeach
