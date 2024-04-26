@@ -42,6 +42,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public array $article_ratings = [];
     public int $import = 0;
     public ?string $article_uuid = null;
+    public bool $dense = false;
 
     public array $rating_opts = [];
     public array $ratings_percentage = [];
