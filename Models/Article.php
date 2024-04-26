@@ -21,7 +21,6 @@ use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\ModelStatus\HasStatuses;
 use Spatie\Searchable\Searchable;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
@@ -137,7 +136,7 @@ use Webmozart\Assert\Assert;
  */
 class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 {// use HasStatuses;
-    use HasTags;
+        use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
 
