@@ -43,16 +43,19 @@
 				@include('blog::components.blocks.article_list.play_money_markets.order_select')
 			</div>
 			@include('blog::components.blocks.article_list.play_money_markets.list_of_markets')
-			<div>
-				{{ $articles->links() }}
-			</div>
-
-			{{-- <div class="flex justify-center">
-				<a href="#" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
-					<span>Load more</span>
-					<x-heroicon-o-arrow-right class="size-4"/>
-				</a>
-			</div> --}}
+			
+			@if(request()->route()->getName() != 'home')
+				<div>
+					{{ $articles->links() }}
+				</div>
+			@else
+				<div class="flex justify-center">
+					<a href="{{ route('articles', ['lang' => $lang]) }}" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
+						<span>Load more</span>
+						<x-heroicon-o-arrow-right class="size-4"/>
+					</a>
+				</div>
+			@endif
 
 
 
