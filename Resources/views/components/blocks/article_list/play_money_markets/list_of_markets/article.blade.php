@@ -47,6 +47,15 @@
                 <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$art" wire:key="$article->uuid"/>
             @endif
 
+            @if($article->tags->count())
+                <div class="flex flex-wrap gap-1">
+                    @foreach($article->tags as $tag)
+                        <a href="javascript:;" class="px-2 py-1 text-sm transition rounded hover:bg-gray-100 bg-gray-50">
+                            #<span class="text-gray-500">{{ $tag }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </article>
     @endforeach
     </div>
