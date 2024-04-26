@@ -1,6 +1,9 @@
-@foreach(collect($articles)->split(2) as $_articles)
-    <div class="grid gap-5">
-    @foreach($_articles as $article)
+{{-- @foreach(collect(->toArray())->split(2) as $_articles) --}}
+    <div class="grid grid-cols-2 gap-5">
+    @foreach($articles as $article)
+        @php
+            $article = $_theme->mapArticle($article);
+        @endphp
         <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded">
             <div class="pl-6 lg:pl-0">
 
@@ -44,10 +47,16 @@
                 <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$art" wire:key="$article->uuid"/>
             @endif
 
+            @if($article->tags->count())
+                <div class="flex flex-wrap gap-1">
+                    @foreach($article->tags as $tag)
+                        <a href="javascript:;" class="px-2 py-1 text-sm transition rounded hover:bg-gray-100 bg-gray-50">
+                            #<span class="text-gray-500">{{ $tag }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </article>
     @endforeach
     </div>
-@endforeach
-
-
-
+{{-- @endforeach --}}

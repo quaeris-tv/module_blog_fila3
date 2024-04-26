@@ -36,6 +36,7 @@ class ArticleData extends Data
         public ?int $betting_users,
         public ?string $time_left_for_humans,
         public ?float $volume_credit,
+        public ?Collection $tags,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -58,6 +59,7 @@ class ArticleData extends Data
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
         $this->volume_credit = $article->getVolumeCredit();
+        $this->tags = $article->tags->map(fn ($tag) => $tag->name);
     }
 
     public function getCategories(): Collection
