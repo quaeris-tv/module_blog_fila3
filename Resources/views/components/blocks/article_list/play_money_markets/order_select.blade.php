@@ -34,7 +34,7 @@ $orders = [
     </button>
     <div x-ref="panel" x-show="open" x-transition.origin.top.left x-on:click.outside="close($refs.button)"
         :id="$id('dropdown-button')"
-        class="absolute right-0 mt-2.5 space-y-1 rounded bg-white border border-gray-200 backdrop-blur min-w-[270px] p-2">
+        class="absolute left-0 mt-2.5 space-y-1 rounded bg-white border border-gray-200 backdrop-blur min-w-[270px] p-2">
         @foreach($orders as $key => $order)
             <a href="{{ request()->fullUrlWithQuery(array_merge($queries, ['order' => $key])) }}" class="block w-full p-2 text-sm font-semibold rounded hover:bg-gray-100 text-start {{ $query == $key ? 'bg-gray-100 text-blue-500' : '' }}">
                 {{ $order }}
