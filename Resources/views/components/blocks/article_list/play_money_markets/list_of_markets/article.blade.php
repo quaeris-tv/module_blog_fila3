@@ -1,10 +1,10 @@
 {{-- @foreach(collect(->toArray())->split(2) as $_articles) --}}
-    <div class="grid grid-cols-2 gap-5">
+    <div class="gap-5" style="column-count: 2; gap: 1rem; counter-reset: grid;">
     @foreach($articles as $article)
         @php
             $article = $_theme->mapArticle($article);
         @endphp
-        <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded">
+        <article class="bg-white pt-6 lg:pl-6 pb-[18px] lg:pr-[18px] rounded-lg flex flex-col gap-6 border rounded mb-5" style="break-inside: avoid;">
             <div class="pl-6 lg:pl-0">
 
                 {{-- <template x-if="Boolean(market.event_start_date)"> --}}
