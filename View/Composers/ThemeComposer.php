@@ -101,7 +101,7 @@ class ThemeComposer
         return $this->getArticleDataArray($rows);
     }
 
-    public function paginateArticlesByCategory(string $category_id, int $limit = 6): Paginator | array
+    public function paginateArticlesByCategory(string $category_id, int $limit = 6): Paginator|array
     {
         return Article::where('category_id', $category_id)
             ->orderBy('published_at', 'desc')
@@ -169,7 +169,7 @@ class ThemeComposer
     }
 
     /**
-     * @return \Illuminate\Pagination\Paginator
+     * @return Paginator
      */
     public function getPaginatedArticles(int $num = 15)
     {
@@ -252,7 +252,7 @@ class ThemeComposer
         return $var;
     }
 
-    public function getMethodData(string $method, int $number = 6): Paginator | array
+    public function getMethodData(string $method, int $number = 6): Paginator|array
     {
         return $this->{$method}($number);
     }
@@ -328,7 +328,7 @@ class ThemeComposer
             ->orderBy('event_start_date')
             ->simplePaginate($limit);
     }
-    
+
     public function paginatedArticlesOrderByNumberOfBets(int $limit = 6): Paginator
     {
         return Article::published()
@@ -347,14 +347,14 @@ class ThemeComposer
 
     public function mapArticle(Article $article)
     {
-            $article = $article->toArray();
+        $article = $article->toArray();
 
-            if (is_array($article['title'])) {
-                $lang = app()->getLocale();
-                $article['title'] = $article['title'][$lang] ?? last($article['title']);
-            }
-        
-            return ArticleData::from($article);
+        if (is_array($article['title'])) {
+            $lang = app()->getLocale();
+            $article['title'] = $article['title'][$lang] ?? last($article['title']);
+        }
+
+        return ArticleData::from($article);
     }
 
     public function getArticlesComingSoon(int $number = 6): array
