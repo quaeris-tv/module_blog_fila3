@@ -129,7 +129,7 @@
                     @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
                         <tr>
                             <td>{{ $morph->created_at }}</td>
-                            <td class="text-center">{{ $morph->rating->title }}</td>
+                            <td class="text-center">{{ $morph->rating->title ?? 'not defined' }}</td>
                             <td><a href="{{ url("/{$lang}/articles/{$morph->model->slug}") }}" target="_blank" class="text-blue-500">{{ $morph->model->title }}</a></td>
                             <td class="text-center">{{ $morph->value }}</td>
                             <td class="text-center">-</td>

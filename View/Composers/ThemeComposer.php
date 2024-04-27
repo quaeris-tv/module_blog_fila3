@@ -169,7 +169,7 @@ class ThemeComposer
     }
 
     /**
-     * @return Paginator
+     * @return \Illuminate\Pagination\LengthAwarePaginator<Article>
      */
     public function getPaginatedArticles(int $num = 15)
     {
@@ -345,7 +345,7 @@ class ThemeComposer
             ->simplePaginate($limit);
     }
 
-    public function mapArticle(Article $article)
+    public function mapArticle(Article $article): ArticleData
     {
         $article = $article->toArray();
 

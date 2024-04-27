@@ -65,7 +65,7 @@ class Setting extends Component implements HasForms, HasActions
         $this->mountAction('editPassword');
     }
 
-    public function editEmail()
+    public function editEmail(): void
     {
         $this->mountAction('editEmail');
     }
