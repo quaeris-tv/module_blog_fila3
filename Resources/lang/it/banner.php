@@ -17,6 +17,6 @@ return [
         'category' => [
             'title' => 'Categoria abbinata',
         ],
-        'image' => 'Immagine'
-    ]
+        'image' => 'Immagine',
+    ],
 ];
