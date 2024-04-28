@@ -134,7 +134,6 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         Assert::notNull($profile = $user->profile);
         Assert::isInstanceOf($profile, Profile::class);
 
-
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
                 Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
