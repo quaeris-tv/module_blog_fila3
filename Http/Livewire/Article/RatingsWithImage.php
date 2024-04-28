@@ -130,10 +130,16 @@ class RatingsWithImage extends Component implements HasForms, HasActions
 
     public function CheckModal(): Action
     {
+        Assert::notNull($user = Auth::user());
+        Assert::notNull($profile = $user->profile);
+        Assert::isInstanceOf($profile, Profile::class);
+
+
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
                 Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
                 // $article_id = $rating_morph->model_id;
+                Assert::notNull($this->article);
                 $article_id = $this->article->id;
                 // dddx([
                 //     $this->article->id,
@@ -163,7 +169,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                     ->numeric()
                     ->suffixIcon('heroicon-o-banknotes')
                     ->rules('gt:0')
-                    ->rules('lte:'.Auth::user()->profile->credits)
+                    ->rules('lte:'.$profile->credits)
                     ->validationMessages([
                         'gt' => __('blog::article.rating.no_import'),
                         'lte' => __('blog::article.rating.import_min'),
