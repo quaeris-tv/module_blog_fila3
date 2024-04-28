@@ -285,7 +285,7 @@ class ThemeComposer
 
     public function getBanner(): array
     {
-        $results = Banner::all()->toArray();
+        $results = Banner::all()->sortBy('pos')->toArray();
         $tmp = [];
         foreach ($results as $content) {
             $tmp[] = SliderData::from($content);

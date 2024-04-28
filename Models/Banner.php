@@ -76,6 +76,7 @@ class Banner extends BaseModel implements HasMedia
         'hot_topic', // : false,
         'open_markets_count', // : 119,
         'landing_banner', // : false
+        'pos',
     ];
 
     /** @return array<string, string> */

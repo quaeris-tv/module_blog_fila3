@@ -108,7 +108,9 @@ class BannerResource extends XotBaseResource
                 ]),
             ])
             ->emptyStateActions([
-            ]);
+            ])
+            ->reorderable('pos')
+            ->defaultSort('pos', 'asc');
     }
 
     public static function getRelations(): array

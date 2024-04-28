@@ -10,4 +10,13 @@ return [
             'name' => 'Content',
         ],
     ],
+
+    'fields' => [
+        'id' => 'Id',
+        'title' => 'Titolo',
+        'category' => [
+            'title' => 'Categoria abbinata',
+        ],
+        'image' => 'Immagine'
+    ]
 ];

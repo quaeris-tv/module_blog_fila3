@@ -41,6 +41,10 @@ class CreateBannersTable extends XotBaseMigration
         $this->tableUpdate(
             function (Blueprint $table): void {
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
+
+                if (! $this->hasColumn('pos')) {
+                    $table->integer('pos')->nullable();
+                }
             }
         );
     }
