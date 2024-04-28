@@ -74,8 +74,10 @@ class ForImage extends Component implements HasForms
         Assert::isInstanceOf($profile, Profile::class);
 
         $this->validate([
-            'import' => ['required|gt:0|lte:'.$profile->credits],
-            'rating_title' => ['required'],
+            // 'import' => ['required|gt:0|lte:'.$profile->credits],
+            // 'rating_title' => ['required'],
+            'import' => 'required|gt:0|lte:'.$profile->credits,
+            'rating_title' => 'required',
         ], [
             'import.required' => __('blog::article.rating.no_import'),
             'import.gt' => __('blog::article.rating.import_zero'),
