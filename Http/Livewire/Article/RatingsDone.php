@@ -70,15 +70,23 @@ class RatingsDone extends Component
         foreach ($user_ratings as $key => $rating) {
             Assert::isArray($rating);
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
-            $result[] = RatingInfoData::from([
-                'ratingId' => $rating['rating_id'],
-                'title' => $tmp['title'],
-                'credit' => $rating['value'],
-                'image' => $tmp['image'],
-                'predict_victory' => $rating['value'] * $percs[$rating['rating_id']],
-            ])->toArray()
-
-            ;
+            if($tmp != null){
+                $result[] = RatingInfoData::from([
+                    'ratingId' => $rating['rating_id'],
+                    'title' => $tmp['title'],
+                    'credit' => $rating['value'],
+                    'image' => $tmp['image'],
+                    'predict_victory' => $rating['value'] * $percs[$rating['rating_id']],
+                ])->toArray();
+            }else{
+                $result[] = RatingInfoData::from([
+                    'ratingId' => $rating['rating_id'],
+                    'title' => 'not defined',
+                    'credit' => $rating['value'],
+                    'image' => '#',
+                    'predict_victory' => 0,
+                ])->toArray();
+            }
         }
         $key_values = array_column($result, 'credit');
         array_multisort($key_values, SORT_DESC, $result);

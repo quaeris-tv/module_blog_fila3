@@ -62,7 +62,8 @@ class ArticleResource extends XotBaseResource
                     ->helperText('Una breve descrizione dell\'articolo'),
                 */
                 Forms\Components\DateTimePicker::make('published_at')
-                    ->columnSpan(1),
+                    ->columnSpan(1)
+                    ->required(),
 
                 /*
                 Forms\Components\Select::make('category_id')
