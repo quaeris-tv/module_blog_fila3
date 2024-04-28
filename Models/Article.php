@@ -597,8 +597,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $endDate = $this->closed_at;
         $startDate = Carbon::now();
 
-        $end = Carbon::createFromDate($this->closed_at);
-        if ($startDate > $end) {
+        if ($startDate > $endDate) {
             return 'scaduto';
         }
 

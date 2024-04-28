@@ -2,7 +2,13 @@
 
 declare(strict_types=1);
 
+use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Profile;
 use Illuminate\Support\Facades\Auth;
+
+Assert::notNull($user = Auth::user());
+Assert::notNull($profile = $user->profile);
+Assert::isInstanceOf($profile, Profile::class);
 
 return [
     'navigation' => [
@@ -16,7 +22,7 @@ return [
     'rating' => [
         'no_import' => 'Nessuna cifra scelta',
         'import_zero' => 'Nessuna cifra scelta',
-        'import_min' => 'Hai superato la cifra di '.Auth::user()->profile->credits.' crediti',
+        'import_min' => 'Hai superato la cifra di '.$profile->credits.' crediti',
         'no_choice' => 'Nessuna opzione scelta',
     ],
 
