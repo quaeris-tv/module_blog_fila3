@@ -20,8 +20,8 @@ return [
     ],
 
     'rating' => [
-        'no_import' => 'Nessuna cifra scelta',
-        'import_zero' => 'Nessuna cifra scelta',
+        'no_import' => 'Nessuna cifra inserita',
+        'import_zero' => 'Nessuna cifra inserita',
         'import_min' => 'Hai superato la cifra di '.$profile->credits.' crediti',
         'no_choice' => 'Nessuna opzione scelta',
     ],
