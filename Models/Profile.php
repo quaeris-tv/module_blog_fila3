@@ -20,9 +20,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 /**
  * Modules\Blog\Models\Profile.
  *
- * @property int                                           $credits
+ * @property int $credits
  */
-
 class Profile extends XotBaseProfile implements HasMedia
 {
     use InteractsWithMedia;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Profile;
 use Illuminate\Support\Facades\Auth;
+use Modules\Blog\Models\Profile;
+use Webmozart\Assert\Assert;
 
 Assert::notNull($user = Auth::user());
 Assert::notNull($profile = $user->profile);
