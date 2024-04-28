@@ -70,7 +70,7 @@ class RatingsDone extends Component
         foreach ($user_ratings as $key => $rating) {
             Assert::isArray($rating);
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
-            if($tmp != null){
+            if (null != $tmp) {
                 $result[] = RatingInfoData::from([
                     'ratingId' => $rating['rating_id'],
                     'title' => $tmp['title'],
@@ -78,7 +78,7 @@ class RatingsDone extends Component
                     'image' => $tmp['image'],
                     'predict_victory' => $rating['value'] * $percs[$rating['rating_id']],
                 ])->toArray();
-            }else{
+            } else {
                 $result[] = RatingInfoData::from([
                     'ratingId' => $rating['rating_id'],
                     'title' => 'not defined',
