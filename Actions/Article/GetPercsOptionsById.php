@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\Article;
 
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Article;
-
+use Webmozart\Assert\Assert;
 
 class GetPercsOptionsById
 {
