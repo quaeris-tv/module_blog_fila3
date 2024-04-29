@@ -33,9 +33,9 @@ class ArticleResource extends XotBaseResource
         return ['it', 'en'];
     }
 
-    public static function form(Form $form): Form
-    {
-        return $form->schema([
+    public static function getFormFields():array{
+        return [
+
             Forms\Components\Grid::make()->columns(2)->schema([
                 Forms\Components\TextInput::make('title')
                     ->columnSpan(1)
@@ -63,8 +63,11 @@ class ArticleResource extends XotBaseResource
                 */
                 Forms\Components\DateTimePicker::make('published_at')
                     ->columnSpan(1)
-                    ->required(),
+                    ->nullable()
+                    //->required()
+                    ,
                 Forms\Components\DateTimePicker::make('rewarded_at')
+                    ->nullable()
                     ->columnSpan(1),
 
                 /*
@@ -76,15 +79,10 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Select::make('category_id')
                             // ->multiple()
                     ->required()
-                    // ->relationship('categories', 'title')
+                     //->relationship('categories', 'title')
+                    //->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
-                // ->createOptionForm([
-                //     Forms\Components\TextInput::make('title')
-                //         ->required(),
-                //     // Forms\Components\TextInput::make('email')
-                //     //    ->required()
-                //     //    ->email(),
-                // ])
+                    //->createOptionForm(CategoryResource::getFormFields())
                 ,
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
@@ -165,7 +163,12 @@ class ArticleResource extends XotBaseResource
                 ->collection('main_image_upload')
             // ->preserveFilenames()
             ,
-        ]);
+                ];
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form->schema(static::getFormFields());
     }
 
     public static function table(Table $table): Table
