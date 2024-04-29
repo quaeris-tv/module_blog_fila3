@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
+use Livewire\Component;
+use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
+use Modules\Blog\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\On;
-use Livewire\Component;
 use Modules\Blog\Datas\RatingInfoData;
-use Modules\Blog\Models\Article;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
+use Modules\Blog\Actions\Article\GetPercsOptionsById;
 
 // implements HasForms, HasActions
 
@@ -96,30 +97,25 @@ class RatingsDone extends Component
 
     public function getPercs(): array
     {
-        $result = [];
-        Assert::notNull($article = Article::find($this->article_data['id']));
-        Assert::isInstanceOf($article, Article::class);
-        $total_volume = $article->getVolumeCredit();
+        return app(GetPercsOptionsById::class)->execute($this->article_data);
 
-        foreach ($this->article_data['ratings'] as $rating) {
-            $result[$rating['id']] = 0;
-            if (0 != $total_volume) {
-                $perc = $article->getVolumeCredit($rating['id']) / $total_volume;
-                if (0 != $perc) {
-                    $result[$rating['id']] = round(1 / $perc, 2);
-                }
-            }
-        }
+        // $result = [];
+        // Assert::notNull($article = Article::find($this->article_data['id']));
+        // Assert::isInstanceOf($article, Article::class);
+        // $total_volume = $article->getVolumeCredit();
 
-        return $result;
-        // dddx($result);
+        // foreach ($this->article_data['ratings'] as $rating) {
+        //     $result[$rating['id']] = 0;
+        //     if (0 != $total_volume) {
+        //         $perc = $article->getVolumeCredit($rating['id']) / $total_volume;
+        //         if (0 != $perc) {
+        //             $result[$rating['id']] = round(1 / $perc, 2);
+        //         }
+        //     }
+        // }
 
-        // dddx([
-        //     $this->article_data,
-        //     $article->getVolumeCredit(),
-        //     $article->getVolumeCredit(171),
-        //     $article->getVolumeCredit(170),
-        // ]);
+        // return $result;
+
     }
 
     #[On('update-user-ratings')]
