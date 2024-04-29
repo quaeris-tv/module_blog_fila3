@@ -16,6 +16,7 @@ use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Blog\Filament\Fields\ArticleFooter;
 use Modules\Blog\Filament\Fields\ArticleSidebar;
 use Modules\Blog\Filament\Resources\ArticleResource\Pages;
+use Modules\Blog\Filament\Resources\ArticleResource\RelationManagers;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Xot\Filament\Resources\XotBaseResource;
@@ -240,6 +241,7 @@ class ArticleResource extends XotBaseResource
                 ]),
                 */
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->defaultSort('published_at', 'desc')
@@ -255,6 +257,7 @@ class ArticleResource extends XotBaseResource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\RatingsRelationManager::class,
         ];
     }
 
@@ -264,6 +267,7 @@ class ArticleResource extends XotBaseResource
             'index' => Pages\ListArticles::route('/'),
             'create' => Pages\CreateArticle::route('/create'),
             'edit' => Pages\EditArticle::route('/{record}/edit'),
+            'view' => Pages\ViewArticle::route('/{record}'),
         ];
     }
 }
