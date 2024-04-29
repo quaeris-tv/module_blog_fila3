@@ -356,7 +356,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return $tmp;
     }
 
-    public function getRatingsPercentage(): array
+    public function getRatingsPercentageByUser(): array
     {
         $ratings_options = $this->getOptionRatingsIdTitle();
         $result = [];
@@ -376,6 +376,23 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
                 ->count();
 
             $result[$key] = round((100 * $a) / $b, 0);
+        }
+
+        return $result;
+    }
+
+    public function getRatingsPercentageByVolume(): array
+    {
+        $ratings_options = $this->getOptionRatingsIdTitle();
+        $result = [];
+
+        $total_volume = $this->getVolumeCredit();
+        if (0 == $total_volume) {
+            $total_volume = 1;
+        }
+
+        foreach ($ratings_options as $key => $value) {
+            $result[$key] = round(($this->getVolumeCredit($key)  * 100) / $total_volume, 0);
         }
 
         return $result;

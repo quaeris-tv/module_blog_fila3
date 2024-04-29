@@ -64,7 +64,8 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
         Assert::notNull($this->article);
-        $this->ratings_percentage = $this->article->getRatingsPercentage();
+        // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
+        $this->ratings_percentage = $this->article->getRatingsPercentageByVolume();
     }
 
     public function render(): View
@@ -86,7 +87,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
         // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
-        // $this->ratings_percentage = $this->article->getRatingsPercentage();
+        // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
         if ('index' == $this->type) {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
