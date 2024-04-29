@@ -64,6 +64,8 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\DateTimePicker::make('published_at')
                     ->columnSpan(1)
                     ->required(),
+                Forms\Components\DateTimePicker::make('rewarded_at')
+                    ->columnSpan(1),
 
                 /*
                 Forms\Components\Select::make('category_id')
@@ -183,6 +185,9 @@ class ArticleResource extends XotBaseResource
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('closed_at')
+                    ->dateTime()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('rewarded_at')
                     ->dateTime()
                     ->sortable(),
 
