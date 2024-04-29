@@ -110,5 +110,7 @@ class ForImage extends Component implements HasForms
         //     $this->rating_title,
         //     $this->import
         // ]);
+
+        $this->dispatch('refresh-credits');
     }
 }

@@ -151,6 +151,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                 app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], (int) $data['rating_id']);
 
                 $this->dispatch('update-user-ratings');
+                $this->dispatch('refresh-credits');
             })
             // ->action(fn (array $arguments) => app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id))
             ->fillForm(fn ($record, $arguments): array => [
