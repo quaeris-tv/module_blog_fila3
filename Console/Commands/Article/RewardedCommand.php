@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands\Article;
 
-use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Article;
+use Webmozart\Assert\Assert;
 
 class RewardedCommand extends Command
 {
@@ -35,9 +35,6 @@ class RewardedCommand extends Command
         $articleId = (string) $this->argument('articleId');
         Assert::notNull($article = Article::firstWhere(['id' => $articleId]));
         dddx($article->ratings);
-
-
-
 
         // $userId = (string) $this->argument('userId');
         // $articleId = (string) $this->argument('articleId');
