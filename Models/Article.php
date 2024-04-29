@@ -136,7 +136,7 @@ use Webmozart\Assert\Assert;
  */
 class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 {// use HasStatuses;
-                                                                                            use HasTags;
+                                                                                                use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
 
@@ -392,7 +392,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         }
 
         foreach ($ratings_options as $key => $value) {
-            $result[$key] = round(($this->getVolumeCredit($key)  * 100) / $total_volume, 0);
+            $result[$key] = round(($this->getVolumeCredit($key) * 100) / $total_volume, 0);
         }
 
         return $result;
