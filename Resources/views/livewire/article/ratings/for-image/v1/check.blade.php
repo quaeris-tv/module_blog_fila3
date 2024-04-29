@@ -21,7 +21,7 @@
                 <div class="w-full px-4 py-2.5 bg-white inline-flex items-center justify-between">
                     <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
-                        type="text"
+                        type="number"
                         value="0"
                         wire:model.live.lazy="import"
                         />
@@ -55,11 +55,6 @@
                     </span>
                     {{-- <span class="ml-1 place-bet__text-field__displayCode">Ooms</span> --}}
                 </div>
-                
-                <div>
-                    {{ $import }}
-                </div>
-
                 @error('import') <span>{{ $message }}</span> @enderror
                 @error('rating_title') <span>{{ $message }}</span> @enderror
             </div>
