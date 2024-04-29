@@ -158,7 +158,6 @@ class RatingsDone extends Component
         // }
 
         // return $result;
-
     }
 
     #[On('update-user-ratings')]
