@@ -136,7 +136,7 @@ use Webmozart\Assert\Assert;
  */
 class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 {// use HasStatuses;
-                                                                                                        use HasTags;
+    use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
 
