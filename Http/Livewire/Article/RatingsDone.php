@@ -57,7 +57,7 @@ class RatingsDone extends Component
     }
 
     // utilizzando il RatingMorph
-    public function getUserRatings_OLD(): array
+    public function getUserRatings(): array
     {
         $result = [];
 
@@ -98,7 +98,7 @@ class RatingsDone extends Component
     }
 
     // utilizzando Order
-    public function getUserRatings(): array
+    public function getUserRatings_test(): array
     {
         $result = [];
 
