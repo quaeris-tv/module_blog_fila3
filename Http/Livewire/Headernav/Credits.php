@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Headernav;
 
-use Livewire\Component;
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Attributes\On;
+use Livewire\Component;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Contracts\Support\Renderable;
 
 class Credits extends Component
 {
@@ -37,7 +37,7 @@ class Credits extends Component
         return view($view, $view_params);
     }
 
-    #[On('refresh-credits')] 
+    #[On('refresh-credits')]
     public function getCredits(): string
     {
         return number_format($this->profile->credits, 0);
