@@ -16,6 +16,7 @@ use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Blog\Filament\Fields\ArticleFooter;
 use Modules\Blog\Filament\Fields\ArticleSidebar;
 use Modules\Blog\Filament\Resources\ArticleResource\Pages;
+use Modules\Blog\Filament\Resources\ArticleResource\RelationManagers;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
 use Modules\Xot\Filament\Resources\XotBaseResource;
@@ -33,9 +34,9 @@ class ArticleResource extends XotBaseResource
         return ['it', 'en'];
     }
 
-    public static function form(Form $form): Form
-    {
-        return $form->schema([
+    public static function getFormFields():array{
+        return [
+
             Forms\Components\Grid::make()->columns(2)->schema([
                 Forms\Components\TextInput::make('title')
                     ->columnSpan(1)
@@ -63,8 +64,11 @@ class ArticleResource extends XotBaseResource
                 */
                 Forms\Components\DateTimePicker::make('published_at')
                     ->columnSpan(1)
-                    ->required(),
+                    ->nullable()
+                    //->required()
+                    ,
                 Forms\Components\DateTimePicker::make('rewarded_at')
+                    ->nullable()
                     ->columnSpan(1),
 
                 /*
@@ -76,15 +80,10 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Select::make('category_id')
                             // ->multiple()
                     ->required()
-                    // ->relationship('categories', 'title')
+                     //->relationship('categories', 'title')
+                    //->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
-                // ->createOptionForm([
-                //     Forms\Components\TextInput::make('title')
-                //         ->required(),
-                //     // Forms\Components\TextInput::make('email')
-                //     //    ->required()
-                //     //    ->email(),
-                // ])
+                    //->createOptionForm(CategoryResource::getFormFields())
                 ,
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
@@ -165,7 +164,12 @@ class ArticleResource extends XotBaseResource
                 ->collection('main_image_upload')
             // ->preserveFilenames()
             ,
-        ]);
+                ];
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form->schema(static::getFormFields());
     }
 
     public static function table(Table $table): Table
@@ -237,6 +241,7 @@ class ArticleResource extends XotBaseResource
                 ]),
                 */
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->defaultSort('published_at', 'desc')
@@ -252,6 +257,7 @@ class ArticleResource extends XotBaseResource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\RatingsRelationManager::class,
         ];
     }
 
@@ -261,6 +267,7 @@ class ArticleResource extends XotBaseResource
             'index' => Pages\ListArticles::route('/'),
             'create' => Pages\CreateArticle::route('/create'),
             'edit' => Pages\EditArticle::route('/{record}/edit'),
+            'view' => Pages\ViewArticle::route('/{record}'),
         ];
     }
 }
