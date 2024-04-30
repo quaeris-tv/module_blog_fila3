@@ -21,7 +21,7 @@ class BannerResource extends XotBaseResource
     // use Translatable;
     protected static ?string $model = Banner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'icon-starbanner';
 
     // public static function getTranslatableLocales(): array
     // {
