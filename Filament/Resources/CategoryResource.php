@@ -31,7 +31,8 @@ class CategoryResource extends XotBaseResource
         return ['it', 'en'];
     }
 
-    public static function getFormFields():array{
+    public static function getFormFields(): array
+    {
         return [
             Forms\Components\TextInput::make('title')
                 ->required()

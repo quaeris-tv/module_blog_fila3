@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
 use Filament\Actions;
-use Filament\Infolists\Infolist;
-use Modules\Blog\Models\Article;
 use Filament\Forms\Components\Checkbox;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Infolists\Components\TextEntry;
-use Modules\Blog\Filament\Resources\ArticleResource;
-use Modules\Rating\Filament\Actions\Table\BetAction;
 use Modules\Blog\Actions\Article\TranslateContentAction;
+use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Blog\Models\Article;
 use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
-
 
 class ViewArticle extends ViewRecord
 {
@@ -58,7 +56,7 @@ class ViewArticle extends ViewRecord
         return $infolist
             ->schema([
                 // ...
-                TextEntry::make('title')
+                TextEntry::make('title'),
             ]);
     }
 }

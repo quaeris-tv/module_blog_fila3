@@ -34,9 +34,9 @@ class ArticleResource extends XotBaseResource
         return ['it', 'en'];
     }
 
-    public static function getFormFields():array{
+    public static function getFormFields(): array
+    {
         return [
-
             Forms\Components\Grid::make()->columns(2)->schema([
                 Forms\Components\TextInput::make('title')
                     ->columnSpan(1)
@@ -65,8 +65,8 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\DateTimePicker::make('published_at')
                     ->columnSpan(1)
                     ->nullable()
-                    //->required()
-                    ,
+                // ->required()
+                ,
                 Forms\Components\DateTimePicker::make('rewarded_at')
                     ->nullable()
                     ->columnSpan(1),
@@ -80,10 +80,10 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Select::make('category_id')
                             // ->multiple()
                     ->required()
-                     //->relationship('categories', 'title')
-                    //->relationship('category', 'title')
+                     // ->relationship('categories', 'title')
+                    // ->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
-                    //->createOptionForm(CategoryResource::getFormFields())
+                // ->createOptionForm(CategoryResource::getFormFields())
                 ,
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
@@ -164,7 +164,7 @@ class ArticleResource extends XotBaseResource
                 ->collection('main_image_upload')
             // ->preserveFilenames()
             ,
-                ];
+        ];
     }
 
     public static function form(Form $form): Form

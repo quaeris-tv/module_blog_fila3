@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Blog\Filament\Resources\ArticleResource\RelationManagers;
 
 use Filament\Forms;
@@ -7,8 +9,6 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RatingsRelationManager extends RelationManager
 {
@@ -33,10 +33,8 @@ class RatingsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('user_id'),
                 Tables\Columns\TextColumn::make('is_winner'),
                 Tables\Columns\TextColumn::make('updated_at'),
-
             ])
             ->filters([
-                //
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),
