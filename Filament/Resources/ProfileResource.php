@@ -38,8 +38,9 @@ class ProfileResource extends BaseProfileResource
     {
         return [
             'index' => Pages\ListProfiles::route('/'),
-            // 'create' => Pages\CreateProfile::route('/create'),
-            // 'edit' => Pages\EditProfile::route('/{record}/edit'),
+            'create' => Pages\CreateProfile::route('/create'),
+            'edit' => Pages\EditProfile::route('/{record}/edit'),
+            'view' => Pages\ViewProfile::route('/{record}'),
             // 'getcredits' => Pages\GetCreditProfile::route('/{record}/getcredits'),
         ];
     }
