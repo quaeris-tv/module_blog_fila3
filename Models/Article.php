@@ -399,6 +399,16 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return $result;
     }
 
+    public function getBettersByUser(): \Illuminate\Database\Eloquent\Collection
+    {
+        return RatingMorph::where('model_id', $this->id)
+            ->where('model_type', 'article')
+            ->where('user_id', '!=', null)
+            ->get()
+            ->groupBy('user_id')
+            ;
+    }
+
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {

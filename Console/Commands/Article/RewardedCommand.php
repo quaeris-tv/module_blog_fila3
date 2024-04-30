@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands\Article;
 
+use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Article;
-use Webmozart\Assert\Assert;
+use Modules\Blog\Datas\ArticleData;
+use Modules\Rating\Models\RatingMorph;
 
 class RewardedCommand extends Command
 {
@@ -31,10 +33,49 @@ class RewardedCommand extends Command
      */
     public function handle()
     {
-        dddx('wip');
+        // dddx('wip');
         $articleId = (string) $this->argument('articleId');
         Assert::notNull($article = Article::firstWhere(['id' => $articleId]));
-        dddx($article->ratings);
+
+
+        // controllare che l'articolo sia scaduto
+        //.....
+        // controllare che l'articolo non sia stato già pagato
+        //.....
+        // controllare che l'articolo abbia un opzione di risposta segnato come vincente
+        //.....
+
+        // prendere tutte le scommesse fatte dell'articolo per utente
+
+
+        $ratings_by_user = $article->getBettersByUser();
+        dddx($ratings);
+        foreach($ratings as $key => $rating){
+            dddx([$key, $rating]);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $article = $article->toArray();
+
+        // if (is_array($article['title'])) {
+        //     $lang = app()->getLocale();
+        //     $article['title'] = $article['title'][$lang] ?? last($article['title']);
+        // }
+
+
+        // dddx(ArticleData::from($article));
 
         // $userId = (string) $this->argument('userId');
         // $articleId = (string) $this->argument('articleId');
