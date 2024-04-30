@@ -10,11 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\User;
+use Modules\User\Models\BaseProfile;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\User\Models\BaseProfile as BaseProfile;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\User\Models\User;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
@@ -22,9 +20,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  *
  * @property int $credits
  */
-class Profile extends BaseProfile 
+class Profile extends BaseProfile
 {
-
     /** @var string */
     protected $connection = 'blog';
 
