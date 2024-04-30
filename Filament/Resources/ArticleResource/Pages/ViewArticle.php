@@ -12,6 +12,8 @@ use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\ViewRecord;
 use Modules\Blog\Actions\Article\TranslateContentAction;
 use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Blog\Filament\Resources\ArticleResource\Widgets;
+use Modules\Rating\Filament\Resources\HasRatingResource\Widgets as RatingWidgets;
 use Modules\Blog\Models\Article;
 use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
 
@@ -48,6 +50,13 @@ class ViewArticle extends ViewRecord
                     );
                 }),
             */
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            RatingWidgets\StatsOverview::class,
         ];
     }
 
