@@ -54,7 +54,7 @@ class ArticleAggregate extends AggregateRoot
     public function rating(RatingArticleData $command): static
     {
         $profile = Profile::firstOrCreate(['user_id' => $command->userId], ['credits' => 1000]);
-        $profile->update(['credits'=>1000]);
+        $profile->update(['credits' => 1000]);
         if ($profile->credits - $command->credit < 0) {
             throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
         }

@@ -4,22 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
-use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
-use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Blog\Datas\AddedCreditsData;
 use Modules\Blog\Filament\Resources\ProfileResource\Pages;
 use Modules\Blog\Models\Profile;
-use Modules\User\Models\User;
-use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\User\Filament\Resources\BaseProfileResource;
 
 class ProfileResource extends BaseProfileResource
