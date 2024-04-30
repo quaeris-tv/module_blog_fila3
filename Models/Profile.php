@@ -12,7 +12,7 @@ use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
 use Modules\User\Models\User;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\Xot\Models\BaseProfile as XotBaseProfile;
+use Modules\User\Models\BaseProfile as BaseProfile;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
@@ -22,9 +22,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  *
  * @property int $credits
  */
-class Profile extends XotBaseProfile implements HasMedia
+class Profile extends BaseProfile 
 {
-    use InteractsWithMedia;
 
     /** @var string */
     protected $connection = 'blog';
