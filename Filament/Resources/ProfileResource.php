@@ -21,6 +21,7 @@ use Modules\Blog\Models\Profile;
 use Modules\User\Models\User;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Modules\User\Filament\Resources\BaseProfileResource;
+use Modules\Blog\Filament\Resources\ProfileResource\RelationManagers;
 
 class ProfileResource extends BaseProfileResource
 {
@@ -31,6 +32,7 @@ class ProfileResource extends BaseProfileResource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\RatingMorphsRelationManager::class,
         ];
     }
 
