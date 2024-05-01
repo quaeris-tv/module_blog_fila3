@@ -5,17 +5,19 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
 use Filament\Actions;
-use Filament\Forms\Components\Checkbox;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
+use Modules\Blog\Models\Article;
+use Filament\Forms\Components\Checkbox;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\ViewRecord;
-use Modules\Blog\Actions\Article\TranslateContentAction;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Forms\Components\DateTimePicker;
 use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Blog\Actions\Article\TranslateContentAction;
+use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
+use Modules\Rating\Filament\Actions\Header\WinHeaderAction;
 use Modules\Blog\Filament\Resources\ArticleResource\Widgets;
 use Modules\Rating\Filament\Resources\HasRatingResource\Widgets as RatingWidgets;
-use Modules\Blog\Models\Article;
-use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
 
 class ViewArticle extends ViewRecord
 {
@@ -29,6 +31,18 @@ class ViewArticle extends ViewRecord
             Actions\LocaleSwitcher::make(),
             Actions\DeleteAction::make(),
             BetHeaderAction::make(),
+            WinHeaderAction::make(),
+            Actions\Action::make('change_closed_at')
+                ->tooltip('cambia data chiusura')
+                ->label('')
+                ->icon('heroicon-o-lock-closed')
+                ->form([
+                    DateTimePicker::make('closed_at')
+                        ->native(false),
+                ])
+                ->action(function (array $data, $record): void {
+                    $record->update($data);
+                }),
             /*
             Actions\Action::make('translate')
                 ->label('Copia Blocchi nelle altre lingue')
@@ -66,6 +80,8 @@ class ViewArticle extends ViewRecord
             ->schema([
                 // ...
                 TextEntry::make('title'),
+                TextEntry::make('closed_at'),
+                TextEntry::make('rewarded_at'),
             ]);
     }
 }

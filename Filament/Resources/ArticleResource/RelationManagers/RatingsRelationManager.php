@@ -42,6 +42,7 @@ class RatingsRelationManager extends RelationManager
                 */
                 Tables\Columns\TextColumn::make('value'),
                 Tables\Columns\TextColumn::make('is_winner'),
+                Tables\Columns\TextColumn::make('reward'),
                 Tables\Columns\TextColumn::make('updated_at'),
             ])
             ->filters([
