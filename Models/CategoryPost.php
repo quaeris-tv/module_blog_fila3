@@ -14,6 +14,7 @@ namespace Modules\Blog\Models;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost onlyTrashed()
@@ -27,10 +28,13 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost withoutTrashed()
+ *
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $deleted_by
+ * @property string|null                     $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereDeletedBy($value)
+ *
  * @mixin \Eloquent
  */
 class CategoryPost extends BasePivot

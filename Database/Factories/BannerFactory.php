@@ -25,7 +25,7 @@ class BannerFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            //'slug' => $this->faker->slug,
+            // 'slug' => $this->faker->slug,
         ];
     }
 }
