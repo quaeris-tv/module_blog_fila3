@@ -7,6 +7,7 @@ namespace Modules\Blog\Http\Livewire\Profile;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -17,6 +18,9 @@ use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
+/**
+ * @property ComponentContainer $form
+ */
 class Setting extends Component implements HasForms, HasActions
 {
     use InteractsWithForms;

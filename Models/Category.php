@@ -99,6 +99,15 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
+ * @property string|null                                                                 $icon
+ * @property Banner|null                                                                 $banner
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Article> $categoryArticles
+ * @property int|null                                                                    $category_articles_count
+ *
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category        whereIcon($value)
+ *
  * @mixin \Eloquent
  */
 class Category extends BaseModel implements HasMedia

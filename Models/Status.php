@@ -43,6 +43,12 @@ use Spatie\ModelStatus\Status as BaseStatus;
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUserAgent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUserId($value)
  *
+ * @property string|null $deleted_at
+ * @property string|null $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Status whereDeletedBy($value)
+ *
  * @mixin \Eloquent
  */
 class Status extends BaseStatus
