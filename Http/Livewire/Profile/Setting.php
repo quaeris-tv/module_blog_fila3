@@ -16,7 +16,11 @@ use Livewire\Component;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
+use Filament\Forms\ComponentContainer;
 
+/**
+ * @property ComponentContainer $form
+ */
 class Setting extends Component implements HasForms, HasActions
 {
     use InteractsWithForms;
