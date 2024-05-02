@@ -55,7 +55,7 @@ class ArticleProjector extends Projector
             'model_type' => 'article',
             'model_id' => $event->articleId,
         ];
-        $record = Article::firstWhere(['id' => $event->articleId]);
+        Assert::notNull($record = Article::firstWhere(['id' => $event->articleId]));
 
         $winners = RatingMorph::where($data)->where('user_id', '!=', null)->get();
         $tot_win = app(GetSumByModelRatingIdAction::class)->execute($record, $event->ratingId);
@@ -66,7 +66,7 @@ class ArticleProjector extends Projector
                 'is_winner' => true,
                 'reward' => $reward,
             ]);
-            $profile = $winner->profile;
+            Assert::notNull($profile = $winner->profile);
             $profile->increment('credits', $reward);
         }
         $record->update(['rewarded_at' => now()]);
