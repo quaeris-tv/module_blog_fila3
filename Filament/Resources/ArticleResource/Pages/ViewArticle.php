@@ -6,6 +6,7 @@ namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
 use Filament\Actions;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\EditRecord;
@@ -14,6 +15,8 @@ use Modules\Blog\Actions\Article\TranslateContentAction;
 use Modules\Blog\Filament\Resources\ArticleResource;
 use Modules\Blog\Models\Article;
 use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
+use Modules\Rating\Filament\Actions\Header\WinHeaderAction;
+use Modules\Rating\Filament\Resources\HasRatingResource\Widgets as RatingWidgets;
 
 class ViewArticle extends ViewRecord
 {
@@ -27,6 +30,18 @@ class ViewArticle extends ViewRecord
             Actions\LocaleSwitcher::make(),
             Actions\DeleteAction::make(),
             BetHeaderAction::make(),
+            WinHeaderAction::make(),
+            Actions\Action::make('change_closed_at')
+                ->tooltip('cambia data chiusura')
+                ->label('')
+                ->icon('heroicon-o-lock-closed')
+                ->form([
+                    DateTimePicker::make('closed_at')
+                        ->native(false),
+                ])
+                ->action(function (array $data, $record): void {
+                    $record->update($data);
+                }),
             /*
             Actions\Action::make('translate')
                 ->label('Copia Blocchi nelle altre lingue')
@@ -51,12 +66,21 @@ class ViewArticle extends ViewRecord
         ];
     }
 
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            RatingWidgets\StatsOverview::class,
+        ];
+    }
+
     public function infolist(Infolist $infolist): Infolist
     {
         return $infolist
             ->schema([
                 // ...
                 TextEntry::make('title'),
+                TextEntry::make('closed_at'),
+                TextEntry::make('rewarded_at'),
             ]);
     }
 }

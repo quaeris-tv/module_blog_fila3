@@ -124,6 +124,7 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
+            ->closeModalByClickingAway(false)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
@@ -163,11 +164,15 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('Last Name'),
             ])
             ->modalHeading('Edit Profile')
+            ->closeModalByClickingAway(false)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
             ->modalCancelActionLabel('Cancel')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
             ->action(function (array $data, $arguments, Component $livewire) {
                 $this->model->update([
                     'first_name' => $data['first_name'],

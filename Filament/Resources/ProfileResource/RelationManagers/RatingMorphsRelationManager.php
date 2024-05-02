@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Blog\Filament\Resources\ArticleResource\RelationManagers;
+namespace Modules\Blog\Filament\Resources\ProfileResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -10,9 +10,10 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-class RatingsRelationManager extends RelationManager
+class RatingMorphsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'ratings';
+    // protected static string $relationship = 'ratings';
+    protected static string $relationship = 'ratingMorphs';
 
     public function form(Form $form): Form
     {
@@ -29,17 +30,18 @@ class RatingsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('title')
             ->columns([
-                Tables\Columns\TextColumn::make('id'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('pivot.user.name'),
+                // Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('rating.title'),
+                // Tables\Columns\TextColumn::make('pivot.user.name'),
                 /*
                 Tables\Columns\TextColumn::make('user.name')->default(function($record){
+                    dddx($record);
                     if($record->pivot->user_id==null){
                         return null;
                     }
                     return $record->pivot->user->name;
                 }),
-                */
+                //*/
                 Tables\Columns\TextColumn::make('value'),
                 Tables\Columns\TextColumn::make('is_winner'),
                 Tables\Columns\TextColumn::make('reward'),

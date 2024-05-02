@@ -34,6 +34,10 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
+        if (null !== $article->rewarded_at) {
+            throw new \Exception('just assign winners on ['.$article->rewarded_at.']');
+        }
+
         $event = new RatingArticleWinner(
             ratingId: $command->ratingId,
             articleId: $command->articleId

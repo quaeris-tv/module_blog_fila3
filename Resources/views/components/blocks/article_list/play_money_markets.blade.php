@@ -35,6 +35,9 @@
 					@else
 						Articoli
 					@endif
+				
+					<span class="mt-1 text-sm font-normal text-gray-500">{{ count($articles) }}</span>
+				</span>
 			</div>
 		</h2>
 		<section class="space-y-4">
