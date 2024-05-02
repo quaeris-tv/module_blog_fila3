@@ -102,13 +102,17 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public function betAction(): Action
     {
         if (Auth::guest()) {
-            return $this->GuestModal();
-        } else {
-            return $this->CheckModal();
+            return $this->guestModal();
+        } 
+        
+        if($this->article->getTimeLeftForHumans() == 'scaduto') {
+            return $this->checkExpired();
         }
+
+        return $this->checkModal();
     }
 
-    public function GuestModal(): Action
+    public function guestModal(): Action
     {
         return Action::make('bet')
             ->modalContent(function (array $arguments): View {
@@ -129,7 +133,28 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         ;
     }
 
-    public function CheckModal(): Action
+    public function checkExpired(): Action
+    {
+        return Action::make('bet')
+            ->modalContent(function (array $arguments): View {
+                $view = 'blog::livewire.article.ratings.for-image.v1.check_expired';
+
+                return view($view);
+            })
+            ->modalHeading('Place bet')
+            ->closeModalByClickingAway(false)
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalCancelActionLabel('Cancel')
+            ->color('primary')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+            ->modalSubmitAction(false)
+        ;
+    }
+
+    public function checkModal(): Action
     {
         Assert::notNull($user = Auth::user());
         Assert::notNull($profile = $user->profile);

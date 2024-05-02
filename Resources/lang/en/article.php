@@ -12,21 +12,21 @@ Assert::isInstanceOf($profile, Profile::class);
 
 return [
     'navigation' => [
-        'name' => 'Articolo',
-        'plural' => 'Articoli',
+        'name' => 'Article',
+        'plural' => 'Articles',
         'group' => [
             'name' => 'Content',
         ],
     ],
 
     'rating' => [
-        'no_import' => 'Nessuna cifra inserita',
-        'import_zero' => 'Nessuna cifra inserita',
-        'import_min' => 'Hai superato la cifra di '.$profile->credits.' crediti',
-        'no_choice' => 'Nessuna opzione scelta',
+        'no_import' => 'No digits entered',
+        'import_zero' => 'No digits entered',
+        'import_min' => 'You have exceeded the amount of '.$profile->credits.' credits',
+        'no_choice' => 'No option chosen',
     ],
 
-    'expired' => 'Articolo scaduto, non si possono fare più scommesse',
+    'expired' => 'Item has expired, no more bets can be placed',
 
     // 'fields' => [
     //     'name' => 'Nome',

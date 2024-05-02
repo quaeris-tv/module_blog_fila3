@@ -1,0 +1,26 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'navigation' => [
+        'name' => 'Profile',
+        'plural' => 'Profiles',
+        'group' => [
+            'name' => 'Content',
+        ],
+    ],
+    'fields' => [
+        'type' => 'Type',
+        'name' => 'Name',
+        'guard_name' => 'Guard',
+        'permissions' => 'Permissions',
+        'roles' => 'Roles',
+        'updated_at' => 'Updated on',
+        'user_name' => 'User Name',
+        'first_name' => 'First Name',
+        'last_name' => 'Last name',
+        'email' => 'email',
+        'is_active' => 'active?',
+    ],
+];

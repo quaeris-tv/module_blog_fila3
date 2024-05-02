@@ -2,32 +2,14 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Auth;
-use Modules\Blog\Models\Profile;
-use Webmozart\Assert\Assert;
-
-Assert::notNull($user = Auth::user());
-Assert::notNull($profile = $user->profile);
-Assert::isInstanceOf($profile, Profile::class);
-
 return [
     'navigation' => [
-        'name' => 'Articolo',
-        'plural' => 'Articoli',
+        'name' => 'Text Widget',
+        'plural' => 'Text Widgets',
         'group' => [
             'name' => 'Content',
         ],
     ],
-
-    'rating' => [
-        'no_import' => 'Nessuna cifra inserita',
-        'import_zero' => 'Nessuna cifra inserita',
-        'import_min' => 'Hai superato la cifra di '.$profile->credits.' crediti',
-        'no_choice' => 'Nessuna opzione scelta',
-    ],
-
-    'expired' => 'Articolo scaduto, non si possono fare più scommesse',
-
     // 'fields' => [
     //     'name' => 'Nome',
     //     'guard_name' => 'Guard',
