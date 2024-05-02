@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands\Article;
 
-use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
-use Modules\Blog\Models\Article;
 use Modules\Blog\Datas\ArticleData;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Blog\Models\Article;
+use Webmozart\Assert\Assert;
 
 class RewardedCommand extends Command
 {
@@ -37,35 +36,20 @@ class RewardedCommand extends Command
         $articleId = (string) $this->argument('articleId');
         Assert::notNull($article = Article::firstWhere(['id' => $articleId]));
 
-
         // controllare che l'articolo sia scaduto
-        //.....
+        // .....
         // controllare che l'articolo non sia stato già pagato
-        //.....
+        // .....
         // controllare che l'articolo abbia un opzione di risposta segnato come vincente
-        //.....
+        // .....
 
         // prendere tutte le scommesse fatte dell'articolo per utente
 
-
         $ratings_by_user = $article->getBettersByUser();
         dddx($ratings);
-        foreach($ratings as $key => $rating){
+        foreach ($ratings as $key => $rating) {
             dddx([$key, $rating]);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // $article = $article->toArray();
 
@@ -73,7 +57,6 @@ class RewardedCommand extends Command
         //     $lang = app()->getLocale();
         //     $article['title'] = $article['title'][$lang] ?? last($article['title']);
         // }
-
 
         // dddx(ArticleData::from($article));
 
