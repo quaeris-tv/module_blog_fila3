@@ -49,7 +49,6 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $main_image_upload
  * @property string                                                                                                     $main_image_url
  * @property string                                                                                                     $content_blocks
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
@@ -73,7 +72,6 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
- *
  * @property string                                                                    $id
  * @property string                                                                    $uuid
  * @property string|null                                                               $content
@@ -100,7 +98,6 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                     $ratings
  * @property int|null                                                                  $ratings_count
  * @property mixed                                                                     $translations
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereClosedAt($value)
@@ -129,7 +126,37 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
- *
+ * @property int $status_display
+ * @property string|null $bet_end_date
+ * @property string|null $event_start_date
+ * @property string|null $event_end_date
+ * @property int $is_wagerable
+ * @property int|null $wagers_count
+ * @property int|null $wagers_count_canonical
+ * @property int|null $wagers_count_total
+ * @property int|null $wagers
+ * @property string|null $brier_score
+ * @property string|null $brier_score_play_money
+ * @property string|null $brier_score_real_money
+ * @property float|null $volume_play_money
+ * @property float|null $volume_real_money
+ * @property int $is_following
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScorePlayMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScoreRealMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereEventEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereEventStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsFollowing($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsWagerable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSidebarBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereStatusDisplay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereVolumePlayMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereVolumeRealMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
  * @mixin \Eloquent
  */
 class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
@@ -286,7 +313,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
             ->summary($this->description)
             ->updated($this->updated_at)
             // ->link($this->path()) //Call to an undefined method Modules\Blog\Models\Article::path()
-            ->authorName($this->user->name);
+            ->authorName($this->user?->name ?? 'Unknown');
     }
 
     /**

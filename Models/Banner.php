@@ -23,7 +23,6 @@ use Spatie\Translatable\HasTranslations;
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
- *
  * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
@@ -40,7 +39,35 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
- *
+ * @property string|null $link
+ * @property string|null $title
+ * @property string|null $description
+ * @property string|null $action_text
+ * @property string|null $category_id
+ * @property \Illuminate\Support\Carbon|null $start_date
+ * @property \Illuminate\Support\Carbon|null $end_date
+ * @property bool $hot_topic
+ * @property int|null $open_markets_count
+ * @property bool $landing_banner
+ * @property int|null $pos
+ * @property-read \Modules\Blog\Models\Category|null $category
+ * @property-read string $desktop_thumbnail
+ * @property-read string $desktop_thumbnail_webp
+ * @property-read string $mobile_thumbnail
+ * @property-read string $mobile_thumbnail_webp
+ * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property-read int|null $media_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereActionText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereHotTopic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLandingBanner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereOpenMarketsCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereTitle($value)
  * @mixin \Eloquent
  */
 class Banner extends BaseModel implements HasMedia
