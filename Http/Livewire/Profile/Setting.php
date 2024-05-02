@@ -133,7 +133,7 @@ class Setting extends Component implements HasForms, HasActions
             ->action(function (array $data) {
                 Assert::notNull($this->model->user);
                 $this->model->user->update([
-                    'password' => bcrypt($data['password'])
+                    'password' => bcrypt($data['password']),
                 ]);
             });
     }

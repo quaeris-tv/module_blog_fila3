@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 
 use Filament\Actions;
-use Filament\Infolists\Infolist;
-use Modules\Blog\Models\Article;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Forms\Components\DateTimePicker;
-use Modules\Blog\Filament\Resources\ArticleResource;
 use Modules\Blog\Actions\Article\TranslateContentAction;
+use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Blog\Models\Article;
 use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
 use Modules\Rating\Filament\Actions\Header\WinHeaderAction;
-use Modules\Blog\Filament\Resources\ArticleResource\Widgets;
 use Modules\Rating\Filament\Resources\HasRatingResource\Widgets as RatingWidgets;
 
 class ViewArticle extends ViewRecord

@@ -17,7 +17,7 @@ class TextWidgetResource extends XotBaseResource
 {
     // protected static ?string $model = TextWidget::class;
 
-    //protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    // protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationIcon = 'icon-widgets';
 
     // protected static ?string $navigationGroup = 'Content';

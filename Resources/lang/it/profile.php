@@ -17,10 +17,10 @@ return [
         'permissions' => 'Permessi',
         'roles' => 'Ruoli',
         'updated_at' => 'Aggiornato il',
-        'user_name'=>'Nome Utente',
+        'user_name' => 'Nome Utente',
         'first_name' => 'Nome',
         'last_name' => 'Cognome',
-        'email'=>'email',
+        'email' => 'email',
         'is_active' => 'attivo ?',
     ],
 ];

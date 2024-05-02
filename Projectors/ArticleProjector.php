@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Events\RatingArticle;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Blog\Events\Article\CloseArticle;
 use Modules\Blog\Events\ArticleRegistered;
 use Modules\Blog\Events\ProductReplenished;
+use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\RatingArticleWinner;
-use Modules\Blog\Events\Article\CloseArticle;
-use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
+use Modules\Blog\Models\Article;
 use Modules\Rating\Actions\HasRating\GetSumByModelRatingIdAction;
+use Modules\Rating\Models\RatingMorph;
+use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
+use Webmozart\Assert\Assert;
 
 class ArticleProjector extends Projector
 {
@@ -50,26 +50,26 @@ class ArticleProjector extends Projector
 
         Assert::notNull($rating_morph);
 
-        $data=[
+        $data = [
             'rating_id' => $event->ratingId,
             'model_type' => 'article',
             'model_id' => $event->articleId,
         ];
-        $record=Article::firstWhere(['id'=>$event->articleId]);
+        $record = Article::firstWhere(['id' => $event->articleId]);
 
-        $winners=RatingMorph::where($data)->where('user_id','!=',null)->get();
-        $tot_win=app(GetSumByModelRatingIdAction::class)->execute($record,$event->ratingId);
-        $tot=app(GetSumByModelRatingIdAction::class)->execute($record);
-        foreach($winners as $winner){
-            $reward=$winner->value/$tot_win*$tot;
+        $winners = RatingMorph::where($data)->where('user_id', '!=', null)->get();
+        $tot_win = app(GetSumByModelRatingIdAction::class)->execute($record, $event->ratingId);
+        $tot = app(GetSumByModelRatingIdAction::class)->execute($record);
+        foreach ($winners as $winner) {
+            $reward = $winner->value / $tot_win * $tot;
             $winner->update([
-                'is_winner'=>true,
-                'reward'=>$reward,
+                'is_winner' => true,
+                'reward' => $reward,
             ]);
-            $profile=$winner->profile;
-            $profile->increment('credits',$reward);
+            $profile = $winner->profile;
+            $profile->increment('credits', $reward);
         }
-        $record->update(['rewarded_at'=>now()]);
+        $record->update(['rewarded_at' => now()]);
         $rating_morph->is_winner = true;
         $rating_morph->save();
     }

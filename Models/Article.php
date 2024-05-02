@@ -5,28 +5,24 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Safe\DateTime;
-use Spatie\Tags\HasTags;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
-use Modules\Rating\Models\Rating;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Searchable\Searchable;
-use Modules\Rating\Models\RatingMorph;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Translatable\HasTranslations;
-use Modules\Rating\Models\Traits\HasRating;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Modules\Rating\Models\Contracts\HasRatingContract;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Modules\Rating\Models\Contracts\HasRatingContract;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\Traits\HasRating;
+use Modules\User\Models\User;
+use Safe\DateTime;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Tags\HasTags;
+use Spatie\Translatable\HasTranslations;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Blog\Models\Article.
@@ -136,7 +132,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  *
  * @mixin \Eloquent
  */
-class Article extends BaseModel implements Feedable, HasMedia,HasRatingContract 
+class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 {
     use HasTags;
     use HasTranslations;
@@ -279,7 +275,6 @@ class Article extends BaseModel implements Feedable, HasMedia,HasRatingContract
         return $this->belongsTo(Category::class);
     }
 
-   
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {

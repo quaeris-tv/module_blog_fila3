@@ -28,7 +28,7 @@ class ArticleResource extends XotBaseResource
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    //protected static ?string $navigationIcon = 'icon-article';
+    // protected static ?string $navigationIcon = 'icon-article';
 
     public static function getTranslatableLocales(): array
     {
@@ -84,8 +84,7 @@ class ArticleResource extends XotBaseResource
                      // ->relationship('categories', 'title')
                     // ->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
-                    ->createOptionForm(CategoryResource::getFormFields())
-                ,
+                    ->createOptionForm(CategoryResource::getFormFields()),
                 SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()
