@@ -13,5 +13,4 @@ class Transaction extends BaseModel
      * The attributes that are mass assignable.
      */
     protected $fillable = ['date', 'model_type', 'model_id', 'user_id', 'credits', 'note'];
-    
 }

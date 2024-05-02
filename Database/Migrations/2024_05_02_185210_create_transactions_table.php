@@ -1,7 +1,9 @@
 <?php
 
-use Modules\User\Models\User;
+declare(strict_types=1);
+
 use Illuminate\Database\Schema\Blueprint;
+use Modules\User\Models\User;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 class CreateTransactionsTable extends XotBaseMigration
@@ -19,11 +21,9 @@ class CreateTransactionsTable extends XotBaseMigration
                 $table->foreignIdFor(User::class, 'user_id')->nullable();
                 $table->text('note')->nullable();
                 $table->datetimetz('date')->nullable();
-
             });
 
-
-                    // -- UPDATE --
+        // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table): void {
                 // if (! $this->hasColumn('rating_id')) {
@@ -34,4 +34,4 @@ class CreateTransactionsTable extends XotBaseMigration
             }
         );
     }
-};
+}
