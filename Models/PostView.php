@@ -14,6 +14,7 @@ namespace Modules\Blog\Models;
  * @property int                             $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Modules\Blog\Database\Factories\PostViewFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   newQuery()
@@ -28,14 +29,17 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|PostView   withoutTrashed()
- * @property string|null $updated_by
- * @property string|null $created_by
+ *
+ * @property string|null                     $updated_by
+ * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $deleted_by
+ * @property string|null                     $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|PostView whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PostView whereUpdatedBy($value)
+ *
  * @mixin \Eloquent
  */
 class PostView extends BaseModel
