@@ -100,6 +100,7 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                     $ratings
  * @property int|null                                                                  $ratings_count
  * @property mixed                                                                     $translations
+ * @property string|null                                                               $rewarded_at
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
