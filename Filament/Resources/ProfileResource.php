@@ -8,6 +8,7 @@ use Filament\Resources\Concerns\Translatable;
 use Modules\Blog\Filament\Resources\ProfileResource\Pages;
 use Modules\Blog\Models\Profile;
 use Modules\User\Filament\Resources\BaseProfileResource;
+use Modules\Blog\Filament\Resources\ProfileResource\RelationManagers;
 
 class ProfileResource extends BaseProfileResource
 {
@@ -18,6 +19,7 @@ class ProfileResource extends BaseProfileResource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\RatingMorphsRelationManager::class,
         ];
     }
 

@@ -5,26 +5,28 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\User;
 use Safe\DateTime;
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Searchable\Searchable;
-use Spatie\Tags\HasTags;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\User;
+use Modules\Rating\Models\Rating;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\Searchable\Searchable;
+use Modules\Rating\Models\RatingMorph;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Translatable\HasTranslations;
+use Modules\Rating\Models\Traits\HasRating;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Rating\Models\Contracts\HasRatingContract;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Article.
@@ -134,11 +136,12 @@ use Webmozart\Assert\Assert;
  *
  * @mixin \Eloquent
  */
-class Article extends BaseModel implements Feedable, HasMedia // , Searchable
-{// use HasStatuses;
-                                    use HasTags;
+class Article extends BaseModel implements Feedable, HasMedia,HasRatingContract 
+{
+    use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
+    use HasRating;
 
     protected $fillable = [
         'uuid',
@@ -276,129 +279,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return $this->belongsTo(Category::class);
     }
 
-    public function ratings(): MorphToMany
-    {
-        $pivot_class = RatingMorph::class;
-        $pivot = app($pivot_class);
-        $pivot_table = $pivot->getTable();
-        $pivot_db_name = $pivot->getConnection()->getDatabaseName();
-        $pivot_table_full = $pivot_db_name.'.'.$pivot_table;
-        $pivot_fields = $pivot->getFillable();
-
-        return $this->morphToMany(Rating::class, 'model', $pivot_table_full)
-            ->using($pivot_class)
-            ->withPivot($pivot_fields)
-            ->withTimestamps();
-    }
-
-    public function getOptionRatingsIdTitle(): array
-    {
-        // return $this->ratings()->where('user_id', null)->get();
-        return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'title', 'id');
-    }
-
-    public function getOptionRatingsIdColor(): array
-    {
-        // return $this->ratings()->where('user_id', null)->get();
-        return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
-    }
-
-    public function getArrayRatingsWithImage(): array
-    {
-        $ratings = $this
-        ->ratings()
-        // ->with('media')
-        ->where('user_id', null)
-        ->get()
-        // ->toArray()
-        ;
-
-        $ratings_array = [];
-
-        foreach ($ratings as $key => $rating) {
-            $ratings_array[$key] = $rating->toArray();
-            if (empty($rating->getFirstMediaUrl('rating'))) {
-                $rating->addMediaFromUrl('https://picsum.photos/id/'.rand(1, 200).'/300/200')
-                       ->toMediaCollection('rating');
-            }
-            $ratings_array[$key]['image'] = $rating->getFirstMediaUrl('rating');
-            $ratings_array[$key]['effect'] = false;
-        }
-
-        return $ratings_array;
-    }
-
-    public function getBettingUsers(): int
-    {
-        return count(RatingMorph::where('model_id', $this->id)
-            ->where('user_id', '!=', null)
-            ->groupBy('user_id')
-            ->get()
-            ->toArray());
-    }
-
-    public function getVolumeCredit(?int $rating_id = null): int
-    {
-        $ratings = RatingMorph::where('model_id', $this->id)
-            ->where('user_id', '!=', null);
-
-        if (null != $rating_id) {
-            $ratings = $ratings->where('rating_id', $rating_id);
-        }
-
-        $ratings = $ratings->get();
-
-        $tmp = 0;
-
-        foreach ($ratings as $rating) {
-            $tmp += $rating->value;
-        }
-
-        return $tmp;
-    }
-
-    public function getRatingsPercentageByUser(): array
-    {
-        $ratings_options = $this->getOptionRatingsIdTitle();
-        $result = [];
-
-        foreach ($ratings_options as $key => $value) {
-            $b = RatingMorph::where('model_id', $this->id)
-                ->where('user_id', '!=', null)
-                ->count();
-
-            if (0 == $b) {
-                $b = 1;
-            }
-
-            $a = RatingMorph::where('model_id', $this->id)
-                ->where('user_id', '!=', null)
-                ->where('rating_id', $key)
-                ->count();
-
-            $result[$key] = round((100 * $a) / $b, 0);
-        }
-
-        return $result;
-    }
-
-    public function getRatingsPercentageByVolume(): array
-    {
-        $ratings_options = $this->getOptionRatingsIdTitle();
-        $result = [];
-
-        $total_volume = $this->getVolumeCredit();
-        if (0 == $total_volume) {
-            $total_volume = 1;
-        }
-
-        foreach ($ratings_options as $key => $value) {
-            $result[$key] = round(($this->getVolumeCredit($key) * 100) / $total_volume, 0);
-        }
-
-        return $result;
-    }
-
+   
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
