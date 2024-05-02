@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article\Ratings;
 
-use Filament\Facades\Filament;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\On;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Webmozart\Assert\Assert;
+use Filament\Facades\Filament;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
+use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Contracts\HasForms;
 use Modules\Xot\Actions\GetViewAction;
-use Webmozart\Assert\Assert;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Modules\Blog\Actions\Article\MakeBetAction;
 
 class ForImage extends Component implements HasForms
 {
