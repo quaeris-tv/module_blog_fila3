@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Modules\Blog\Projectors;
 
 use Carbon\Carbon;
-use Webmozart\Assert\Assert;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Transaction;
-use Modules\Blog\Events\RatingArticle;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Blog\Events\Article\CloseArticle;
 use Modules\Blog\Events\ArticleRegistered;
 use Modules\Blog\Events\ProductReplenished;
+use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\RatingArticleWinner;
-use Modules\Blog\Events\Article\CloseArticle;
-use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
+use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Transaction;
 use Modules\Rating\Actions\HasRating\GetSumByModelRatingIdAction;
+use Modules\Rating\Models\RatingMorph;
+use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
+use Webmozart\Assert\Assert;
 
 class ArticleProjector extends Projector
 {
@@ -47,7 +47,7 @@ class ArticleProjector extends Projector
                 'user_id' => $event->userId,
                 'date' => Carbon::now(),
                 'credits' => $event->credit * -1,
-                'note' => 'rating_article'
+                'note' => 'rating_article',
             ]
         );
     }
