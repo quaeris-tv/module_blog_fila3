@@ -484,7 +484,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     }
 
     /*
-     * NO !
+     * NO !!
     protected function createdAt(): Attribute
     {
         return new Attribute(
