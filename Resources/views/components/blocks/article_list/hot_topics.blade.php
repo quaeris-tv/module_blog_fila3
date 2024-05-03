@@ -5,7 +5,7 @@
     </h2>
     <section aria-label="Hot topics">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-            @foreach($_theme->getHotTopics() as $category)
+            @foreach ($_theme->getMethodData($method) as $category)
                 <a class="bg-white rounded-lg overflow-clip" href="{{ route('category_slug.show', ['lang'=>$lang,'category_slug' => $category['slug'] ]) }}">
                     <div class="h-[240px] relative">
                         <img class="absolute inset-0 object-cover w-full h-full" 
