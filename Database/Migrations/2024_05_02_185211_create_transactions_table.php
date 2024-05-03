@@ -30,6 +30,12 @@ class CreateTransactionsTable extends XotBaseMigration
                 //     $table->integer('rating_id')->after('article_id');
                 // }
 
+                // $table->char('description')->change();
+
+                if ($this->hasColumn('credits')) {
+                    $table->decimal('credits')->change();
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
