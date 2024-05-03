@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-3 py-3 justify-center items-center">
     <p class="text-sm">Please login or register to make a bet</p>
     <div class="flex gap-2 items-center *:border *:h-10 *:w-10 *:border-neutral-1 *:rounded-full *:flex *:items-center *:justify-center">
-        <div class="">
+        {{-- <div class="">
             <button
                 role="button"
                 class="button-main button-main--size-full button-main--type-outlined button-main--variant-shade facebook-login__button"
@@ -35,9 +35,9 @@
                     </g>
                 </svg>
             </button>
-        </div>
+        </div> --}}
         <div class="place-bet__login_required--methods--icon">
-            <button
+            <a href="{{ route('socialite.', ['provider' => 'google']) }}"
                 role="button"
                 class="button-main button-main--size-full button-main--type-outlined button-main--variant-shade google-button"
                 >
@@ -65,9 +65,9 @@
                         fill="#ea4335"
                         ></path>
                 </svg>
-            </button>
+            </a>
         </div>
-        <div class="place-bet__login_required--methods--icon">
+        {{-- <div class="place-bet__login_required--methods--icon">
             <button
                 role="button"
                 class="button-main button-main--size-full button-main--type-outlined button-main--variant-shade email-login__button"
@@ -85,14 +85,19 @@
                         ></path>
                 </svg>
             </button>
-        </div>
+        </div> --}}
+    </div>
+    <div class="flex items-center py-2">
+        <div class="flex-1 border-t border-slate-400"></div>
+        <span class="px-3 text-sm text-slate-800">or</span>
+        <div class="flex-1 border-t border-slate-400"></div>
     </div>
     <div class="w-full flex mt-5 justify-center items-center">
-        <button
+        <a href="{{route('login')}}"
             type="button"
             class="px-6 lg:px-8 py-2.5 text-base lg:text-lg font-medium lg:font-sembold text-center text-white bg-blue-1 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-1 dark:focus:ring-blue-800"
             >
         Login
-        </button>
+        </a>
     </div>
 </div>

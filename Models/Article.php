@@ -483,9 +483,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         );
     }
 
-    /**
-     * Get the article's description.
-     */
+    /*
+     * NO ! 
     protected function createdAt(): Attribute
     {
         return new Attribute(
@@ -494,6 +493,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
             }
         );
     }
+    */
 
     public function getUuidAttribute(?string $value): string
     {
