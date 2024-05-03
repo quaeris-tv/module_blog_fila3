@@ -3,7 +3,7 @@
         <x-heroicon-o-fire class="text-blue-500 size-8"/>
         <span>{{ $title }}</span>
     </h2>
-    <section aria-label="Hot topics">
+    <section aria-label="{{ $title }}">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             @foreach($_theme->getHotTopics() as $category)
                 <a class="bg-white rounded-lg overflow-clip" href="{{ route('category_slug.show', ['lang'=>$lang,'category_slug' => $category['slug'] ]) }}">
