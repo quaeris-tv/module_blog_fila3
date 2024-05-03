@@ -15,10 +15,10 @@ use Modules\Blog\Filament\Blocks\Leaderboard;
 use Modules\Blog\Filament\Blocks\Search;
 use Modules\Blog\Filament\Blocks\Setting;
 use Modules\Rating\Filament\Blocks\Rating;
+use Modules\UI\Filament\Blocks\Hero;
 use Modules\UI\Filament\Blocks\Paragraph;
 use Modules\UI\Filament\Blocks\Slider;
 use Modules\UI\Filament\Blocks\Title;
-use Modules\UI\Filament\Blocks\Hero;
 
 class PageContent
 {
@@ -28,7 +28,6 @@ class PageContent
     ): Builder {
         return Builder::make($name)
             ->blocks([
-                
                 Title::make(context: $context),
                 Paragraph::make(context: $context),
                 Image::make(context: $context),
