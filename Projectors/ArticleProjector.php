@@ -82,7 +82,6 @@ class ArticleProjector extends Projector
             Assert::notNull($profile = $winner->profile);
             $profile->increment('credits', $reward);
 
-
             Transaction::create(
                 [
                     'model_type' => 'article',
@@ -93,14 +92,10 @@ class ArticleProjector extends Projector
                     'note' => 'rating_article_winner',
                 ]
             );
-
-
         }
         $record->update(['rewarded_at' => now()]);
         $rating_morph->is_winner = true;
         $rating_morph->save();
-
-
     }
 
     // public function onCloseArticle(CloseArticle $event): void
