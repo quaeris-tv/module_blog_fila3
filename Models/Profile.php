@@ -6,13 +6,14 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
+use Modules\User\Models\User;
+use Modules\Rating\Models\Rating;
+use Modules\Blog\Models\Transaction;
+use Modules\User\Models\BaseProfile;
+use Modules\Rating\Models\RatingMorph;
+// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\BaseProfile;
-// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\User\Models\User;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
@@ -120,6 +121,14 @@ class Profile extends BaseProfile
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    /**
+     * @return HasMany<Transaction>
+     */
+    public function transanctions()
+    {
+        return $this->hasMany(Transaction::class, 'user_id', 'user_id');
     }
 
     /**

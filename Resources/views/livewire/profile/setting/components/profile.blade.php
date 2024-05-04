@@ -126,7 +126,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
+                    {{-- @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
                         <tr>
                             <td>{{ $morph->created_at }}</td>
                             <td class="text-center">{{ $morph->rating->title ?? 'not defined' }}</td>
@@ -135,7 +135,23 @@
                             <td class="text-center">-</td>
                             <td class="text-center">-</td>
                         </tr>
+                    @endforeach --}}
+
+
+                    {{-- {{ dddx($_profile->transanctions) }} --}}
+                    @foreach($_profile->transanctions as $trans)
+                        {{ dddx($trans->article) }}
+                        <tr>
+                            <td>{{ $trans->created_at }}</td>
+                            <td class="text-center">{{ $trans->article->title ?? 'not defined' }}</td>
+                            <td><a href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $trans->article->slug ]) }}" target="_blank" class="text-blue-500">{{ $trans->article->title }}</a></td>
+                            <td class="text-center">{{ $trans->credits }}</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                        </tr>
+
                     @endforeach
+                    
                     {{-- <tr>
                         <td>2024-04-15</td>
                         <td class="text-center">
