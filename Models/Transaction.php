@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Modules\Rating\Models\RatingMorph;
+
 class Transaction extends BaseModel
 {
     /** @var string */
@@ -14,9 +16,9 @@ class Transaction extends BaseModel
      */
     protected $fillable = ['date', 'model_type', 'model_id', 'user_id', 'credits', 'note'];
 
-    public function article()
+    public function getRatingMorph(): RatingMorph
     {
-        // return $this->morphOne(Article::class, 'model');
-        return $this->morphTo();
+        $rating_morph = RatingMorph::where('rating_id', $this->model_id)->first();
+        return $rating_morph;
     }
 }

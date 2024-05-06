@@ -23,4 +23,14 @@ return [
         'email' => 'email',
         'is_active' => 'attivo ?',
     ],
+
+    'setting' => [
+        'date' => 'Data',
+        'action' => 'Azione',
+        'market' => 'Articolo',
+        'outcome' => 'Ammontare',
+        'option' => 'Opzione',
+        'welcome' => 'Regalo di benvenuto',
+        'rating_article' => 'Scommessa effettuata'
+    ]
 ];

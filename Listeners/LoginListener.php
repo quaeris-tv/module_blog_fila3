@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Listeners;
 
-use Illuminate\Auth\Events\Login;
-use Modules\Blog\Models\Profile;
-use Modules\User\Models\User;
+use Carbon\Carbon;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\User;
+use Modules\Blog\Models\Profile;
+use Illuminate\Auth\Events\Login;
+use Modules\Blog\Models\Transaction;
 
 class LoginListener
 {
@@ -26,18 +28,25 @@ class LoginListener
         Assert::notNull($user = $event->user);
         Assert::isInstanceOf($user, User::class);
 
-        // .....
-        // $user->profile()->create([
+        $welcome_login = Transaction::where('user_id', $user->id)
+                ->where('note', 'welcome')
+                ->first();
+
+        if($welcome_login == null){
+            Transaction::create([
+                'model_type' => 'profile',
+                'model_id' => $user->profile->id,
+                'user_id' => $user->id,
+                'date' => Carbon::now(),
+                'credits' => 1000,
+                'note' => 'welcome',
+            ]);
+        }
+
+        // $user->profile()->firstOrcreate([
         //     'email' => $user->email,
         //     'credits' => 1000,
         // ]);
 
-        // Profile::firstOrCreate(
-        //     [
-        //     'user_id' => $event->user->id,
-        //     'email' => $event->user->email,
-        //     'credits' => 1000
-        //     ],
-        // );
     }
 }

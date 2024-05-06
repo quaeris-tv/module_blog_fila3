@@ -117,16 +117,16 @@
             <table class="w-full" cellpadding="12">
                 <thead>
                     <tr class="text-sm text-gray-400 bg-gray-50">
-                        <th class="text-start">Date</th>
-                        <th>Action</th>
-                        <th class="text-start">Market</th>
-                        <th>Outcome</th>
-                        <th>Av. Share Price</th>
-                        <th>Amount</th>
+                        <th class="text-start">{{ __('blog::profile.setting.date') }}</th>
+                        <th>{{ __('blog::profile.setting.action') }}</th>
+                        <th class="text-start">{{ __('blog::profile.setting.market') }}</th>
+                        <th>{{ __('blog::profile.setting.outcome') }}</th>
+                        <th>{{ __('blog::profile.setting.option') }}</th>
+                        {{-- <th>Amount</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
+                    {{-- @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
                         <tr>
                             <td>{{ $morph->created_at }}</td>
                             <td class="text-center">{{ $morph->rating->title ?? 'not defined' }}</td>
@@ -135,38 +135,36 @@
                             <td class="text-center">-</td>
                             <td class="text-center">-</td>
                         </tr>
-                    @endforeach
-
-
-                    {{-- {{ dddx($_profile->transanctions) }} --}}
-                    {{-- @foreach($_profile->transanctions as $trans)
-                        {{ dddx($trans->article) }}
-                        <tr>
-                            <td>{{ $trans->created_at }}</td>
-                            <td class="text-center">{{ $trans->article->title ?? 'not defined' }}</td>
-                            <td><a href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $trans->article->slug ]) }}" target="_blank" class="text-blue-500">{{ $trans->article->title }}</a></td>
-                            <td class="text-center">{{ $trans->credits }}</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">-</td>
-                        </tr>
-
-                    @endforeach
-
-
-                    {{-- {{ dddx($_profile->transanctions) }} --}}
-                    {{-- @foreach($_profile->transanctions as $trans)
-                        {{ dddx($trans->article) }}
-                        <tr>
-                            <td>{{ $trans->created_at }}</td>
-                            <td class="text-center">{{ $trans->article->title ?? 'not defined' }}</td>
-                            <td><a href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $trans->article->slug ]) }}" target="_blank" class="text-blue-500">{{ $trans->article->title }}</a></td>
-                            <td class="text-center">{{ $trans->credits }}</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">-</td>
-                        </tr>
-
                     @endforeach --}}
-                    
+
+                    @foreach($_profile->transanctions as $trans)
+                        <tr>
+                            <td>{{ $trans->created_at }}</td>
+                            <td class="text-center">{{ __('blog::profile.setting.'.$trans->note) ?? 'not defined' }}</td>
+                            <td>
+                                @if($trans->model_type == 'profile')
+                                    -
+                                @else
+                                    @php
+                                        $rating_morph = $trans->getRatingMorph();
+                                    @endphp
+                                    <a href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $rating_morph->model->slug ]) }}" target="_blank" class="text-blue-500">
+                                        {{ $rating_morph->model->title }}
+                                    </a>
+                                @endif
+                            </td>
+                            <td class="text-center">{{ $trans->credits }}</td>
+                            <td class="text-center">
+                                @if($trans->model_type == 'profile')
+                                    -
+                                @else
+                                    {{ $rating_morph->rating->title }}
+                                @endif
+                            </td>
+                            {{-- <td class="text-center">-</td> --}}
+                        </tr>
+                    @endforeach
+
                     {{-- <tr>
                         <td>2024-04-15</td>
                         <td class="text-center">

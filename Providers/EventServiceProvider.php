@@ -29,9 +29,9 @@ class EventServiceProvider extends ServiceProvider
         // SocialiteWasCalled::class => [
         //     Auth0ExtendSocialite::class.'@handle',
         // ],
-        // Login::class => [
-        //     LoginListener::class,
-        // ],
+        Login::class => [
+            LoginListener::class,
+        ],
         // Logout::class => [
         //     LogoutListener::class,
         // ],
