@@ -32,5 +32,6 @@ return [
         'option' => 'Opzione',
         'welcome' => 'Regalo di benvenuto',
         'rating_article' => 'Scommessa effettuata',
+        'rating_article_winner' => 'Vincente'
     ],
 ];

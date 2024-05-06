@@ -32,5 +32,6 @@ return [
         'option' => 'Option',
         'welcome' => 'Welcome gift',
         'rating_article' => 'Bet placed',
+        'rating_article_winner' => 'Winning'
     ],
 ];
