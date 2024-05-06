@@ -34,17 +34,13 @@
         </div>
 	</div>
 
-    @php
-        $_profile_transanctions = $_profile->transanctions;
-    @endphp
-
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div class="flex items-center p-4 space-x-4 border rounded-xl">
             <x-heroicon-o-arrows-up-down class="text-blue-500 size-8"/>
             <div>
                 <div class="text-gray-500">Market traded</div>
                 <h2 class="text-4xl font-bold">
-                    {{ $_profile_transanctions->count() }}
+                    {{ $_profile->ratingMorphs->count() }}
                 </h2>
             </div>
         </div>
@@ -53,7 +49,7 @@
             <div>
                 <div class="text-gray-500">Total outcome</div>
                 <h2 class="text-4xl font-bold">
-                    {{ $_profile_transanctions->sum('credits') }} <span class="text-3xl font-medium text-gray-400">ø</span>
+                    {{ $_profile->ratingMorphs->sum('value') }} <span class="text-3xl font-medium text-gray-400">ø</span>
                 </h2>
             </div>
         </div>
@@ -61,9 +57,9 @@
             <x-heroicon-o-receipt-percent class="text-blue-500 size-8"/>
             <div>
                 <div class="text-gray-500">Win Rate</div>
-                @if($_profile_transanctions->count() > 0)
+                @if($_profile->ratingMorphs->count() > 0)
                     <h2 class="text-4xl font-bold">
-                        {{ number_format($_profile_transanctions->where('is_winner')->count() / $_profile_transanctions->count() * 100, 2) }}%
+                        {{ number_format($_profile->ratingMorphs->where('is_winner')->count() / $_profile->ratingMorphs->count() * 100, 2) }}%
                     </h2>
                 @else
                     <h2 class="text-4xl font-bold">
@@ -74,6 +70,10 @@
         </div>
     </div>
 
+
+    @php
+        $_profile_transanctions = $_profile->transanctions;
+    @endphp
     <div>
         <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">({{ $_profile_transanctions->count()}})</span></h6>
         <div class="py-2 overflow-x-auto">
