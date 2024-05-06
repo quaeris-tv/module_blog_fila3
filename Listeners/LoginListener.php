@@ -33,6 +33,12 @@ class LoginListener
                 ->first();
 
         if (null == $welcome_login) {
+            $user->profile()->firstOrcreate([
+                'email' => $user->email,
+                'credits' => 1000,
+            ]);
+
+
             Transaction::create([
                 'model_type' => 'profile',
                 'model_id' => $user->profile->id,
