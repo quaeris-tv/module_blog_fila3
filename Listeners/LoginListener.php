@@ -26,7 +26,6 @@ class LoginListener
         Assert::notNull($user = $event->user);
         Assert::isInstanceOf($user, User::class);
 
-
         // .....
         // $user->profile()->create([
         //     'email' => $user->email,
