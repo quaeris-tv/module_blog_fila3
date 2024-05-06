@@ -38,7 +38,6 @@ class LoginListener
                 'credits' => 1000,
             ]);
 
-
             Transaction::create([
                 'model_type' => 'profile',
                 'model_id' => $user->profile->id,
