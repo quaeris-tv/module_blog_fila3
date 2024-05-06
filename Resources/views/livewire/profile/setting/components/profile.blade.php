@@ -126,7 +126,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
+                    @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
                         <tr>
                             <td>{{ $morph->created_at }}</td>
                             <td class="text-center">{{ $morph->rating->title ?? 'not defined' }}</td>
@@ -135,11 +135,11 @@
                             <td class="text-center">-</td>
                             <td class="text-center">-</td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
 
 
                     {{-- {{ dddx($_profile->transanctions) }} --}}
-                    @foreach($_profile->transanctions as $trans)
+                    {{-- @foreach($_profile->transanctions as $trans)
                         {{ dddx($trans->article) }}
                         <tr>
                             <td>{{ $trans->created_at }}</td>
