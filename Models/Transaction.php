@@ -19,6 +19,7 @@ class Transaction extends BaseModel
     public function getRatingMorph(): RatingMorph
     {
         $rating_morph = RatingMorph::where('rating_id', $this->model_id)->first();
+
         return $rating_morph;
     }
 }
