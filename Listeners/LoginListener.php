@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Listeners;
 
 use Carbon\Carbon;
-use Webmozart\Assert\Assert;
-use Modules\User\Models\User;
-use Modules\Blog\Models\Profile;
 use Illuminate\Auth\Events\Login;
+use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Transaction;
+use Modules\User\Models\User;
+use Webmozart\Assert\Assert;
 
 class LoginListener
 {
@@ -32,7 +32,7 @@ class LoginListener
                 ->where('note', 'welcome')
                 ->first();
 
-        if($welcome_login == null){
+        if (null == $welcome_login) {
             Transaction::create([
                 'model_type' => 'profile',
                 'model_id' => $user->profile->id,
@@ -47,6 +47,5 @@ class LoginListener
         //     'email' => $user->email,
         //     'credits' => 1000,
         // ]);
-
     }
 }
