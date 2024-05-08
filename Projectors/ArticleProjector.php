@@ -42,8 +42,8 @@ class ArticleProjector extends Projector
 
         Transaction::create(
             [
-                'model_type' => 'article',
-                'model_id' => $event->articleId,
+                'model_type' => 'rating',
+                'model_id' => $event->ratingId,
                 'user_id' => $event->userId,
                 'date' => Carbon::now(),
                 'credits' => $event->credit * -1,
@@ -81,6 +81,17 @@ class ArticleProjector extends Projector
             ]);
             Assert::notNull($profile = $winner->profile);
             $profile->increment('credits', $reward);
+
+            Transaction::create(
+                [
+                    'model_type' => 'rating',
+                    'model_id' => $event->ratingId,
+                    'user_id' => $profile->user->id,
+                    'date' => Carbon::now(),
+                    'credits' => $reward,
+                    'note' => 'rating_article_winner',
+                ]
+            );
         }
         $record->update(['rewarded_at' => now()]);
         $rating_morph->is_winner = true;

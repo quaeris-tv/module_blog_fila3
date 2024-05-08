@@ -69,12 +69,12 @@ class MenuResource extends Resource
                         ->collection('menu')
                     // ->preserveFilenames()
                     ,
-                    Forms\Components\Select::make('parent_id')
-                        ->label('link/menu Padre')
-                        ->options(
-                            Menu::getTreeMenuOptions()
-                        )
-                        ->searchable(),
+                    // Forms\Components\Select::make('parent_id')
+                    //     ->label('link/menu Padre')
+                    //     ->options(
+                    //         Menu::getTreeMenuOptions()
+                    //     )
+                    //     ->searchable(),
                     \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
                         ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
                         ->columns([

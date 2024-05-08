@@ -8,8 +8,8 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Modules\Blog\Listeners\LoginListener;
 use Modules\Blog\Listeners\ProfileRegisteredListener;
-use Modules\User\Listeners\LoginListener;
 use Modules\User\Listeners\LogoutListener;
 use SocialiteProviders\Auth0\Auth0ExtendSocialite;
 use SocialiteProviders\Manager\SocialiteWasCalled;
@@ -29,9 +29,9 @@ class EventServiceProvider extends ServiceProvider
         // SocialiteWasCalled::class => [
         //     Auth0ExtendSocialite::class.'@handle',
         // ],
-        // Login::class => [
-        //     LoginListener::class,
-        // ],
+        Login::class => [
+            LoginListener::class,
+        ],
         // Logout::class => [
         //     LogoutListener::class,
         // ],

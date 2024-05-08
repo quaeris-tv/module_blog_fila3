@@ -1,5 +1,5 @@
 {{-- @foreach(collect(->toArray())->split(2) as $_articles) --}}
-    <div class="gap-5" style="column-count: 2; gap: 1rem; counter-reset: grid;">
+    <div class="gap-5 sm:columns-2" style="gap: 1rem; counter-reset: grid;">
     @foreach($articles as $article)
         @php
             $article = $_theme->mapArticle($article);
