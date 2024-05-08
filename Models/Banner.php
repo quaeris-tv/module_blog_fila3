@@ -200,11 +200,11 @@ class Banner extends BaseModel implements HasMedia
 
     public function getUrlCategoryPage(): string
     {
-        if($this->category == null){
-            return route('categories', ['lang'=> app()->getLocale()]);
+        if (null == $this->category) {
+            return route('categories', ['lang' => app()->getLocale()]);
         }
 
-        return route('category_slug.show', ['lang'=> app()->getLocale(),'category_slug' => $this->category->slug ]);
+        return route('category_slug.show', ['lang' => app()->getLocale(), 'category_slug' => $this->category->slug]);
     }
 }
 

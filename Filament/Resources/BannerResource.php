@@ -48,8 +48,8 @@ class BannerResource extends XotBaseResource
                         ->options(Category::getTreeCategoryOptions()),
                     // Forms\Components\TextInput::make('link')
                     //     ->columnSpan(1)
-                        // ->required(),
-                        // ->helperText('bla bla bla'),
+                    // ->required(),
+                    // ->helperText('bla bla bla'),
                     // Forms\Components\DateTimePicker::make('start_date')
                     //     ->columnSpan(1),
                     // Forms\Components\DateTimePicker::make('end_date')
