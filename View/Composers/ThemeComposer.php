@@ -285,10 +285,12 @@ class ThemeComposer
 
     public function getBanner(): array
     {
-        $results = Banner::all()->sortBy('pos')->toArray();
+        $results = Banner::all()->sortBy('pos');
         $tmp = [];
         foreach ($results as $content) {
-            $tmp[] = SliderData::from($content);
+            $slider_data = $content->toArray();
+            $slider_data['link'] = $content->getUrlCategoryPage();
+            $tmp[] = SliderData::from($slider_data);
         }
 
         return $tmp;
