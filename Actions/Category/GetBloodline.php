@@ -20,6 +20,7 @@ class GetBloodline
         }
         Assert::notNull($category = Category::find($category_id));
 
-        return $category->bloodline()->get()->reverse();
+        // return $category->bloodline()->get()->reverse();
+        return $category->ancestorsAndSelf()->get()->reverse();
     }
 }

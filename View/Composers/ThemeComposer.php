@@ -172,7 +172,11 @@ class ThemeComposer
     {
         Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class);
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->content_blocks, model: $page);
+        $blocks = $page->content_blocks;
+        if (! is_array($blocks)) {
+            $blocks = [];
+        }
+        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $blocks, model: $page);
 
         return $page->render();
     }
@@ -349,7 +353,12 @@ class ThemeComposer
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
             }
-
+            // dddx([
+            //     $rows,
+            //     $rows->toArray(),
+            //     $content,
+            //     // ArticleData::from($content)
+            // ]);
             $tmp[] = ArticleData::from($content);
         }
 

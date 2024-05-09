@@ -1,6 +1,6 @@
 <section class="space-y-12">
 	<div>
-		<h6 class="text-xs text-gray-400 mb-2.5">PERSONAL INFO</h6>
+		{{-- <h6 class="text-xs text-gray-400 mb-2.5">PERSONAL INFO</h6>
 		<hr>
 		<ul>
 			<li>
@@ -22,7 +22,7 @@
 				</a>
 			</li>
 		</ul>
-	</div>
+	</div> --}}
 
 	<div>
 		<div class="flex justify-between">
@@ -107,10 +107,7 @@
 				<div class="flex items-center justify-between py-2 space-x-6">
 					<span class="text-sm font-bold">Language</span>
 					<div>
-						<select name="lang" class="font-bold text-blue-500 border-none rounded-none ring-0 focus:border-none focus:ring-0" id="">
-							<option value="EN" selected>EN</option>
-							<option value="ID">ID</option>
-						</select>
+						<livewire:lang.switcher />
 					</div>
 				</div>
 			</li>

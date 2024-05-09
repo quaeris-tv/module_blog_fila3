@@ -1,6 +1,6 @@
 <div class="flex flex-col" {{-- x-show="isloggedIn" --}}>
     <div class="block w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div class="w-full flex py-3 px-3 justify-between bg-blue-1 text-white font-bold">
+        <div class="w-full flex py-3 px-3 justify-between bg-blue-1 text-white font-bold lg:rounded-t">
             Place bet
         </div>
         <form wire:submit="save">

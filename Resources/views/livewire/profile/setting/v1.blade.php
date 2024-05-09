@@ -12,7 +12,7 @@ if(!in_array($currentTab, ['profile', 'settings'])){
 	<ul class="flex items-center">
 		<li>
 			<a 
-				href="pages/setting" 
+				href="{{ url("/$lang/pages/setting") }}" 
 				class="flex items-center px-3 py-2 transition-colors space-x-1 border-b-2 {{ $currentTab == 'profile' ? 'border-blue-500' : 'border-gray-200'}}">
 				<x-heroicon-o-user class="size-5"/>
 				<span>Profile</span>
@@ -20,7 +20,7 @@ if(!in_array($currentTab, ['profile', 'settings'])){
 		</li>
 		<li>
 			<a 
-				href="pages/setting?tab=settings" 
+				href="{{ url("/$lang/pages/setting?tab=settings") }}" 
 				{{-- href="{{ route('page_slug.show', ['lang'=>$lang,'page_slug' => $page->slug ]) }}" --}}
 				class="flex items-center px-3 py-2 transition-colors space-x-1 border-b-2 {{ $currentTab == 'settings' ? 'border-blue-500' : 'border-gray-200'}}">
 				<x-heroicon-o-cog-6-tooth class="size-5"/>
