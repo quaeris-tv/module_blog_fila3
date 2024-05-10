@@ -105,7 +105,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             return $this->guestModal();
         }
 
-        Assert::notNull($article = $this->article);
+        Assert::notNull($article = $this->article,'['.__LINE__.']['.__FILE__.']');
         if ('expired' == $article->getTimeLeftForHumans()) {
             return $this->checkExpired();
         }
@@ -157,15 +157,15 @@ class RatingsWithImage extends Component implements HasForms, HasActions
 
     public function checkModal(): Action
     {
-        Assert::notNull($user = Auth::user());
-        Assert::notNull($profile = $user->profile);
+        Assert::notNull($user = Auth::user(),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($profile = $user->profile,'['.__LINE__.']['.__FILE__.']');
         Assert::isInstanceOf($profile, Profile::class);
 
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
-                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
+                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first(),'['.__LINE__.']['.__FILE__.']');
                 // $article_id = $rating_morph->model_id;
-                Assert::notNull($this->article);
+                Assert::notNull($this->article,'['.__LINE__.']['.__FILE__.']');
                 $article_id = $this->article->id;
                 // dddx([
                 //     $this->article->id,

@@ -100,7 +100,7 @@ class Setting extends Component implements HasForms, HasActions
                     'email' => $data['email'],
                 ]);
 
-                Assert::notNull($this->model->user);
+                Assert::notNull($this->model->user,'['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update([
                     'email' => $data['email'],
                     'email_verified_at' => $verified,
@@ -135,7 +135,7 @@ class Setting extends Component implements HasForms, HasActions
             ->modalSubmitActionLabel('Update password')
             ->modalCancelActionLabel('Cancel')
             ->action(function (array $data) {
-                Assert::notNull($this->model->user);
+                Assert::notNull($this->model->user,'['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update([
                     'password' => bcrypt($data['password']),
                 ]);
@@ -183,7 +183,7 @@ class Setting extends Component implements HasForms, HasActions
                     'last_name' => $data['last_name'],
                 ]);
 
-                Assert::notNull($this->model->user);
+                Assert::notNull($this->model->user,'['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update(['name' => $data['user_name']]);
             })
         ;
