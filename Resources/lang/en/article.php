@@ -25,8 +25,12 @@ return [
         'import_min' => 'You have exceeded the amount of '.$profile->credits.' credits',
         'no_choice' => 'No option chosen',
     ],
-
+    'single_expired' => 'Expired',
     'expired' => 'Item has expired, no more bets can be placed',
+    'no_vote' => 'Sorry, but this vote has been closed by :TIME, please try making another prediction',
+    'your_bet' => 'Your prediction',
+    'your_amount' => 'Prediction',
+    'if_win' => 'If you win'
 
     // 'fields' => [
     //     'name' => 'Nome',

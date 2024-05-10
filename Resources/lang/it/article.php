@@ -25,8 +25,12 @@ return [
         'import_min' => 'Hai superato la cifra di '.$profile->credits.' crediti',
         'no_choice' => 'Nessuna opzione scelta',
     ],
-
+    'single_expired' => 'Scaduto',
     'expired' => 'Articolo scaduto, non si possono fare più scommesse',
+    'no_vote' => 'Siamo spiacenti, ma questa votazione è chiusa da :TIME, per favore prova a fare un altra previsione',
+    'your_bet' => 'La tua previsione',
+    'your_amount' => 'Previsione',
+    'if_win' => 'Se vinci'
 
     // 'fields' => [
     //     'name' => 'Nome',
