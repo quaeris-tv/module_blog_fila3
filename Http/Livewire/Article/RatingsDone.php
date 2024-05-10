@@ -143,7 +143,7 @@ class RatingsDone extends Component
         return app(GetPercsOptionsById::class)->execute($this->article_data);
 
         // $result = [];
-        // Assert::notNull($article = Article::find($this->article_data['id']));
+        // Assert::notNull($article = Article::find($this->article_data['id']), '['.__LINE__.']['.__FILE__.']');
         // Assert::isInstanceOf($article, Article::class);
         // $total_volume = $article->getVolumeCredit();
 
