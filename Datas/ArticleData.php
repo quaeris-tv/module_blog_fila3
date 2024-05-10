@@ -54,7 +54,7 @@ class ArticleData extends Data
 
         $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
 
-        Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+        Assert::notNull($article = Article::where('uuid', $this->uuid)->first(),'['.__LINE__.']['.__FILE__.']');
         $this->betting_users = $article->getBettingUsers();
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
@@ -66,14 +66,14 @@ class ArticleData extends Data
     {
         return app(GetBloodline::class)->execute($this->category_id);
 
-        // Assert::notNull($category = Category::find($this->category_id));
+        // Assert::notNull($category = Category::find($this->category_id),'['.__LINE__.']['.__FILE__.']');
 
         // return $category->bloodline()->get()->reverse();
     }
 
     // public function getArticle(): Article
     // {
-    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first(),'['.__LINE__.']['.__FILE__.']');
 
     //     return $article;
     // }
