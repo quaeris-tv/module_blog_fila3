@@ -30,7 +30,7 @@ return [
     'no_vote' => 'Sorry, but this vote has been closed by :TIME, please try making another prediction',
     'your_bet' => 'Your prediction',
     'your_amount' => 'Prediction',
-    'if_win' => 'If you win'
+    'if_win' => 'If you win',
 
     // 'fields' => [
     //     'name' => 'Nome',
