@@ -61,14 +61,14 @@ class ArticleProjector extends Projector
             'user_id' => null,
         ]);
 
-        Assert::notNull($rating_morph,'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($rating_morph, '['.__LINE__.']['.__FILE__.']');
 
         $data = [
             'rating_id' => $event->ratingId,
             'model_type' => 'article',
             'model_id' => $event->articleId,
         ];
-        Assert::notNull($record = Article::firstWhere(['id' => $event->articleId]),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($record = Article::firstWhere(['id' => $event->articleId]), '['.__LINE__.']['.__FILE__.']');
 
         $winners = RatingMorph::where($data)->where('user_id', '!=', null)->get();
         $tot_win = app(GetSumByModelRatingIdAction::class)->execute($record, $event->ratingId);
@@ -79,7 +79,7 @@ class ArticleProjector extends Projector
                 'is_winner' => true,
                 'reward' => $reward,
             ]);
-            Assert::notNull($profile = $winner->profile,'['.__LINE__.']['.__FILE__.']');
+            Assert::notNull($profile = $winner->profile, '['.__LINE__.']['.__FILE__.']');
             $profile->increment('credits', $reward);
 
             Transaction::create(

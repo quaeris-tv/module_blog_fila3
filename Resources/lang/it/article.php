@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /*
 use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Models\Profile;
