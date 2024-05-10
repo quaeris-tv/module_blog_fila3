@@ -1,15 +1,17 @@
 <?php
 
 declare(strict_types=1);
-
+/*
 use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Models\Profile;
 use Webmozart\Assert\Assert;
-
+*/
+// NNOO PERCHE SE UNO E' SLOGGATO DA ERRORE !!
+/*
 Assert::notNull($user = Auth::user(),'['.__LINE__.']['.__FILE__.']');
 Assert::notNull($profile = $user->profile,'['.__LINE__.']['.__FILE__.']');
 Assert::isInstanceOf($profile, Profile::class);
-
+*/
 return [
     'navigation' => [
         'name' => 'Articolo',
@@ -22,7 +24,7 @@ return [
     'rating' => [
         'no_import' => 'Nessuna cifra inserita',
         'import_zero' => 'Nessuna cifra inserita',
-        'import_min' => 'Hai superato la cifra di '.$profile->credits.' crediti',
+        'import_min' => 'Hai superato la cifra di :credits: crediti',
         'no_choice' => 'Nessuna opzione scelta',
     ],
     'single_expired' => 'Scaduto',
