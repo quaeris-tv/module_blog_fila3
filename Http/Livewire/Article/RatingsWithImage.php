@@ -106,7 +106,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         }
 
         Assert::notNull($article = $this->article);
-        if ('scaduto' == $article->getTimeLeftForHumans()) {
+        if ('expired' == $article->getTimeLeftForHumans()) {
             return $this->checkExpired();
         }
 
