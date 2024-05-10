@@ -32,7 +32,7 @@ class ShowArticleCommand extends Command
     public function handle()
     {
         $articleId = (string) $this->argument('articleId');
-        Assert::notNull($article = Article::firstWhere(['id' => $articleId]),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($article = Article::firstWhere(['id' => $articleId]), '['.__LINE__.']['.__FILE__.']');
 
         $ratings = $article->ratings()
             ->where('user_id', null)

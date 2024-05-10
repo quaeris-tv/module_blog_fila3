@@ -57,13 +57,13 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             $this->datas = $this->article->getArrayRatingsWithImage();
         // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
-            Assert::notNull($ratings,'['.__LINE__.']['.__FILE__.']');
+            Assert::notNull($ratings, '['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
             $this->article_uuid = $article_uuid;
             $this->article = Article::where('uuid', $article_uuid)->first();
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
-        Assert::notNull($this->article,'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
         $this->ratings_percentage = $this->article->getRatingsPercentageByVolume();
     }

@@ -12,7 +12,7 @@ class GetPercsOptionsById
     public function execute(array $article_array): array
     {
         $result = [];
-        Assert::notNull($article = Article::find($article_array['id']),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($article = Article::find($article_array['id']), '['.__LINE__.']['.__FILE__.']');
         Assert::isInstanceOf($article, Article::class);
         $total_volume = $article->getVolumeCredit();
 

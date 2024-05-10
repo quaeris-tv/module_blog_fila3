@@ -31,7 +31,7 @@ class RatingsDone extends Component
     {
         $this->article_data = $article_data;
 
-        Assert::notNull($user = Auth::user(),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
         $this->user = $user->toArray();
 
         $this->user_ratings = $this->getUserRatings();

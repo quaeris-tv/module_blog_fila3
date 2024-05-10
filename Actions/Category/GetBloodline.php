@@ -18,7 +18,7 @@ class GetBloodline
         if (null == $category_id) {
             return collect([]);
         }
-        Assert::notNull($category = Category::find($category_id),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($category = Category::find($category_id), '['.__LINE__.']['.__FILE__.']');
 
         // return $category->bloodline()->get()->reverse();
         return $category->ancestorsAndSelf()->get()->reverse();

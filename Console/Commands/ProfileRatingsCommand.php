@@ -33,7 +33,7 @@ class ProfileRatingsCommand extends Command
     {
         $userId = (string) $this->argument('userId');
 
-        Assert::notNull($profile = Profile::firstWhere(['user_id' => $userId]),'['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($profile = Profile::firstWhere(['user_id' => $userId]), '['.__LINE__.']['.__FILE__.']');
 
         $rows = $profile->ratings()
             ->select('value', 'user_id', 'title as answer', 'model_id', 'model_type')
