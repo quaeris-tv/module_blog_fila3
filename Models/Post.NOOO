@@ -185,7 +185,7 @@ class Post extends BaseModel implements HasMedia
 
     public function getFormattedDate(): string
     {
-        Assert::notNull($this->published_at);
+        Assert::notNull($this->published_at,'['.__LINE__.']['.__FILE__.']');
 
         return $this->published_at->format('F jS Y');
     }

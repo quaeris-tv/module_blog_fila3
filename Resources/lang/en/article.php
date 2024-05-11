@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Models\Profile;
 use Webmozart\Assert\Assert;
 
-Assert::notNull($user = Auth::user());
-Assert::notNull($profile = $user->profile);
+Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
+Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
 Assert::isInstanceOf($profile, Profile::class);
 
 return [
