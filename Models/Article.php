@@ -312,7 +312,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
-        Assert::notNull($this->user);
+        Assert::notNull($this->user, '['.__LINE__.']['.__FILE__.']');
 
         return FeedItem::create()
             ->id($this->slug)
@@ -338,7 +338,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function getFormattedDate(): string
     {
-        Assert::notNull($this->published_at);
+        Assert::notNull($this->published_at, '['.__LINE__.']['.__FILE__.']');
 
         return $this->published_at->format('F jS Y');
     }

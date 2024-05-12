@@ -34,7 +34,7 @@ class RewardedCommand extends Command
     {
         // dddx('wip');
         $articleId = (string) $this->argument('articleId');
-        Assert::notNull($article = Article::firstWhere(['id' => $articleId]));
+        Assert::notNull($article = Article::firstWhere(['id' => $articleId]),'['.__LINE__.']['.__FILE__.']');
 
         // controllare che l'articolo sia scaduto
         // .....

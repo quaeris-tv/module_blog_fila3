@@ -53,7 +53,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             $this->datas = $this->article->getArrayRatingsWithImage();
         // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
-            Assert::notNull($ratings);
+            Assert::notNull($ratings,'['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
             $this->article_uuid = $article_uuid;
             $this->article = Article::where('uuid', $article_uuid)->first();
@@ -107,7 +107,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     {
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
-                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
+                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first(),'['.__LINE__.']['.__FILE__.']');
                 $article_id = $rating_morph->model_id;
                 app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], (int) $data['rating_id']);
             })

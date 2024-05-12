@@ -67,8 +67,8 @@ class ForImage extends Component implements HasForms
 
     public function save(): void
     {
-        Assert::notNull($user = Auth::user());
-        Assert::notNull($profile = $user->profile);
+        Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
         Assert::isInstanceOf($profile, Profile::class);
 
         $this->validate([
