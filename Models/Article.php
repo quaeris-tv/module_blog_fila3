@@ -9,20 +9,17 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Modules\Rating\Models\Contracts\HasRatingContract;
 use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\RatingMorph;
+use Modules\Rating\Models\Traits\HasRating;
 use Modules\User\Models\User;
 use Safe\DateTime;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\ModelStatus\HasStatuses;
-use Spatie\Searchable\Searchable;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
@@ -103,6 +100,7 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                     $ratings
  * @property int|null                                                                  $ratings_count
  * @property mixed                                                                     $translations
+ * @property string|null                                                               $rewarded_at
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
@@ -133,13 +131,47 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
  *
+ * @property int         $status_display
+ * @property string|null $bet_end_date
+ * @property string|null $event_start_date
+ * @property string|null $event_end_date
+ * @property int         $is_wagerable
+ * @property int|null    $wagers_count
+ * @property int|null    $wagers_count_canonical
+ * @property int|null    $wagers_count_total
+ * @property int|null    $wagers
+ * @property string|null $brier_score
+ * @property string|null $brier_score_play_money
+ * @property string|null $brier_score_real_money
+ * @property float|null  $volume_play_money
+ * @property float|null  $volume_real_money
+ * @property int         $is_following
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScorePlayMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScoreRealMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereEventEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereEventStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsFollowing($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsWagerable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSidebarBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereStatusDisplay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereVolumePlayMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereVolumeRealMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
+ *
  * @mixin \Eloquent
  */
-class Article extends BaseModel implements Feedable, HasMedia // , Searchable
-{use HasStatuses;
+class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
+{
     use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
+    use HasRating;
 
     protected $fillable = [
         'uuid',
@@ -202,6 +234,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         'volume_play_money',
         'volume_real_money',
         'is_following',
+        'rewarded_at',
     ];
 
     /** @var array<int, string> */
@@ -276,116 +309,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         return $this->belongsTo(Category::class);
     }
 
-    public function ratings(): MorphToMany
-    {
-        $pivot_class = RatingMorph::class;
-        $pivot = app($pivot_class);
-        $pivot_table = $pivot->getTable();
-        $pivot_db_name = $pivot->getConnection()->getDatabaseName();
-        $pivot_table_full = $pivot_db_name.'.'.$pivot_table;
-        $pivot_fields = $pivot->getFillable();
-
-        return $this->morphToMany(Rating::class, 'model', $pivot_table_full)
-            ->using($pivot_class)
-            ->withPivot($pivot_fields)
-            ->withTimestamps();
-    }
-
-    public function getOptionRatingsIdTitle(): array
-    {
-        // return $this->ratings()->where('user_id', null)->get();
-        return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'title', 'id');
-    }
-
-    public function getOptionRatingsIdColor(): array
-    {
-        // return $this->ratings()->where('user_id', null)->get();
-        return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
-    }
-
-    public function getArrayRatingsWithImage(): array
-    {
-        $ratings = $this
-        ->ratings()
-        // ->with('media')
-        ->where('user_id', null)
-        ->get()
-        // ->toArray()
-        ;
-
-        $ratings_array = [];
-
-        foreach ($ratings as $key => $rating) {
-            $ratings_array[$key] = $rating->toArray();
-            if (empty($rating->getFirstMediaUrl('rating'))) {
-                $rating->addMediaFromUrl('https://picsum.photos/id/'.$rating->id.'/300/200')
-                       ->toMediaCollection('rating');
-            }
-            $ratings_array[$key]['image'] = $rating->getFirstMediaUrl('rating');
-            $ratings_array[$key]['effect'] = false;
-        }
-
-        return $ratings_array;
-    }
-
-    public function getBettingUsers(): int
-    {
-        return count(RatingMorph::where('model_id', $this->id)
-            ->where('user_id', '!=', null)
-            ->groupBy('user_id')
-            ->get()
-            ->toArray());
-    }
-
-    public function getVolumeCredit(?int $rating_id = null): int
-    {
-        $ratings = RatingMorph::where('model_id', $this->id)
-            ->where('user_id', '!=', null);
-
-        if (null != $rating_id) {
-            $ratings = $ratings->where('rating_id', $rating_id);
-        }
-
-        $ratings = $ratings->get();
-
-        $tmp = 0;
-
-        foreach ($ratings as $rating) {
-            $tmp += $rating->value;
-        }
-
-        return $tmp;
-    }
-
-    public function getRatingsPercentage(): array
-    {
-        $ratings_options = $this->getOptionRatingsIdTitle();
-        $result = [];
-
-        foreach ($ratings_options as $key => $value) {
-            $b = RatingMorph::where('model_id', $this->id)
-                ->where('user_id', '!=', null)
-                ->count();
-
-            if (0 == $b) {
-                $b = 1;
-            }
-
-            $a = RatingMorph::where('model_id', $this->id)
-                ->where('user_id', '!=', null)
-                ->where('rating_id', $key)
-                ->count();
-
-            $result[$key] = round((100 * $a) / $b, 0);
-        }
-
-        return $result;
-    }
-
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
-        Assert::notNull($this->user);
+        Assert::notNull($this->user, '['.__LINE__.']['.__FILE__.']');
 
         return FeedItem::create()
             ->id($this->slug)
@@ -393,7 +320,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             ->summary($this->description)
             ->updated($this->updated_at)
             // ->link($this->path()) //Call to an undefined method Modules\Blog\Models\Article::path()
-            ->authorName($this->user->name);
+            ->authorName($this->user?->name ?? 'Unknown');
     }
 
     /**
@@ -411,7 +338,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
 
     public function getFormattedDate(): string
     {
-        Assert::notNull($this->published_at);
+        Assert::notNull($this->published_at, '['.__LINE__.']['.__FILE__.']');
 
         return $this->published_at->format('F jS Y');
     }
@@ -556,9 +483,8 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         );
     }
 
-    /**
-     * Get the article's description.
-     */
+    /*
+     * NO !!
     protected function createdAt(): Attribute
     {
         return new Attribute(
@@ -567,6 +493,7 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
             }
         );
     }
+    */
 
     public function getUuidAttribute(?string $value): string
     {
@@ -598,9 +525,10 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $endDate = $this->closed_at;
         $startDate = Carbon::now();
 
-        $end = Carbon::createFromDate($this->closed_at);
-        if ($startDate > $end) {
-            return 'scaduto';
+        if ($startDate > $endDate) {
+            return 'expired';
+            // return __('blog::article.single_expired');
+            // return 'scaduto';
         }
 
         // Calcola la differenza tra le due date
@@ -618,7 +546,9 @@ class Article extends BaseModel implements Feedable, HasMedia // , Searchable
         $minutes = $diff->i;
 
         if (0 == $month && 0 == $days && 0 == $hours && 0 == $minutes) {
+            // return __('blog::article.single_expired');
             return 'scaduto';
+            // return 'expired';
         }
 
         return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";

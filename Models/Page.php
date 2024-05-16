@@ -46,6 +46,11 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereFooterBlocks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSidebarBlocks($value)
  *
+ * @property mixed $translations
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocale(string $column, string $locale)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocales(string $column, array $locales)
+ *
  * @mixin \Eloquent
  */
 class Page extends BaseModel

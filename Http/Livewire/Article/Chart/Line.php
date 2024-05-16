@@ -58,7 +58,7 @@ class Line extends ChartWidget
             $data_chart['datasets'][] = [
                 'label' => $rating_title,
                 'data' => collect($data)->map(function ($item) use ($rating_id) {
-                    Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id));
+                    Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id), '['.__LINE__.']['.__FILE__.']');
 
                     return $rating_info->credit;
                 })->toArray(),

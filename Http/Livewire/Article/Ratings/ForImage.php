@@ -7,14 +7,15 @@ namespace Modules\Blog\Http\Livewire\Article\Ratings;
 use Filament\Facades\Filament;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Modules\Blog\Actions\Article\MakeBetAction;
-use Modules\Blog\Aggregates\ArticleAggregate;
-use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Models\Article;
+use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
+use Webmozart\Assert\Assert;
 
 class ForImage extends Component implements HasForms
 {
@@ -26,7 +27,7 @@ class ForImage extends Component implements HasForms
     public string $rating_title = '';
     public int $rating_id = 0;
     public array $article_ratings = [];
-    #[Validate('required|gt:0')]
+    // #[Validate('required|gt:0')]
     public int $import = 0;
     public string $type = 'show';
 
@@ -66,11 +67,21 @@ class ForImage extends Component implements HasForms
 
     public function save(): void
     {
-        // $this->validate([
-        //     'import' => 'required|gt:0',
-        //     // 'email' => 'required|email|unique:users,email',
-        // ]);
-        $this->validate();
+        Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($profile, Profile::class);
+
+        $this->validate([
+            // 'import' => ['required|gt:0|lte:'.$profile->credits],
+            // 'rating_title' => ['required'],
+            'import' => 'required|gt:0|lte:'.$profile->credits,
+            'rating_title' => 'required',
+        ], [
+            'import.required' => __('blog::article.rating.no_import'),
+            'import.gt' => __('blog::article.rating.import_zero'),
+            'import.lte' => __('blog::article.rating.import_min'),
+            'rating_title.required' => __('blog::article.rating.no_choice'),
+        ]);
 
         app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id);
 
@@ -97,5 +108,7 @@ class ForImage extends Component implements HasForms
         //     $this->rating_title,
         //     $this->import
         // ]);
+
+        $this->dispatch('refresh-credits');
     }
 }

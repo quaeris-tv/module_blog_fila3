@@ -34,6 +34,12 @@ use Illuminate\Support\Arr;
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withoutTrashed()
  *
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedBy($value)
+ *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot

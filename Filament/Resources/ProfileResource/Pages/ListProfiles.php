@@ -5,17 +5,27 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Tables\Columns\TextColumn;
 use Modules\Blog\Filament\Resources\ProfileResource;
+use Modules\User\Filament\Resources\BaseProfileResource\Pages\ListProfiles as UserListProfiles;
 
-class ListProfiles extends ListRecords
+class ListProfiles extends UserListProfiles
 {
     protected static string $resource = ProfileResource::class;
 
-    protected function getHeaderActions(): array
+    // protected function getHeaderActions(): array
+    // {
+    //    return [
+    //        Actions\CreateAction::make(),
+    //    ];
+    // }
+
+    protected function getTableColumns(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        $res = parent::getTableColumns();
+
+        $res[] = TextColumn::make('credits');
+
+        return $res;
     }
 }

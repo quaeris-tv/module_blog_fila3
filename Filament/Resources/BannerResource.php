@@ -21,7 +21,7 @@ class BannerResource extends XotBaseResource
     // use Translatable;
     protected static ?string $model = Banner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'icon-starbanner';
 
     // public static function getTranslatableLocales(): array
     // {
@@ -46,9 +46,10 @@ class BannerResource extends XotBaseResource
                     Forms\Components\Select::make('category_id')
                         ->required()
                         ->options(Category::getTreeCategoryOptions()),
-                    Forms\Components\TextInput::make('link')
-                        ->columnSpan(1)
-                        ->required(),
+                    // Forms\Components\TextInput::make('link')
+                    //     ->columnSpan(1)
+                    // ->required(),
+                    // ->helperText('bla bla bla'),
                     // Forms\Components\DateTimePicker::make('start_date')
                     //     ->columnSpan(1),
                     // Forms\Components\DateTimePicker::make('end_date')
@@ -108,7 +109,9 @@ class BannerResource extends XotBaseResource
                 ]),
             ])
             ->emptyStateActions([
-            ]);
+            ])
+            ->reorderable('pos')
+            ->defaultSort('pos', 'asc');
     }
 
     public static function getRelations(): array

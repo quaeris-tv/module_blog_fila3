@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center p-8 text-center border rounded">
+<div class="flex flex-col justify-center p-6 text-center border rounded">
     <div>
         <svg class="max-w-sm mx-auto" viewBox="0 0 1062 870" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="No Results">

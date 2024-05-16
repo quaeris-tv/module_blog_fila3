@@ -7,6 +7,7 @@ namespace Modules\Blog\View\Composers;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Blog\Datas\ArticleData;
@@ -100,6 +101,13 @@ class ThemeComposer
         return $this->getArticleDataArray($rows);
     }
 
+    public function paginateArticlesByCategory(string $category_id, int $limit = 6): Paginator|array
+    {
+        return Article::where('category_id', $category_id)
+            ->orderBy('published_at', 'desc')
+            ->simplePaginate($limit);
+    }
+
     /*
     public function getAuthors(): Collection
     {
@@ -161,7 +169,7 @@ class ThemeComposer
     }
 
     /**
-     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @return \Illuminate\Pagination\LengthAwarePaginator<Article>
      */
     public function getPaginatedArticles(int $num = 15)
     {
@@ -244,7 +252,7 @@ class ThemeComposer
         return $var;
     }
 
-    public function getMethodData(string $method, int $number = 6): array
+    public function getMethodData(string $method, int $number = 6): Paginator|array
     {
         return $this->{$method}($number);
     }
@@ -277,10 +285,12 @@ class ThemeComposer
 
     public function getBanner(): array
     {
-        $results = Banner::all()->toArray();
+        $results = Banner::all()->sortBy('pos');
         $tmp = [];
         foreach ($results as $content) {
-            $tmp[] = SliderData::from($content);
+            $slider_data = $content->toArray();
+            $slider_data['link'] = $content->getUrlCategoryPage();
+            $tmp[] = SliderData::from($slider_data);
         }
 
         return $tmp;
@@ -303,6 +313,50 @@ class ThemeComposer
         $results = $this->getLatestArticles($number); // ->toArray();
 
         return $this->getArticleDataArray($results);
+    }
+
+    public function paginatedArticlesLatest(int $limit = 6): Paginator
+    {
+        return Article::published()
+            ->publishedUntilToday()
+            ->orderBy('published_at', 'desc')
+            ->simplePaginate($limit);
+    }
+
+    public function paginatedArticlesComingSoon(int $limit = 6): Paginator
+    {
+        return Article::published()
+            ->where('event_start_date', '>', now())
+            ->orderBy('event_start_date')
+            ->simplePaginate($limit);
+    }
+
+    public function paginatedArticlesOrderByNumberOfBets(int $limit = 6): Paginator
+    {
+        return Article::published()
+            ->publishedUntilToday()
+            ->orderBy('wagers_count', 'desc')
+            ->simplePaginate($limit);
+    }
+
+    public function paginatedArticlesOrderByVolumes(int $limit = 6): Paginator
+    {
+        return Article::published()
+            ->publishedUntilToday()
+            ->orderBy('volume_play_money', 'desc')
+            ->simplePaginate($limit);
+    }
+
+    public function mapArticle(Article $article): ArticleData
+    {
+        $article = $article->toArray();
+
+        if (is_array($article['title'])) {
+            $lang = app()->getLocale();
+            $article['title'] = $article['title'][$lang] ?? last($article['title']);
+        }
+
+        return ArticleData::from($article);
     }
 
     public function getArticlesComingSoon(int $number = 6): array

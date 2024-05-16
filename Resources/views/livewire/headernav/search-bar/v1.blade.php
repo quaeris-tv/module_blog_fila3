@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between h-10 max-w-lg gap-4 px-4 mx-auto transition-colors bg-gray-100 rounded-lg search-box hover:bg-gray-50 focus:bg-gray-50">
         {{-- <input type="text" placeholder="Search here..." x-model.debounce.500ms="search" class="block w-full p-0 bg-transparent border-none outline-none focus:outline-none focus:ring-0" /> --}}
 
-        <input type="text" wire:model.live="search" placeholder="Cerca..." class="block w-full p-0 bg-transparent border-none outline-none focus:outline-none focus:ring-0"/>
+        <input type="text" wire:model.live="search" placeholder="{{ __('pub_theme::headernav.search') }}..." class="block w-full p-0 bg-transparent border-none outline-none focus:outline-none focus:ring-0"/>
 
 
         <x-heroicon-o-magnifying-glass class="w-6 h-6" />

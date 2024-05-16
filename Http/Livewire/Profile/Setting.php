@@ -7,6 +7,7 @@ namespace Modules\Blog\Http\Livewire\Profile;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -17,6 +18,9 @@ use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
+/**
+ * @property ComponentContainer $form
+ */
 class Setting extends Component implements HasForms, HasActions
 {
     use InteractsWithForms;
@@ -55,22 +59,22 @@ class Setting extends Component implements HasForms, HasActions
         return view($view, $view_params);
     }
 
-    public function editProfile()
+    public function editProfile(): void
     {
         $this->mountAction('edit');
     }
 
-    public function editPassword()
+    public function editPassword(): void
     {
         $this->mountAction('editPassword');
     }
 
-    public function editEmail()
+    public function editEmail(): void
     {
         $this->mountAction('editEmail');
     }
 
-    public function editEmailAction()
+    public function editEmailAction(): Action
     {
         return Action::make('editEmail')
             ->record($this->model)
@@ -96,7 +100,7 @@ class Setting extends Component implements HasForms, HasActions
                     'email' => $data['email'],
                 ]);
 
-                Assert::notNull($this->model->user);
+                Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update([
                     'email' => $data['email'],
                     'email_verified_at' => $verified,
@@ -106,7 +110,7 @@ class Setting extends Component implements HasForms, HasActions
             });
     }
 
-    public function editPasswordAction()
+    public function editPasswordAction(): Action
     {
         return Action::make('editPassword')
             ->record($this->model)
@@ -124,13 +128,14 @@ class Setting extends Component implements HasForms, HasActions
                     ->password(),
             ])
             ->modalHeading('Change password')
+            ->closeModalByClickingAway(false)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
             ->modalCancelActionLabel('Cancel')
             ->action(function (array $data) {
-                Assert::notNull($this->model->user);
+                Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update([
                     'password' => bcrypt($data['password']),
                 ]);
@@ -163,18 +168,22 @@ class Setting extends Component implements HasForms, HasActions
                     ->label('Last Name'),
             ])
             ->modalHeading('Edit Profile')
+            ->closeModalByClickingAway(false)
             ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Save changes')
             ->modalCancelActionLabel('Cancel')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
             ->action(function (array $data, $arguments, Component $livewire) {
                 $this->model->update([
                     'first_name' => $data['first_name'],
                     'last_name' => $data['last_name'],
                 ]);
 
-                Assert::notNull($this->model->user);
+                Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update(['name' => $data['user_name']]);
             })
         ;

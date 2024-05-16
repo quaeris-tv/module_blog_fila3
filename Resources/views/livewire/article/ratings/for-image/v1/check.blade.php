@@ -1,12 +1,12 @@
 <div class="flex flex-col" {{-- x-show="isloggedIn" --}}>
     <div class="block w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div class="w-full flex py-3 px-3 justify-between bg-blue-1 text-white font-bold lg:rounded-t">
+        <div class="flex justify-between w-full px-3 py-3 font-bold text-white bg-blue-1 lg:rounded-t">
             Place bet
         </div>
         <form wire:submit="save">
-            <div class="flex flex-col my-4 border gap-3 rounded-t justify-center items-center w-11/12 mx-auto">
-                <div class="bg-neutral-1 w-full p-1 rounded mx-auto">
-                    <div class="py-4 px-2 flex justify-between items-center">
+            <div class="flex flex-col items-center justify-center w-11/12 gap-3 mx-auto my-4 border rounded-t">
+                <div class="w-full p-1 mx-auto rounded bg-neutral-1">
+                    <div class="flex items-center justify-between px-2 py-4">
                         <span class="text-sm">Your bet
                             {{ $rating_title }}
                         </span>
@@ -21,9 +21,9 @@
                 <div class="w-full px-4 py-2.5 bg-white inline-flex items-center justify-between">
                     <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
-                        type="text"
+                        type="number"
                         value="0"
-                        wire:model.live="import"
+                        wire:model.live.lazy="import"
                         />
                     {{-- <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
@@ -56,20 +56,21 @@
                     {{-- <span class="ml-1 place-bet__text-field__displayCode">Ooms</span> --}}
                 </div>
                 @error('import') <span>{{ $message }}</span> @enderror
+                @error('rating_title') <span>{{ $message }}</span> @enderror
             </div>
-            {{-- <div class="flex w-full items-center justify-center py-3 mb-3">
-                <a href="/m/cash-in" class="text-blue-1 font-semibold">Add real money</a>
+            {{-- <div class="flex items-center justify-center w-full py-3 mb-3">
+                <a href="/m/cash-in" class="font-semibold text-blue-1">Add real money</a>
             </div> --}}
             <div class="px-4 mb-3">
-                {{-- <div class="flex justify-between items-center py-2 text-neutral-4 text-base">
+                {{-- <div class="flex items-center justify-between py-2 text-base text-neutral-4">
                     <span>Av. price / share</span>
                     <span class="font-bold text-black">0<span> / Share</span></span>
                 </div>
-                <div class="flex justify-between items-center py-2 text-neutral-4 text-base">
+                <div class="flex items-center justify-between py-2 text-base text-neutral-4">
                     <span>Bet Amount</span>
                     <span class="font-bold text-black">100<span class="ml-1">Ooms</span></span>
                 </div>
-                <div class="flex justify-between items-center py-2 text-neutral-4 text-base">
+                <div class="flex items-center justify-between py-2 text-base text-neutral-4">
                     <span>Bet Amount</span>
                     <span class="font-bold text-green-400">0<span class="ml-1">Ooms</span></span>
                 </div> --}}
@@ -78,7 +79,7 @@
                     {{-- wire:click="save()" --}}
                     {{-- wire:click="$refresh" --}}
                     {{-- type="submit" --}}
-                    class="px-5 my-2 mt-4 w-full flex items-center justify-center py-3 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-opacity-15"
+                    class="flex items-center justify-center w-full px-5 py-3 my-2 mt-4 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-opacity-15"
                     {{-- disabled --}}
                     >
                 Please select an outcome

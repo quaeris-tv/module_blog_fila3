@@ -51,6 +51,9 @@ class CreateBlogPagesTable extends XotBaseMigration
                     // $table->text('footer_blocks')->nullable();
                     $table->json('footer_blocks')->default(new Expression('(JSON_ARRAY())'));
                 }
+                if (! $this->hasColumn('slug')) {
+                    $table->string('slug')->index();
+                }
 
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }

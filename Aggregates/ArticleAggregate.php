@@ -34,6 +34,10 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
+        if (null !== $article->rewarded_at) {
+            throw new \Exception('just assign winners on ['.$article->rewarded_at.']');
+        }
+
         $event = new RatingArticleWinner(
             ratingId: $command->ratingId,
             articleId: $command->articleId
@@ -54,6 +58,7 @@ class ArticleAggregate extends AggregateRoot
     public function rating(RatingArticleData $command): static
     {
         $profile = Profile::firstOrCreate(['user_id' => $command->userId], ['credits' => 1000]);
+        $profile->update(['credits' => 1000]);
         if ($profile->credits - $command->credit < 0) {
             throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
         }

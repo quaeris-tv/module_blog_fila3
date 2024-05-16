@@ -41,6 +41,37 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
  *
+ * @property string|null                                                                                                $link
+ * @property string|null                                                                                                $title
+ * @property string|null                                                                                                $description
+ * @property string|null                                                                                                $action_text
+ * @property string|null                                                                                                $category_id
+ * @property \Illuminate\Support\Carbon|null                                                                            $start_date
+ * @property \Illuminate\Support\Carbon|null                                                                            $end_date
+ * @property bool                                                                                                       $hot_topic
+ * @property int|null                                                                                                   $open_markets_count
+ * @property bool                                                                                                       $landing_banner
+ * @property int|null                                                                                                   $pos
+ * @property Category|null                                                                                              $category
+ * @property string                                                                                                     $desktop_thumbnail
+ * @property string                                                                                                     $desktop_thumbnail_webp
+ * @property string                                                                                                     $mobile_thumbnail
+ * @property string                                                                                                     $mobile_thumbnail_webp
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereActionText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereHotTopic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLandingBanner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereOpenMarketsCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereTitle($value)
+ *
  * @mixin \Eloquent
  */
 class Banner extends BaseModel implements HasMedia
@@ -76,6 +107,7 @@ class Banner extends BaseModel implements HasMedia
         'hot_topic', // : false,
         'open_markets_count', // : 119,
         'landing_banner', // : false
+        'pos',
     ];
 
     /** @return array<string, string> */
@@ -164,6 +196,15 @@ class Banner extends BaseModel implements HasMedia
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getUrlCategoryPage(): string
+    {
+        if (null == $this->category) {
+            return route('categories', ['lang' => app()->getLocale()]);
+        }
+
+        return route('category_slug.show', ['lang' => app()->getLocale(), 'category_slug' => $this->category->slug]);
     }
 }
 

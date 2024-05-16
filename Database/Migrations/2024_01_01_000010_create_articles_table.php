@@ -115,6 +115,10 @@ class CreateArticlesTable extends XotBaseMigration
                     $table->boolean('is_following')->default(false);
                 }
 
+                if (! $this->hasColumn('rewarded_at')) {
+                    $table->datetimetz('rewarded_at')->nullable();
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );

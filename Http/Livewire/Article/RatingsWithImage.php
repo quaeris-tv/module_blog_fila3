@@ -46,7 +46,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public array $rating_opts = [];
     public array $ratings_percentage = [];
 
-    // protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    // protected static ?string $navigationIcon = 'heroicon-o-document-text';;
 
     public function mount(Article $article, string $type, string $article_uuid, array $ratings = []): void
     {
@@ -57,14 +57,15 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             $this->datas = $this->article->getArrayRatingsWithImage();
         // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
-            Assert::notNull($ratings);
+            Assert::notNull($ratings, '['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
             $this->article_uuid = $article_uuid;
             $this->article = Article::where('uuid', $article_uuid)->first();
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
-        Assert::notNull($this->article);
-        $this->ratings_percentage = $this->article->getRatingsPercentage();
+        Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');
+        // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
+        $this->ratings_percentage = $this->article->getRatingsPercentageByVolume();
     }
 
     public function render(): View
@@ -86,7 +87,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
         // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
-        // $this->ratings_percentage = $this->article->getRatingsPercentage();
+        // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
         if ('index' == $this->type) {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
@@ -101,13 +102,18 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     public function betAction(): Action
     {
         if (Auth::guest()) {
-            return $this->GuestModal();
-        } else {
-            return $this->CheckModal();
+            return $this->guestModal();
         }
+
+        Assert::notNull($article = $this->article, '['.__LINE__.']['.__FILE__.']');
+        if ('expired' == $article->getTimeLeftForHumans()) {
+            return $this->checkExpired();
+        }
+
+        return $this->checkModal();
     }
 
-    public function GuestModal(): Action
+    public function guestModal(): Action
     {
         return Action::make('bet')
             ->modalContent(function (array $arguments): View {
@@ -128,12 +134,38 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         ;
     }
 
-    public function CheckModal(): Action
+    public function checkExpired(): Action
     {
         return Action::make('bet')
+            ->modalContent(function (array $arguments): View {
+                $view = 'blog::livewire.article.ratings.for-image.v1.check_expired';
+
+                return view($view);
+            })
+            ->modalHeading('Place bet')
+            ->closeModalByClickingAway(false)
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalCancelActionLabel('Cancel')
+            ->color('primary')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+            ->modalSubmitAction(false)
+        ;
+    }
+
+    public function checkModal(): Action
+    {
+        Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($profile, Profile::class);
+
+        return Action::make('bet')
             ->action(function (array $arguments, array $data) {
-                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
+                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first(), '['.__LINE__.']['.__FILE__.']');
                 // $article_id = $rating_morph->model_id;
+                Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');
                 $article_id = $this->article->id;
                 // dddx([
                 //     $this->article->id,
@@ -145,6 +177,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                 app(MakeBetAction::class)->execute((string) $article_id, (int) $data['credits'], (int) $data['rating_id']);
 
                 $this->dispatch('update-user-ratings');
+                $this->dispatch('refresh-credits');
             })
             // ->action(fn (array $arguments) => app(MakeBetAction::class)->execute($this->article->id, $this->import, $this->rating_id))
             ->fillForm(fn ($record, $arguments): array => [
@@ -163,10 +196,11 @@ class RatingsWithImage extends Component implements HasForms, HasActions
                     ->numeric()
                     ->suffixIcon('heroicon-o-banknotes')
                     ->rules('gt:0')
-                // ->validationMessages([
-                //     'gt' => 'The :attribute has already been registered.',
-                // ])
-                ,
+                    ->rules('lte:'.$profile->credits)
+                    ->validationMessages([
+                        'gt' => __('blog::article.rating.no_import'),
+                        'lte' => __('blog::article.rating.import_min'),
+                    ]),
             ])
             ->modalHeading('Place bet')
             ->closeModalByClickingAway(false)

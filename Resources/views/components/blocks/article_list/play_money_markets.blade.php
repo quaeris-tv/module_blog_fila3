@@ -1,13 +1,17 @@
 <div class="py-8 mt-8 bg-white">
 	@php
+		// dddx(get_defined_vars());
+		// dddx(request()->route()->getName());
 		if(!isset($method)){
-			$articles = $_theme->getArticlesByCategory($category->id);
+			$articles = $_theme->paginateArticlesByCategory($category->id);
+
+			// $articles = $_theme->paginateArticlesByCategory($category->id);
 		}else{
 			$mappedMethods = [
-				'recent' => 'getArticlesLatest',
-				'coming_soon' => 'getArticlesComingSoon',
-				'bets' => 'getArticlesOrderByNumberOfBets',
-				'volume' => 'getArticlesOrderByVolumes',
+				'recent' => 'paginatedArticlesLatest',
+				'coming_soon' => 'paginatedArticlesComingSoon',
+				'bets' => 'paginatedArticlesOrderByNumberOfBets',
+				'volume' => 'paginatedArticlesOrderByVolumes',
 			];
 			$query = request()->query('order', 'recent');
 			if (!in_array($query, array_keys($mappedMethods))) {
@@ -15,14 +19,25 @@
 			}
 			$articles = $_theme->getMethodData($mappedMethods[$query]);
 		}
-		// dddx($articles);
 	@endphp
 	<div class="container max-w-6xl p-6 mx-auto space-y-8" {{-- x-data="playmarkets" --}} id="playmarkets">
 		<h2 class="flex items-center space-x-2 text-xl font-semibold">
+
 			<x-heroicon-o-play-circle class="text-blue-500 size-8"/>
 			<div class="flex flex-wrap gap-x-2">
-				<span>Play Money Markets</span>
-				<span class="mt-1 text-sm font-normal text-gray-500">{{ count($articles) }}</span>
+				<span>
+					@if(isset($title))
+						{{ $title }}
+					@elseif(isset($category))
+						{{-- Articoli della categoria --}}
+						{{ __('blog::category.show.title') }} "{{ $category->title }}"
+						{{-- <span class="mt-1 text-sm font-normal text-gray-500">{{ $articles->total() }}</span> --}}
+					@else
+						Articoli
+					@endif
+				
+					<span class="mt-1 text-sm font-normal text-gray-500">{{ count($articles) }}</span>
+				</span>
 			</div>
 		</h2>
 		<section class="space-y-4">
@@ -31,12 +46,22 @@
 				@include('blog::components.blocks.article_list.play_money_markets.order_select')
 			</div>
 			@include('blog::components.blocks.article_list.play_money_markets.list_of_markets')
-			<div class="flex justify-center">
-				<button type="button" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
-					<span>Load more</span>
-					<x-heroicon-o-arrow-right class="size-4"/>
-				</button>
-			</div>
+			
+			@if(request()->route()->getName() != 'home')
+				<div>
+					{{ $articles->links() }}
+				</div>
+			@else
+				<div class="flex justify-center">
+					<a href="{{ route('articles', ['lang' => $lang]) }}" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
+						<span>Load more</span>
+						<x-heroicon-o-arrow-right class="size-4"/>
+					</a>
+				</div>
+			@endif
+
+
+
 		</section>
 	</div>
 </div>

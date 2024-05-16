@@ -29,6 +29,12 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost withoutTrashed()
  *
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereDeletedBy($value)
+ *
  * @mixin \Eloquent
  */
 class CategoryPost extends BasePivot

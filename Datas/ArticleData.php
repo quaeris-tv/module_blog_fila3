@@ -36,6 +36,7 @@ class ArticleData extends Data
         public ?int $betting_users,
         public ?string $time_left_for_humans,
         public ?float $volume_credit,
+        public ?Collection $tags,
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -53,25 +54,26 @@ class ArticleData extends Data
 
         $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
 
-        Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+        Assert::notNull($article = Article::where('uuid', $this->uuid)->first(), '['.__LINE__.']['.__FILE__.']');
         $this->betting_users = $article->getBettingUsers();
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
         $this->volume_credit = $article->getVolumeCredit();
+        $this->tags = $article->tags->map(fn ($tag) => $tag->name);
     }
 
     public function getCategories(): Collection
     {
         return app(GetBloodline::class)->execute($this->category_id);
 
-        // Assert::notNull($category = Category::find($this->category_id));
+        // Assert::notNull($category = Category::find($this->category_id),'['.__LINE__.']['.__FILE__.']');
 
         // return $category->bloodline()->get()->reverse();
     }
 
     // public function getArticle(): Article
     // {
-    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
+    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first(),'['.__LINE__.']['.__FILE__.']');
 
     //     return $article;
     // }

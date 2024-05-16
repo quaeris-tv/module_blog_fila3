@@ -10,17 +10,85 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
-use Modules\User\Models\User;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\Xot\Models\BaseProfile as XotBaseProfile;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Modules\User\Models\BaseProfile;
+use Modules\User\Models\User;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
-class Profile extends XotBaseProfile implements HasMedia
+/**
+ * Modules\Blog\Models\Profile.
+ *
+ * @property int                                                                                                           $credits
+ * @property int                                                                                                           $id
+ * @property string|null                                                                                                   $user_id
+ * @property string|null                                                                                                   $first_name
+ * @property string|null                                                                                                   $last_name
+ * @property string|null                                                                                                   $email
+ * @property \Illuminate\Support\Carbon|null                                                                               $created_at
+ * @property \Illuminate\Support\Carbon|null                                                                               $updated_at
+ * @property string|null                                                                                                   $updated_by
+ * @property string|null                                                                                                   $created_by
+ * @property string|null                                                                                                   $deleted_at
+ * @property string|null                                                                                                   $deleted_by
+ * @property string|null                                                                                                   $slug
+ * @property \Spatie\SchemalessAttributes\SchemalessAttributes|null                                                        $extra
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Article>                                   $articles
+ * @property int|null                                                                                                      $articles_count
+ * @property string                                                                                                        $avatar
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\DeviceUser>                                $deviceUsers
+ * @property int|null                                                                                                      $device_users_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Device>                                    $devices
+ * @property int|null                                                                                                      $devices_count
+ * @property string|null                                                                                                   $full_name
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media>    $media
+ * @property int|null                                                                                                      $media_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\DeviceUser>                                $mobileDeviceUsers
+ * @property int|null                                                                                                      $mobile_device_users_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Device>                                    $mobileDevices
+ * @property int|null                                                                                                      $mobile_devices_count
+ * @property \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property int|null                                                                                                      $notifications_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Permission>                                $permissions
+ * @property int|null                                                                                                      $permissions_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, RatingMorph>                                                    $ratingMorphs
+ * @property int|null                                                                                                      $rating_morphs_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                                                         $ratings
+ * @property int|null                                                                                                      $ratings_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Role>                                      $roles
+ * @property int|null                                                                                                      $roles_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team>                                      $teams
+ * @property int|null                                                                                                      $teams_count
+ * @property User|null                                                                                                     $user
+ * @property string|null                                                                                                   $user_name
+ *
+ * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   newQuery()
+ * @method static Builder|BaseProfile                             permission($permissions, $without = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   query()
+ * @method static Builder|BaseProfile                             role($roles, $guard = null, $without = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereCredits($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereExtra($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereUserId($value)
+ * @method static Builder|BaseProfile                             withExtraAttributes()
+ * @method static Builder|BaseProfile                             withoutPermission($permissions)
+ * @method static Builder|BaseProfile                             withoutRole($roles, $guard = null)
+ *
+ * @mixin \Eloquent
+ */
+class Profile extends BaseProfile
 {
-    use InteractsWithMedia;
-
     /** @var string */
     protected $connection = 'blog';
 
@@ -52,6 +120,14 @@ class Profile extends XotBaseProfile implements HasMedia
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    /**
+     * @return HasMany<Transaction>
+     */
+    public function transanctions()
+    {
+        return $this->hasMany(Transaction::class, 'user_id', 'user_id');
     }
 
     /**

@@ -37,7 +37,12 @@ use Spatie\Tags\Tag as BaseTag;
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedBy($value)
  * @method static Builder|Tag                               withType(?string $type = null)
  *
- * @property mixed $translations
+ * @property mixed       $translations
+ * @property string|null $deleted_at
+ * @property string|null $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Tag whereDeletedBy($value)
  *
  * @mixin \Eloquent
  */

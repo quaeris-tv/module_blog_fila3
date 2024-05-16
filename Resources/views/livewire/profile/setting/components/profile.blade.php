@@ -33,6 +33,7 @@
             </a> --}}
         </div>
 	</div>
+
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div class="flex items-center p-4 space-x-4 border rounded-xl">
             <x-heroicon-o-arrows-up-down class="text-blue-500 size-8"/>
@@ -56,92 +57,63 @@
             <x-heroicon-o-receipt-percent class="text-blue-500 size-8"/>
             <div>
                 <div class="text-gray-500">Win Rate</div>
-                <h2 class="text-4xl font-bold">
-                    {{ number_format($_profile->ratingMorphs->where('is_winner')->count() / $_profile->ratingMorphs->count() * 100, 2) }}%
-                </h2>
+                @if($_profile->ratingMorphs->count() > 0)
+                    <h2 class="text-4xl font-bold">
+                        {{ number_format($_profile->ratingMorphs->where('is_winner')->count() / $_profile->ratingMorphs->count() * 100, 2) }}%
+                    </h2>
+                @else
+                    <h2 class="text-4xl font-bold">
+                        0%
+                    </h2>
+                @endif
             </div>
         </div>
-        {{-- <div class="flex items-center p-4 space-x-4 border rounded-xl">
-            <x-heroicon-o-arrow-trending-up class="text-blue-500 size-8"/>
-            <div>
-                <div class="text-gray-500">Lifetime L/P</div>
-                <h2 class="text-4xl font-bold">0</h2>
-            </div>
-        </div> --}}
-        {{-- <div class="flex items-center p-4 space-x-4 border rounded-xl">
-            <x-heroicon-o-wallet class="text-blue-500 size-8"/>
-            <div>
-                <div class="text-gray-500">Open Position</div>
-                <h2 class="text-4xl font-bold">2</h2>
-            </div>
-        </div> --}}
     </div>
-    {{-- <div>
-        <h6 class="mb-2 text-xs text-gray-400">OPEN POSITIONS</h6>
-        <div class="py-2 overflow-x-auto">
-            <table class="w-full" cellpadding="12">
-                <thead>
-                    <tr class="text-sm text-gray-400 bg-gray-50">
-                        <th class="text-start">Date</th>
-                        <th>Action</th>
-                        <th class="text-start">Market</th>
-                        <th>Outcome</th>
-                        <th>Av. Share Price</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="7">
-                            <div class="py-2 text-center">
-                                <x-heroicon-o-x-circle class="inline-block text-blue-200 size-16"/>
-                                <div>There are no open positions.</div>
-                                <p class="text-sm text-gray-500">Vitae doloribus aut adipisci, neque iusto soluta eius velit. <a href="/" class="text-blue-500">Click here</a> to view market</p>
-                            </div>   
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div> --}}
 
+
+    @php
+        $_profile_transanctions = $_profile->transanctions;
+    @endphp
     <div>
-        <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">({{$_profile->ratingMorphs->count()}})</span></h6>
+        <h6 class="mb-2 text-xs text-gray-400">TRANSACTIONS <span class="text-blue-400">({{ $_profile_transanctions->count()}})</span></h6>
         <div class="py-2 overflow-x-auto">
             <table class="w-full" cellpadding="12">
                 <thead>
                     <tr class="text-sm text-gray-400 bg-gray-50">
-                        <th class="text-start">Date</th>
-                        <th>Action</th>
-                        <th class="text-start">Market</th>
-                        <th>Outcome</th>
-                        <th>Av. Share Price</th>
-                        <th>Amount</th>
+                        <th class="text-start">{{ __('blog::profile.setting.date') }}</th>
+                        <th>{{ __('blog::profile.setting.action') }}</th>
+                        <th class="text-start">{{ __('blog::profile.setting.market') }}</th>
+                        <th>{{ __('blog::profile.setting.outcome') }}</th>
+                        <th>{{ __('blog::profile.setting.option') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($_profile->ratingMorphs->load('model', 'rating') as $morph)
+                    @foreach($_profile->transanctions as $trans)
                         <tr>
-                            <td>{{ $morph->created_at }}</td>
-                            <td class="text-center">{{ $morph->rating->title }}</td>
-                            <td><a href="{{ url("/{$lang}/articles/{$morph->model->slug}") }}" target="_blank" class="text-blue-500">{{ $morph->model->title }}</a></td>
-                            <td class="text-center">{{ $morph->value }}</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">-</td>
+                            <td>{{ $trans->created_at }}</td>
+                            <td class="text-center">{{ __('blog::profile.setting.'.$trans->note) ?? 'not defined' }}</td>
+                            <td>
+                                @if($trans->model_type == 'profile')
+                                    -
+                                @else
+                                    @php
+                                        $rating_morph = $trans->getRatingMorph();
+                                    @endphp
+                                    <a href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $rating_morph->model->slug ]) }}" target="_blank" class="text-blue-500">
+                                        {{ $rating_morph->model->title }}
+                                    </a>
+                                @endif
+                            </td>
+                            <td class="text-center">{{ $trans->credits }}</td>
+                            <td class="text-center">
+                                @if($trans->model_type == 'profile')
+                                    -
+                                @else
+                                    {{ $rating_morph->rating->title }}
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
-                    {{-- <tr>
-                        <td>2024-04-15</td>
-                        <td class="text-center">
-                            <span class="px-3 py-1 text-sm font-semibold text-blue-500 rounded-full bg-blue-50">Bet</span>
-                        </td>
-                        <td>
-                            <a href="#">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</a>
-                        </td>
-                        <td class="text-center">No</td>
-                        <td class="text-center">~.95</td>
-                        <td class="text-center">2 ø</td>
-                    </tr> --}}
                 </tbody>
             </table>
         </div>
