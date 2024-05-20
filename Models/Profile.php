@@ -164,29 +164,11 @@ class Profile extends BaseProfile
         ;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public function getArticleTraded() // : int
-    {$result = RatingMorph::where('user_id', $this->user_id)
-<<<<<<< HEAD
-                                                                                    ->groupBy('model_id')
-                                                                                    ->pluck('model_id')
-                                                                                    // ->get()
-                                                                                    // ->count()
-=======
-                                                                                            ->groupBy('model_id')
-                                                                                            ->pluck('model_id')
-                                                                                            // ->get()
-                                                                                            // ->count()
->>>>>>> cc01e30fcd703759bc4ed59e66eaee962bfb553f
-=======
-=======
     public function ratingMorphs(): HasMany
     {
         return $this->hasMany(RatingMorph::class, 'user_id', 'user_id');
     }
 
->>>>>>> bc716059c3adb4b0c1bc12910e64aae4f8a968ad
     // : int
     public function getArticleTraded(): \Illuminate\Support\Collection
     {
@@ -195,7 +177,6 @@ class Profile extends BaseProfile
             ->pluck('model_id')
             // ->get()
             // ->count()
->>>>>>> 9e83f74bf34d0ec45d863a50ea3f570ad36fb19e
         ;
 
         return $result;
