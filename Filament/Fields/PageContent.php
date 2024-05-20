@@ -15,6 +15,7 @@ use Modules\Blog\Filament\Blocks\Leaderboard;
 use Modules\Blog\Filament\Blocks\Search;
 use Modules\Blog\Filament\Blocks\Setting;
 use Modules\Rating\Filament\Blocks\Rating;
+use Modules\UI\Filament\Blocks\Hero;
 use Modules\UI\Filament\Blocks\Paragraph;
 use Modules\UI\Filament\Blocks\Slider;
 use Modules\UI\Filament\Blocks\Title;
@@ -40,6 +41,7 @@ class PageContent
                 Search::make(context: $context),
                 BannerAndSlides::make(context: $context),
                 Slider::make(context: $context),
+                Hero::make(context: $context),
             ])
             ->collapsible();
     }

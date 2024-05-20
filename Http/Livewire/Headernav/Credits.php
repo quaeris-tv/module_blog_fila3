@@ -38,8 +38,9 @@ class Credits extends Component
     }
 
     #[On('refresh-credits')]
-    public function getCredits(): string
+    public function getCredits(): string|float
     {
-        return number_format($this->profile->credits, 0);
+        return $this->profile->credits;
+        // return number_format($this->profile->credits, 0);
     }
 }

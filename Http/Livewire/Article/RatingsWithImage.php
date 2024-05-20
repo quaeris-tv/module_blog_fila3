@@ -57,13 +57,13 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             $this->datas = $this->article->getArrayRatingsWithImage();
         // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
-            Assert::notNull($ratings);
+            Assert::notNull($ratings, '['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
             $this->article_uuid = $article_uuid;
             $this->article = Article::where('uuid', $article_uuid)->first();
         }
         $this->rating_opts = collect($this->datas)->pluck('title', 'id')->toArray();
-        Assert::notNull($this->article);
+        Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
         $this->ratings_percentage = $this->article->getRatingsPercentageByVolume();
     }
@@ -105,8 +105,13 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             return $this->guestModal();
         }
 
+<<<<<<< HEAD
         Assert::notNull($article = $this->article);
         if ('scaduto' == $article->getTimeLeftForHumans()) {
+=======
+        Assert::notNull($article = $this->article, '['.__LINE__.']['.__FILE__.']');
+        if ('expired' == $article->getTimeLeftForHumans()) {
+>>>>>>> 2286e596f2d0857a17859f5c7534d9885275d33f
             return $this->checkExpired();
         }
 
@@ -157,15 +162,15 @@ class RatingsWithImage extends Component implements HasForms, HasActions
 
     public function checkModal(): Action
     {
-        Assert::notNull($user = Auth::user());
-        Assert::notNull($profile = $user->profile);
+        Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
+        Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
         Assert::isInstanceOf($profile, Profile::class);
 
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {
-                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first());
+                Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first(), '['.__LINE__.']['.__FILE__.']');
                 // $article_id = $rating_morph->model_id;
-                Assert::notNull($this->article);
+                Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');
                 $article_id = $this->article->id;
                 // dddx([
                 //     $this->article->id,

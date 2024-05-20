@@ -312,7 +312,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {
-        Assert::notNull($this->user);
+        Assert::notNull($this->user, '['.__LINE__.']['.__FILE__.']');
 
         return FeedItem::create()
             ->id($this->slug)
@@ -338,7 +338,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function getFormattedDate(): string
     {
-        Assert::notNull($this->published_at);
+        Assert::notNull($this->published_at, '['.__LINE__.']['.__FILE__.']');
 
         return $this->published_at->format('F jS Y');
     }
@@ -483,9 +483,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         );
     }
 
-    /**
-     * Get the article's description.
-     */
+    /*
+     * NO !!
     protected function createdAt(): Attribute
     {
         return new Attribute(
@@ -494,6 +493,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
             }
         );
     }
+    */
 
     public function getUuidAttribute(?string $value): string
     {
@@ -526,7 +526,9 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         $startDate = Carbon::now();
 
         if ($startDate > $endDate) {
-            return 'scaduto';
+            return 'expired';
+            // return __('blog::article.single_expired');
+            // return 'scaduto';
         }
 
         // Calcola la differenza tra le due date
@@ -544,7 +546,9 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         $minutes = $diff->i;
 
         if (0 == $month && 0 == $days && 0 == $hours && 0 == $minutes) {
+            // return __('blog::article.single_expired');
             return 'scaduto';
+            // return 'expired';
         }
 
         return "Tempo rimasto: $days giorni, $hours ore, $minutes minuti";

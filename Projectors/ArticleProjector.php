@@ -42,8 +42,13 @@ class ArticleProjector extends Projector
 
         Transaction::create(
             [
+<<<<<<< HEAD
                 'model_type' => 'article',
                 'model_id' => $event->articleId,
+=======
+                'model_type' => 'rating',
+                'model_id' => $event->ratingId,
+>>>>>>> 2286e596f2d0857a17859f5c7534d9885275d33f
                 'user_id' => $event->userId,
                 'date' => Carbon::now(),
                 'credits' => $event->credit * -1,
@@ -61,14 +66,18 @@ class ArticleProjector extends Projector
             'user_id' => null,
         ]);
 
-        Assert::notNull($rating_morph);
+        Assert::notNull($rating_morph, '['.__LINE__.']['.__FILE__.']');
 
         $data = [
             'rating_id' => $event->ratingId,
             'model_type' => 'article',
             'model_id' => $event->articleId,
         ];
+<<<<<<< HEAD
         Assert::notNull($record = Article::firstWhere(['id' => $event->articleId]));
+=======
+        Assert::notNull($record = Article::firstWhere(['id' => $event->articleId]), '['.__LINE__.']['.__FILE__.']');
+>>>>>>> 2286e596f2d0857a17859f5c7534d9885275d33f
 
         $winners = RatingMorph::where($data)->where('user_id', '!=', null)->get();
         $tot_win = app(GetSumByModelRatingIdAction::class)->execute($record, $event->ratingId);
@@ -79,8 +88,23 @@ class ArticleProjector extends Projector
                 'is_winner' => true,
                 'reward' => $reward,
             ]);
+<<<<<<< HEAD
             Assert::notNull($profile = $winner->profile);
+=======
+            Assert::notNull($profile = $winner->profile, '['.__LINE__.']['.__FILE__.']');
+>>>>>>> 2286e596f2d0857a17859f5c7534d9885275d33f
             $profile->increment('credits', $reward);
+
+            Transaction::create(
+                [
+                    'model_type' => 'rating',
+                    'model_id' => $event->ratingId,
+                    'user_id' => $profile->user->id,
+                    'date' => Carbon::now(),
+                    'credits' => $reward,
+                    'note' => 'rating_article_winner',
+                ]
+            );
         }
         $record->update(['rewarded_at' => now()]);
         $rating_morph->is_winner = true;
