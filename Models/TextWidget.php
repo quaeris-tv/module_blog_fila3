@@ -81,7 +81,7 @@ class TextWidget extends BaseModel implements HasMedia
         if (! $widget) {
             return '';
         }
-        Assert::isInstanceOf($widget, self::class);
+        Assert::isInstanceOf($widget, self::class, '['.__LINE__.']['.__FILE__.']');
 
         return $widget->content;
     }

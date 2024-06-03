@@ -65,13 +65,13 @@ class RatingsDone extends Component
                 ->where('model_id', $this->article_data['id'])
                 ->get()->toArray();
 
-        Assert::isArray($this->article_data['ratings']);
+        Assert::isArray($this->article_data['ratings'], '['.__LINE__.']['.__FILE__.']');
         $ratings_options = collect($this->article_data['ratings']);
 
         $percs = $this->getPercs();
 
         foreach ($user_ratings as $key => $rating) {
-            Assert::isArray($rating);
+            Assert::isArray($rating, '['.__LINE__.']['.__FILE__.']');
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
             if (null != $tmp) {
                 $result[] = RatingInfoData::from([
@@ -112,7 +112,7 @@ class RatingsDone extends Component
         $percs = $this->getPercs();
 
         foreach ($user_ratings as $key => $rating) {
-            Assert::isArray($rating);
+            Assert::isArray($rating, '['.__LINE__.']['.__FILE__.']');
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
             if (null != $tmp) {
                 $result[] = RatingInfoData::from([

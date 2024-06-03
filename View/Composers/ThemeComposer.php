@@ -178,7 +178,7 @@ class ThemeComposer
 
     public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class);
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
         $blocks = $page->content_blocks;
         if (! is_array($blocks)) {
@@ -191,7 +191,7 @@ class ThemeComposer
 
     public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class);
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
 
         $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
@@ -201,7 +201,7 @@ class ThemeComposer
 
     public function showArticleSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
-        Assert::isInstanceOf($article = Article::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Article::class);
+        Assert::isInstanceOf($article = Article::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Article::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
 
         $article = new \Modules\UI\View\Components\Render\Blocks(blocks: $article->sidebar_blocks, model: $article);
@@ -262,7 +262,7 @@ class ThemeComposer
         $pub_theme = config('xra.pub_theme');
         $path = base_path('Themes/'.$pub_theme.'/Resources/json/banner.json');
 
-        Assert::isArray($contents = json_decode(File::get($path), true));
+        Assert::isArray($contents = json_decode(File::get($path), true), '['.__LINE__.']['.__FILE__.']');
         // dddx($contents);
         // dddx(json_decode($contents));
         // dddx(SliderDataCollection::from($contents));

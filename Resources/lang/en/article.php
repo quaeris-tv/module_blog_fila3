@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Auth;
-use Modules\Blog\Models\Profile;
-use Webmozart\Assert\Assert;
+// use Illuminate\Support\Facades\Auth;
+// use Modules\Blog\Models\Profile;
+// use Webmozart\Assert\Assert;
 
-Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
-Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
-Assert::isInstanceOf($profile, Profile::class);
+// Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
+// Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
+// Assert::isInstanceOf($profile, Profile::class);
 
 return [
     'navigation' => [
@@ -22,7 +22,7 @@ return [
     'rating' => [
         'no_import' => 'No digits entered',
         'import_zero' => 'No digits entered',
-        'import_min' => 'You have exceeded the amount of '.$profile->credits.' credits',
+        'import_min' => 'You have exceeded the amount of :credits: credits',
         'no_choice' => 'No option chosen',
     ],
     'single_expired' => 'Expired',

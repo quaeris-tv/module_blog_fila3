@@ -26,7 +26,7 @@ class LoginListener
     public function handle(Login $event): void
     {
         Assert::notNull($user = $event->user, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($user, User::class);
+        Assert::isInstanceOf($user, User::class, '['.__LINE__.']['.__FILE__.']');
 
         $welcome_login = Transaction::where('user_id', $user->id)
                 ->where('note', 'welcome')

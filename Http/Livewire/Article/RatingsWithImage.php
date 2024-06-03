@@ -159,7 +159,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     {
         Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
         Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($profile, Profile::class);
+        Assert::isInstanceOf($profile, Profile::class, '['.__LINE__.']['.__FILE__.']');
 
         return Action::make('bet')
             ->action(function (array $arguments, array $data) {

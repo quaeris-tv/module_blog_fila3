@@ -13,7 +13,7 @@ class GetPercsOptionsById
     {
         $result = [];
         Assert::notNull($article = Article::find($article_array['id']), '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($article, Article::class);
+        Assert::isInstanceOf($article, Article::class, '['.__LINE__.']['.__FILE__.']');
         $total_volume = $article->getVolumeCredit();
 
         foreach ($article_array['ratings'] as $rating) {

@@ -72,7 +72,7 @@ trait HasPathByParentId
 
             return null;
         }
-        Assert::isInstanceOf($root, static::class);
+        Assert::isInstanceOf($root, static::class, '['.__LINE__.']['.__FILE__.']');
         $value = $root->id;
 
         $this->update(['root_id' => $value]);
@@ -100,7 +100,7 @@ trait HasPathByParentId
 
             return null;
         }
-        Assert::isInstanceOf($root, static::class);
+        Assert::isInstanceOf($root, static::class, '['.__LINE__.']['.__FILE__.']');
         $value = $root->name;
         $this->update(['root_name' => $value]);
 

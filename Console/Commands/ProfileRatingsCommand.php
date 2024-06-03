@@ -49,7 +49,7 @@ class ProfileRatingsCommand extends Command
             ->toArray();
 
         if (count($rows) > 0) {
-            Assert::isArray($rows[0]);
+            Assert::isArray($rows[0], '['.__LINE__.']['.__FILE__.']');
             $headers = array_keys($rows[0]);
 
             $this->newLine();

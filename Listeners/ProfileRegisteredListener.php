@@ -24,7 +24,7 @@ class ProfileRegisteredListener
     public function handle(Registered $event): void
     {
         Assert::notNull($user = $event->user, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($user, User::class);
+        Assert::isInstanceOf($user, User::class, '['.__LINE__.']['.__FILE__.']');
 
         $user->profile()->create([
             'email' => $user->email,

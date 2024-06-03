@@ -20,7 +20,7 @@ class ImportArticlesFromByJsonTextAction
 
     public function execute(string $json_text): void
     {
-        Assert::isArray($json = json_decode($json_text, true));
+        Assert::isArray($json = json_decode($json_text, true), '['.__LINE__.']['.__FILE__.']');
 
         foreach ($json as $j) {
             $bet_end_date = $j['bet_end_date'] ?? '';

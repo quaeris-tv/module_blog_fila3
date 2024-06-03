@@ -15,9 +15,9 @@ class TranslateContentAction
     {
         // dddx([app(GetModelClassByModelTypeAction::class)->execute($model_class), Article::class]);
         // dddx(app($class));
-        Assert::isInstanceOf($model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id), app($class));
+        Assert::isInstanceOf($model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id), app($class), '['.__LINE__.']['.__FILE__.']');
 
-        Assert::isArray($model_contents = $model->toArray());
+        Assert::isArray($model_contents = $model->toArray(), '['.__LINE__.']['.__FILE__.']');
 
         if ($data['content_blocks']) {
             $model_content = $model_contents['content_blocks'];

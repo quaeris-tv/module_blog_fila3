@@ -69,7 +69,7 @@ class ForImage extends Component implements HasForms
     {
         Assert::notNull($user = Auth::user(), '['.__LINE__.']['.__FILE__.']');
         Assert::notNull($profile = $user->profile, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($profile, Profile::class);
+        Assert::isInstanceOf($profile, Profile::class, '['.__LINE__.']['.__FILE__.']');
 
         $this->validate([
             // 'import' => ['required|gt:0|lte:'.$profile->credits],
