@@ -1,4 +1,4 @@
-{{-- <div class="container max-w-6xl p-6 mx-auto space-y-4">
+<div class="container max-w-6xl p-6 mx-auto space-y-4">
     <h2 class="flex items-center space-x-2 text-xl font-semibold">
         <x-heroicon-o-fire class="text-blue-500 size-8"/>
         <span>{{ $title }}</span>
@@ -20,4 +20,4 @@
             @endforeach
         </div>
     </section>
-</div> --}}
+</div>
