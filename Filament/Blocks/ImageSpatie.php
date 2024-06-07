@@ -26,8 +26,19 @@ class ImageSpatie
                 // ->required(),
 
                 SpatieMediaLibraryFileUpload::make('image')
-                    ->columnSpanFull()
-                    ->collection(fn (Forms\Get $get) => $get('img_uuid')),
+                    ->live()
+                    ->hiddenLabel()
+                    ->imagePreviewHeight('666')
+                    ->panelLayout('integrated')
+                    ->imageResizeMode('cover')
+                    ->panelAspectRatio('2:1')
+                    ->maxSize(102400)
+                    ->disk('local')
+                    ->image()
+                    ->preserveFilenames()
+                    ->openable()
+                    ->downloadable()
+                ->collection(fn (Forms\Get $get) => $get('img_uuid')),
 
                 Select::make('ratio')
                     ->options(static::getRatios())
