@@ -80,13 +80,14 @@ class ArticleProjector extends Projector
                 'reward' => $reward,
             ]);
             Assert::notNull($profile = $winner->profile, '['.__LINE__.']['.__FILE__.']');
+            Assert::notNull($user = $profile->user, '['.__LINE__.']['.__FILE__.']');
             $profile->increment('credits', $reward);
 
             Transaction::create(
                 [
                     'model_type' => 'rating',
                     'model_id' => $event->ratingId,
-                    'user_id' => $profile->user->id,
+                    'user_id' => $user->id,
                     'date' => Carbon::now(),
                     'credits' => $reward,
                     'note' => 'rating_article_winner',
