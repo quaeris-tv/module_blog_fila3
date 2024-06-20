@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Webmozart\Assert\Assert;
 use Modules\Rating\Models\RatingMorph;
 
 class Transaction extends BaseModel
@@ -18,7 +19,7 @@ class Transaction extends BaseModel
 
     public function getRatingMorph(): RatingMorph
     {
-        $rating_morph = RatingMorph::where('rating_id', $this->model_id)->first();
+        Assert::notNull($rating_morph = RatingMorph::where('rating_id', $this->model_id)->first());
 
         return $rating_morph;
     }
