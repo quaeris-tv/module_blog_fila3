@@ -10,6 +10,7 @@ use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
 use Filament\Tables;
+use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Fields\ArticleContent;
@@ -251,7 +252,8 @@ class ArticleResource extends XotBaseResource
                     ->options(Category::getTreeCategoryOptions())
                     ->attribute('category_id'),
             ])
-            ->bulkActions([]);
+            ->bulkActions([])
+            ->actionsPosition(ActionsPosition::BeforeColumns);
     }
 
     public static function getRelations(): array
