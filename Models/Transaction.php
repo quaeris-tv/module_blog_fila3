@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Webmozart\Assert\Assert;
 use Modules\Rating\Models\RatingMorph;
 use Webmozart\Assert\Assert;
 
