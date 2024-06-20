@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
-use Filament\Tables;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
+use Filament\Resources\Concerns\Translatable;
+use Filament\Tables;
+use Filament\Tables\Enums\ActionsPosition;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+use Modules\Blog\Filament\Fields\ArticleContent;
+use Modules\Blog\Filament\Fields\ArticleFooter;
+use Modules\Blog\Filament\Fields\ArticleSidebar;
+use Modules\Blog\Filament\Resources\ArticleResource\Pages;
+use Modules\Blog\Filament\Resources\ArticleResource\RelationManagers;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
-use Filament\Tables\Enums\ActionsPosition;
-use Filament\Resources\Concerns\Translatable;
-use Filament\Forms\Components\SpatieTagsInput;
-use Modules\Blog\Filament\Fields\ArticleFooter;
-use Modules\Blog\Filament\Fields\ArticleContent;
-use Modules\Blog\Filament\Fields\ArticleSidebar;
 use Modules\Xot\Filament\Resources\XotBaseResource;
-use Modules\Blog\Filament\Resources\ArticleResource\Pages;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
-use Modules\Blog\Filament\Resources\ArticleResource\RelationManagers;
 
 class ArticleResource extends XotBaseResource
 {
