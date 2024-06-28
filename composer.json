@@ -37,14 +37,11 @@
             "url": "../UI"
         }
     ],
-<<<<<<< HEAD
     "require": {
         "pboivin/filament-peek": "^2.0",
         "staudenmeir/laravel-adjacency-list": "*",
         "spatie/laravel-feed": "^4.4"
     },
-=======
->>>>>>> 57e9ecc (.)
     "require_comment": {
         "thecodingmachine/safe": "^2.5"
     },
