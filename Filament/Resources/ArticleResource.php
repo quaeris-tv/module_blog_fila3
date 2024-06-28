@@ -9,12 +9,6 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
-<<<<<<< HEAD
-=======
-use Filament\Tables;
-use Filament\Tables\Enums\ActionsPosition;
-use Filament\Tables\Table;
->>>>>>> 49b215b (Lint)
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Fields\ArticleContent;
 use Modules\Blog\Filament\Fields\ArticleFooter;
