@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Fields;
 
 use Filament\Forms\Components\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Modules\Blog\Filament\Blocks\ArticleList;
 use Modules\Blog\Filament\Blocks\BannerAndSlides;
 use Modules\Blog\Filament\Blocks\Chart;
@@ -26,6 +29,23 @@ class PageContent
         string $name,
         string $context = 'form',
     ): Builder {
+        $blocks = File::glob(base_path('Modules').'/*/Filament/Blocks/*.php');
+        $blocks = Arr::map($blocks,
+            function ($block) use ($context) {
+                $ns = Str::of($block)
+                ->after(base_path('Modules'))
+                ->prepend('\Modules')
+                ->before('.php')
+                ->replace('/', '\\')
+                ->toString();
+
+                return $ns::make(context: $context);
+            }
+        );
+
+        return Builder::make($name)
+            ->blocks($blocks);
+        /*
         return Builder::make($name)
             ->blocks([
                 Title::make(context: $context),
@@ -44,5 +64,6 @@ class PageContent
                 Hero::make(context: $context),
             ])
             ->collapsible();
+        */
     }
 }

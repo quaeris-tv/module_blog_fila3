@@ -53,7 +53,7 @@ class PageResource extends XotBaseResource
                     ->columnSpan(1)
                     ->afterStateUpdated(static fn ($set, $state) => $set('slug', Str::slug($state))),
             ]),
-
+            /*
             Forms\Components\Actions::make([
                 InlinePreviewAction::make()
                     ->label('Open Content Editor')
@@ -61,7 +61,7 @@ class PageResource extends XotBaseResource
             ])
                 ->columnSpanFull()
                 ->alignEnd(),
-
+            */
             Forms\Components\Section::make('Page Content')->schema([
                 PageContent::make('content_blocks')
                     ->label('Blocchi Contenuto')
