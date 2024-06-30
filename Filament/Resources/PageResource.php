@@ -7,8 +7,6 @@ namespace Modules\Blog\Filament\Resources;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
-use Filament\Tables;
-use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Fields\LeftSidebarContent;
 use Modules\Blog\Filament\Fields\PageContent;
@@ -16,7 +14,6 @@ use Modules\Blog\Filament\Resources\PageResource\Pages;
 use Modules\Blog\Models\Page;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
-use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
 
 class PageResource extends XotBaseResource
 {
@@ -76,28 +73,6 @@ class PageResource extends XotBaseResource
                     ->columnSpanFull(),
             ]),
         ]);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable(),
-            ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    ListPreviewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ]),
-            ])
-            ->filters([])
-            ->bulkActions([]);
     }
 
     public static function getPages(): array

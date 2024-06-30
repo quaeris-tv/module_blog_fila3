@@ -39,8 +39,9 @@
     ],
     "require": {
         "pboivin/filament-peek": "^2.0",
-        "staudenmeir/laravel-adjacency-list": "*",
-        "spatie/laravel-feed": "^4.4"
+        "staudenmeir/laravel-adjacency-list": "^1.22",
+        "spatie/laravel-feed": "^4.4",
+        "staudenmeir/eloquent-has-many-deep": "*"
     },
     "require_comment": {
         "thecodingmachine/safe": "^2.5"
@@ -61,10 +62,6 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    },
-    "require": {
-        "pboivin/filament-peek": "^2.0",
-        "staudenmeir/laravel-adjacency-list": "^1.22",
-        "spatie/laravel-feed": "^4.4"
     }
+
 }
