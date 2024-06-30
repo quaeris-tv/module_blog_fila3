@@ -20,8 +20,8 @@ class CreateArticlesTable extends XotBaseMigration
                 $table->string('title')->unique();
                 $table->text('content')->nullable();
                 $table->string('picture')->nullable();
-                $table->unsignedInteger('category_id')->nullable();
-                $table->unsignedInteger('author_id')->nullable();
+                $table->unsignedInteger('category_id')->nullable()->index();
+                $table->unsignedInteger('author_id')->nullable()->index();
                 $table->string('status')->nullable();
                 $table->boolean('show_on_homepage')->default(0);
                 $table->integer('read_time')->nullable();
@@ -30,8 +30,8 @@ class CreateArticlesTable extends XotBaseMigration
                 $table->date('published_at')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
-                $table->foreign('category_id'); // ->references('id')->on('categories');
-                $table->foreign('author_id'); // ->references('id')->on('users');
+                //$table->foreign('category_id'); // ->references('id')->on('categories');
+                //$table->foreign('author_id'); // ->references('id')->on('users');
             }
         );
         // -- UPDATE --
