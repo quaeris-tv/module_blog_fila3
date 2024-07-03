@@ -34,6 +34,12 @@ use Illuminate\Support\Arr;
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withoutTrashed()
  *
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedBy($value)
+ *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot
@@ -65,14 +71,13 @@ class Taggable extends BaseMorphPivot
         'custom_properties' => [],
     ];
 
-    /**
-     * Undocumented variable.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'custom_properties' => 'array',
-    ];
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'custom_properties' => 'array',
+        ];
+    }
 
     public function withCustomProperties(array $customProperties): self
     {

@@ -22,7 +22,7 @@ class ImportFromNewsApi
         // $url = 'https://newsapi.org/v2/top-headlines?country=it&apiKey='.config('services.newsapi.app_key');
         $url = 'https://newsapi.org/v2/everything?q=cripto&sortBy=popularity&apiKey='.config('services.newsapi.app_key');
         $response = Http::get($url);
-        Assert::isArray($res = $response->json());
+        Assert::isArray($res = $response->json(), '['.__LINE__.']['.__FILE__.']');
         $posts = $res['articles'];
         /* --- from POST to ARTICLE
         foreach ($posts as $post) {

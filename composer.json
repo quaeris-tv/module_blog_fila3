@@ -38,9 +38,15 @@
         }
     ],
     "require": {
+        "pboivin/filament-peek": "^2.0",
+        "staudenmeir/laravel-adjacency-list": "^1.22",
+        "spatie/laravel-feed": "^4.4",
+        "staudenmeir/eloquent-has-many-deep": "*"
+    },
+    "require_comment": {
         "thecodingmachine/safe": "^2.5"
     },
-    "require-dev": {
+    "require-dev_comment": {
         "laravel/pint": "^1.13",
         "nunomaduro/phpinsights": "^2.11",
         "larastan/larastan": "^2.7",
@@ -49,7 +55,7 @@
         "enlightn/enlightn": "^2.7",
         "driftingly/rector-laravel": "^0.26.2",
         "symplify/phpstan-rules": "*",
-        "rector/rector": "^0.18.12",
+        "rector/rector": "*",
         "thecodingmachine/phpstan-safe-rule": "^1.2"
     },
     "config": {
@@ -57,4 +63,5 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
+
 }

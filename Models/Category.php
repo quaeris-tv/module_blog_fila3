@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
@@ -96,6 +99,15 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
  * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
  *
+ * @property string|null                                                                 $icon
+ * @property Banner|null                                                                 $banner
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Article> $categoryArticles
+ * @property int|null                                                                    $category_articles_count
+ *
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> all($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Collection<int, static> get($columns = ['*'])
+ * @method static \Staudenmeir\LaravelAdjacencyList\Eloquent\Builder|Category        whereIcon($value)
+ *
  * @mixin \Eloquent
  */
 class Category extends BaseModel implements HasMedia
@@ -110,27 +122,31 @@ class Category extends BaseModel implements HasMedia
         'title',
         'slug',
         'name',
-        'slug',
         'picture',
         'description',
         'parent_id',
         'in_leaderboard',
+        'icon',
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
-        'id' => 'string',
-        'title' => 'string',
-        'slug' => 'string',
-        'name' => 'string',
-        'picture' => 'string',
-        'description' => 'string',
-        'parent_id' => 'string',
-        'in_leaderboard' => 'boolean',
-        'published_at' => 'datetime',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'title' => 'string',
+            'slug' => 'string',
+            'name' => 'string',
+            'picture' => 'string',
+            'description' => 'string',
+            'parent_id' => 'string',
+            'in_leaderboard' => 'boolean',
+            'published_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'icon' => 'string',
+        ];
+    }
 
     /** @var array<int, string> */
     public $translatable = [
@@ -153,23 +169,37 @@ class Category extends BaseModel implements HasMedia
         return $this->belongsToMany(Article::class);
     }
 
+    public function categoryArticles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'category_id');
+    }
+
+    public function banner(): HasOne
+    {
+        return $this->hasOne(Banner::class);
+    }
+
     public static function getTreeCategoryOptions(): array
     {
-        $categories = self::tree()->get()->toTree();
-        $results = [];
-        foreach ($categories as $cat) {
-            $results[$cat->id] = $cat->title;
-            foreach ($cat->children as $child) {
-                $results[$child->id] = '--------->'.$child->title;
-                foreach ($child->children as $cld) {
-                    $results[$cld->id] = '----------------->'.$cld->title;
-                    foreach ($cld->children as $c) {
-                        $results[$c->id] = '------------------------->'.$c->title;
-                    }
-                }
-            }
-        }
+        $instance = new self();
 
-        return $results;
+        return app(GetTreeOptions::class)->execute($instance);
+
+        // $categories = self::tree()->get()->toTree();
+        // $results = [];
+        // foreach ($categories as $cat) {
+        //     $results[$cat->id] = $cat->title;
+        //     foreach ($cat->children as $child) {
+        //         $results[$child->id] = '--------->'.$child->title;
+        //         foreach ($child->children as $cld) {
+        //             $results[$cld->id] = '----------------->'.$cld->title;
+        //             foreach ($cld->children as $c) {
+        //                 $results[$c->id] = '------------------------->'.$c->title;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // return $results;
     }
 }

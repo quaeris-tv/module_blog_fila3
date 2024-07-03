@@ -6,24 +6,29 @@ namespace Modules\Blog\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
+use Filament\Resources\Concerns\Translatable;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Fields\LeftSidebarContent;
 use Modules\Blog\Filament\Fields\PageContent;
 use Modules\Blog\Filament\Resources\PageResource\Pages;
 use Modules\Blog\Models\Page;
+use Modules\Xot\Filament\Resources\XotBaseResource;
 use Pboivin\FilamentPeek\Forms\Actions\InlinePreviewAction;
-use Pboivin\FilamentPeek\Tables\Actions\ListPreviewAction;
 
-class PageResource extends Resource
+class PageResource extends XotBaseResource
 {
+    use Translatable;
+
     protected static ?string $model = Page::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
     protected static ?string $navigationGroup = 'Site';
+
+    public static function getTranslatableLocales(): array
+    {
+        return ['it', 'en'];
+    }
 
     public static function form(Form $form): Form
     {
@@ -45,7 +50,7 @@ class PageResource extends Resource
                     ->columnSpan(1)
                     ->afterStateUpdated(static fn ($set, $state) => $set('slug', Str::slug($state))),
             ]),
-
+            /*
             Forms\Components\Actions::make([
                 InlinePreviewAction::make()
                     ->label('Open Content Editor')
@@ -53,7 +58,7 @@ class PageResource extends Resource
             ])
                 ->columnSpanFull()
                 ->alignEnd(),
-
+            */
             Forms\Components\Section::make('Page Content')->schema([
                 PageContent::make('content_blocks')
                     ->label('Blocchi Contenuto')
@@ -68,28 +73,6 @@ class PageResource extends Resource
                     ->columnSpanFull(),
             ]),
         ]);
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('title')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->sortable()
-                    ->searchable(),
-            ])
-            ->actions([
-                Tables\Actions\ActionGroup::make([
-                    ListPreviewAction::make(),
-                    Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ]),
-            ])
-            ->filters([])
-            ->bulkActions([]);
     }
 
     public static function getPages(): array

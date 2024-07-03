@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire\Profile;
 
 use Filament\Actions\Action;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
-use Filament\Pages\Page;
+use Filament\Support\Enums\MaxWidth;
+use Livewire\Component;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
@@ -18,9 +21,10 @@ use Webmozart\Assert\Assert;
 /**
  * @property ComponentContainer $form
  */
-class Setting extends Page implements HasForms
+class Setting extends Component implements HasForms, HasActions
 {
     use InteractsWithForms;
+    use InteractsWithActions;
 
     public string $tpl = 'setting';
     public string $version = 'v1';
@@ -29,11 +33,10 @@ class Setting extends Page implements HasForms
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public function mount(
-        Profile $model,
-        string $tpl = 'v1'
-    ): void {
+    public function mount(Profile $model, string $tpl = 'v1'): void
+    {
         $this->model = $model;
+
         $this->tpl = $tpl;
         // dddx($this->model->toArray());
 
@@ -56,77 +59,133 @@ class Setting extends Page implements HasForms
         return view($view, $view_params);
     }
 
-    public function url(string $name, array $params): string
+    public function editProfile(): void
     {
-        return '#';
+        $this->mountAction('edit');
     }
 
-    public function form(Form $form): Form
+    public function editPassword(): void
     {
-        if (0 === \count($this->model->extra->all())) {
-            $this->data['extra'] = [
-                $this->model->extra->get('newsletter', ['newsletter' => false]),
-                $this->model->extra->get('predix_updates', ['predix_updates' => false]),
-                $this->model->extra->get('market_updates', ['market_updates' => false]),
-            ];
-
-        // dddx($this->data['extra']);
-        } else {
-            $this->data['extra'] = [$this->model->extra->all()];
-            // dddx($this->data['extra']);
-        }
-
-        // dddx($this->data['extra'][0]);
-
-        $schema = [];
-
-        // $schema[] = Toggle::make($this->data['extra'][0]['newsletter'])
-        //             ->label('aaa')
-        //         ;
-        foreach ($this->data['extra'] as $key => $field) {
-            // dddx([$key, $field]);
-            if (! is_iterable($field)) {
-                continue;
-            }
-            foreach ($field as $key => $f) {
-                $schema[] = Toggle::make($key)
-                    ->label($key)
-                ;
-            }
-        }
-
-        // dddx($schema);
-        return $form
-            ->schema($schema)
-            ->statePath('data.extra.0');
+        $this->mountAction('editPassword');
     }
 
-    protected function getFormActions(): array
+    public function editEmail(): void
     {
-        return [
-            Action::make('save')
-                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-                ->submit('save'),
-        ];
+        $this->mountAction('editEmail');
     }
 
-    public function save(): void
+    public function editEmailAction(): Action
     {
-        $data = $this->form->getState();
-        // dddx($data);
-        Assert::notNull($this->model->user);
-        $this->model->user->update($data);
+        return Action::make('editEmail')
+            ->record($this->model)
+            ->fillForm(fn ($record, $arguments): array => [
+                'email' => $this->model->user->email,
+            ])
+            ->form([
+                TextInput::make('email')
+                    ->required()
+                    ->email()
+                    ->unique(ignoreRecord: true),
+            ])
+            ->modalHeading('Change email')
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Update email')
+            ->modalCancelActionLabel('Cancel')
+            ->action(function (array $data) {
+                $verified = $this->model->email == $data['email'] ? $this->model->email_verified_at : null;
+
+                $this->model->update([
+                    'email' => $data['email'],
+                ]);
+
+                Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
+                $this->model->user->update([
+                    'email' => $data['email'],
+                    'email_verified_at' => $verified,
+                ]);
+
+                // NOT IMPLEMENTED: Send verification email
+            });
     }
 
-    public function saveExtra(): void
+    public function editPasswordAction(): Action
     {
-        $data = $this->form->getState();
-        /* Property Modules\Blog\Models\Profile::$extra
-        (Illuminate\Database\Eloquent\Collection<string, bool>)
-        does not accept
-        array<string, mixed>.
-        */
-        $this->model->extra->set($data);
-        $this->model->save();
+        return Action::make('editPassword')
+            ->record($this->model)
+            ->form([
+                TextInput::make('old_password')
+                    ->required()
+                    ->password()
+                    ->currentPassword(),
+                TextInput::make('password')
+                    ->required()
+                    ->password()
+                    ->rules(['confirmed']),
+                TextInput::make('password_confirmation')
+                    ->required()
+                    ->password(),
+            ])
+            ->modalHeading('Change password')
+            ->closeModalByClickingAway(false)
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Update password')
+            ->modalCancelActionLabel('Cancel')
+            ->action(function (array $data) {
+                Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
+                $this->model->user->update([
+                    'password' => bcrypt($data['password']),
+                ]);
+            });
+    }
+
+    public function editAction(): Action
+    {
+        return Action::make('edit')
+            ->record($this->model)
+            ->fillForm(fn ($record, $arguments): array => [
+                'user_name' => $this->model->user_name,
+                'first_name' => $this->model->first_name,
+                'last_name' => $this->model->last_name,
+            ])
+            ->form([
+                SpatieMediaLibraryFileUpload::make('photo_profile')
+                    ->hiddenLabel()
+                    ->alignCenter()
+                    ->avatar()
+                    ->collection('photo_profile')
+                    ->disk('uploads')
+                    ->directory('photo_profile')
+                    ->statePath('data'),
+                TextInput::make('user_name')
+                    ->label('User Name'),
+                TextInput::make('first_name')
+                    ->label('First Name'),
+                TextInput::make('last_name')
+                    ->label('Last Name'),
+            ])
+            ->modalHeading('Edit Profile')
+            ->closeModalByClickingAway(false)
+            ->extraModalWindowAttributes(['class' => 'xot-edit-profile-modal'])
+            ->modalCloseButton(false)
+            ->modalWidth(MaxWidth::Small)
+            ->modalSubmitActionLabel('Save changes')
+            ->modalCancelActionLabel('Cancel')
+            // ->modalIcon('heroicon-o-banknotes')
+            ->stickyModalHeader()
+            ->stickyModalFooter()
+            ->action(function (array $data, $arguments, Component $livewire) {
+                $this->model->update([
+                    'first_name' => $data['first_name'],
+                    'last_name' => $data['last_name'],
+                ]);
+
+                Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
+                $this->model->user->update(['name' => $data['user_name']]);
+            })
+        ;
     }
 }

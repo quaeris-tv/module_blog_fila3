@@ -21,7 +21,7 @@ class BannerResource extends XotBaseResource
     // use Translatable;
     protected static ?string $model = Banner::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'icon-starbanner';
 
     // public static function getTranslatableLocales(): array
     // {
@@ -40,19 +40,20 @@ class BannerResource extends XotBaseResource
                     Forms\Components\TextInput::make('description')
                         ->columnSpan(1)
                         ->required(),
-                    Forms\Components\TextInput::make('action_text')
-                        ->columnSpan(1)
-                        ->required(),
+                    // Forms\Components\TextInput::make('action_text')
+                    //     ->columnSpan(1)
+                    //     ->required(),
                     Forms\Components\Select::make('category_id')
                         ->required()
                         ->options(Category::getTreeCategoryOptions()),
-                    Forms\Components\TextInput::make('link')
-                        ->columnSpan(1)
-                        ->required(),
-                    Forms\Components\DateTimePicker::make('start_date')
-                        ->columnSpan(1),
-                    Forms\Components\DateTimePicker::make('end_date')
-                        ->columnSpan(1),
+                    // Forms\Components\TextInput::make('link')
+                    //     ->columnSpan(1)
+                    // ->required(),
+                    // ->helperText('bla bla bla'),
+                    // Forms\Components\DateTimePicker::make('start_date')
+                    //     ->columnSpan(1),
+                    // Forms\Components\DateTimePicker::make('end_date')
+                    //     ->columnSpan(1),
                     Forms\Components\Toggle::make('hot_topic')
                         ->columnSpan(1),
                     Forms\Components\Toggle::make('landing_banner')
@@ -108,7 +109,9 @@ class BannerResource extends XotBaseResource
                 ]),
             ])
             ->emptyStateActions([
-            ]);
+            ])
+            ->reorderable('pos')
+            ->defaultSort('pos', 'asc');
     }
 
     public static function getRelations(): array

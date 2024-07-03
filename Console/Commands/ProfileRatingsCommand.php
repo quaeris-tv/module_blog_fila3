@@ -33,7 +33,7 @@ class ProfileRatingsCommand extends Command
     {
         $userId = (string) $this->argument('userId');
 
-        Assert::notNull($profile = Profile::firstWhere(['user_id' => $userId]));
+        Assert::notNull($profile = Profile::firstWhere(['user_id' => $userId]), '['.__LINE__.']['.__FILE__.']');
 
         $rows = $profile->ratings()
             ->select('value', 'user_id', 'title as answer', 'model_id', 'model_type')
@@ -49,7 +49,7 @@ class ProfileRatingsCommand extends Command
             ->toArray();
 
         if (count($rows) > 0) {
-            Assert::isArray($rows[0]);
+            Assert::isArray($rows[0], '['.__LINE__.']['.__FILE__.']');
             $headers = array_keys($rows[0]);
 
             $this->newLine();

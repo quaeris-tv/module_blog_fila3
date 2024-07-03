@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Datas;
 
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Modules\Blog\Actions\Category\GetBloodline;
 use Modules\Blog\Models\Article;
@@ -16,19 +17,32 @@ class ArticleData extends Data
     public string $title = '';
 
     public function __construct(
+<<<<<<< HEAD
+=======
+        public string $id,
+>>>>>>> origin/dev
         public string $uuid,
         array|string $title,
         public string $slug,
         public ?int $category_id,
         public ?string $status,
         public bool $show_on_homepage,
-        public string $published_at,
+        public ?string $published_at,
         public ?array $content_blocks,
         public ?array $sidebar_blocks,
         public ?array $footer_blocks,
         public ?Collection $categories,
         public ?string $url,
         public ?array $ratings,
+<<<<<<< HEAD
+=======
+        public ?string $closed_at,
+        public ?string $closed_at_date,
+        public ?int $betting_users,
+        public ?string $time_left_for_humans,
+        public ?float $volume_credit,
+        public ?Collection $tags,
+>>>>>>> origin/dev
         // public string $class,
         // public string $articleId;
         // public string $ratingId;
@@ -43,24 +57,55 @@ class ArticleData extends Data
         }
         // $this->url = $this->getUrl();
         $this->categories = $this->getCategories();
+<<<<<<< HEAD
         $this->ratings = $this->getRatings();
+=======
+
+        $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
+
+        Assert::notNull($article = Article::where('uuid', $this->uuid)->first(), '['.__LINE__.']['.__FILE__.']');
+        $this->betting_users = $article->getBettingUsers();
+        $this->ratings = $article->getArrayRatingsWithImage();
+        $this->time_left_for_humans = $article->getTimeLeftForHumans();
+        $this->volume_credit = $article->getVolumeCredit();
+        $this->tags = $article->tags->map(fn ($tag) => $tag->name);
+>>>>>>> origin/dev
     }
 
     public function getCategories(): Collection
     {
         return app(GetBloodline::class)->execute($this->category_id);
 
-        // Assert::notNull($category = Category::find($this->category_id));
+        // Assert::notNull($category = Category::find($this->category_id),'['.__LINE__.']['.__FILE__.']');
 
         // return $category->bloodline()->get()->reverse();
     }
 
+<<<<<<< HEAD
     public function getRatings(): array
     {
         Assert::notNull($article = Article::where('uuid', $this->uuid)->first());
 
         return $article->getArrayRatingsWithImage();
     }
+=======
+    // public function getArticle(): Article
+    // {
+    //     Assert::notNull($article = Article::where('uuid', $this->uuid)->first(),'['.__LINE__.']['.__FILE__.']');
+
+    //     return $article;
+    // }
+
+    // public function getRatings(): array
+    // {
+    //     return $this->getArticle()->getArrayRatingsWithImage();
+    // }
+
+    // public function getBettingUsers(): int
+    // {
+    //     return $this->getArticle()->getBettingUsers();
+    // }
+>>>>>>> origin/dev
 
     public function url(string $type): string
     {
@@ -74,5 +119,20 @@ class ArticleData extends Data
         // }
 
         return '#';
+    }
+
+    // public function getClosedAt(): string
+    // {
+    //     return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
+    // }
+
+    // public function getTimeLeftForHumans(): string
+    // {
+    //     dddx('a');
+    //     return $this->getArticle()->getTimeLeftForHumans();
+    // }
+    public function __toString(): string
+    {
+        return '['.__LINE__.']['.__FILE__.']';
     }
 }

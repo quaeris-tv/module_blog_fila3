@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Spatie\Translatable\HasTranslations;
+
 /**
  * Modules\Blog\Models\Page.
  *
@@ -44,10 +46,17 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereFooterBlocks($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Page whereSidebarBlocks($value)
  *
+ * @property mixed $translations
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocale(string $column, string $locale)
+ * @method static \Illuminate\Database\Eloquent\Builder|Page whereLocales(string $column, array $locales)
+ *
  * @mixin \Eloquent
  */
 class Page extends BaseModel
 {
+    use HasTranslations;
+
     protected $fillable = [
         'content',
         'slug',
@@ -57,24 +66,44 @@ class Page extends BaseModel
         'footer_blocks',
     ];
 
+    /** @var array<int, string> */
+    public $translatable = [
+        'title',
+        // 'description',
+        'content_blocks',
+        'sidebar_blocks',
+        'footer_blocks',
+    ];
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ],
+        ];
+    }
+
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        // 'images' => 'array',
-        'id' => 'string',
-        'uuid' => 'string',
-        'date' => 'datetime',
-        'published_at' => 'datetime',
-        'active' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'content_blocks' => 'array',
-        'sidebar_blocks' => 'array',
-        'footer_blocks' => 'array',
-    ];
+     * @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            // 'images' => 'array',
+            'id' => 'string',
+            'uuid' => 'string',
+            'date' => 'datetime',
+            'published_at' => 'datetime',
+            'active' => 'boolean',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'content_blocks' => 'array',
+            'sidebar_blocks' => 'array',
+            'footer_blocks' => 'array',
+        ];
+    }
 
     /**
      * Get the path key to the item for the frontend only.

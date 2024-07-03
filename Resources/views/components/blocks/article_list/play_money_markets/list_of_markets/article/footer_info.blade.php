@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 <div class="px-6 lg:px-0 flex items-center justify-between">
+=======
+<div class="flex items-center justify-between px-6 lg:px-0">
+>>>>>>> origin/dev
     <div class="flex items-center gap-4 lg:gap-8">
         <div class="relative" x-data="{ tooltip: false }">
             <button type="button"
             class="flex items-center gap-4 lg:gap-8 rounded p-1.5 hover:bg-[#d8e6f1] cursor-pointer"
             @mouseover="tooltip = true" @mouseleave="tooltip = false" @click="tooltip = !tooltip">
             <div class="flex items-center gap-1.5">
+<<<<<<< HEAD
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                     class="question-card__person-icon" fill="#292929" width="13px">
                     <path fill-rule="evenodd"
@@ -20,6 +25,13 @@
                         d="M0.5 9H3.83333V16.5H0.5V9ZM12.1667 5.66667H15.5V16.5H12.1667V5.66667ZM6.33333 0.666668H9.66667V16.5H6.33333V0.666668Z"
                         fill="#6B6A6A"></path>
                 </svg>
+=======
+                <x-heroicon-o-user class="size-4"/>
+                <span {{-- x-text="market.wagers_count_total" --}} class="text-sm text-[#666666]"></span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <x-heroicon-o-chart-bar class="size-4"/>
+>>>>>>> origin/dev
                 <span {{-- x-text="formatCurrency(market.volume_play_money)+'ø'" --}}
                     class="text-sm text-[#666666]"></span>
             </div>
@@ -28,12 +40,17 @@
             <div x-cloak x-show.transition.origin.top="tooltip"
                 class="absolute z-10 inline-block w-[262px] bottom-11 shadow-[0_2px_8px_0_#00000026] bg-white text-sm text-[#6b6a6a] rounded-lg">
                 <div class="p-4 flex flex-col gap-2.5">
+<<<<<<< HEAD
                     <template {{-- x-if="market.wagers_count_total>0" --}}>
                         <div>
                             <!-- forecasters -->
                             @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.footer_info.forecasters')
                         </div>
                     </template>
+=======
+                    <!-- forecasters -->
+                    @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.footer_info.forecasters')
+>>>>>>> origin/dev
                     <!-- volume -->
                     @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.footer_info.volume')
                 </div>

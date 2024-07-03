@@ -20,7 +20,7 @@ use Modules\Xot\Traits\Updater;
 abstract class BaseModelLang extends Model
 {
     use HasFactory;
-    use LinkedTrait;
+    // use LinkedTrait;
 
     // use Searchable;
     use SoftDeletes;

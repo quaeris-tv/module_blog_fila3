@@ -23,9 +23,15 @@ class MenuResource extends Resource
 
     protected static ?string $navigationLabel = 'Navigation';
 
-    public static function form(Form $form): Form
+    public static function getFormSchema(): array
     {
-        return $form->schema([
+        return [
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(2048)
+            // ->reactive()
+            // ->unique()
+            ,
             Forms\Components\Repeater::make('items')
                 ->schema([
                     Forms\Components\Grid::make(2)->schema([
@@ -34,6 +40,7 @@ class MenuResource extends Resource
                             ->columnSpan(1),
 
                         Forms\Components\TextInput::make('url')
+                            ->helperText('Se di tipo internal inserisci lo slug del titolo, se external inserisci l\'url completo (https://dominio)')
                             ->required()
                             ->columnSpan(1),
                     ]),
@@ -62,20 +69,43 @@ class MenuResource extends Resource
                         ->collection('menu')
                     // ->preserveFilenames()
                     ,
+<<<<<<< HEAD
+=======
+                    // Forms\Components\Select::make('parent_id')
+                    //     ->label('link/menu Padre')
+                    //     ->options(
+                    //         Menu::getTreeMenuOptions()
+                    //     )
+                    //     ->searchable(),
+                    \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                        ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
+                        ->columns([
+                            'default' => 1,
+                            'lg' => 3,
+                            '2xl' => 5,
+                        ])
+                        ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+>>>>>>> origin/dev
                 ])
                 ->columnSpanFull(),
-        ]);
+        ];
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form->schema(static::getFormSchema());
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('title'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
                 ]),
             ])
             ->filters([])

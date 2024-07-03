@@ -6,5 +6,7 @@
 {{-- {{ dddx(get_defined_vars()) }} --}}
 <div>
   {{-- @include('blog::components.blocks.'.$tpl.'.'.$version) --}}
-  <livewire:profile.setting :tpl="$tpl" :version="$version" :model="$_profile" />
+  @if(Auth::check())
+    <livewire:profile.setting :tpl="$tpl" :version="$version" :model="$_profile" wire:key="$profile->id"/>
+  @endif
 </div>

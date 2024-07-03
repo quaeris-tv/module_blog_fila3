@@ -41,6 +41,37 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
  *
+ * @property string|null                                                                                                $link
+ * @property string|null                                                                                                $title
+ * @property string|null                                                                                                $description
+ * @property string|null                                                                                                $action_text
+ * @property string|null                                                                                                $category_id
+ * @property \Illuminate\Support\Carbon|null                                                                            $start_date
+ * @property \Illuminate\Support\Carbon|null                                                                            $end_date
+ * @property bool                                                                                                       $hot_topic
+ * @property int|null                                                                                                   $open_markets_count
+ * @property bool                                                                                                       $landing_banner
+ * @property int|null                                                                                                   $pos
+ * @property Category|null                                                                                              $category
+ * @property string                                                                                                     $desktop_thumbnail
+ * @property string                                                                                                     $desktop_thumbnail_webp
+ * @property string                                                                                                     $mobile_thumbnail
+ * @property string                                                                                                     $mobile_thumbnail_webp
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereActionText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereHotTopic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLandingBanner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereOpenMarketsCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Banner whereTitle($value)
+ *
  * @mixin \Eloquent
  */
 class Banner extends BaseModel implements HasMedia
@@ -51,11 +82,11 @@ class Banner extends BaseModel implements HasMedia
     /** @var array<int, string> */
     protected $fillable = [
         // "id", //: 40,
-        // "desktop_thumbnail",//: "https://futuur-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
-        // "mobile_thumbnail",//: "https://futuur-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
-        // "desktop_thumbnail_webp",//: "https://futuur-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
-        // "mobile_thumbnail_webp",//: "https://futuur-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
-        'link', // : "https://futuur.com/q/category/99/usa",
+        // "desktop_thumbnail",//: "https://My_Company-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
+        // "mobile_thumbnail",//: "https://My_Company-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
+        // "desktop_thumbnail_webp",//: "https://My_Company-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
+        // "mobile_thumbnail_webp",//: "https://My_Company-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
+        'link', // : "https://My_Company.com/q/category/99/usa",
         'title', // : "American Politics",
         'description', // : "Congress, White House, Elections and more",
         'action_text', // : "Make Your Forecasts",
@@ -76,21 +107,24 @@ class Banner extends BaseModel implements HasMedia
         'hot_topic', // : false,
         'open_markets_count', // : 119,
         'landing_banner', // : false
+        'pos',
     ];
 
-    /** @var array<string, string> */
-    protected $casts = [
-        'id' => 'string',
-        'desktop_thumbnail' => 'string',
-        'mobile_thumbnail' => 'string',
-        'desktop_thumbnail_webp' => 'string',
-        'mobile_thumbnail_webp' => 'string',
-        'link' => 'string',
-        'title' => 'string',
-        'description' => 'string',
-        'action_text' => 'string',
-        'category_id' => 'string',
-        /*
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'desktop_thumbnail' => 'string',
+            'mobile_thumbnail' => 'string',
+            'desktop_thumbnail_webp' => 'string',
+            'mobile_thumbnail_webp' => 'string',
+            'link' => 'string',
+            'title' => 'string',
+            'description' => 'string',
+            'action_text' => 'string',
+            'category_id' => 'string',
+            /*
         "category",//: 99,
         "category_dict": {
             "id": 99,
@@ -101,12 +135,13 @@ class Banner extends BaseModel implements HasMedia
             "icon": null
         },
         */
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-        'hot_topic' => 'boolean',
-        'open_markets_count' => 'integer',
-        'landing_banner' => 'boolean',
-    ];
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'hot_topic' => 'boolean',
+            'open_markets_count' => 'integer',
+            'landing_banner' => 'boolean',
+        ];
+    }
 
     /** @var array<int, string> */
     protected $appends = [
@@ -162,19 +197,28 @@ class Banner extends BaseModel implements HasMedia
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getUrlCategoryPage(): string
+    {
+        if (null == $this->category) {
+            return route('categories', ['lang' => app()->getLocale()]);
+        }
+
+        return route('category_slug.show', ['lang' => app()->getLocale(), 'category_slug' => $this->category->slug]);
+    }
 }
 
 /*
 "id": 40,
     "desktop_thumbnail":
-      "https://futuur-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
     "mobile_thumbnail":
-      "https://futuur-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/0d/0c/0d0cf75bd794283b4606e85cc30f0045.jpg",
     "desktop_thumbnail_webp":
-      "https://futuur-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/64/3f/643f313db56c3735d15ae3eb1c27d5ad.webp",
     "mobile_thumbnail_webp":
-      "https://futuur-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
-    "link": "https://futuur.com/q/category/99/usa",
+      "https://My_Company-media-production.s3.amazonaws.com/cache/14/8c/148c10ea338dfbe1bbd329e551afbfcf.webp",
+    "link": "https://My_Company.com/q/category/99/usa",
     "title": "American Politics",
     "short_description": "Congress, White House, Elections and more",
     "action_text": "Make Your Forecasts",

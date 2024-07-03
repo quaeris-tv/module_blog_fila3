@@ -1,4 +1,5 @@
 <div class="py-4">
+<<<<<<< HEAD
     @php
         $articles = $_theme->getMethodData($method);
     @endphp
@@ -20,4 +21,13 @@
             </div> --}}
         </div>
     </template>
+=======
+    <div>
+        @if(count($articles))
+            @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article', ['articles' => $articles])
+        @else
+            @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.no_articles_found')
+        @endif
+    </div>
+>>>>>>> origin/dev
 </div>

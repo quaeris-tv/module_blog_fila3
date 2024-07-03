@@ -31,44 +31,53 @@ class CategoryResource extends XotBaseResource
         return ['it', 'en'];
     }
 
+    public static function getFormFields(): array
+    {
+        return [
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(2048)
+                ->reactive()
+                ->unique()
+                ->afterStateUpdated(function (Forms\Set $set, $state) {
+                    $set('slug', Str::slug($state));
+                }),
+            Forms\Components\TextInput::make('slug')
+                ->required()
+                ->maxLength(2048),
+            Forms\Components\Select::make('parent_id')
+                ->label('Categoria Padre')
+                ->options(
+                    // Category::where('parent_id', null)->pluck('title', 'id')
+                    // Category::tree()->get()->toTree()->pluck('title', 'id')
+                    Category::getTreeCategoryOptions()
+                )
+                ->searchable(),
+            Forms\Components\TextInput::make('description')
+                ->maxLength(2048),
+            SpatieMediaLibraryFileUpload::make('image')
+                // ->image()
+                // ->maxSize(5000)
+                // ->multiple()
+                // ->enableReordering()
+                ->enableOpen()
+                ->enableDownload()
+                ->columnSpanFull()
+                ->collection('category')
+                // ->conversion('thumbnail')
+                ->disk('uploads')
+                ->directory('photos'),
+            \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
+                ->columnSpanFull()
+                ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(2048)
-                    ->reactive()
-                    ->unique()
-                    ->afterStateUpdated(function (Forms\Set $set, $state) {
-                        $set('slug', Str::slug($state));
-                    }),
-                Forms\Components\TextInput::make('slug')
-                    ->required()
-                    ->maxLength(2048),
-                Forms\Components\Select::make('parent_id')
-                    ->label('Categoria Padre')
-                    ->options(
-                        // Category::where('parent_id', null)->pluck('title', 'id')
-                        // Category::tree()->get()->toTree()->pluck('title', 'id')
-                        Category::getTreeCategoryOptions()
-                    )
-                    ->searchable(),
-                Forms\Components\TextInput::make('description')
-                    ->maxLength(2048),
-                SpatieMediaLibraryFileUpload::make('image')
-                    // ->image()
-                    // ->maxSize(5000)
-                    // ->multiple()
-                    // ->enableReordering()
-                    ->enableOpen()
-                    ->enableDownload()
-                    ->columnSpanFull()
-                    // ->collection('avatars')
-                    // ->conversion('thumbnail')
-                    ->disk('uploads')
-                    ->directory('photos'),
-            ]);
+            ->schema(static::getFormFields());
     }
 
     public static function table(Table $table): Table

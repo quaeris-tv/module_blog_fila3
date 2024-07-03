@@ -43,6 +43,12 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget   withoutTrashed()
  *
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null                     $deleted_by
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereDeletedBy($value)
+ *
  * @mixin \Eloquent
  */
 class TextWidget extends BaseModel implements HasMedia
@@ -75,7 +81,7 @@ class TextWidget extends BaseModel implements HasMedia
         if (! $widget) {
             return '';
         }
-        Assert::isInstanceOf($widget, self::class);
+        Assert::isInstanceOf($widget, self::class, '['.__LINE__.']['.__FILE__.']');
 
         return $widget->content;
     }
