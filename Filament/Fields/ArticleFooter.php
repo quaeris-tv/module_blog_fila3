@@ -6,8 +6,8 @@ namespace Modules\Blog\Filament\Fields;
 
 use Filament\Forms\Components\Builder;
 use Modules\Blog\Filament\Blocks\ArticleCard;
-use Modules\UI\Filament\Blocks\ImageSpatie;
 use Modules\Blog\Filament\Blocks\PageCard;
+use Modules\UI\Filament\Blocks\ImageSpatie;
 
 class ArticleFooter
 {
