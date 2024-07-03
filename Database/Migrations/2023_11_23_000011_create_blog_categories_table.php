@@ -7,7 +7,7 @@ use Modules\Blog\Models\Category;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
 /**
- * Class CreateLiveuserUsersTable.
+ * Class CreateBlogCategoriesTable.
  */
 class CreateBlogCategoriesTable extends XotBaseMigration
 {
