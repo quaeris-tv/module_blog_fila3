@@ -13,7 +13,7 @@ class Chart
 {
     public static function make(
         // string $name = 'ratings_statistics_graph',
-        string $name = 'chart', //nome e' lo snake della classe
+        string $name = 'chart', // nome e' lo snake della classe
         string $context = 'form',
     ): Block {
         $view = 'blog::components.blocks.chart.v1';
