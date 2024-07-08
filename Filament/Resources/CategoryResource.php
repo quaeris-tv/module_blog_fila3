@@ -67,10 +67,10 @@ class CategoryResource extends XotBaseResource
                 // ->conversion('thumbnail')
                 ->disk('uploads')
                 ->directory('photos'),
-            \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
-                ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
-                ->columnSpanFull()
-                ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+            // \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+            //     ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
+            //     ->columnSpanFull()
+            //     ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
         ];
     }
 
