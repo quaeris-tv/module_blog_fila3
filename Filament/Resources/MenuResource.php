@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Modules\Blog\Filament\Resources\MenuResource\Pages;
 use Modules\Blog\Models\Menu;
+use Modules\UI\Filament\Forms\Components\IconPicker;
 
 class MenuResource extends Resource
 {
@@ -75,14 +76,15 @@ class MenuResource extends Resource
                     //         Menu::getTreeMenuOptions()
                     //     )
                     //     ->searchable(),
-                    \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+                    IconPicker::make('icon')
                         ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
                         ->columns([
                             'default' => 1,
                             'lg' => 3,
                             '2xl' => 5,
                         ])
-                        ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+                    // ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP)
+                    ,
                 ])
                 ->columnSpanFull(),
         ];

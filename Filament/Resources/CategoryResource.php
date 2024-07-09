@@ -8,12 +8,10 @@ use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Concerns\Translatable;
-use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Modules\Blog\Filament\Resources\CategoryResource\Pages;
 use Modules\Blog\Models\Category;
+use Modules\UI\Filament\Forms\Components\IconPicker;
 use Modules\Xot\Filament\Resources\XotBaseResource;
 
 class CategoryResource extends XotBaseResource
@@ -67,10 +65,11 @@ class CategoryResource extends XotBaseResource
                 // ->conversion('thumbnail')
                 ->disk('uploads')
                 ->directory('photos'),
-            \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
+            IconPicker::make('icon')
                 ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
                 ->columnSpanFull()
-                ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
+            // ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP)
+            ,
         ];
     }
 
@@ -78,30 +77,6 @@ class CategoryResource extends XotBaseResource
     {
         return $form
             ->schema(static::getFormFields());
-    }
-
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('title')->searchable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('parent.title')->searchable()
-                    ->sortable(),
-                // Tables\Columns\TextColumn::make('updated_at')
-                //     ->sortable()
-                //     ->dateTime(),
-                SpatieMediaLibraryImageColumn::make('image'),
-            ])
-            ->filters([
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
     }
 
     public static function getPages(): array
