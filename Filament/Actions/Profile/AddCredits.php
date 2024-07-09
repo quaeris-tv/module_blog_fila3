@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Actions\Profile;
 
-use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\Action;
 use Modules\Xot\Contracts\ProfileContract;
 
 class AddCredits extends Action
@@ -41,10 +41,10 @@ class AddCredits extends Action
                 }
             )
             ->form([
-                    TextInput::make('credits')
-                        ->numeric()
-                        ->required()
-                ])
+                TextInput::make('credits')
+                    ->numeric()
+                    ->required(),
+            ])
             ->label('')
             ->icon('heroicon-o-currency-dollar')
             ->tooltip('Add Credits')
@@ -52,7 +52,7 @@ class AddCredits extends Action
             ->modalHeading('Aggiungi Crediti')
             // ->requiresConfirmation()
             ->modalSubmitActionLabel('Aggiungi')
-            ;
+        ;
     }
 
     public static function getDefaultName(): ?string
