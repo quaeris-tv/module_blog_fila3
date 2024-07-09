@@ -76,7 +76,6 @@ class MenuResource extends Resource
                     //         Menu::getTreeMenuOptions()
                     //     )
                     //     ->searchable(),
-<<<<<<< HEAD
                     IconPicker::make('icon')
                         ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
                         ->columns([
@@ -86,16 +85,6 @@ class MenuResource extends Resource
                         ])
                     // ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP)
                     ,
-=======
-                    // \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
-                    //     ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
-                    //     ->columns([
-                    //         'default' => 1,
-                    //         'lg' => 3,
-                    //         '2xl' => 5,
-                    //     ])
-                    //     ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
->>>>>>> origin/master
                 ])
                 ->columnSpanFull(),
         ];
