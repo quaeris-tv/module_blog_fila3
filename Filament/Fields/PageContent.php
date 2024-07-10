@@ -16,11 +16,13 @@ class PageContent
     ): Builder {
         $blocks = app(GetAllBlocksAction::class)->execute();
 
-        $blocks = Arr::map($blocks, function ($block) use ($context) {
-            $class = $block['class'];
+        $blocks = Arr::map($blocks,
+            function ($block) use ($context) {
+                $class = $block['class'];
 
-            return $class::make(context: $context);
-        });
+                return $class::make(context: $context);
+            }
+        );
 
         return Builder::make($name)
             ->blocks($blocks)
