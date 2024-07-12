@@ -49,6 +49,7 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $main_image_upload
  * @property string                                                                                                     $main_image_url
  * @property string                                                                                                     $content_blocks
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
@@ -72,6 +73,7 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
+ *
  * @property string                                                                    $id
  * @property string                                                                    $uuid
  * @property string|null                                                               $content
@@ -99,6 +101,7 @@ use Webmozart\Assert\Assert;
  * @property int|null                                                                  $ratings_count
  * @property mixed                                                                     $translations
  * @property string|null                                                               $rewarded_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereClosedAt($value)
@@ -127,6 +130,7 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
+ *
  * @property int         $status_display
  * @property string|null $bet_end_date
  * @property string|null $event_start_date
@@ -142,6 +146,7 @@ use Webmozart\Assert\Assert;
  * @property float|null  $volume_play_money
  * @property float|null  $volume_real_money
  * @property int         $is_following
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScorePlayMoney($value)
@@ -158,10 +163,13 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
- * @property-read \Modules\Rating\Models\RatingMorph $pivot
+ *
+ * @property \Modules\Rating\Models\RatingMorph $pivot
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereRewardedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
