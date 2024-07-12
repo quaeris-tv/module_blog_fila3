@@ -17,8 +17,8 @@ class ArticleFooter
     ): Builder {
         return Builder::make($name)
             ->blocks([
-                ArticleCard::make(context: $context),
-                PageCard::make(context: $context),
+                ArticleSection::make(context: $context),
+                PageSection::make(context: $context),
                 ImageSpatie::make(context: $context),
             ])
             ->collapsible();
