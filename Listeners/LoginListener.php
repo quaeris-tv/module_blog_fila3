@@ -40,7 +40,7 @@ class LoginListener
 
             Transaction::create([
                 'model_type' => 'profile',
-                'model_id' => $user->profile->id,
+                'model_id' => $user->profile?->id,
                 'user_id' => $user->id,
                 'date' => Carbon::now(),
                 'credits' => 1000,

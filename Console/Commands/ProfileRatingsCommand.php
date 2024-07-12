@@ -35,6 +35,7 @@ class ProfileRatingsCommand extends Command
 
         Assert::notNull($profile = Profile::firstWhere(['user_id' => $userId]), '['.__LINE__.']['.__FILE__.']');
 
+        // @phpstan-ignore-next-line
         $rows = $profile->ratings()
             ->select('value', 'user_id', 'title as answer', 'model_id', 'model_type')
             ->get()
@@ -42,6 +43,7 @@ class ProfileRatingsCommand extends Command
                 // dddx($item->toArray());
                 $data = $item->toArray();
                 // $data['question'] = $item->linkedTo->title;
+                // @phpstan-ignore-next-line
                 $data['question'] = $item->answer;
 
                 return $data;

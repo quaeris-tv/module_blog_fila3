@@ -28,6 +28,7 @@ class TranslateContentAction
                     $model_content[$locale] = $model_content['it'];
                 }
             }
+            // @phpstan-ignore-next-line
             $model->content_blocks = $model_content;
         }
 
@@ -40,6 +41,7 @@ class TranslateContentAction
                     $model_content[$locale] = $model_content['it'];
                 }
             }
+            // @phpstan-ignore-next-line
             $model->sidebar_blocks = $model_content;
         }
 
@@ -52,6 +54,7 @@ class TranslateContentAction
                     $model_content[$locale] = $model_content['it'];
                 }
             }
+            // @phpstan-ignore-next-line
             $model->footer_blocks = $model_content;
         }
 

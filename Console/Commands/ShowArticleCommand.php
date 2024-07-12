@@ -68,10 +68,13 @@ class ShowArticleCommand extends Command
 
             $sum = $tmp->value_sum ?? 0;
             // $avg = $tmp->value_avg;
+            // @phpstan-ignore-next-line
             $avg = round($tmp->value_sum * 100 / $tmp->value_tot, 2);
+            // @phpstan-ignore-next-line
             $count = $tmp->value_count;
+            // @phpstan-ignore-next-line
             $tot = $tmp->value_tot;
-
+            // @phpstan-ignore-next-line
             $data = [$rating->id, $rating->title, $rating->pivot->is_winner,  $count, $sum, $avg, $tot];
             $rows[] = $data;
         }

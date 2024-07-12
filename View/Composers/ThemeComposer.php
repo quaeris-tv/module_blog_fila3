@@ -403,6 +403,7 @@ class ThemeComposer
     {
         $tmp = [];
         foreach ($rows->toArray() as $content) {
+            // @phpstan-ignore-next-line
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);

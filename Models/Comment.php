@@ -26,7 +26,6 @@ use Modules\User\Models\User;
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
  * @property User|null                                              $user
- *
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newQuery()
@@ -41,17 +40,14 @@ use Modules\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withoutTrashed()
- *
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedBy($value)
- *
  * @mixin \Eloquent
  */
 class Comment extends BaseModel

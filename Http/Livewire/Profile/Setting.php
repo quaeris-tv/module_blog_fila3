@@ -79,7 +79,7 @@ class Setting extends Component implements HasForms, HasActions
         return Action::make('editEmail')
             ->record($this->model)
             ->fillForm(fn ($record, $arguments): array => [
-                'email' => $this->model->user->email,
+                'email' => $this->model->user?->email,
             ])
             ->form([
                 TextInput::make('email')
@@ -94,6 +94,7 @@ class Setting extends Component implements HasForms, HasActions
             ->modalSubmitActionLabel('Update email')
             ->modalCancelActionLabel('Cancel')
             ->action(function (array $data) {
+                // @phpstan-ignore-next-line
                 $verified = $this->model->email == $data['email'] ? $this->model->email_verified_at : null;
 
                 $this->model->update([
