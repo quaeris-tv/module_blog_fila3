@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Console\Commands\Profiles;
 
-use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
-use Modules\Blog\Models\Profile;
-use Modules\Blog\Datas\RemovedCreditsData;
 use Modules\Blog\Aggregates\ProfileAggregate;
+use Modules\Blog\Datas\RemovedCreditsData;
+use Modules\Blog\Models\Profile;
+use Webmozart\Assert\Assert;
 
 class RemoveCreditsByProfilesEmailCommand extends Command
 {

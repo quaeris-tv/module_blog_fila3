@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Modules\Blog\Projectors;
 
 use Carbon\Carbon;
-use Modules\Blog\Models\Profile;
-use Modules\Blog\Models\Transaction;
-use Modules\Blog\Events\RatingArticle;
 use Modules\Blog\Events\Profile\CreditsAdded;
 use Modules\Blog\Events\Profile\CreditsRemoved;
+use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Transaction;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ProfileProjector extends Projector

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Actions\Profile;
 
-use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\Action;
+use Modules\Blog\Aggregates\ProfileAggregate;
 use Modules\Blog\Datas\AddedCreditsData;
 use Modules\Blog\Datas\RemovedCreditsData;
 use Modules\Xot\Contracts\ProfileContract;
-use Modules\Blog\Aggregates\ProfileAggregate;
 
 class ModifyCredits extends Action
 {
@@ -22,7 +22,7 @@ class ModifyCredits extends Action
         $this->translateLabel()
             ->action(
                 function (ProfileContract $record, array $data): void {
-                    if($data['opt'] == 'add'){
+                    if ('add' == $data['opt']) {
                         $command = AddedCreditsData::from([
                             'profileId' => (string) $record->id,
                             'userId' => $record->user_id,
@@ -33,7 +33,7 @@ class ModifyCredits extends Action
                             ->creditAdded($command);
 
                         Notification::make()->success()->title('Add credit successfully.');
-                    }else{
+                    } else {
                         $command = RemovedCreditsData::from([
                             'profileId' => (string) $record->id,
                             'userId' => $record->user_id,
