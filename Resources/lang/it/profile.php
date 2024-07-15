@@ -33,5 +33,7 @@ return [
         'welcome' => 'Regalo di benvenuto',
         'rating_article' => 'Scommessa effettuata',
         'rating_article_winner' => 'Vincente',
+        'admin_add_credit_to_profile' => 'Aggiunta crediti dall\'amministratore',
+        'admin_remove_credit_to_profile' => 'Sottrazione crediti dall\'amministratore',
     ],
 ];

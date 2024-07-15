@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Projectors;
 
-use Modules\Blog\Events\Rating\CreditsAdded;
-use Modules\Blog\Events\RatingArticle;
+use Carbon\Carbon;
 use Modules\Blog\Models\Profile;
+use Modules\Blog\Models\Transaction;
+use Modules\Blog\Events\RatingArticle;
+use Modules\Blog\Events\Profile\CreditsAdded;
+use Modules\Blog\Events\Profile\CreditsRemoved;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class ProfileProjector extends Projector
@@ -24,6 +27,31 @@ class ProfileProjector extends Projector
 
     public function onCreditsAdded(CreditsAdded $event): void
     {
-        dddx('wip');
+        Transaction::create(
+            [
+                'model_type' => 'profile',
+                'model_id' => $event->profileId,
+                'user_id' => $event->userId,
+                'date' => Carbon::now(),
+                'credits' => $event->credit,
+                'note' => 'admin_add_credit_to_profile',
+            ]
+        );
+
+        // dddx(Transaction::where('user_id', $event->userId)->sum('credits'));
+    }
+
+    public function onCreditsRemoved(CreditsRemoved $event): void
+    {
+        Transaction::create(
+            [
+                'model_type' => 'profile',
+                'model_id' => $event->profileId,
+                'user_id' => $event->userId,
+                'date' => Carbon::now(),
+                'credits' => $event->credit * -1,
+                'note' => 'admin_remove_credit_to_profile',
+            ]
+        );
     }
 }
