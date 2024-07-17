@@ -168,7 +168,7 @@ class Banner extends BaseModel implements HasMedia
         // @phpstan-ignore-next-line
         $this->addMediaConversion('cover')
         // @phpstan-ignore-next-line
-            ->format(Manipulations::FORMAT_WEBP)
+            //->format(Manipulations::FORMAT_WEBP)
             ->width(320)
             ->height(200)
             ->nonQueued();
