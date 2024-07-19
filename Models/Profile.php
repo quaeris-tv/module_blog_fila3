@@ -18,7 +18,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 /**
  * Modules\Blog\Models\Profile.
  *
- * @property int                                                                                                           $credits
+ * @property float                                                                                                         $credits
  * @property int                                                                                                           $id
  * @property string|null                                                                                                   $user_id
  * @property string|null                                                                                                   $first_name

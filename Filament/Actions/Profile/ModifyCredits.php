@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Actions\Profile;
 
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
-use Modules\Blog\Aggregates\ProfileAggregate;
 use Modules\Blog\Datas\AddedCreditsData;
 use Modules\Blog\Datas\RemovedCreditsData;
 use Modules\Xot\Contracts\ProfileContract;
+use Modules\Blog\Aggregates\ProfileAggregate;
+use Modules\Blog\Actions\Profile\UpdateCreditsField;
 
 class ModifyCredits extends Action
 {
@@ -45,12 +46,15 @@ class ModifyCredits extends Action
 
                         Notification::make()->success()->title('Remove credit successfully.');
                     }
+
+                    app(UpdateCreditsField::class)->execute($record->user_id);
                 }
             )
             ->form([
                 TextInput::make('credits')
                     ->numeric()
-                    ->required(),
+                    ->required()
+                    ->step(0.1), // Allow decimal values
                 Radio::make('opt')
                     ->options([
                         'add' => 'Aggiungi',
