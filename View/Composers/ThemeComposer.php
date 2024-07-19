@@ -178,7 +178,7 @@ class ThemeComposer
 
     public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['title' => $slug, 'content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
         $blocks = $page->content_blocks;
         if (! is_array($blocks)) {
