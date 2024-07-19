@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Headernav;
 
-use Livewire\Component;
+use Illuminate\Contracts\Support\Renderable;
 use Livewire\Attributes\On;
-use Webmozart\Assert\Assert;
+use Livewire\Component;
+use Modules\Blog\Actions\Profile\UpdateCreditsField;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
-use Illuminate\Contracts\Support\Renderable;
-use Modules\Blog\Actions\Profile\UpdateCreditsField;
+use Webmozart\Assert\Assert;
 
 class Credits extends Component
 {
@@ -44,6 +44,7 @@ class Credits extends Component
     {
         Assert::notNull($user_id = $this->profile->user_id, '['.__LINE__.']['.__FILE__.']');
         app(UpdateCreditsField::class)->execute($user_id);
+
         return $this->profile->credits;
     }
 }

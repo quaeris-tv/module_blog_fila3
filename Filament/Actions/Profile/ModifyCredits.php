@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Actions\Profile;
 
-use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\Action;
+use Modules\Blog\Actions\Profile\UpdateCreditsField;
+use Modules\Blog\Aggregates\ProfileAggregate;
 use Modules\Blog\Datas\AddedCreditsData;
 use Modules\Blog\Datas\RemovedCreditsData;
 use Modules\Xot\Contracts\ProfileContract;
-use Modules\Blog\Aggregates\ProfileAggregate;
-use Modules\Blog\Actions\Profile\UpdateCreditsField;
 
 class ModifyCredits extends Action
 {

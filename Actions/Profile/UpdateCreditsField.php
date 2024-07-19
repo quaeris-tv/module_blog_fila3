@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Actions\Profile;
 
-use Webmozart\Assert\Assert;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Transaction;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class UpdateCreditsField
 {
