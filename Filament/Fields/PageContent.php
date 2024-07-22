@@ -6,7 +6,7 @@ namespace Modules\Blog\Filament\Fields;
 
 use Filament\Forms\Components\Builder;
 use Illuminate\Support\Arr;
-use Modules\Blog\Actions\Block\GetAllBlocksAction;
+use Modules\UI\Actions\Block\GetAllBlocksAction;
 
 class PageContent
 {
@@ -16,16 +16,16 @@ class PageContent
     ): Builder {
         $blocks = app(GetAllBlocksAction::class)->execute();
 
-        $blocks = Arr::map($blocks,
+        $blocks = $blocks->map(
             function ($block) use ($context) {
-                $class = $block['class'];
+                $class = $block->class;
 
                 return $class::make(context: $context);
             }
         );
 
         return Builder::make($name)
-            ->blocks($blocks)
+            ->blocks($blocks->items())
             ->collapsible();
     }
 }
