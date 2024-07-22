@@ -438,10 +438,7 @@ class ThemeComposer
      */
     public function getMenu(string $menu_name)
     {
-        $menu = Menu::where('title', $menu_name)->first();
-        if (null == $menu) {
-            $menu = Menu::create(['title' => $menu_name]);
-        }
+        $menu = Menu::firstOrCreate(['title' => $menu_name]);
 
         return $menu->items ?? [];
     }
