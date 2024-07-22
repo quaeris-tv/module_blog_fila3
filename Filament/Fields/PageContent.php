@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Fields;
 
 use Filament\Forms\Components\Builder;
-use Illuminate\Support\Arr;
 use Modules\UI\Actions\Block\GetAllBlocksAction;
 
 class PageContent
