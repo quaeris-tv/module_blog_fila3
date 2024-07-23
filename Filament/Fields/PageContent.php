@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Fields;
 
-use Webmozart\Assert\Assert;
 use Filament\Forms\Components\Builder;
-use Modules\Xot\Datas\ComponentFileData;
 use Modules\UI\Actions\Block\GetAllBlocksAction;
+use Modules\Xot\Datas\ComponentFileData;
+use Webmozart\Assert\Assert;
 
 class PageContent
 {
@@ -25,11 +25,12 @@ class PageContent
                 return $class::make(context: $context);
             }
         );
-        
+
         /**
          * @var array<\Filament\Forms\Components\Builder\Block>
          */
         $blocks_array = $blocks->items();
+
         return Builder::make($name)
             ->blocks($blocks_array)
             ->collapsible();
