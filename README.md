@@ -22,4 +22,13 @@ php artisan module:enable Blog
 php artisan module:migrate Blog
 ```
 
+## Inserire le dipendenze
+Per installare correttamente il modulo Blog è necessario installare le dipendenze dei 3 seguenti moduli:
+
+- [UI](https://github.com/laraxot/module_ui_fila3/blob/dev/README.md)
+- [Xot](https://github.com/laraxot/module_xot_fila3/blob/dev/README.md)
+- [Tenant](https://github.com/laraxot/module_tenant_fila3/blob/dev/README.md)
+
+Leggere ed eseguire correttamente le istruzioni all'interno dei file README.md di ciascuno di questi moduli
+
 ## [Gestione delle pagine frontend](docs/pages.md)
