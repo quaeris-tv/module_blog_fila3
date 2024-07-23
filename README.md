@@ -29,4 +29,6 @@ Per installare correttamente il modulo Blog è necessario installare le dipenden
 - [Xot](https://github.com/aurmich/module_xot_fila3/blob/dev/README.md)
 - [Tenant](https://github.com/aurmich/module_tenant_fila3/blob/dev/README.md)
 
+Leggere ed eseguire correttamente le istruzioni all'interno dei file README.md di ciascuno di questi moduli
+
 ## [Gestione delle pagine frontend](docs/pages.md)
