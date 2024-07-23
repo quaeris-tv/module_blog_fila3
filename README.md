@@ -22,4 +22,8 @@ php artisan module:enable Blog
 php artisan module:migrate Blog
 ```
 
+## Inserire le dipendenze
+```bash
+```
+
 ## [Gestione delle pagine frontend](docs/pages.md)
