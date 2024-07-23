@@ -8,4 +8,8 @@ Sfruttando le potenzialità di Filament, è possibile gestire le pagine che verr
 
 ## Contenuti delle pagine, i blocchi
 
-Quando si crea o si modifica una pagina, è possibile determinare il suo contenuto tramite i blocchi.
+Quando si crea o si modifica una pagina, è possibile determinare il suo contenuto tramite i blocchi del builder,  
+oggetti che aiutano a configurare e costruire vari componenti dell'interfaccia utente in modo dichiarativo
+Questi blocchi sono spesso utilizzati per strutturare e organizzare il contenuto in modo chiaro e modulare.
+
+I vari blocchi disponibili si possono trovare nella cartella Blocks dei moduli utilizzati.
