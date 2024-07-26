@@ -17,7 +17,6 @@ use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
-use Modules\Cms\Models\Menu;
 use Modules\UI\Datas\SliderData;
 use Modules\UI\Datas\SliderDataCollection;
 
