@@ -178,7 +178,7 @@ class ThemeComposer
 
     public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['title' => $slug, 'content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
         // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
         $blocks = $page->content_blocks;
         if (! is_array($blocks)) {
@@ -438,10 +438,7 @@ class ThemeComposer
      */
     public function getMenu(string $menu_name)
     {
-        $menu = Menu::where('title', $menu_name)->first();
-        if (null == $menu) {
-            $menu = Menu::create(['title' => $menu_name]);
-        }
+        $menu = Menu::firstOrCreate(['title' => $menu_name]);
 
         return $menu->items ?? [];
     }

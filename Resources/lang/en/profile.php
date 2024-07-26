@@ -33,5 +33,7 @@ return [
         'welcome' => 'Welcome gift',
         'rating_article' => 'Bet placed',
         'rating_article_winner' => 'Winning',
+        'admin_add_credit_to_profile' => 'Adding credits by the administrator',
+        'admin_remove_credit_to_profile' => 'Subtraction of credits from the administrator',
     ],
 ];

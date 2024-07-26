@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Fields;
 
 use Filament\Forms\Components\Builder;
-use Illuminate\Support\Arr;
-use Modules\Blog\Actions\Block\GetAllBlocksAction;
+use Modules\UI\Actions\Block\GetAllBlocksAction;
+use Modules\Xot\Datas\ComponentFileData;
+use Webmozart\Assert\Assert;
 
 class PageContent
 {
@@ -16,16 +17,22 @@ class PageContent
     ): Builder {
         $blocks = app(GetAllBlocksAction::class)->execute();
 
-        $blocks = Arr::map($blocks,
+        $blocks = $blocks->map(
             function ($block) use ($context) {
-                $class = $block['class'];
+                Assert::isInstanceOf($block, ComponentFileData::class, '['.__LINE__.']['.__FILE__.']');
+                $class = $block->class;
 
                 return $class::make(context: $context);
             }
         );
 
+        /**
+         * @var array<\Filament\Forms\Components\Builder\Block>
+         */
+        $blocks_array = $blocks->items();
+
         return Builder::make($name)
-            ->blocks($blocks)
+            ->blocks($blocks_array)
             ->collapsible();
     }
 }

@@ -24,32 +24,30 @@ class CreateBlogPagesTable extends XotBaseMigration
             static function (Blueprint $table): void {
                 $table->id();
                 $table->timestamps();
-                $table->string('slug')->unique();
+                $table->string('slug')->unique()->index();
                 $table->string('title');
-                $table->text('content');
+                $table->text('content')->nullable();
             }
         );
         // -- UPDATE --
         $this->tableUpdate(
             function (Blueprint $table): void {
-                /*
-                if ($this->hasColumn('auth_user_id')) {
-                    $table->dropColumn('user_id');
-                    $table->renameColumn('auth_user_id', 'user_id');
+                if ($this->hasColumn('content')) {
+                    $table->text('content')->nullable()->change();
                 }
-                */
+
                 if (! $this->hasColumn('content_blocks')) {
-                    // $table->text('content_blocks')->nullable();
-                    $table->json('content_blocks')->default(new Expression('(JSON_ARRAY())'));
+                    $table->json('content_blocks')->nullable();
+                    // $table->json('content_blocks')->default(new Expression('(JSON_ARRAY())'));
                 }
 
                 if (! $this->hasColumn('sidebar_blocks')) {
-                    // $table->text('sidebar_blocks')->nullable();
-                    $table->json('sidebar_blocks')->default(new Expression('(JSON_ARRAY())'));
+                    $table->json('sidebar_blocks')->nullable();
+                    // $table->json('sidebar_blocks')->default(new Expression('(JSON_ARRAY())'));
                 }
                 if (! $this->hasColumn('footer_blocks')) {
-                    // $table->text('footer_blocks')->nullable();
-                    $table->json('footer_blocks')->default(new Expression('(JSON_ARRAY())'));
+                    $table->json('footer_blocks')->nullable();
+                    // $table->json('footer_blocks')->default(new Expression('(JSON_ARRAY())'));
                 }
                 if (! $this->hasColumn('slug')) {
                     $table->string('slug')->index();

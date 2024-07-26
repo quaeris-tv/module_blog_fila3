@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\ProfileResource\Pages;
 
 use Filament\Tables\Columns\TextColumn;
-use Modules\Blog\Filament\Actions\Profile\AddCredits;
+use Modules\Blog\Filament\Actions\Profile\ModifyCredits;
 use Modules\Blog\Filament\Resources\ProfileResource;
 use Modules\User\Filament\Resources\BaseProfileResource\Pages\ListProfiles as UserListProfiles;
 
@@ -33,7 +33,7 @@ class ListProfiles extends UserListProfiles
     {
         $res = parent::getTableActions();
 
-        $res[] = AddCredits::make();
+        $res[] = ModifyCredits::make();
 
         return $res;
     }
