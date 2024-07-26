@@ -14,7 +14,6 @@ use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Category;
-use Modules\Cms\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;
@@ -175,29 +174,6 @@ class ThemeComposer
         return Article::paginate($num);
     }
 
-    public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
-    {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['title' => $slug, 'content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
-        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
-        $blocks = $page->content_blocks;
-        if (! is_array($blocks)) {
-            $blocks = [];
-        }
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $blocks, model: $page);
-
-        return $page->render();
-    }
-
-    public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
-    {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
-        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
-
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
-
-        return $page->render();
-    }
-
     public function showArticleSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
         Assert::isInstanceOf($article = Article::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Article::class, '['.__LINE__.']['.__FILE__.']');
@@ -206,28 +182,6 @@ class ThemeComposer
         $article = new \Modules\UI\View\Components\Render\Blocks(blocks: $article->sidebar_blocks, model: $article);
 
         return $article->render();
-    }
-
-    public function getPages(): Collection
-    {
-        $pages = Page::all();
-
-        return $pages;
-    }
-
-    public function getPageModel(string $slug): ?Page
-    {
-        return Page::where('slug', $slug)->first();
-    }
-
-    public function getUrlPage(string $slug): string
-    {
-        $page = $this->getPageModel($slug);
-        if (null !== $page) {
-            return '/'.app()->getLocale().'/pages/'.$slug;
-        }
-
-        return '#';
     }
 
     public function rankingProfilesByCredits(): Collection
