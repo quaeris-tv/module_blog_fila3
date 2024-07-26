@@ -12,7 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
 /**
- * Modules\Blog\Models\Menu.
+ * Modules\Cms\Models\Menu.
  *
  * @property int                             $id
  * @property string                          $name
