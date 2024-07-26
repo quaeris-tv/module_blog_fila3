@@ -14,7 +14,7 @@ use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Category;
-use Modules\Blog\Models\Page;
+use Modules\Cms\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;

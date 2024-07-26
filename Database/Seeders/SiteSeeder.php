@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Blog\Models\Page;
+use Modules\Cms\Models\Page;
 use Modules\Cms\Models\Menu;
 
 class SiteSeeder extends Seeder
