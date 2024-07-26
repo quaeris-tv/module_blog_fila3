@@ -431,18 +431,6 @@ class ThemeComposer
         return Category::where('slug', $slug)->first();
     }
 
-    /**
-     * Undocumented function.
-     *
-     * @return array|null
-     */
-    public function getMenu(string $menu_name)
-    {
-        $menu = Menu::firstOrCreate(['title' => $menu_name]);
-
-        return $menu->items ?? [];
-    }
-
     public function getHotTopics(): array
     {
         return $categories = Category::with([
