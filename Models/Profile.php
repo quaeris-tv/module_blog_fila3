@@ -60,7 +60,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                                                                                      $teams_count
  * @property User|null                                                                                                     $user
  * @property string|null                                                                                                   $user_name
- *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newQuery()
@@ -84,12 +83,10 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static Builder|BaseProfile                             withExtraAttributes()
  * @method static Builder|BaseProfile                             withoutPermission($permissions)
  * @method static Builder|BaseProfile                             withoutRole($roles, $guard = null)
- *
  * @property \Modules\User\Models\DeviceUser                                                 $pivot
  * @property \Modules\User\Models\Membership                                                 $membership
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Transaction> $transanctions
  * @property int|null                                                                        $transanctions_count
- *
  * @mixin \Eloquent
  */
 class Profile extends BaseProfile
