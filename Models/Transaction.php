@@ -8,8 +8,6 @@ use Modules\Rating\Models\RatingMorph;
 use Webmozart\Assert\Assert;
 
 /**
- * 
- *
  * @property int                             $id
  * @property string|null                     $model_type
  * @property int|null                        $model_id
@@ -23,6 +21,7 @@ use Webmozart\Assert\Assert;
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
+ *
  * @method static \Modules\Blog\Database\Factories\TransactionFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction   newQuery()
@@ -43,6 +42,7 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction   withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Transaction extends BaseModel
