@@ -115,13 +115,3 @@ Come il nome suggerisce, è la sezione in cui si possono consultare tutti i prof
 Per accedere alla lista dei profili, è sufficiente cliccare sulla voce "Profili" dal menu laterale.
 
 ![1723128470387](image/README/1723128470387.png)
-
-##### Creazione di un nuovo profilo
-
-Per creareun nuovo profilo, cliccare sul pulsante "Nuovo" in alto a destra.
-
-![1723128759093](image/README/1723128759093.png)
-
-Le informazioni più importanti da inserire per ogni profilo sono "Username", "email", "First Name" e "Last Name". Le prime due sono voci univoche, non è possibile avere due profili con lo stesso Username o con lo stesso indirizzo email.
-
-Per terminare la creazione di un nuovo profilo, è sufficiente cliccare sul pulsante "Salva".
