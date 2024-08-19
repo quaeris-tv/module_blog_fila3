@@ -17,5 +17,6 @@ class CreditsAdded extends ShouldBeStored
         readonly public string $profileId,
         readonly public string $userId,
         readonly public float $credit,
-    ) {}
+    ) {
+    }
 }

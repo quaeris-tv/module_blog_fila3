@@ -18,10 +18,11 @@ use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;
 use Modules\UI\Datas\SliderDataCollection;
-use Spatie\LaravelData\DataCollection;
-use Webmozart\Assert\Assert;
 
 use function Safe\json_decode;
+
+use Spatie\LaravelData\DataCollection;
+use Webmozart\Assert\Assert;
 
 class ThemeComposer
 {
@@ -68,7 +69,7 @@ class ThemeComposer
             ->take($number)
             ->orderBy('published_at', 'desc')
             ->get();
-        if ($rows->count() === 0) {
+        if (0 === $rows->count()) {
             $rows = Article::get();
             Article::whereRaw('1=1')->update(['show_on_homepage' => true]);
         }

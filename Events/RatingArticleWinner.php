@@ -15,5 +15,6 @@ class RatingArticleWinner extends ShouldBeStored
     public function __construct(
         readonly public string $articleId,
         readonly public string $ratingId,
-    ) {}
+    ) {
+    }
 }
