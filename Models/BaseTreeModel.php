@@ -13,12 +13,12 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * @property string|null $parent_id
- * @property string      $name
+ * @property string $name
  */
 abstract class BaseTreeModel extends BaseModel
 {
-    use HasRecursiveRelationships;
     use Concerns\HasPathByParentId;
+    use HasRecursiveRelationships;
     use SortableTrait;
 
     /**

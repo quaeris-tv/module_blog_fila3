@@ -16,9 +16,7 @@ class LoginListener
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Handle the event.
@@ -29,10 +27,10 @@ class LoginListener
         Assert::isInstanceOf($user, User::class, '['.__LINE__.']['.__FILE__.']');
 
         $welcome_login = Transaction::where('user_id', $user->id)
-                ->where('note', 'welcome')
-                ->first();
+            ->where('note', 'welcome')
+            ->first();
 
-        if (null == $welcome_login) {
+        if ($welcome_login == null) {
             $user->profile()->firstOrcreate([
                 'email' => $user->email,
                 'credits' => 1000,

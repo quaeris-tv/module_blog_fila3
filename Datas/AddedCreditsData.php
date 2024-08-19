@@ -10,6 +10,8 @@ class AddedCreditsData extends Data
 {
     // public string $adminId;
     public string $profileId;
+
     public string $userId;
+
     public float $credit;
 }

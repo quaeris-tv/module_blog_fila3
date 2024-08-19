@@ -48,11 +48,11 @@ class ShowArticleCommand extends Command
                     ->where('ratings.id', $rating->id)
                     ->where('rating_morph.user_id', '!=', null);
             }], 'rating_morph.value')
-            ->loadSum(['ratings as value_tot' => static function ($query) use ($ratings) {
-                $query
-                    ->whereIn('ratings.id', $ratings->modelKeys())
-                    ->where('rating_morph.user_id', '!=', null);
-            }], 'rating_morph.value')
+                ->loadSum(['ratings as value_tot' => static function ($query) use ($ratings) {
+                    $query
+                        ->whereIn('ratings.id', $ratings->modelKeys())
+                        ->where('rating_morph.user_id', '!=', null);
+                }], 'rating_morph.value')
             /*
             ->loadAvg(['ratings as value_avg' => static function ($query) use ($rating) {
                 $query
@@ -60,11 +60,11 @@ class ShowArticleCommand extends Command
                     ->where('rating_morph.user_id', '!=', null);
             }], 'rating_morph.value')
             */
-            ->loadCount(['ratings as value_count' => static function ($query) use ($rating) {
-                $query
-                    ->where('ratings.id', $rating->id)
-                    ->where('rating_morph.user_id', '!=', null);
-            }], 'rating_morph.value');
+                ->loadCount(['ratings as value_count' => static function ($query) use ($rating) {
+                    $query
+                        ->where('ratings.id', $rating->id)
+                        ->where('rating_morph.user_id', '!=', null);
+                }], 'rating_morph.value');
 
             $sum = $tmp->value_sum ?? 0;
             // $avg = $tmp->value_avg;

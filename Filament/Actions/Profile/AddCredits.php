@@ -51,8 +51,7 @@ class AddCredits extends Action
             ->modalDescription('Inserisci la quantità di crediti da aggiungere')
             ->modalHeading('Aggiungi Crediti')
             // ->requiresConfirmation()
-            ->modalSubmitActionLabel('Aggiungi')
-        ;
+            ->modalSubmitActionLabel('Aggiungi');
     }
 
     public static function getDefaultName(): ?string

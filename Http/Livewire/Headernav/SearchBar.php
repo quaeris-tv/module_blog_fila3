@@ -12,6 +12,7 @@ use Modules\Xot\Actions\GetViewAction;
 class SearchBar extends Component
 {
     public string $tpl = 'v1';
+
     public string $search = '';
 
     public function render(): Renderable

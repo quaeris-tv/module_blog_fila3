@@ -20,15 +20,20 @@ use Webmozart\Assert\Assert;
 class ForImage extends Component implements HasForms
 {
     use InteractsWithForms;
+
     public Article $article;
 
     public string $tpl = 'v1';
 
     public string $rating_title = '';
+
     public int $rating_id = 0;
+
     public array $article_ratings = [];
+
     // #[Validate('required|gt:0')]
     public int $import = 0;
+
     public string $type = 'show';
 
     // public array $form_data = ['credit' => 6];

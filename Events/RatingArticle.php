@@ -17,6 +17,5 @@ class RatingArticle extends ShouldBeStored
         readonly public string $articleId,
         readonly public string $ratingId,
         readonly public int $credit,
-    ) {
-    }
+    ) {}
 }

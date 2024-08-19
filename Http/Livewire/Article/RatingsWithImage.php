@@ -24,7 +24,7 @@ use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 
-class RatingsWithImage extends Component implements HasForms, HasActions
+class RatingsWithImage extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
@@ -34,16 +34,24 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     // public string $tpl = 'v1';
     // public string $user_id;
     public array $datas;
+
     // public Profile $profile;
     public int $rating_id = 0;
+
     public string $rating_title = '';
+
     public string $type = 'show';
+
     public int $credit = 0;
+
     public array $article_ratings = [];
+
     public int $import = 0;
+
     public ?string $article_uuid = null;
 
     public array $rating_opts = [];
+
     public array $ratings_percentage = [];
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';;
@@ -53,9 +61,9 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         // $this->tpl = $tpl;
         $this->type = $type;
         $this->article = $article;
-        if ('show' == $type) {
+        if ($type == 'show') {
             $this->datas = $this->article->getArrayRatingsWithImage();
-        // $this->article_ratings = $article->getOptionRatingsIdTitle();
+            // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
             Assert::notNull($ratings, '['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
@@ -88,7 +96,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         $this->rating_title = $rating_title;
         // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
-        if ('index' == $this->type) {
+        if ($this->type == 'index') {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
 
@@ -106,7 +114,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
         }
 
         Assert::notNull($article = $this->article, '['.__LINE__.']['.__FILE__.']');
-        if ('expired' == $article->getTimeLeftForHumans()) {
+        if ($article->getTimeLeftForHumans() == 'expired') {
             return $this->checkExpired();
         }
 
@@ -130,8 +138,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
-            ->modalSubmitAction(false)
-        ;
+            ->modalSubmitAction(false);
     }
 
     public function checkExpired(): Action
@@ -151,8 +158,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
-            ->modalSubmitAction(false)
-        ;
+            ->modalSubmitAction(false);
     }
 
     public function checkModal(): Action
@@ -211,8 +217,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->color('primary')
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
-            ->stickyModalFooter()
-        ;
+            ->stickyModalFooter();
     }
 
     // protected function onValidationError(ValidationException $exception): void

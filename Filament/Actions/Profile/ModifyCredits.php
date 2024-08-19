@@ -23,7 +23,7 @@ class ModifyCredits extends Action
         $this->translateLabel()
             ->action(
                 function (ProfileContract $record, array $data): void {
-                    if ('add' == $data['opt']) {
+                    if ($data['opt'] == 'add') {
                         $command = AddedCreditsData::from([
                             'profileId' => (string) $record->id,
                             'userId' => $record->user_id,
@@ -68,8 +68,7 @@ class ModifyCredits extends Action
             ->modalDescription('Inserisci la quantità di crediti da aggiungere o sottrarre')
             ->modalHeading('Modifica Crediti')
             // ->requiresConfirmation()
-            ->modalSubmitActionLabel('Modifica')
-        ;
+            ->modalSubmitActionLabel('Modifica');
     }
 
     public static function getDefaultName(): ?string

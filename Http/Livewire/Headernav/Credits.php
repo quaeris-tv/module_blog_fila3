@@ -15,6 +15,7 @@ use Webmozart\Assert\Assert;
 class Credits extends Component
 {
     public string $tpl = 'v1';
+
     public Profile $profile;
 
     public function mount(Profile $profile): void

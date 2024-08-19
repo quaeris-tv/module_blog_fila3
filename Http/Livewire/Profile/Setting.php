@@ -21,14 +21,17 @@ use Webmozart\Assert\Assert;
 /**
  * @property ComponentContainer $form
  */
-class Setting extends Component implements HasForms, HasActions
+class Setting extends Component implements HasActions, HasForms
 {
-    use InteractsWithForms;
     use InteractsWithActions;
+    use InteractsWithForms;
 
     public string $tpl = 'setting';
+
     public string $version = 'v1';
+
     public Profile $model;
+
     public array $data = [];
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -186,7 +189,6 @@ class Setting extends Component implements HasForms, HasActions
 
                 Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update(['name' => $data['user_name']]);
-            })
-        ;
+            });
     }
 }

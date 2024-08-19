@@ -26,21 +26,21 @@ class ListBanners extends ListRecords
         return [
             Actions\CreateAction::make(),
             Actions\Action::make('import')
-                    ->form([
-                        FileUpload::make('file')
-                            ->label('')
-                            // ->acceptedFileTypes(['application/json', 'json'])
-                            ->imagePreviewHeight('250')
-                            ->reactive()
-                            ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state) {
-                                $set('fileContent', File::get($state->getRealPath()));
-                            }),
-                        Textarea::make('fileContent'),
-                    ])
-                    ->label('')
-                    ->tooltip('Import')
-                    ->icon('heroicon-o-folder-open')
-                    ->action(static fn (array $data) => app(ImportBannerFromByJsonTextAction::class)->execute($data['fileContent'])),
+                ->form([
+                    FileUpload::make('file')
+                        ->label('')
+                        // ->acceptedFileTypes(['application/json', 'json'])
+                        ->imagePreviewHeight('250')
+                        ->reactive()
+                        ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state) {
+                            $set('fileContent', File::get($state->getRealPath()));
+                        }),
+                    Textarea::make('fileContent'),
+                ])
+                ->label('')
+                ->tooltip('Import')
+                ->icon('heroicon-o-folder-open')
+                ->action(static fn (array $data) => app(ImportBannerFromByJsonTextAction::class)->execute($data['fileContent'])),
         ];
     }
 }

@@ -15,6 +15,7 @@ class Line extends ChartWidget
     protected static ?string $heading = 'Daily Forecasts';
 
     public Article $model;
+
     public array $data;
 
     public ?string $filter = '-7';
@@ -27,7 +28,7 @@ class Line extends ChartWidget
         $ratings_color = $this->model->getOptionRatingsIdColor();
 
         $data = [];
-        for ($i = $activeFilter++; $i <= 0; ++$i) {
+        for ($i = $activeFilter++; $i <= 0; $i++) {
             $date = Carbon::now()->addDays((int) $i);
             $key = $date->format('Y-m-d');
             $tmp = [
