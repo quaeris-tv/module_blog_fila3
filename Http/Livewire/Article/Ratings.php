@@ -129,7 +129,7 @@ class Ratings extends Page implements HasForms
         Assert::isArray($ratings_add = $data['ratings_add'], '['.__LINE__.']['.__FILE__.']');
         foreach ($ratings_add as $rating_id => $rating) {
             $credit = $rating['value'];
-            if ($credit != null) {
+            if (null != $credit) {
                 $command = RatingArticleData::from([
                     'userId' => $this->user_id,
                     'articleId' => $this->article->id,

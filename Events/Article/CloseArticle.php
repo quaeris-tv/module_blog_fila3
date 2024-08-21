@@ -13,5 +13,6 @@ class CloseArticle extends ShouldBeStored
 {
     public function __construct(
         readonly public string $articleId,
-    ) {}
+    ) {
+    }
 }
