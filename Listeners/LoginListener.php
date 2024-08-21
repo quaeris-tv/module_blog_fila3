@@ -16,7 +16,9 @@ class LoginListener
     /**
      * Create the event listener.
      */
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * Handle the event.
@@ -30,7 +32,7 @@ class LoginListener
             ->where('note', 'welcome')
             ->first();
 
-        if ($welcome_login == null) {
+        if (null == $welcome_login) {
             $user->profile()->firstOrcreate([
                 'email' => $user->email,
                 'credits' => 1000,

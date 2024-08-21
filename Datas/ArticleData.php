@@ -91,7 +91,7 @@ class ArticleData extends Data
     public function url(string $type): string
     {
         $lang = app()->getLocale();
-        if ($type == 'show') {
+        if ('show' == $type) {
             return '/'.$lang.'/article/'.$this->slug;
         }
 
