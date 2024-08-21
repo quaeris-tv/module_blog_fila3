@@ -75,7 +75,7 @@ class RatingsDone extends Component
         foreach ($user_ratings as $key => $rating) {
             Assert::isArray($rating, '['.__LINE__.']['.__FILE__.']');
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
-            if (null != $tmp) {
+            if ($tmp != null) {
                 $result[] = RatingInfoData::from([
                     'ratingId' => $rating['rating_id'],
                     'title' => $tmp['title'],
@@ -116,7 +116,7 @@ class RatingsDone extends Component
         foreach ($user_ratings as $key => $rating) {
             Assert::isArray($rating, '['.__LINE__.']['.__FILE__.']');
             $tmp = $ratings_options->where('id', $rating['rating_id'])->first();
-            if (null != $tmp) {
+            if ($tmp != null) {
                 $result[] = RatingInfoData::from([
                     'ratingId' => $rating['rating_id'],
                     'title' => $tmp['title'],

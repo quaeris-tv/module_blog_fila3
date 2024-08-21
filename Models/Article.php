@@ -27,80 +27,80 @@ use Webmozart\Assert\Assert;
 /**
  * Modules\Blog\Models\Article.
  *
- * @property Profile|null                                                                                               $author
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Category>                               $categories
- * @property int|null                                                                                                   $categories_count
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Comment>                                $comments
- * @property int|null                                                                                                   $comments_count
- * @property string                                                                                                     $human_read_time
+ * @property Profile|null $author
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Category> $categories
+ * @property int|null $categories_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Comment> $comments
+ * @property int|null $comments_count
+ * @property string $human_read_time
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
- * @property int|null                                                                                                   $media_count
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Tag>                                    $tags
- * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
- * @property int|null                                                                                                   $statuses_count
- * @property int|null                                                                                                   $tags_count
- * @property User|null                                                                                                  $user
- * @property string                                                                                                     $body
- * @property Carbon                                                                                                     $published_at
- * @property Carbon                                                                                                     $updated_at
- * @property string                                                                                                     $slug
- * @property string                                                                                                     $title
- * @property string                                                                                                     $description
- * @property string                                                                                                     $main_image_upload
- * @property string                                                                                                     $main_image_url
- * @property string                                                                                                     $content_blocks
+ * @property int|null $media_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Tag> $tags
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status> $statuses
+ * @property int|null $statuses_count
+ * @property int|null $tags_count
+ * @property User|null $user
+ * @property string $body
+ * @property Carbon $published_at
+ * @property Carbon $updated_at
+ * @property string $slug
+ * @property string $title
+ * @property string $description
+ * @property string $main_image_upload
+ * @property string $main_image_url
+ * @property string $content_blocks
  *
- * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   currentStatus(...$names)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   differentFromCurrentArticle(string $current_article)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article article(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article author(string $profile_id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article category(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article currentStatus(...$names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article differentFromCurrentArticle(string $current_article)
  * @method static \Modules\Blog\Database\Factories\ArticleFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Article   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   otherCurrentStatus(...$names)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   published()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   publishedUntilToday()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   search(string $searching)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   showHomepage()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   tag(string $id)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAllTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withAnyTagsOfAnyType($tags)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article otherCurrentStatus(...$names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article published()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article publishedUntilToday()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article search(string $searching)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article showHomepage()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article tag(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withAllTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withAnyTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article withoutTrashed()
  *
- * @property string                                                                    $id
- * @property string                                                                    $uuid
- * @property string|null                                                               $content
- * @property string|null                                                               $picture
- * @property int|null                                                                  $category_id
- * @property int|null                                                                  $author_id
- * @property string|null                                                               $status
- * @property int                                                                       $show_on_homepage
- * @property int|null                                                                  $read_time
- * @property string|null                                                               $excerpt
- * @property string                                                                    $created_at
- * @property \Illuminate\Support\Carbon|null                                           $deleted_at
- * @property string|null                                                               $updated_by
- * @property string|null                                                               $created_by
- * @property string|null                                                               $deleted_by
- * @property array|null                                                                $footer_blocks
- * @property array|null                                                                $sidebar_blocks
- * @property int                                                                       $is_featured
- * @property string|null                                                               $closed_at
- * @property Category|null                                                             $category
- * @property string                                                                    $main_image
+ * @property string $id
+ * @property string $uuid
+ * @property string|null $content
+ * @property string|null $picture
+ * @property int|null $category_id
+ * @property int|null $author_id
+ * @property string|null $status
+ * @property int $show_on_homepage
+ * @property int|null $read_time
+ * @property string|null $excerpt
+ * @property string $created_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @property string|null $deleted_by
+ * @property array|null $footer_blocks
+ * @property array|null $sidebar_blocks
+ * @property int $is_featured
+ * @property string|null $closed_at
+ * @property Category|null $category
+ * @property string $main_image
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Order> $orders
- * @property int|null                                                                  $orders_count
- * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                     $ratings
- * @property int|null                                                                  $ratings_count
- * @property mixed                                                                     $translations
- * @property string|null                                                               $rewarded_at
+ * @property int|null $orders_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
+ * @property int|null $ratings_count
+ * @property mixed $translations
+ * @property string|null $rewarded_at
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
@@ -131,21 +131,21 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
  *
- * @property int         $status_display
+ * @property int $status_display
  * @property string|null $bet_end_date
  * @property string|null $event_start_date
  * @property string|null $event_end_date
- * @property int         $is_wagerable
- * @property int|null    $wagers_count
- * @property int|null    $wagers_count_canonical
- * @property int|null    $wagers_count_total
- * @property int|null    $wagers
+ * @property int $is_wagerable
+ * @property int|null $wagers_count
+ * @property int|null $wagers_count_canonical
+ * @property int|null $wagers_count_total
+ * @property int|null $wagers
  * @property string|null $brier_score
  * @property string|null $brier_score_play_money
  * @property string|null $brier_score_real_money
- * @property float|null  $volume_play_money
- * @property float|null  $volume_real_money
- * @property int         $is_following
+ * @property float|null $volume_play_money
+ * @property float|null $volume_real_money
+ * @property int $is_following
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
@@ -354,7 +354,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function getThumbnail(): ?string
     {
-        if (null !== $this->getMedia()->first()) {
+        if ($this->getMedia()->first() !== null) {
             $url = $this->getMedia()->first()->getUrl();
 
             return $url;
@@ -384,8 +384,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles different from current article.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeDifferentFromCurrentArticle($query, string $current_article)
@@ -453,7 +452,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
             return Storage::url($this->main_image_upload);
         }
 
-        if (null !== $this->main_image_url) {
+        if ($this->main_image_url !== null) {
             return $this->main_image_url;
         }
 
@@ -467,7 +466,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if (null === $value) {
+                if ($value === null) {
                     return 'article title';
                 }
 
@@ -483,7 +482,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     {
         return new Attribute(
             get: static function ($value, $attributes): string {
-                if (null === $value || '' === $value) {
+                if ($value === null || $value === '') {
                     return 'article\'s description '.$attributes['title'];
                 }
 
@@ -506,7 +505,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function getUuidAttribute(?string $value): string
     {
-        if (null !== $value && '' !== $value) {
+        if ($value !== null && $value !== '') {
             return $value;
         }
         // dddx($value);
@@ -554,7 +553,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         $hours = $diff->h;
         $minutes = $diff->i;
 
-        if (0 == $month && 0 == $days && 0 == $hours && 0 == $minutes) {
+        if ($month == 0 && $days == 0 && $hours == 0 && $minutes == 0) {
             // return __('blog::article.single_expired');
             return 'scaduto';
             // return 'expired';
@@ -628,8 +627,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeArticle($query, string $id)
@@ -640,8 +638,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include published articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublished($query)
@@ -656,8 +653,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include show on homepage articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeShowHomepage($query)
@@ -668,8 +664,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include posted articles until today.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublishedUntilToday($query)
@@ -680,9 +675,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles with a specified category.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the category
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  $id  -> The id of the category
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeCategory($query, string $id)
@@ -695,9 +689,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles that belongs to an author.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $profile_id -> The id of the author
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  $profile_id  -> The id of the author
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeAuthor($query, string $profile_id)
@@ -710,9 +703,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles with a specified tag.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the tag
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  $id  -> The id of the tag
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeTag($query, string $id)
@@ -725,9 +717,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles which contains searching words.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $searching -> The searching words
-     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  $searching  -> The searching words
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSearch($query, string $searching)

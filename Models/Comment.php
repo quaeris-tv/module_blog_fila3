@@ -11,41 +11,41 @@ use Modules\User\Models\User;
 /**
  * Modules\Blog\Models\Comment.
  *
- * @property int                                                    $id
- * @property string                                                 $comment
- * @property int                                                    $post_id
- * @property int                                                    $user_id
- * @property \Illuminate\Support\Carbon|null                        $created_at
- * @property \Illuminate\Support\Carbon|null                        $updated_at
- * @property int|null                                               $parent_id
- * @property Article|null                                           $article
- * @property Profile|null                                           $author
+ * @property int $id
+ * @property string $comment
+ * @property int $post_id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $parent_id
+ * @property Article|null $article
+ * @property Profile|null $author
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $childrens
- * @property int|null                                               $childrens_count
+ * @property int|null $childrens_count
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
- * @property int|null                                               $comments_count
- * @property Comment|null                                           $parentComment
- * @property User|null                                              $user
+ * @property int|null $comments_count
+ * @property Comment|null $parentComment
+ * @property User|null $user
  *
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   query()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereComment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereParentId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   wherePostId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   withTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Comment   withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment wherePostId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment withoutTrashed()
  *
- * @property string|null                     $updated_by
- * @property string|null                     $created_by
+ * @property string|null $updated_by
+ * @property string|null $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null                     $deleted_by
+ * @property string|null $deleted_by
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedAt($value)
