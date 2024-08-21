@@ -11,6 +11,5 @@ class ArticleRegistered extends ShouldBeStored
     public function __construct(
         readonly public string $uuid,
         readonly public string $title,
-    ) {
-    }
+    ) {}
 }

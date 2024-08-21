@@ -23,7 +23,7 @@ class ModifyCredits extends Action
         $this->translateLabel()
             ->action(
                 function (ProfileContract $record, array $data): void {
-                    if ('add' == $data['opt']) {
+                    if ($data['opt'] == 'add') {
                         $command = AddedCreditsData::from([
                             'profileId' => (string) $record->id,
                             'userId' => $record->user_id,

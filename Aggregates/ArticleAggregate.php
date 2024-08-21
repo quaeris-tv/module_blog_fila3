@@ -26,7 +26,7 @@ class ArticleAggregate extends AggregateRoot
     {
         $article = Article::firstWhere(['id' => $command->articleId]);
 
-        if (null == $article) {
+        if ($article == null) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 
@@ -34,7 +34,7 @@ class ArticleAggregate extends AggregateRoot
             throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
-        if (null !== $article->rewarded_at) {
+        if ($article->rewarded_at !== null) {
             throw new \Exception('just assign winners on ['.$article->rewarded_at.']');
         }
 
@@ -64,7 +64,7 @@ class ArticleAggregate extends AggregateRoot
         }
 
         $article = Article::firstWhere(['id' => $command->articleId]);
-        if (null == $article) {
+        if ($article == null) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 
