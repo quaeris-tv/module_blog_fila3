@@ -6,10 +6,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Models\Taggable;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-/**
+/*
  * Class CreateBlogTaggableTable.
  */
-return new class () extends XotBaseMigration {
+return new class extends XotBaseMigration {
     protected ?string $model_class = Taggable::class;
 
     /**
