@@ -16,7 +16,7 @@ I vari blocchi disponibili si possono trovare nella cartella Blocks dei moduli u
 ## Creare una Classe Content
 
 All'interno di un file Resource di Filament, inserire dentro il form
-
+per poter poi configurare i blocchi che verranno utilizzati nella pagina.
 ```php
 Forms\Components\Section::make('Page Content')->schema([
     PageContent::make('content_blocks')
@@ -56,8 +56,6 @@ public $translatable = [
     ...
 ];
 ```
-per poter poi configurare i blocchi che verranno utilizzati nella pagina.
-
 Ecco un esempio di classe content, in questo caso per determinare il contenuto di una pagina articolo
 
 ```php
