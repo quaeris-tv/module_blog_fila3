@@ -32,11 +32,30 @@ Forms\Components\Section::make('Sidebar Content')->schema([
         ->label('Blocchi Sidebar')
         ->columnSpanFull(),
 ]),
-
-
 ```
 ![page_create](img/page_create.jpg)
 
+In questo esempio la proprietà "content_blocks" o "sidebar_blocks" dovrà essere di tipo json:
+nella migrazione
+```php
+use Illuminate\Database\Query\Expression;
+...
+
+$table->json('content_blocks')->default(new Expression('(JSON_ARRAY())'));
+$table->json('sidebar_blocks')->default(new Expression('(JSON_ARRAY())'));
+```
+
+e nel modello saranno
+```php
+/** @var array<int, string> */
+public $translatable = [
+    ...
+    'content_blocks',
+    'sidebar_blocks',
+    'footer_blocks',
+    ...
+];
+```
 per poter poi configurare i blocchi che verranno utilizzati nella pagina.
 
 Ecco un esempio di classe content, in questo caso per determinare il contenuto di una pagina articolo
