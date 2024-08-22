@@ -98,3 +98,10 @@ public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Supp
     return $page->render();
 }
 ```
+
+Esempio: nella blade che visualizzerà la home si potranno visualizzare, tramite la funzione showPageContent, tutti i blocchi configurati per la pagina home
+```php
+<x-layouts.app>
+     {{ $_theme->showPageContent('home') }}
+</x-layouts.app>
+```
