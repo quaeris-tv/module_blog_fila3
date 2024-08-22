@@ -67,7 +67,7 @@ class ArticleContent
 
 ## Visualizzare i blocchi in una blade
 
-Per visualizzare i blocchi configurati in una blade, viene in aiuto la funzione di ThemeComposer
+Per visualizzare i blocchi configurati in una blade, vengono in aiuto funzioni del ThemeComposer come:
 
 ```php
 public function showArticleSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
