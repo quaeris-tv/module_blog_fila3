@@ -12,7 +12,10 @@
     ],
     "extra": {
         "laravel": {
-            "providers": [],
+            "providers": [
+                "Modules\\Blog\\Providers\\BlogServiceProvider",
+                "Modules\\Blog\\Providers\\Filament\\AdminPanelProvider"
+            ],
             "aliases": {
 
             }
