@@ -9,8 +9,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateBlogTaggableTable.
  */
-class CreateBlogTaggableTable extends XotBaseMigration
-{
+return new class () extends XotBaseMigration {
     protected ?string $model_class = Taggable::class;
 
     /**
@@ -40,4 +39,4 @@ class CreateBlogTaggableTable extends XotBaseMigration
             }
         );
     }
-}
+};

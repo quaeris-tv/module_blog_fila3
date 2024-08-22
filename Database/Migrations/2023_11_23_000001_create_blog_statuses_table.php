@@ -9,8 +9,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateBlogStatusesTable.
  */
-class CreateBlogStatusesTable extends XotBaseMigration
-{
+return new class () extends XotBaseMigration {
     protected ?string $model_class = Status::class;
 
     /**
@@ -45,4 +44,4 @@ class CreateBlogStatusesTable extends XotBaseMigration
             }
         );
     }
-}
+};

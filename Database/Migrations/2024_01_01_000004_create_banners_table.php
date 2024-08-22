@@ -8,8 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class .
  */
-class CreateBannersTable extends XotBaseMigration
-{
+return new class () extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -48,4 +47,4 @@ class CreateBannersTable extends XotBaseMigration
             }
         );
     }
-}
+};
