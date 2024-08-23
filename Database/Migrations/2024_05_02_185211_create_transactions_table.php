@@ -6,7 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\User\Models\User;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-class CreateTransactionsTable extends XotBaseMigration
+return new class extends XotBaseMigration 
 {
     /**
      * Run the migrations.

@@ -8,7 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  *  .
  */
-class CreateOrdersTable extends XotBaseMigration
+return new class extends XotBaseMigration 
 {
     /**
      * Run the migrations.
