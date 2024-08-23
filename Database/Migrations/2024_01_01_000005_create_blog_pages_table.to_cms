@@ -10,7 +10,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreateProfilesTable.
  */
-class CreateBlogPagesTable extends XotBaseMigration
+return new class extends XotBaseMigration 
 {
     protected ?string $model_class = Page::class;
 
