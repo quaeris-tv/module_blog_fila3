@@ -6,7 +6,7 @@ namespace Modules\Blog\Console\Commands\Profiles;
 
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Profile;
-use Modules\User\Models\User;
+use Modules\Xot\Datas\XotData;
 
 class CreateProfileByUsersCommand extends Command
 {
@@ -29,7 +29,9 @@ class CreateProfileByUsersCommand extends Command
      */
     public function handle(): void
     {
-        $users = User::all();
+        $user_class = XotData::make()->getUserClass();
+        $user_model = app($user_class);
+        $users = $user_model->all();
 
         foreach ($users as $user) {
             Profile::firstOrCreate(

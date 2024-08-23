@@ -5,24 +5,25 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Modules\Rating\Models\Contracts\HasRatingContract;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\Traits\HasRating;
-use Modules\User\Models\User;
 use Safe\DateTime;
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Tags\HasTags;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Datas\XotData;
+use Modules\Rating\Models\Rating;
+use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Support\Facades\Storage;
+use Modules\Xot\Contracts\UserContract;
+use Spatie\Translatable\HasTranslations;
+use Modules\Rating\Models\Traits\HasRating;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Rating\Models\Contracts\HasRatingContract;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Article.
@@ -39,7 +40,7 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
  * @property int|null                                                                                                   $statuses_count
  * @property int|null                                                                                                   $tags_count
- * @property User|null                                                                                                  $user
+ * @property UserContract|null                                                                                                  $user
  * @property string                                                                                                     $body
  * @property Carbon                                                                                                     $published_at
  * @property Carbon                                                                                                     $updated_at
@@ -49,7 +50,6 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $main_image_upload
  * @property string                                                                                                     $main_image_url
  * @property string                                                                                                     $content_blocks
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
@@ -73,7 +73,6 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
- *
  * @property string                                                                    $id
  * @property string                                                                    $uuid
  * @property string|null                                                               $content
@@ -101,7 +100,6 @@ use Webmozart\Assert\Assert;
  * @property int|null                                                                  $ratings_count
  * @property mixed                                                                     $translations
  * @property string|null                                                               $rewarded_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereClosedAt($value)
@@ -130,7 +128,6 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
- *
  * @property int         $status_display
  * @property string|null $bet_end_date
  * @property string|null $event_start_date
@@ -146,7 +143,6 @@ use Webmozart\Assert\Assert;
  * @property float|null  $volume_play_money
  * @property float|null  $volume_real_money
  * @property int         $is_following
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScorePlayMoney($value)
@@ -163,16 +159,12 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
- *
  * @property \Modules\Rating\Models\RatingMorph $pivot
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereRewardedAt($value)
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin \Eloquent
  */
 class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
@@ -310,7 +302,8 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        $user_class = XotData::make()->getUserClass();
+        return $this->belongsTo($user_class);
     }
 
     public function category(): BelongsTo

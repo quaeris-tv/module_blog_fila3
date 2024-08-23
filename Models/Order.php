@@ -20,7 +20,6 @@ namespace Modules\Blog\Models;
  * @property string|null                     $deleted_by
  * @property string|null                     $model_type
  * @property int|null                        $model_id
- *
  * @method static \Modules\Blog\Database\Factories\OrderFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Order   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order   newQuery()
@@ -40,10 +39,8 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|Order   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Order   withoutTrashed()
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin \Eloquent
  */
 class Order extends BaseModel
