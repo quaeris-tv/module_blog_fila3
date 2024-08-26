@@ -48,3 +48,4 @@ vendor
 .git-blame-ignore-revs
 vendor/
 build/
+node_modules
