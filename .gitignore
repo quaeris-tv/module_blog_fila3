@@ -42,10 +42,8 @@ package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
 node_modules
-node_modules
 vendor
 .php-cs-fixer.cache
 .git-blame-ignore-revs
 vendor/
 build/
-node_modules
