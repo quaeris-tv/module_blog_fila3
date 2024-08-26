@@ -6,11 +6,7 @@ use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-<<<<<<< HEAD
 return new class() extends XotBaseMigration {
-=======
-return new class extends XotBaseMigration {
->>>>>>> 93c74f2 (Lint)
     /**
      * db up..
      */
