@@ -9,11 +9,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateBlogCategoriesTable.
  */
-<<<<<<< HEAD
-return new class extends XotBaseMigration {
-=======
 return new class() extends XotBaseMigration {
->>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
     protected ?string $model_class = Category::class;
 
     /**
