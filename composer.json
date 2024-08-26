@@ -44,7 +44,8 @@
         "pboivin/filament-peek": "^2.0",
         "staudenmeir/laravel-adjacency-list": "^1.22",
         "spatie/laravel-feed": "^4.4",
-        "staudenmeir/eloquent-has-many-deep": "*"
+        "staudenmeir/eloquent-has-many-deep": "*",
+        "filament/spatie-laravel-tags-plugin": "^3.2"
     },
     "require_comment": {
         "thecodingmachine/safe": "^2.5"
