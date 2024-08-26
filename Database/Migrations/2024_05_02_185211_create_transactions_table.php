@@ -6,8 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\User\Models\User;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-return new class extends XotBaseMigration 
-{
+return new class() extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -21,7 +20,8 @@ return new class extends XotBaseMigration
                 $table->foreignIdFor(User::class, 'user_id')->nullable();
                 $table->text('note')->nullable();
                 $table->datetimetz('date')->nullable();
-            });
+            }
+        );
 
         // -- UPDATE --
         $this->tableUpdate(
@@ -40,4 +40,4 @@ return new class extends XotBaseMigration
             }
         );
     }
-}
+};
