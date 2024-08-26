@@ -53,12 +53,20 @@ Leggere ed eseguire correttamente le istruzioni all'interno dei file README.md d
 
 L'accesso alla sezione si effettua cliccando sulla voce "Articoli" del menu laterale.
 
+<<<<<<< HEAD
 ![1723029281966](docs/img/1723029281966.png)
+=======
+![1723029281966](image/README/1723029281966.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 ##### Creazione di un nuovo articolo
 
 * Cliccare sul pulsante in alto a destra "Nuovo"
+<<<<<<< HEAD
 * Inserire tutte le informazioni necessarie (segnate con *) e utili per rendere più chiara ed esaustiva l'indagine che si vuole creare![1723030063173](docs/img/1723030063173.png)La struttura di un articolo ha una composizione "a blocchi", è possibile cioè inserire tipologie diverse di elementi quali "Titolo", "Paragrafo", "Immagine", "Carosello di immagini", "Opzione di risposta" e "Grafico" e spostarli all'interno della composizione stessa della pagina trascinando i blocchi interessati sopra o sotto.
+=======
+* Inserire tutte le informazioni necessarie (segnate con *) e utili per rendere più chiara ed esaustiva l'indagine che si vuole creare![1723030063173](image/README/1723030063173.png)La struttura di un articolo ha una composizione "a blocchi", è possibile cioè inserire tipologie diverse di elementi quali "Titolo", "Paragrafo", "Immagine", "Carosello di immagini", "Opzione di risposta" e "Grafico" e spostarli all'interno della composizione stessa della pagina trascinando i blocchi interessati sopra o sotto.
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
   Al termine della creazione, per salvare il nuovo articolo è sufficiente cliccare sul pulsante "Salva".
 
@@ -70,7 +78,11 @@ Come il nome suggerisce, rappresentano i temi che contraddistinguono gli articol
 
 L'accesso alla sezione si effettua cliccando sulla voce "Categorie" dal menu laterale.
 
+<<<<<<< HEAD
 ![1723122503024](docs/img/1723122503024.png)
+=======
+![1723122503024](image/README/1723122503024.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 Le categorie principali corrispondono a "Sport", "Politica", "Scienza", "Intrattenimento", "Affari e finanze".
 
@@ -78,7 +90,11 @@ Le categorie principali corrispondono a "Sport", "Politica", "Scienza", "Intratt
 
 Per inserire una nuova categoria è sufficiente cliccare sul pulsante in alto a destra "Nuovo".
 
+<<<<<<< HEAD
 ![1723123593783](docs/img/1723123593783.png)
+=======
+![1723123593783](image/README/1723123593783.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 Per completare l'inserimento di una nuova categoria è necessario compilare tutti i campi obbligatori quali "Titolo della categoria" e "slug".
 
@@ -94,13 +110,21 @@ I Banners rappresentano le copertine che sfogliano a modi carosello nella Homepa
 
 Per accedere alla lista dei banners è sufficiente cliccare sulla voce "Banners" dal menu laterale.
 
+<<<<<<< HEAD
 ![1723126923298](docs/img/1723126923298.png)
+=======
+![1723126923298](image/README/1723126923298.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 ##### Creazione di un nuovo banner
 
 Per aggiungere un nuovo banner si deve cliccare sul pulsante in alto a destra "Nuovo".
 
+<<<<<<< HEAD
 ![1723127052220](docs/img/1723127052220.png)
+=======
+![1723127052220](image/README/1723127052220.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 Per completare l'inserimento è necessario compilare tutti i campi obbligatori (contraddistinti dal *), quali "Titolo", "Descrizione" e "Category ID". Gli altri campi non sono obbligatori ma sono utili per rendere più chiara l'utilità del banner in questione.
 
@@ -114,13 +138,21 @@ Come il nome suggerisce, è la sezione in cui si possono consultare tutti i prof
 
 Per accedere alla lista dei profili, è sufficiente cliccare sulla voce "Profili" dal menu laterale.
 
+<<<<<<< HEAD
 ![1723128470387](docs/img/1723128470387.png)
+=======
+![1723128470387](image/README/1723128470387.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 ##### Creazione di un nuovo profilo
 
 Per creareun nuovo profilo, cliccare sul pulsante "Nuovo" in alto a destra.
 
+<<<<<<< HEAD
 ![1723128759093](docs/img/1723128759093.png)
+=======
+![1723128759093](image/README/1723128759093.png)
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 
 Le informazioni più importanti da inserire per ogni profilo sono "Username", "email", "First Name" e "Last Name". Le prime due sono voci univoche, non è possibile avere due profili con lo stesso Username o con lo stesso indirizzo email.
 

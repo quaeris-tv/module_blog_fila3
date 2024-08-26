@@ -14,10 +14,8 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ContactEntry   query()
  * @method static \Illuminate\Database\Eloquent\Builder|ContactEntry   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ContactEntry   withoutTrashed()
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin \Eloquent
  */
 class ContactEntry extends BaseModel

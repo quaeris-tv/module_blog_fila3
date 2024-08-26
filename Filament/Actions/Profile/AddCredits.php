@@ -24,7 +24,8 @@ class AddCredits extends Action
                     // $profile_data = Arr::except($record->toArray(), ['id']);
                     // if (null == $user) {
                     //     $user_class = XotData::make()->getUserClass();
-                    //     $user = $user_class::firstWhere(['email' => $record->email]);
+                    //     /** @var \Modules\Xot\Contracts\UserContract */
+                    //    $user = $user_class::firstWhere(['email' => $record->email]);
                     // }
 
                     // if (null == $user) {

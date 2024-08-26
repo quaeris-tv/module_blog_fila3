@@ -18,7 +18,6 @@ use Illuminate\Support\Arr;
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property array                           $custom_properties
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable onlyTrashed()
@@ -33,16 +32,12 @@ use Illuminate\Support\Arr;
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withoutTrashed()
- *
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedBy($value)
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot

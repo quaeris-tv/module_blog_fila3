@@ -46,4 +46,8 @@ node_modules
 vendor
 .php-cs-fixer.cache
 .git-blame-ignore-revs
+<<<<<<< HEAD
+=======
+vendor/
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 build/

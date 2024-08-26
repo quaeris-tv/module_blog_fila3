@@ -6,7 +6,7 @@ namespace Modules\Blog\Listeners;
 
 use Illuminate\Auth\Events\Registered;
 use Modules\Blog\Models\Profile;
-use Modules\User\Models\User;
+use Modules\Xot\Datas\XotData;
 use Webmozart\Assert\Assert;
 
 class ProfileRegisteredListener
@@ -24,7 +24,7 @@ class ProfileRegisteredListener
     public function handle(Registered $event): void
     {
         Assert::notNull($user = $event->user, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($user, User::class, '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($user, XotData::make()->getUserClass(), '['.__LINE__.']['.__FILE__.']');
 
         $user->profile()->create([
             'email' => $user->email,

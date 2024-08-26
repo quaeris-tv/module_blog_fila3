@@ -12,7 +12,7 @@ use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Modules\User\Models\BaseProfile;
-use Modules\User\Models\User;
+
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
@@ -58,7 +58,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                                                                                      $roles_count
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team>                                      $teams
  * @property int|null                                                                                                      $teams_count
- * @property User|null                                                                                                     $user
+ * @property \Modules\Xot\Contracts\UserContract|null                                                                                                     $user
  * @property string|null                                                                                                   $user_name
  *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])

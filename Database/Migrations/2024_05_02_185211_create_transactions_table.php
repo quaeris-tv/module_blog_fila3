@@ -3,10 +3,13 @@
 declare(strict_types=1);
 
 use Illuminate\Database\Schema\Blueprint;
-use Modules\User\Models\User;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
+<<<<<<< HEAD
 return new class extends XotBaseMigration {
+=======
+return new class() extends XotBaseMigration {
+>>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
     /**
      * Run the migrations.
      */
@@ -17,7 +20,7 @@ return new class extends XotBaseMigration {
                 $table->id();
                 $table->nullableMorphs('model');
                 $table->integer('credits')->nullable();
-                $table->foreignIdFor(User::class, 'user_id')->nullable();
+                $table->foreignIdFor(Modules\Xot\Datas\XotData::make()->getUserClass(), 'user_id')->nullable();
                 $table->text('note')->nullable();
                 $table->datetimetz('date')->nullable();
             }
