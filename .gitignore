@@ -30,7 +30,7 @@ package-lock.json
 build
 /docs/package-lock.json
 .git-blame-ignore-revs
-/vendor
+
 *.phar
 *.cache
 *.log
@@ -40,11 +40,12 @@ package-lock.json
 .php-cs-fixer.cache
 package-lock.json
 .git-rewrite/
-.php-cs-fixer.cache
+
 node_modules
-node_modules
-vendor
-.php-cs-fixer.cache
+
 .git-blame-ignore-revs
+/vendor
+vendor
 vendor/
 build/
+
