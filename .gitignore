@@ -49,3 +49,8 @@ vendor
 vendor/
 build/
 
+node_modules
+vendor
+vendor/
+/vendor
+build/
