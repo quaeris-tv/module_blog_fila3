@@ -5,24 +5,25 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Modules\Rating\Models\Contracts\HasRatingContract;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\Traits\HasRating;
-use Modules\Xot\Contracts\UserContract;
 use Safe\DateTime;
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\Tags\HasTags;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+use Modules\Rating\Models\Rating;
+use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Support\Facades\Storage;
+use Modules\Xot\Contracts\UserContract;
+use Spatie\Translatable\HasTranslations;
+use Modules\Rating\Models\Traits\HasRating;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Comments\Models\Concerns\HasComments;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Rating\Models\Contracts\HasRatingContract;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Modules\Blog\Models\Article.
@@ -181,6 +182,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
+    use HasComments;
 
     protected $fillable = [
         'uuid',
@@ -413,15 +415,15 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     //    return $this->belongsToMany(Tag::class);
     // }
 
-    /**
-     * Get the comments of the article.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
+    // /**
+    //  * Get the comments of the article.
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
+    //  */
+    // public function comments()
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
 
     /**
      * Get the article's main image.
@@ -737,5 +739,23 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         return $query->where('title', 'LIKE', "%{$searching}%")
             ->orWhere('content', 'LIKE', "%{$searching}%")
             ->orWhere('excerpt', 'LIKE', "%{$searching}%");
+    }
+
+    /**
+     * This string will be used in notifications on what a new comment
+     * was made.
+     */
+    public function commentableName(): string
+    {
+        return 'Commento';
+    }
+
+    /**
+     * This URL will be used in notifications to let the user know
+     * where the comment itself can be read.
+     */
+    public function commentUrl(): string
+    {
+        return '#';
     }
 }
