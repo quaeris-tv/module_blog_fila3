@@ -89,13 +89,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property \Modules\User\Models\Membership                                                 $membership
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Transaction> $transanctions
  * @property int|null                                                                        $transanctions_count
-<<<<<<< HEAD
  * @property \Modules\Xot\Contracts\ProfileContract|null                                     $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null                                     $updater
-=======
- * @property \Modules\Fixcity\Models\Profile|null                                            $creator
- * @property \Modules\Fixcity\Models\Profile|null                                            $updater
->>>>>>> c2cca6e (Lint)
  *
  * @mixin \Eloquent
  */
