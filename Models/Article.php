@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 use Modules\Rating\Models\Contracts\HasRatingContract;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\Traits\HasRating;
-use Modules\User\Models\User;
+use Modules\Xot\Contracts\UserContract;
 use Safe\DateTime;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -39,7 +39,7 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
  * @property int|null                                                                                                   $statuses_count
  * @property int|null                                                                                                   $tags_count
- * @property User|null                                                                                                  $user
+ * @property UserContract|null                                                                                          $user
  * @property string                                                                                                     $body
  * @property Carbon                                                                                                     $published_at
  * @property Carbon                                                                                                     $updated_at
@@ -310,7 +310,9 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+
+        return $this->belongsTo($user_class);
     }
 
     public function category(): BelongsTo
