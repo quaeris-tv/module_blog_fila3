@@ -8,7 +8,11 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateUpvoteDownvotesTable.
  */
+<<<<<<< HEAD
 return new class extends XotBaseMigration {
+=======
+return new class() extends XotBaseMigration {
+>>>>>>> 8149186 (up)
     /**
      * Run the migrations.
      */

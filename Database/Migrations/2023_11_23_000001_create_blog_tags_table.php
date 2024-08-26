@@ -9,7 +9,11 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreateBlogTagsTable.
  */
+<<<<<<< HEAD
 return new class extends XotBaseMigration {
+=======
+return new class() extends XotBaseMigration {
+>>>>>>> 8149186 (up)
     protected ?string $model_class = Tag::class;
 
     /**
