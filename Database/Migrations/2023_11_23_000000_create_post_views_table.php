@@ -8,15 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /*
  * Class CreatePostViewsTable.
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
-return new class extends XotBaseMigration {
-=======
 return new class() extends XotBaseMigration {
->>>>>>> 8149186 (up)
-=======
-return new class extends XotBaseMigration {
->>>>>>> 9715aec (Lint)
     /**
      * Run the migrations.
      */

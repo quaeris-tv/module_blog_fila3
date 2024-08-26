@@ -6,12 +6,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\User\Models\User;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-<<<<<<< HEAD
-return new class extends XotBaseMigration {
-=======
-return new class extends XotBaseMigration 
-{
->>>>>>> 8149186 (up)
+return new class() extends XotBaseMigration {
     /**
      * Run the migrations.
      */
