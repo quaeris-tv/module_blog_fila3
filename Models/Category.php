@@ -136,7 +136,7 @@ class Category extends BaseModel implements HasMedia
     use InteractsWithMedia;
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'title',
         'slug',
