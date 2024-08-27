@@ -6,6 +6,10 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+<<<<<<< HEAD
+=======
+use Modules\Xot\Contracts\UserContract;
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
 
 /**
  * Modules\Blog\Models\Comment.
@@ -24,7 +28,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
+<<<<<<< HEAD
  * @property \Modules\Xot\Contracts\UserContract|null                                              $user
+=======
+ * @property UserContract|null                                      $user
+ *
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newQuery()
@@ -80,7 +89,13 @@ class Comment extends BaseModel
 
     public function user(): BelongsTo
     {
+<<<<<<< HEAD
         return $this->belongsTo(\Modules\Xot\Datas\XotData::make()->getUserClass());
+=======
+        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+
+        return $this->belongsTo($user_class);
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
     }
 
     /**

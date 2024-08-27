@@ -25,8 +25,13 @@ class LoginListener
      */
     public function handle(Login $event): void
     {
+        $user_class = XotData::make()->getUserClass();
         Assert::notNull($user = $event->user, '['.__LINE__.']['.__FILE__.']');
+<<<<<<< HEAD
         Assert::isInstanceOf($user, XotData::make()->getUserClass(), '['.__LINE__.']['.__FILE__.']');
+=======
+        Assert::isInstanceOf($user, $user_class, '['.__LINE__.']['.__FILE__.']');
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
 
         $welcome_login = Transaction::where('user_id', $user->id)
             ->where('note', 'welcome')

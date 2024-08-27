@@ -30,8 +30,12 @@ class CreateProfileByUsersCommand extends Command
     public function handle(): void
     {
         $user_class = XotData::make()->getUserClass();
+<<<<<<< HEAD:Console/Commands/Profiles/CreateProfileByUsersCommand.php
         $user_model = app($user_class);
         $users = $user_model->all();
+=======
+        $users = $user_class::all();
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b:Console/Commands/Profiles/CreateProfileByUsersCommand.no
 
         foreach ($users as $user) {
             Profile::firstOrCreate(

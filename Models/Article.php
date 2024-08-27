@@ -11,7 +11,10 @@ use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+<<<<<<< HEAD
 use Modules\Xot\Datas\XotData;
+=======
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
 use Modules\Rating\Models\Rating;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +22,10 @@ use Modules\Xot\Contracts\UserContract;
 use Spatie\Translatable\HasTranslations;
 use Modules\Rating\Models\Traits\HasRating;
 use Spatie\MediaLibrary\InteractsWithMedia;
+<<<<<<< HEAD
+=======
+use Spatie\Comments\Models\Concerns\HasComments;
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -40,7 +47,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
  * @property int|null                                                                                                   $statuses_count
  * @property int|null                                                                                                   $tags_count
+<<<<<<< HEAD
  * @property UserContract|null                                                                                                  $user
+=======
+ * @property UserContract|null                                                                                          $user
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
  * @property string                                                                                                     $body
  * @property Carbon                                                                                                     $published_at
  * @property Carbon                                                                                                     $updated_at
@@ -173,6 +184,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     use HasTags;
     use HasTranslations;
     use InteractsWithMedia;
+    use HasComments;
 
     protected $fillable = [
         'uuid',
@@ -302,7 +314,12 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function user(): BelongsTo
     {
+<<<<<<< HEAD
         $user_class = XotData::make()->getUserClass();
+=======
+        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+
+>>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
         return $this->belongsTo($user_class);
     }
 
@@ -404,15 +421,15 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     //    return $this->belongsToMany(Tag::class);
     // }
 
-    /**
-     * Get the comments of the article.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
+    // /**
+    //  * Get the comments of the article.
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
+    //  */
+    // public function comments()
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
 
     /**
      * Get the article's main image.
@@ -728,5 +745,23 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         return $query->where('title', 'LIKE', "%{$searching}%")
             ->orWhere('content', 'LIKE', "%{$searching}%")
             ->orWhere('excerpt', 'LIKE', "%{$searching}%");
+    }
+
+    /**
+     * This string will be used in notifications on what a new comment
+     * was made.
+     */
+    public function commentableName(): string
+    {
+        return 'Commento';
+    }
+
+    /**
+     * This URL will be used in notifications to let the user know
+     * where the comment itself can be read.
+     */
+    public function commentUrl(): string
+    {
+        return '#';
     }
 }
