@@ -11,6 +11,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
  */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 return new class extends XotBaseMigration {
 =======
 return new class() extends XotBaseMigration {
@@ -18,6 +19,9 @@ return new class() extends XotBaseMigration {
 =======
 return new class extends XotBaseMigration {
 >>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
+=======
+return new class extends XotBaseMigration {
+>>>>>>> 949b76732b8df9e823421a787ac0d1cf686214e1
     protected ?string $model_class = Profile::class;
 
     /**
