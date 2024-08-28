@@ -16,8 +16,16 @@ use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\Traits\HasRating;
 use Modules\Xot\Contracts\UserContract;
 use Safe\DateTime;
+<<<<<<< HEAD
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+=======
+use Spatie\Comments\Models\Concerns\HasComments;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+>>>>>>> aca004f (Lint)
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
