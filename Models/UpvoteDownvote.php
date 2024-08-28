@@ -13,6 +13,7 @@ namespace Modules\Blog\Models;
  * @property int                             $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Modules\Blog\Database\Factories\UpvoteDownvoteFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   newQuery()
@@ -26,16 +27,20 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote   withoutTrashed()
+ *
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote whereUpdatedBy($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class UpvoteDownvote extends BaseModel

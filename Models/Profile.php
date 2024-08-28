@@ -57,7 +57,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                                                                                      $roles_count
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team>                                      $teams
  * @property int|null                                                                                                      $teams_count
- * @property \Modules\Xot\Contracts\UserContract|null                                                                                                     $user
+ * @property \Modules\Xot\Contracts\UserContract|null                                                                      $user
  * @property string|null                                                                                                   $user_name
  *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
