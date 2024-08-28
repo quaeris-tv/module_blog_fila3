@@ -6,10 +6,7 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-<<<<<<< HEAD
-=======
 use Modules\Xot\Contracts\UserContract;
->>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
 
 /**
  * Modules\Blog\Models\Comment.
@@ -28,12 +25,8 @@ use Modules\Xot\Contracts\UserContract;
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
-<<<<<<< HEAD
- * @property \Modules\Xot\Contracts\UserContract|null                                              $user
-=======
  * @property UserContract|null                                      $user
  *
->>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newQuery()
@@ -48,32 +41,20 @@ use Modules\Xot\Contracts\UserContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withoutTrashed()
+ *
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedBy($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
- * @property string|null $commentable_type
- * @property string|null $commentable_id
- * @property string|null $commentator_type
- * @property string|null $commentator_id
- * @property string $text
- * @property string|null $extra
- * @property string|null $approved_at
- * @property string $original_text
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereApprovedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentatorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentatorType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereExtra($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereOriginalText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
+ *
  * @mixin \Eloquent
  */
 class Comment extends BaseModel
@@ -89,13 +70,9 @@ class Comment extends BaseModel
 
     public function user(): BelongsTo
     {
-<<<<<<< HEAD
-        return $this->belongsTo(\Modules\Xot\Datas\XotData::make()->getUserClass());
-=======
         $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
 
         return $this->belongsTo($user_class);
->>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
     }
 
     /**
