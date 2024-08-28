@@ -284,6 +284,22 @@ class Article extends BaseModel implements Feedable, HasRatingContract
         ];
     }
 
+    // public function path()
+    // {
+    //    return "/article/$this->slug";
+    // }
+
+    // public function getSearchResult(): SearchResult
+    // {
+    //     $url = route('test', ['lang'=>'it']);
+
+    //     return new \Spatie\Searchable\SearchResult(
+    //        $this,
+    //        $this->title,
+    //        $url
+    //     );
+    // }
+
     public function orders(): MorphMany
     {
         return $this->morphMany(Order::class, 'model');
