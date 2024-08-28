@@ -12,9 +12,12 @@ use Spatie\Feed\FeedItem;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Modules\Xot\Datas\XotData;
 =======
 >>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
+=======
+>>>>>>> 1bdfd1c55abda33490bd81cdcaf48c3940c23e45
 use Modules\Rating\Models\Rating;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Facades\Storage;
@@ -23,9 +26,13 @@ use Spatie\Translatable\HasTranslations;
 use Modules\Rating\Models\Traits\HasRating;
 use Spatie\MediaLibrary\InteractsWithMedia;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 use Spatie\Comments\Models\Concerns\HasComments;
 >>>>>>> fe872a23dd2cb35bf304d5ce734c44a14645de4b
+=======
+use Spatie\Comments\Models\Concerns\HasComments;
+>>>>>>> 1bdfd1c55abda33490bd81cdcaf48c3940c23e45
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;

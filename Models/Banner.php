@@ -77,7 +77,7 @@ class Banner extends BaseModel implements HasMedia
     use InteractsWithMedia;
     // use HasTranslations;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         // "id", //: 40,
         // "desktop_thumbnail",//: "https://My_Company-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
@@ -141,7 +141,7 @@ class Banner extends BaseModel implements HasMedia
         ];
     }
 
-    /** @var array<int, string> */
+     /** @var list<string> */
     protected $appends = [
         'desktop_thumbnail',
         'mobile_thumbnail',

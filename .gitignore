@@ -56,6 +56,7 @@ vendor
 vendor
 >>>>>>> 949b76732b8df9e823421a787ac0d1cf686214e1
 vendor/
+<<<<<<< HEAD
 >>>>>>> 7be4a6be39f053c0a5a14e0d1e692343220eb6a6
 =======
 vendor/
@@ -71,3 +72,6 @@ vendor/
 /vendor
 build/
 >>>>>>> 949b76732b8df9e823421a787ac0d1cf686214e1
+=======
+build/
+>>>>>>> 1bdfd1c55abda33490bd81cdcaf48c3940c23e45

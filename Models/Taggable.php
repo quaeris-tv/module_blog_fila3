@@ -52,7 +52,7 @@ class Taggable extends BaseMorphPivot
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'tag_id',
         'taggable_id',

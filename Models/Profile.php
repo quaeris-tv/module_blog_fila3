@@ -106,7 +106,7 @@ class Profile extends BaseProfile
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'id',
         'user_id',
