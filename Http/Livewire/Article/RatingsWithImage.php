@@ -129,7 +129,7 @@ class RatingsWithImage extends Component implements HasActions, HasForms
 
                 return view($view);
             })
-            ->modalHeading('Place bet')
+            ->modalHeading(__('predict::bet.place-bet'))
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
