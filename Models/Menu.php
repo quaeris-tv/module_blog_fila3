@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-<<<<<<< HEAD
-=======
 use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
->>>>>>> origin/dev
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -91,10 +88,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Menu extends BaseModel implements HasMedia
 {
     use InteractsWithMedia;
-<<<<<<< HEAD
-=======
     use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
->>>>>>> origin/dev
 
     /** @var array<int, string> */
     protected $fillable = [

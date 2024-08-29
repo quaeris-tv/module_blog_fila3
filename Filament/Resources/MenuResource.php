@@ -69,23 +69,6 @@ class MenuResource extends Resource
                         ->collection('menu')
                     // ->preserveFilenames()
                     ,
-<<<<<<< HEAD
-=======
-                    // Forms\Components\Select::make('parent_id')
-                    //     ->label('link/menu Padre')
-                    //     ->options(
-                    //         Menu::getTreeMenuOptions()
-                    //     )
-                    //     ->searchable(),
-                    \Guava\FilamentIconPicker\Forms\IconPicker::make('icon')
-                        ->helperText('Visualizza le icone disponibili di https://heroicons.com/')
-                        ->columns([
-                            'default' => 1,
-                            'lg' => 3,
-                            '2xl' => 5,
-                        ])
-                        ->layout(\Guava\FilamentIconPicker\Layout::ON_TOP),
->>>>>>> origin/dev
                 ])
                 ->columnSpanFull(),
         ];

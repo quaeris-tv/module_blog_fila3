@@ -301,57 +301,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract
         return $this->belongsTo(Category::class);
     }
 
-<<<<<<< HEAD
-    public function ratings(): MorphToMany
-    {
-        $pivot_class = RatingMorph::class;
-        $pivot = app($pivot_class);
-        $pivot_table = $pivot->getTable();
-        $pivot_db_name = $pivot->getConnection()->getDatabaseName();
-        $pivot_table_full = $pivot_db_name.'.'.$pivot_table;
-        $pivot_fields = $pivot->getFillable();
-
-        return $this->morphToMany(Rating::class, 'model', $pivot_table_full)
-            ->using($pivot_class)
-            ->withPivot($pivot_fields)
-            ->withTimestamps();
-    }
-
-    public function getOptionRatingsIdTitle(): array
-    {
-        // return $this->ratings()->where('user_id', null)->get();
-        return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'title', 'id');
-    }
-
-    public function getOptionRatingsIdColor(): array
-    {
-        // return $this->ratings()->where('user_id', null)->get();
-        return Arr::pluck($this->ratings()->where('user_id', null)->get()->toArray(), 'color', 'id');
-    }
-
-    public function getArrayRatingsWithImage(): array
-    {
-        $ratings = $this
-        ->ratings()
-        // ->with('media')
-        ->where('user_id', null)
-        ->get()
-        // ->toArray()
-        ;
-
-        $ratings_array = [];
-
-        foreach ($ratings as $key => $rating) {
-            $ratings_array[$key] = $rating->toArray();
-            $ratings_array[$key]['image'] = $rating->getFirstMediaUrl('rating');
-            $ratings_array[$key]['effect'] = false;
-        }
-
-        return $ratings_array;
-    }
-
-=======
->>>>>>> origin/dev
     // ----- Feed ------
     public function toFeedItem(): FeedItem
     {

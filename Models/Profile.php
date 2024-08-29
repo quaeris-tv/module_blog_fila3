@@ -10,14 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\RatingMorph;
-<<<<<<< HEAD
-use Modules\User\Models\User;
-// use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
-use Modules\Xot\Models\BaseProfile as XotBaseProfile;
-use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
-
-class Profile extends XotBaseProfile
-=======
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Modules\User\Models\BaseProfile;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
@@ -107,7 +99,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @mixin \Eloquent
  */
 class Profile extends BaseProfile
->>>>>>> origin/dev
 {
     /** @var string */
     protected $connection = 'blog';

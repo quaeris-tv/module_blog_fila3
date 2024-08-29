@@ -353,29 +353,12 @@ class ThemeComposer
     public function getArticleDataArray(Collection $rows): array
     {
         $tmp = [];
-<<<<<<< HEAD
-        foreach ($results as $content) {
-=======
         foreach ($rows->toArray() as $content) {
-<<<<<<< HEAD
->>>>>>> origin/dev
-=======
             // @phpstan-ignore-next-line
->>>>>>> origin/dev
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
                 $content['title'] = $content['title'][$lang] ?? last($content['title']);
             }
-<<<<<<< HEAD
-
-=======
-            // dddx([
-            //     $rows,
-            //     $rows->toArray(),
-            //     $content,
-            //     // ArticleData::from($content)
-            // ]);
->>>>>>> origin/dev
             $tmp[] = ArticleData::from($content);
         }
 
@@ -383,16 +366,6 @@ class ThemeComposer
         return $tmp;
     }
 
-<<<<<<< HEAD
-    /**
-     * Undocumented function.
-     *
-     * @return void
-     */
-    public function getMenu(string $menu_name)
-    {
-        // dddx(Menu::where('name', $menu_name)->first()->items);
-=======
     public function getArticleModel(string $slug): ?Article
     {
         return Article::where('slug', $slug)->first();
@@ -419,6 +392,5 @@ class ThemeComposer
             ->sortByDesc('ratings_sum')
             ->take(3)
             ->toArray();
->>>>>>> origin/dev
     }
 }

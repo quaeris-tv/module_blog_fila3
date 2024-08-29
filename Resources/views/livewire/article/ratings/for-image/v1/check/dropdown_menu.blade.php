@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <button
 	id="dropdownHoverButton"
 	data-dropdown-toggle="dropdownHover"
@@ -26,7 +24,6 @@
 </button>
 
 
->>>>>>> origin/dev
 <div
     id="dropdownHover"
     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
@@ -35,13 +32,8 @@
         class="py-2 text-sm text-gray-700 dark:text-gray-200"
         aria-labelledby="dropdownHoverButton"
         >
-<<<<<<< HEAD
-
-        {{-- @foreach($article_ratings as $key => $rating)
-=======
         {{-- {{ dddx(get_defined_vars()) }} --}}
         @foreach($article_ratings as $key => $rating)
->>>>>>> origin/dev
             <li>
                 <a
                     href="#"
@@ -51,11 +43,7 @@
                     {{ $rating }}
                 </a>
             </li>
-<<<<<<< HEAD
-        @endforeach --}}
-=======
         @endforeach
->>>>>>> origin/dev
 
         {{-- <li>
             <a
@@ -73,8 +61,6 @@
         </li> --}}
     </ul>
 </div>
-<<<<<<< HEAD
-=======
 
 
 
@@ -143,4 +129,3 @@
 
     */
 @endphp
->>>>>>> origin/dev

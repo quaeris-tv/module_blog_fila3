@@ -1,47 +1,5 @@
 <div class="flex flex-col" {{-- x-show="isloggedIn" --}}>
     <div class="block w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-<<<<<<< HEAD
-        <div class="w-full flex py-3 px-3 justify-between bg-blue-1 text-white font-bold">
-            Place bet
-        </div>
-        <form wire:submit="save">
-            <div class="flex flex-col my-4 border gap-3 rounded-t justify-center items-center w-11/12 mx-auto">
-                <div class="bg-neutral-1 w-full p-1 rounded mx-auto">
-                    <div class="py-4 px-2 flex justify-between items-center">
-                        <span class="text-sm">Your bet
-                            {{ $rating_title }}
-                        </span>
-                        <div class="">
-                            <button
-                                id="dropdownHoverButton"
-                                data-dropdown-toggle="dropdownHover"
-                                data-dropdown-trigger="hover"
-                                class="bg-transparent hover:bg-white focus:ring-4 focus:outline-none focus:bg-white font-medium rounded-lg text-sm px-3 py-2.5 text-center text-black inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                type="button"
-                                >
-                                <span {{-- x-text="selection" --}}></span>
-                                <svg
-                                    class="w-2.5 h-2.5 ms-3"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 10 6"
-                                    >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="m1 1 4 4 4-4"
-                                        />
-                                </svg>
-                            </button>
-
-                            <!-- Dropdown menu -->
-                            @include('blog::livewire.article.ratings.for-image.v1.check.dropdown_menu')
-
-                        </div>
-=======
         <div class="flex justify-between w-full px-3 py-3 font-bold text-white bg-blue-1 lg:rounded-t">
             {{ __('predict::bet.place-bet') }}
         </div>
@@ -58,25 +16,15 @@
                                 @include('blog::livewire.article.ratings.for-image.v1.check.dropdown_menu')
                             </div>
                         @endif
->>>>>>> origin/dev
                     </div>
                 </div>
                 <div class="w-full px-4 py-2.5 bg-white inline-flex items-center justify-between">
                     <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
-<<<<<<< HEAD
-                        type="text"
-                        value="0"
-                        wire:model.live="import"
-                        />
-
-
-=======
                         type="number"
                         value="0"
                         wire:model.live.lazy="import"
                         />
->>>>>>> origin/dev
                     {{-- <input
                         class="text-[32px] w-1/2 inline-flex border border-none font-bold text-neutral-3 appearance-none"
                         type="text"
@@ -84,10 +32,6 @@
                         /> --}}
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/dev
                     <div class="flex"></div>
                     <span class="">
                         {{-- <svg
@@ -111,22 +55,6 @@
                     </span>
                     {{-- <span class="ml-1 place-bet__text-field__displayCode">Ooms</span> --}}
                 </div>
-<<<<<<< HEAD
-            </div>
-            {{-- <div class="flex w-full items-center justify-center py-3 mb-3">
-                <a href="/m/cash-in" class="text-blue-1 font-semibold">Add real money</a>
-            </div> --}}
-            <div class="px-4 mb-3">
-                {{-- <div class="flex justify-between items-center py-2 text-neutral-4 text-base">
-                    <span>Av. price / share</span>
-                    <span class="font-bold text-black">0<span> / Share</span></span>
-                </div>
-                <div class="flex justify-between items-center py-2 text-neutral-4 text-base">
-                    <span>Bet Amount</span>
-                    <span class="font-bold text-black">100<span class="ml-1">Ooms</span></span>
-                </div>
-                <div class="flex justify-between items-center py-2 text-neutral-4 text-base">
-=======
                 @error('import') <span>{{ $message }}</span> @enderror
                 @error('rating_title') <span>{{ $message }}</span> @enderror
             </div>
@@ -143,23 +71,15 @@
                     <span class="font-bold text-black">100<span class="ml-1">Ooms</span></span>
                 </div>
                 <div class="flex items-center justify-between py-2 text-base text-neutral-4">
->>>>>>> origin/dev
                     <span>Bet Amount</span>
                     <span class="font-bold text-green-400">0<span class="ml-1">Ooms</span></span>
                 </div> --}}
                 <button
-<<<<<<< HEAD
-                    {{-- wire:click="save()" --}}
-                    {{-- wire:click="$refresh" --}}
-                    {{-- type="submit" --}}
-                    class="px-5 my-2 mt-4 w-full flex items-center justify-center py-3 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-opacity-15"
-=======
                     {{-- wire:click="close()" --}}
                     {{-- wire:click="save()" --}}
                     {{-- wire:click="$refresh" --}}
                     {{-- type="submit" --}}
                     class="flex items-center justify-center w-full px-5 py-3 my-2 mt-4 text-lg font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:bg-opacity-15"
->>>>>>> origin/dev
                     {{-- disabled --}}
                     >
                 {{ __('predict::bet.select-an-outcome') }}

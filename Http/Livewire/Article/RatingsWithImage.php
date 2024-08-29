@@ -11,13 +11,6 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-<<<<<<< HEAD
-use Illuminate\Contracts\View\View;
-use Livewire\Component;
-use Modules\Blog\Models\Article;
-use Modules\Blog\Models\Profile;
-use Modules\Xot\Actions\GetViewAction;
-=======
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Notifications\Notification;
@@ -30,7 +23,6 @@ use Modules\Blog\Models\Profile;
 use Modules\Rating\Models\RatingMorph;
 use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
->>>>>>> origin/dev
 
 class RatingsWithImage extends Component implements HasActions, HasForms
 {
@@ -53,16 +45,9 @@ class RatingsWithImage extends Component implements HasActions, HasForms
     public int $credit = 0;
 
     public array $article_ratings = [];
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    public function mount(Article $article, string $type, ?array $ratings = null): void
-=======
-=======
-
->>>>>>> origin/dev
     public int $import = 0;
 
     public ?string $article_uuid = null;
@@ -74,20 +59,10 @@ class RatingsWithImage extends Component implements HasActions, HasForms
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';;
 
     public function mount(Article $article, string $type, string $article_uuid, array $ratings = []): void
->>>>>>> origin/dev
     {
         // $this->tpl = $tpl;
         $this->type = $type;
         $this->article = $article;
-<<<<<<< HEAD
-        $this->article_ratings = $article->getOptionRatingsIdTitle();
-        if (null == $ratings) {
-            $this->datas = $this->article->getArrayRatingsWithImage();
-        } else {
-            $this->datas = $ratings;
-        }
-        // dddx($this->datas);
-=======
         if ('show' == $type) {
             $this->datas = $this->article->getArrayRatingsWithImage();
         // $this->article_ratings = $article->getOptionRatingsIdTitle();
@@ -101,7 +76,6 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
         $this->ratings_percentage = $this->article->getRatingsPercentageByVolume();
->>>>>>> origin/dev
     }
 
     public function render(): View
@@ -122,97 +96,16 @@ class RatingsWithImage extends Component implements HasActions, HasForms
     {
         $this->rating_id = $rating_id;
         $this->rating_title = $rating_title;
-<<<<<<< HEAD
-
-        // if ('show' == $this->type) {
-=======
         // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
         if ('index' == $this->type) {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
 
->>>>>>> origin/dev
         $this->dispatch('bet-created',
             rating_id: $rating_id,
             rating_title: $rating_title
         );
-<<<<<<< HEAD
-
-        foreach ($this->datas as $key => $data) {
-            if ($this->datas[$key]['id'] == $rating_id) {
-                $this->datas[$key]['effect'] = true;
-            } else {
-                $this->datas[$key]['effect'] = false;
-            }
-        }
-        // } else {
-        //     dddx('wip');
-        // }
-    }
-
-    public function betAction(): Action
-    {
-        // dddx('aaa');
-        // $article = $this->article;
-        // $article_ratings = $this->article_ratings;
-        // dddx($this->article->getOptionRatingsIdTitle());
-
-        return Action::make('bet')
-            ->action(fn (array $arguments) => dddx('a'))
-            ->closeModalByClickingAway(false)
-            ->modalCloseButton(false)
-            ->modalContent(function (array $arguments) {
-                dddx($arguments);
-
-                return view('blog::livewire.article.ratings.for-image.v1.check',
-                    [
-                        'rating_title' => $this->rating_title,
-                        // 'article_ratings' => $article_ratings
-                    ]);
-            })
-            // ->modalContent(fn (Article $article): View => view(
-            //     'blog::livewire.article.ratings.for-image.v1.check',
-            //     ['record' => $record],
-            // ))
-        ;
-
-        // return Action::make('bet')
-        //     ->form([
-        //         Select::make('option')
-        //             ->label('Selezione un opzione')
-        //             // ->options([
-        //             //     'draft' => 'Draft',
-        //             //     'reviewing' => 'Reviewing',
-        //             //     'published' => 'Published',
-        //             // ]),
-        //             ->options(function () {
-        //                 $options = [];
-        //                 foreach ($this->datas as $key => $data) {
-        //                     $options[$key] = $data['title'];
-        //                 }
-
-        //                 return $options;
-        //             }),
-        //         TextInput::make('import')
-        //             ->label('')
-        //             ->tel(),
-        //     ])
-        //     ->requiresConfirmation()
-        //     ->modalHeading('Effettua scommessa')
-        //     ->modalDescription('Punta la tua cifra')
-        //     ->modalSubmitActionLabel('confermo')
-        //     ->modalIcon('heroicon-o-banknotes')
-        //     // ->action(fn () => dddx('a'))
-        //     ->action(function (array $data): void {
-        //         // dddx($data);
-        //         dddx([
-        //             $this->datas,
-        //         ]);
-        //     })
-        // ;
-    }
-=======
     }
 
     // modal di filament
@@ -383,5 +276,4 @@ class RatingsWithImage extends Component implements HasActions, HasForms
 
     //     ;
     // }
->>>>>>> origin/dev
 }
