@@ -43,13 +43,13 @@
                         </div>
 =======
         <div class="flex justify-between w-full px-3 py-3 font-bold text-white bg-blue-1 lg:rounded-t">
-            Place bet
+            {{ __('predict::bet.place-bet') }}
         </div>
         <form wire:submit="save">
             <div class="flex flex-col items-center justify-center w-11/12 gap-3 mx-auto my-4 border rounded-t">
                 <div class="w-full p-1 mx-auto rounded bg-neutral-1">
                     <div class="flex items-center justify-between px-2 py-4">
-                        <span class="text-sm">Your bet
+                        <span class="text-sm">{{ __('predict::bet.your-bet') }}
                             {{ $rating_title }}
                         </span>
                         @if($type == 'show')
@@ -162,7 +162,7 @@
 >>>>>>> origin/dev
                     {{-- disabled --}}
                     >
-                Please select an outcome
+                {{ __('predict::bet.select-an-outcome') }}
                 </button>
             </div>
         </form>

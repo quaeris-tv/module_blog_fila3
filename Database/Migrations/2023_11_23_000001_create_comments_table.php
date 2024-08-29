@@ -5,11 +5,10 @@ declare(strict_types=1);
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-/**
+/*
  * Class CreateLiveuserUsersTable.
  */
-class CreateCommentsTable extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -38,4 +37,4 @@ class CreateCommentsTable extends XotBaseMigration
             }
         );
     }
-}
+};

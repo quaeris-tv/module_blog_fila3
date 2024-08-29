@@ -83,7 +83,7 @@ class ArticleResource extends XotBaseResource
                     // ->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
                     ->createOptionForm(CategoryResource::getFormFields()),
-                SpatieTagsInput::make('tags'),
+                // SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()
                 // ->required()

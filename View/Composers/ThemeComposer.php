@@ -14,8 +14,6 @@ use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Banner;
 use Modules\Blog\Models\Category;
-use Modules\Blog\Models\Menu;
-use Modules\Blog\Models\Page;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;
@@ -53,8 +51,7 @@ class ThemeComposer
     public function getArticles(): Collection
     {
         return Article::all()
-            ->sortBy(['created_at', 'desc'])
-        ;
+            ->sortBy(['created_at', 'desc']);
     }
 
     public function getArticlesType(string $type, int $number = 6): Collection
@@ -176,29 +173,6 @@ class ThemeComposer
         return Article::paginate($num);
     }
 
-    public function showPageContent(string $slug): \Illuminate\Contracts\Support\Renderable
-    {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
-        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
-        $blocks = $page->content_blocks;
-        if (! is_array($blocks)) {
-            $blocks = [];
-        }
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $blocks, model: $page);
-
-        return $page->render();
-    }
-
-    public function showPageSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
-    {
-        Assert::isInstanceOf($page = Page::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Page::class, '['.__LINE__.']['.__FILE__.']');
-        // $page = Page::firstOrCreate(['slug' => $slug], ['content_blocks' => []]);
-
-        $page = new \Modules\UI\View\Components\Render\Blocks(blocks: $page->sidebar_blocks, model: $page);
-
-        return $page->render();
-    }
-
     public function showArticleSidebarContent(string $slug): \Illuminate\Contracts\Support\Renderable
     {
         Assert::isInstanceOf($article = Article::firstOrCreate(['slug' => $slug], ['sidebar_blocks' => []]), Article::class, '['.__LINE__.']['.__FILE__.']');
@@ -207,28 +181,6 @@ class ThemeComposer
         $article = new \Modules\UI\View\Components\Render\Blocks(blocks: $article->sidebar_blocks, model: $article);
 
         return $article->render();
-    }
-
-    public function getPages(): Collection
-    {
-        $pages = Page::all();
-
-        return $pages;
-    }
-
-    public function getPageModel(string $slug): ?Page
-    {
-        return Page::where('slug', $slug)->first();
-    }
-
-    public function getUrlPage(string $slug): string
-    {
-        $page = $this->getPageModel($slug);
-        if (null !== $page) {
-            return '/'.app()->getLocale().'/pages/'.$slug;
-        }
-
-        return '#';
     }
 
     public function rankingProfilesByCredits(): Collection
@@ -245,9 +197,8 @@ class ThemeComposer
                 $builder->where('user_id', '!=', null);
             },
         ])
-                ->get()
-                ->sortByDesc('ratings_count')
-        ;
+            ->get()
+            ->sortByDesc('ratings_count');
 
         return $var;
     }
@@ -406,6 +357,10 @@ class ThemeComposer
         foreach ($results as $content) {
 =======
         foreach ($rows->toArray() as $content) {
+<<<<<<< HEAD
+>>>>>>> origin/dev
+=======
+            // @phpstan-ignore-next-line
 >>>>>>> origin/dev
             if (is_array($content['title'])) {
                 $lang = app()->getLocale();
@@ -446,21 +401,6 @@ class ThemeComposer
     public function getCategoryModel(string $slug): ?Category
     {
         return Category::where('slug', $slug)->first();
-    }
-
-    /**
-     * Undocumented function.
-     *
-     * @return array|null
-     */
-    public function getMenu(string $menu_name)
-    {
-        $menu = Menu::where('title', $menu_name)->first();
-        if (null == $menu) {
-            $menu = Menu::create(['title' => $menu_name]);
-        }
-
-        return $menu->items ?? [];
     }
 
     public function getHotTopics(): array

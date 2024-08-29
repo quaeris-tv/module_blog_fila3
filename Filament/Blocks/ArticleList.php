@@ -28,16 +28,16 @@ class ArticleList
                 // TextInput::make('text')
                 //    ->label('Link text (optional)'),
                 TextInput::make('title')
-                ->label('Titolo')
-                ->helperText('Inserisci un titolo del blocco articoli')
-                ->required(),
+                    ->label('Titolo')
+                    ->helperText('Inserisci un titolo del blocco articoli')
+                    ->required(),
                 TextInput::make('sub_title')
                     ->label('Sotto Titolo')
                     ->helperText('Inserisci un sotto titolo del blocco articoli'),
                 TextInput::make('method')
-                        ->label('$_theme->{$method}')
-                        ->hint('Inserisci il nome del metodo da richiamare nel tema')
-                        ->required(),
+                    ->label('$_theme->{$method}')
+                    ->hint('Inserisci il nome del metodo da richiamare nel tema')
+                    ->required(),
                 /*
                 Select::make('type')
                     ->label('Type')

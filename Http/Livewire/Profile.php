@@ -29,8 +29,10 @@ class Profile extends Page implements HasForms
     // public Article $article;
 
     public string $tpl = 'v1';
+
     // public string $user_id;
     public array $data = [];
+
     public BlogProfile $model;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -98,11 +100,10 @@ class Profile extends Page implements HasForms
             //     dddx([$key, $field]);
             // }
             $schema[] = TextInput::make($key)
-                ->label($this->data[$key])
+                ->label($this->data[$key]);
             // ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
             // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
             // ->disabled()
-            ;
         }
 
         // dddx($schema);

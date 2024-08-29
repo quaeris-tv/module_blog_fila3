@@ -17,8 +17,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  */
 abstract class BaseTreeModel extends BaseModel
 {
-    use HasRecursiveRelationships;
     use Concerns\HasPathByParentId;
+    use HasRecursiveRelationships;
     use SortableTrait;
 
     /**

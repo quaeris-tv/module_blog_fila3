@@ -5,11 +5,10 @@ declare(strict_types=1);
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-/**
+/*
  *  .
  */
-class CreateOrdersTable extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -30,7 +29,8 @@ class CreateOrdersTable extends XotBaseMigration
                 $table->integer('rating_id');
                 $table->integer('credits');
                 $table->timestamps();
-            });
+            }
+        );
 
         // -- UPDATE --
         $this->tableUpdate(
@@ -51,4 +51,4 @@ class CreateOrdersTable extends XotBaseMigration
             }
         );
     }
-}
+};

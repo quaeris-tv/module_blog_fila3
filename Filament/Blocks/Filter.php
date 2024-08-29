@@ -32,14 +32,14 @@ class Filter
                 //     ->required(),
                 // TextInput::make('limit'),
                 Select::make('layout')
-                ->label('layout')
-                ->options([
-                    'v1' => 'layout 1 (bootstrap)',
-                    // 'v2' => 'versione 2',
-                    // 'v3' => 'versione 3',
-                    // 'v4' => 'versione 4',
-                    // 'v5' => 'versione 5',
-                ]),
+                    ->label('layout')
+                    ->options([
+                        'v1' => 'layout 1 (bootstrap)',
+                        // 'v2' => 'versione 2',
+                        // 'v3' => 'versione 3',
+                        // 'v4' => 'versione 4',
+                        // 'v5' => 'versione 5',
+                    ]),
                 // ->required(),
             ])
             ->label('filter')

@@ -49,6 +49,9 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TextWidget whereDeletedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class TextWidget extends BaseModel implements HasMedia

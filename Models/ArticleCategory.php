@@ -35,6 +35,9 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ArticleCategory whereDeletedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class ArticleCategory extends BasePivot

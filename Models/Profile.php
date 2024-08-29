@@ -20,13 +20,12 @@ class Profile extends XotBaseProfile
 =======
 // use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 use Modules\User\Models\BaseProfile;
-use Modules\User\Models\User;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
  * Modules\Blog\Models\Profile.
  *
- * @property int                                                                                                           $credits
+ * @property float                                                                                                         $credits
  * @property int                                                                                                           $id
  * @property string|null                                                                                                   $user_id
  * @property string|null                                                                                                   $first_name
@@ -66,7 +65,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                                                                                      $roles_count
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Team>                                      $teams
  * @property int|null                                                                                                      $teams_count
- * @property User|null                                                                                                     $user
+ * @property \Modules\Xot\Contracts\UserContract|null                                                                      $user
  * @property string|null                                                                                                   $user_name
  *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
@@ -93,6 +92,18 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static Builder|BaseProfile                             withoutPermission($permissions)
  * @method static Builder|BaseProfile                             withoutRole($roles, $guard = null)
  *
+ * @property \Modules\User\Models\DeviceUser                                                 $pivot
+ * @property \Modules\User\Models\Membership                                                 $membership
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Transaction> $transanctions
+ * @property int|null                                                                        $transanctions_count
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                     $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                     $updater
+ * @property int                                                                             $oauth_enable
+ * @property int                                                                             $credentials_enable
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCredentialsEnable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile whereOauthEnable($value)
+ *
  * @mixin \Eloquent
  */
 class Profile extends BaseProfile
@@ -101,7 +112,7 @@ class Profile extends BaseProfile
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'id',
         'user_id',
@@ -168,9 +179,8 @@ class Profile extends BaseProfile
         $localKey = 'user_id';
         $secondLocalKey = 'rating_id';
 
-        return $this->hasManyThrough(Rating::class, RatingMorph::class, $firstKey, $secondKey, $localKey, $secondLocalKey)
-            // ->withPivot(['value'])
-        ;
+        return $this->hasManyThrough(Rating::class, RatingMorph::class, $firstKey, $secondKey, $localKey, $secondLocalKey);
+        // ->withPivot(['value'])
     }
 
     public function ratingMorphs(): HasMany
@@ -183,10 +193,9 @@ class Profile extends BaseProfile
     {
         $result = RatingMorph::where('user_id', $this->user_id)
             ->groupBy('model_id')
-            ->pluck('model_id')
-            // ->get()
-            // ->count()
-        ;
+            ->pluck('model_id');
+        // ->get()
+        // ->count()
 
         return $result;
     }

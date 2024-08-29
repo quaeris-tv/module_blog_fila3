@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Fields;
 
 use Filament\Forms\Components\Builder;
-use Modules\Blog\Filament\Blocks\ArticleCard;
-use Modules\Blog\Filament\Blocks\ImageSpatie;
-use Modules\Blog\Filament\Blocks\PageCard;
+use Modules\UI\Filament\Blocks\ImageSpatie;
 
 class ArticleFooter
 {
@@ -17,8 +15,8 @@ class ArticleFooter
     ): Builder {
         return Builder::make($name)
             ->blocks([
-                ArticleCard::make(context: $context),
-                PageCard::make(context: $context),
+                // ArticleSection::make(context: $context),
+                // PageSection::make(context: $context),
                 ImageSpatie::make(context: $context),
             ])
             ->collapsible();

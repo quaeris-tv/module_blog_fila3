@@ -40,6 +40,9 @@ use Illuminate\Support\Arr;
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot
@@ -54,7 +57,7 @@ class Taggable extends BaseMorphPivot
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'tag_id',
         'taggable_id',

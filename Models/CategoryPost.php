@@ -35,6 +35,9 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CategoryPost whereDeletedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class CategoryPost extends BasePivot

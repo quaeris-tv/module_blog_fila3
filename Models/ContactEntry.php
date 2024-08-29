@@ -15,6 +15,11 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|ContactEntry   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ContactEntry   withoutTrashed()
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
  * @mixin \Eloquent
  */
 class ContactEntry extends BaseModel

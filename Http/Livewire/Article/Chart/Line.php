@@ -15,6 +15,7 @@ class Line extends ChartWidget
     protected static ?string $heading = 'Daily Forecasts';
 
     public Article $model;
+
     public array $data;
 
     public ?string $filter = '-7';

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Auth\Events\Login;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Transaction;
-use Modules\User\Models\User;
+use Modules\Xot\Datas\XotData;
 use Webmozart\Assert\Assert;
 
 class LoginListener
@@ -25,12 +25,13 @@ class LoginListener
      */
     public function handle(Login $event): void
     {
+        $user_class = XotData::make()->getUserClass();
         Assert::notNull($user = $event->user, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($user, User::class, '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($user, $user_class, '['.__LINE__.']['.__FILE__.']');
 
         $welcome_login = Transaction::where('user_id', $user->id)
-                ->where('note', 'welcome')
-                ->first();
+            ->where('note', 'welcome')
+            ->first();
 
         if (null == $welcome_login) {
             $user->profile()->firstOrcreate([
@@ -40,7 +41,7 @@ class LoginListener
 
             Transaction::create([
                 'model_type' => 'profile',
-                'model_id' => $user->profile->id,
+                'model_id' => $user->profile?->id,
                 'user_id' => $user->id,
                 'date' => Carbon::now(),
                 'credits' => 1000,

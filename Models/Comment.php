@@ -6,7 +6,7 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Modules\User\Models\User;
+use Modules\Xot\Contracts\UserContract;
 
 /**
  * Modules\Blog\Models\Comment.
@@ -25,7 +25,7 @@ use Modules\User\Models\User;
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
- * @property User|null                                              $user
+ * @property UserContract|null                                      $user
  *
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
@@ -52,6 +52,11 @@ use Modules\User\Models\User;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
  * @mixin \Eloquent
  */
 class Comment extends BaseModel
@@ -67,7 +72,9 @@ class Comment extends BaseModel
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+
+        return $this->belongsTo($user_class);
     }
 
     /**

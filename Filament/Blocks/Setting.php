@@ -16,15 +16,15 @@ class Setting
         return Block::make($name)
             ->schema([
                 Select::make('version')
-                ->label('version')
-                ->options([
-                    'v1' => 'versione 1 (Bootstrap)',
-                    // 'v2' => 'versione 2 (Bootstrap)',
-                    // 'v3' => 'versione 3',
-                    // 'v4' => 'versione 4',
-                    // 'v5' => 'versione 5',
-                ])
-                ->required(),
+                    ->label('version')
+                    ->options([
+                        'v1' => 'versione 1 (Bootstrap)',
+                        // 'v2' => 'versione 2 (Bootstrap)',
+                        // 'v3' => 'versione 3',
+                        // 'v4' => 'versione 4',
+                        // 'v5' => 'versione 5',
+                    ])
+                    ->required(),
             ])
             ->label('setting')
             ->columns('form' === $context ? 3 : 1);

@@ -43,6 +43,8 @@ use Spatie\Tags\Tag as BaseTag;
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereDeletedBy($value)
+ * @method static Builder|Tag                               whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
+ * @method static Builder|Tag                               whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
  *
  * @mixin \Eloquent
  */

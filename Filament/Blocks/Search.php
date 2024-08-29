@@ -18,12 +18,12 @@ class Search
             ->schema([
                 TextInput::make('limit'),
                 Select::make('layout')
-                ->label('layout')
-                ->options([
-                    'v1' => 'layout 1 (Bootstrap)',
-                ])
-                ->default('v1')
-                ->required(),
+                    ->label('layout')
+                    ->options([
+                        'v1' => 'layout 1 (Bootstrap)',
+                    ])
+                    ->default('v1')
+                    ->required(),
             ])
             ->label('Pagina Search')
             ->columns('form' === $context ? 3 : 1);

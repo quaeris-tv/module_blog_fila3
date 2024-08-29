@@ -32,7 +32,7 @@ use Modules\Xot\Actions\GetViewAction;
 use Webmozart\Assert\Assert;
 >>>>>>> origin/dev
 
-class RatingsWithImage extends Component implements HasForms, HasActions
+class RatingsWithImage extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
@@ -42,22 +42,33 @@ class RatingsWithImage extends Component implements HasForms, HasActions
     // public string $tpl = 'v1';
     // public string $user_id;
     public array $datas;
+
     // public Profile $profile;
     public int $rating_id = 0;
+
     public string $rating_title = '';
+
     public string $type = 'show';
+
     public int $credit = 0;
+
     public array $article_ratings = [];
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     public function mount(Article $article, string $type, ?array $ratings = null): void
 =======
+=======
+
+>>>>>>> origin/dev
     public int $import = 0;
+
     public ?string $article_uuid = null;
 
     public array $rating_opts = [];
+
     public array $ratings_percentage = [];
 
     // protected static ?string $navigationIcon = 'heroicon-o-document-text';;
@@ -227,7 +238,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
 
                 return view($view);
             })
-            ->modalHeading('Place bet')
+            ->modalHeading(__('predict::bet.place-bet'))
             ->closeModalByClickingAway(false)
             ->modalCloseButton(false)
             ->modalWidth(MaxWidth::Small)
@@ -236,8 +247,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
-            ->modalSubmitAction(false)
-        ;
+            ->modalSubmitAction(false);
     }
 
     public function checkExpired(): Action
@@ -257,8 +267,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
-            ->modalSubmitAction(false)
-        ;
+            ->modalSubmitAction(false);
     }
 
     public function checkModal(): Action
@@ -317,8 +326,7 @@ class RatingsWithImage extends Component implements HasForms, HasActions
             ->color('primary')
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
-            ->stickyModalFooter()
-        ;
+            ->stickyModalFooter();
     }
 
     // protected function onValidationError(ValidationException $exception): void

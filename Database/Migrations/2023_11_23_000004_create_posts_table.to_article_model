@@ -9,7 +9,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Class CreatePostsTable.
  */
-class CreatePostsTable extends XotBaseMigration
+return new class extends XotBaseMigration 
 {
     /**
      * Run the migrations.
@@ -57,4 +57,4 @@ class CreatePostsTable extends XotBaseMigration
             }
         );
     }
-}
+};

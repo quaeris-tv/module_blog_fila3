@@ -5,11 +5,10 @@ declare(strict_types=1);
 use Illuminate\Database\Schema\Blueprint;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-/**
+/*
  * Class CreateTextWidgetsTable.
  */
-class CreateTextWidgetsTable extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     /**
      * Run the migrations.
      */
@@ -40,4 +39,4 @@ class CreateTextWidgetsTable extends XotBaseMigration
             }
         );
     }
-}
+};

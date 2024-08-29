@@ -13,16 +13,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Xot\Actions\Factory\GetFactoryAction;
 use Modules\Xot\Traits\Updater;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Class BaseModel.
  */
-abstract class BaseModel extends Model
+abstract class BaseModel extends Model implements HasMedia
 {
     use HasFactory;
 
     // use Searchable;
     // use Cachable;
+    use InteractsWithMedia;
     use SoftDeletes;
     use Updater;
 
@@ -34,6 +37,7 @@ abstract class BaseModel extends Model
      * @var bool
      */
     public static $snakeAttributes = true;
+
     /** @var int */
     protected $perPage = 30;
 
@@ -54,7 +58,7 @@ abstract class BaseModel extends Model
     /** @var bool */
     public $incrementing = true;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $hidden = [
         // 'password'
     ];

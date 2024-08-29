@@ -24,7 +24,9 @@ class RatingsDone extends Component
     // use InteractsWithForms;
 
     public array $user_ratings;
+
     public array $article_data;
+
     public array $user;
 
     public function mount(array $article_data): void
@@ -62,8 +64,8 @@ class RatingsDone extends Component
         $result = [];
 
         $user_ratings = RatingMorph::where('user_id', $this->user['id'])
-                ->where('model_id', $this->article_data['id'])
-                ->get()->toArray();
+            ->where('model_id', $this->article_data['id'])
+            ->get()->toArray();
 
         Assert::isArray($this->article_data['ratings'], '['.__LINE__.']['.__FILE__.']');
         $ratings_options = collect($this->article_data['ratings']);
@@ -103,8 +105,8 @@ class RatingsDone extends Component
         $result = [];
 
         $user_ratings = Order::where('created_by', $this->user['id'])
-                ->where('model_id', $this->article_data['id'])
-                ->get()->toArray();
+            ->where('model_id', $this->article_data['id'])
+            ->get()->toArray();
 
         Assert::isArray($this->article_data['ratings']);
         $ratings_options = collect($this->article_data['ratings']);

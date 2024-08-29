@@ -14,12 +14,10 @@ use Illuminate\Support\Str;
 use Modules\Rating\Models\Contracts\HasRatingContract;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\Traits\HasRating;
-use Modules\User\Models\User;
+use Modules\Xot\Contracts\UserContract;
 use Safe\DateTime;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
@@ -39,7 +37,7 @@ use Webmozart\Assert\Assert;
  * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
  * @property int|null                                                                                                   $statuses_count
  * @property int|null                                                                                                   $tags_count
- * @property User|null                                                                                                  $user
+ * @property UserContract|null                                                                                          $user
  * @property string                                                                                                     $body
  * @property Carbon                                                                                                     $published_at
  * @property Carbon                                                                                                     $updated_at
@@ -164,14 +162,22 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
  *
+ * @property \Modules\Rating\Models\RatingMorph $pivot
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereRewardedAt($value)
+ *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
-class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
+class Article extends BaseModel implements Feedable, HasRatingContract
 {
+    use HasRating;
     use HasTags;
     use HasTranslations;
-    use InteractsWithMedia;
-    use HasRating;
 
     protected $fillable = [
         'uuid',
@@ -278,22 +284,6 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         ];
     }
 
-    // public function path()
-    // {
-    //    return "/article/$this->slug";
-    // }
-
-    // public function getSearchResult(): SearchResult
-    // {
-    //     $url = route('test', ['lang'=>'it']);
-
-    //     return new \Spatie\Searchable\SearchResult(
-    //        $this,
-    //        $this->title,
-    //        $url
-    //     );
-    // }
-
     public function orders(): MorphMany
     {
         return $this->morphMany(Order::class, 'model');
@@ -301,7 +291,9 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+
+        return $this->belongsTo($user_class);
     }
 
     public function category(): BelongsTo
@@ -453,15 +445,15 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     //    return $this->belongsToMany(Tag::class);
     // }
 
-    /**
-     * Get the comments of the article.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
+    // /**
+    //  * Get the comments of the article.
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
+    //  */
+    // public function comments()
+    // {
+    //     return $this->hasMany(Comment::class);
+    // }
 
     /**
      * Get the article's main image.
@@ -777,5 +769,23 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         return $query->where('title', 'LIKE', "%{$searching}%")
             ->orWhere('content', 'LIKE', "%{$searching}%")
             ->orWhere('excerpt', 'LIKE', "%{$searching}%");
+    }
+
+    /**
+     * This string will be used in notifications on what a new comment
+     * was made.
+     */
+    public function commentableName(): string
+    {
+        return 'Commento';
+    }
+
+    /**
+     * This URL will be used in notifications to let the user know
+     * where the comment itself can be read.
+     */
+    public function commentUrl(): string
+    {
+        return '#';
     }
 }

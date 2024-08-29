@@ -6,11 +6,10 @@ use Illuminate\Database\Schema\Blueprint;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Database\Migrations\XotBaseMigration;
 
-/**
+/*
  * Class CreateProfilesTable.
  */
-class CreateBlogProfilesTable extends XotBaseMigration
-{
+return new class extends XotBaseMigration {
     protected ?string $model_class = Profile::class;
 
     /**
@@ -60,4 +59,4 @@ class CreateBlogProfilesTable extends XotBaseMigration
             }
         );
     }
-}
+};

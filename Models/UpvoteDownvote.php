@@ -38,6 +38,11 @@ namespace Modules\Blog\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UpvoteDownvote whereUpdatedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *
  * @mixin \Eloquent
  */
 class UpvoteDownvote extends BaseModel

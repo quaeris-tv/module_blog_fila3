@@ -25,14 +25,16 @@ abstract class BasePivot extends Pivot
      * @var bool
      */
     public static $snakeAttributes = true;
+
     /** @var int */
     protected $perPage = 30;
 
     // use Searchable;
 
     /** @var string */
-    protected $connection = 'blog'; // this will use the specified database connection
-    /** @var array<int, string> */
+    protected $connection = 'blog';
+
+    /** @var list<string> */
     protected $appends = [];
 
     /** @return array<string, string> */

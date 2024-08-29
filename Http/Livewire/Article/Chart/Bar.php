@@ -12,6 +12,7 @@ class Bar extends ChartWidget
     protected static ?string $heading = 'Forecast Volume';
 
     public Article $model;
+
     public array $data;
 
     protected function getData(): array

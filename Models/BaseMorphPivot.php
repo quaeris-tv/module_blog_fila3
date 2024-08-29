@@ -24,13 +24,14 @@ abstract class BaseMorphPivot extends MorphPivot
      * @var bool
      */
     public static $snakeAttributes = true;
+
     /** @var int */
     protected $perPage = 30;
 
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $appends = [];
 
     /** @var string */
@@ -42,7 +43,7 @@ abstract class BaseMorphPivot extends MorphPivot
     /** @var bool */
     public $timestamps = true;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'id',
         'post_id', 'post_type',

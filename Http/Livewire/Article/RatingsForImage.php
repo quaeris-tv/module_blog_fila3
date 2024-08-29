@@ -26,11 +26,15 @@ use Webmozart\Assert\Assert;
 class RatingsForImage extends Page implements HasForms
 {
     use InteractsWithForms;
+
     public Article $article;
 
     public string $tpl = 'v1';
+
     public string $user_id;
+
     public array $data = [];
+
     public Profile $profile;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
@@ -98,10 +102,9 @@ class RatingsForImage extends Page implements HasForms
             */
             $schema[] = TextInput::make('ratings_add.'.$rating->id.'.value')
                 ->label($rating->title)
-                ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0))
-                // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
-                // ->disabled()
-            ;
+                ->suffix(fn () => Arr::get($this->data, 'ratings.'.$rating->id.'.value', 0));
+            // ->extraInputAttributes(['class' => 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-700 focus:ring-green-700 sm:text-sm'])
+            // ->disabled()
         }
 
         // dddx($schema);

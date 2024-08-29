@@ -22,9 +22,11 @@ use Webmozart\Assert\Assert;
 class Ratings2 extends Component
 {
     use InteractsWithForms;
+
     public Article $article;
 
     public string $tpl = 'v1';
+
     // public string $user_id;
     public Collection $datas;
     // public Profile $profile;
@@ -52,9 +54,8 @@ class Ratings2 extends Component
             // ->with('media')
             ->where('user_id', null)
             // ->distinct()
-            ->get()
-            // ->toArray()
-        ;
+            ->get();
+        // ->toArray()
 
         // dddx($ratings);
 
