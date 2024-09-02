@@ -23,7 +23,7 @@
                 {{-- </template> --}}
                 {{-- <a :href="'#'+market.slug" x-text="market.title" --}}
                 <a href="
-                    {{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $article->slug ]) }}
+                    {{ route('article.view', ['lang'=>$lang,'slug' => $article->slug ]) }}
                     {{-- {{ $article->url('show') }} --}}
                     {{-- url('articles/'.$article->slug) --}}
                     "

@@ -22,7 +22,7 @@
                                 <a class="block p-2 text-base font-semibold transition rounded hover:bg-white hover:no-underline" 
                                     href="
                                     {{-- {{ url('articles/'.$article->slug) }} --}}
-                                    {{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $article->slug ]) }}
+                                    {{ route('article.view', ['lang'=>$lang,'slug' => $article->slug ]) }}
                                     ">
                                     {{ $article->title }}
                                 </a>

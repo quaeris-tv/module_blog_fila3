@@ -99,7 +99,7 @@
                                     @php
                                         $rating_morph = $trans->getRatingMorph();
                                     @endphp
-                                    <a href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $rating_morph->model->slug ]) }}" target="_blank" class="text-blue-500">
+                                    <a href="{{ route('article.view', ['lang'=>$lang,'slug' => $rating_morph->model->slug ]) }}" target="_blank" class="text-blue-500">
                                         {{ $rating_morph->model->title }}
                                     </a>
                                 @endif

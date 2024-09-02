@@ -10,7 +10,7 @@
                 @endif
                 <a href="
                     {{-- {{ url('categories/'.$category->slug) }} --}}
-                    {{ route('category_slug.show', ['lang'=>$lang,'category_slug' => $category->slug ]) }}
+                    {{ route('category.view', ['lang'=>$lang,'slug' => $category->slug ]) }}
                     "
                     @if($loop->index + 1 == $article->categories->count())
                         class="text-base font-bold leading-4 rounded-lg hover:text-blue-1"
