@@ -47,4 +47,5 @@ node_modules
 /vendor
 vendor
 vendor/
-build/
+build/docs/cache/
+cache/
