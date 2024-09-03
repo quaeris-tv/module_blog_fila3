@@ -23,7 +23,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Blog\\": ""
+            "Modules\\Blog\\": "",
+            "Modules\\Blog\\Database\\Factories\\": "database/factories/",
+            "Modules\\Blog\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "repositories": [
