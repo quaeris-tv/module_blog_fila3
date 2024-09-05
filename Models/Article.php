@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\Rating\Models\Contracts\HasRatingContract;
@@ -518,22 +517,16 @@ class Article extends BaseModel implements Feedable, HasRatingContract
 
     /**
      * Scope a query to only include articles.
-     *
-     * @return EloquentBuilder
      */
-    public function scopeArticle(EloquentBuilder $query, string $id)
+    public function scopeArticle(EloquentBuilder $query, string $id): EloquentBuilder
     {
         return $query->where('author_id', $id);
     }
 
     /**
      * Scope a query to only include published articles.
-     *
-     * @param EloquentBuilder $query
-     *
-     * @return QueryBuilder
      */
-    public function scopePublished($query)
+    public function scopePublished(EloquentBuilder $query): EloquentBuilder
     {
         // return $query->where('status', 'published');
         // return $query->currentStatus('published');
@@ -546,10 +539,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract
      * Scope a query to only include show on homepage articles.
      *
      * @param EloquentBuilder $query
-     *
-     * @return EloquentBuilder
      */
-    public function scopeShowHomepage($query)
+    public function scopeShowHomepage($query): EloquentBuilder
     {
         return $query->where('show_on_homepage', 1);
     }
@@ -557,7 +548,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract
     /**
      * Scope a query to only include posted articles until today.
      */
-    public function scopePublishedUntilToday(EloquentBuilder $query): QueryBuilder
+    public function scopePublishedUntilToday(EloquentBuilder $query): EloquentBuilder
     {
         return $query->whereDate('published_at', '<=', Carbon::today()->toDateString());
     }
@@ -566,10 +557,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract
      * Scope a query to only include articles with a specified category.
      *
      * @param $id -> The id of the category
-     *
-     * @return EloquentBuilder
      */
-    public function scopeCategory(EloquentBuilder $query, string $id)
+    public function scopeCategory(EloquentBuilder $query, string $id): EloquentBuilder
     {
         return $query->whereHas('category', static function ($q) use ($id): void {
             $q->where('id', $id);
@@ -608,10 +597,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract
      * Scope a query to only include articles which contains searching words.
      *
      * @param $searching -> The searching words
-     *
-     * @return EloquentBuilder
      */
-    public function scopeSearch(EloquentBuilder $query, string $searching)
+    public function scopeSearch(EloquentBuilder $query, string $searching): EloquentBuilder
     {
         return $query->where('title', 'LIKE', "%{$searching}%")
             ->orWhere('content', 'LIKE', "%{$searching}%")
