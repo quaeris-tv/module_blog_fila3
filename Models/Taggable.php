@@ -9,15 +9,16 @@ use Illuminate\Support\Arr;
 /**
  * Modules\Blog\Models\Taggable.
  *
- * @property int $id
- * @property int $tag_id
- * @property string $taggable_type
- * @property int $taggable_id
+ * @property int                             $id
+ * @property int                             $tag_id
+ * @property string                          $taggable_type
+ * @property int                             $taggable_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $updated_by
- * @property string|null $created_by
- * @property array $custom_properties
+ * @property string|null                     $updated_by
+ * @property string|null                     $created_by
+ * @property array                           $custom_properties
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable onlyTrashed()
@@ -32,12 +33,16 @@ use Illuminate\Support\Arr;
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withoutTrashed()
+ *
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $deleted_by
+ * @property string|null                     $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedBy($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot
@@ -85,7 +90,7 @@ class Taggable extends BaseMorphPivot
     /**
      * Get the value of custom property with the given name.
      *
-     * @param  mixed|null  $default
+     * @param mixed|null $default
      */
     public function getCustomProperty(string $propertyName, $default = null): mixed
     {
@@ -93,7 +98,8 @@ class Taggable extends BaseMorphPivot
     }
 
     /**
-     * @param  int|string|float|array|null  $value
+     * @param int|string|float|array|null $value
+     *
      * @return $this
      */
     public function setCustomProperty(string $name, $value): self

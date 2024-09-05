@@ -63,9 +63,9 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         // $this->tpl = $tpl;
         $this->type = $type;
         $this->article = $article;
-        if ($type === 'show') {
+        if ('show' === $type) {
             $this->datas = $this->article->getArrayRatingsWithImage();
-            // $this->article_ratings = $article->getOptionRatingsIdTitle();
+        // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
             Assert::notNull($ratings, '['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
@@ -98,7 +98,7 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         $this->rating_title = $rating_title;
         // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
-        if ($this->type === 'index') {
+        if ('index' === $this->type) {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
 
@@ -116,7 +116,7 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         }
 
         Assert::notNull($article = $this->article, '['.__LINE__.']['.__FILE__.']');
-        if ($article->getTimeLeftForHumans() === 'expired') {
+        if ('expired' === $article->getTimeLeftForHumans()) {
             return $this->checkExpired();
         }
 

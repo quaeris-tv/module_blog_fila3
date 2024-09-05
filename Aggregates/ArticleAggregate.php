@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Modules\Blog\Aggregates;
 
 use Carbon\Carbon;
-use Exception;
 use Modules\Blog\Datas\RatingArticleData;
 use Modules\Blog\Datas\RatingArticleWinnerData;
 use Modules\Blog\Error\NullArticleError;
@@ -27,16 +26,16 @@ class ArticleAggregate extends AggregateRoot
     {
         $article = Article::firstWhere(['id' => $command->articleId]);
 
-        if ($article === null) {
+        if (null === $article) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 
         if (Carbon::now() <= $article->closed_at) {
-            throw new Exception('bets ended on ['.$article->closed_at.']');
+            throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
-        if ($article->rewarded_at !== null) {
-            throw new Exception('just assign winners on ['.$article->rewarded_at.']');
+        if (null !== $article->rewarded_at) {
+            throw new \Exception('just assign winners on ['.$article->rewarded_at.']');
         }
 
         $event = new RatingArticleWinner(
@@ -61,16 +60,16 @@ class ArticleAggregate extends AggregateRoot
         $profile = Profile::firstOrCreate(['user_id' => $command->userId], ['credits' => 1000]);
         $profile->update(['credits' => 1000]);
         if ($profile->credits - $command->credit < 0) {
-            throw new Exception('there are not enough credits Your credits ['.$profile->credits.']');
+            throw new \Exception('there are not enough credits Your credits ['.$profile->credits.']');
         }
 
         $article = Article::firstWhere(['id' => $command->articleId]);
-        if ($article === null) {
+        if (null === $article) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 
         if (Carbon::now() >= $article->closed_at) {
-            throw new Exception('bets ended on ['.$article->closed_at.']');
+            throw new \Exception('bets ended on ['.$article->closed_at.']');
         }
 
         // if ($article->closed_at > Carbon::now()) {
