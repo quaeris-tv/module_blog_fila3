@@ -5,23 +5,25 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Modules\Rating\Models\Contracts\HasRatingContract;
-use Modules\Rating\Models\Rating;
-use Modules\Rating\Models\Traits\HasRating;
-use Modules\Xot\Contracts\UserContract;
 use Safe\DateTime;
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\Tags\HasTags;
-use Spatie\Translatable\HasTranslations;
+use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+use Modules\Rating\Models\Rating;
+use Illuminate\Support\Facades\Storage;
+use Modules\Xot\Contracts\UserContract;
+use Spatie\Translatable\HasTranslations;
+use Modules\Rating\Models\Traits\HasRating;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Modules\Rating\Models\Contracts\HasRatingContract;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Modules\Lang\Models\Contracts\HasTranslationsContract;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 
 /**
  * Modules\Blog\Models\Article.
@@ -174,7 +176,7 @@ use Webmozart\Assert\Assert;
  *
  * @mixin \Eloquent
  */
-class Article extends BaseModel implements Feedable, HasRatingContract
+class Article extends BaseModel implements Feedable, HasRatingContract, HasTranslationsContract
 {
     use HasRating;
     use HasTags;
@@ -526,7 +528,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract
     /**
      * Scope a query to only include published articles.
      */
-    public function scopePublished(EloquentBuilder $query): EloquentBuilder
+    public function scopePublished(EloquentBuilder $query): EloquentBuilder|QueryBuilder
     {
         // return $query->where('status', 'published');
         // return $query->currentStatus('published');
@@ -548,7 +550,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract
     /**
      * Scope a query to only include posted articles until today.
      */
-    public function scopePublishedUntilToday(EloquentBuilder $query): EloquentBuilder
+    public function scopePublishedUntilToday(EloquentBuilder $query): EloquentBuilder|QueryBuilder
     {
         return $query->whereDate('published_at', '<=', Carbon::today()->toDateString());
     }
