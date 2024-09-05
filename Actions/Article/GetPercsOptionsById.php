@@ -15,16 +15,14 @@ class GetPercsOptionsById
         Assert::notNull($article = Article::find($article_array['id']), '['.__LINE__.']['.__FILE__.']');
         Assert::isInstanceOf($article, Article::class, '['.__LINE__.']['.__FILE__.']');
         $total_volume = $article->getVolumeCredit();
-        if($total_volume == 0) {
+        if (0 == $total_volume) {
             return [];
         }
 
         foreach ($article_array['ratings'] as $rating) {
             $result[$rating['id']] = 0;
             $perc = $article->getVolumeCredit($rating['id']) / $total_volume;
-            if($perc != 0) {
-
-
+            if (0 != $perc) {
                 $result[$rating['id']] = 1 / $perc;
             }
         }
