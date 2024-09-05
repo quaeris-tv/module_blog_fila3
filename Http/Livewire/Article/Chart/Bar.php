@@ -9,11 +9,11 @@ use Modules\Blog\Models\Article;
 
 class Bar extends ChartWidget
 {
-    protected static ?string $heading = 'Forecast Volume';
-
     public Article $model;
 
     public array $data;
+
+    protected static ?string $heading = 'Forecast Volume';
 
     protected function getData(): array
     {
@@ -23,7 +23,7 @@ class Bar extends ChartWidget
         $ratings_color = $this->model->getOptionRatingsIdColor();
         $data = [];
 
-        foreach ($ratings as $key => $value) {
+        foreach (array_keys($ratings) as $key) {
             $tmp = $orders->where('rating_id', $key);
             $data['data'][] = $tmp->sum('credits');
             $data['backgroundColor'][] = $ratings_color[$key];

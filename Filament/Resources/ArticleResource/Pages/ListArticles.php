@@ -23,30 +23,6 @@ class ListArticles extends ListRecords
 
     protected static string $resource = ArticleResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\LocaleSwitcher::make(),
-            Actions\CreateAction::make(),
-            Actions\Action::make('import')
-                ->form([
-                    FileUpload::make('file')
-                        ->label('')
-                        // ->acceptedFileTypes(['application/json', 'json'])
-                        ->imagePreviewHeight('250')
-                        ->reactive()
-                        ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state) {
-                            $set('fileContent', File::get($state->getRealPath()));
-                        }),
-                    Textarea::make('fileContent'),
-                ])
-                ->label('')
-                ->tooltip('Import')
-                ->icon('heroicon-o-folder-open')
-                ->action(static fn (array $data) => app(ImportArticlesFromByJsonTextAction::class)->execute($data['fileContent'])),
-        ];
-    }
-
     public function getTableColumns(): array
     {
         return
@@ -152,5 +128,29 @@ class ListArticles extends ListRecords
             ->bulkActions($this->getTableBulkActions())
             ->actionsPosition(ActionsPosition::BeforeColumns)
             ->defaultSort('published_at', 'desc');
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+            Actions\CreateAction::make(),
+            Actions\Action::make('import')
+                ->form([
+                    FileUpload::make('file')
+                        ->label('')
+                        // ->acceptedFileTypes(['application/json', 'json'])
+                        ->imagePreviewHeight('250')
+                        ->reactive()
+                        ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state): void {
+                            $set('fileContent', File::get($state->getRealPath()));
+                        }),
+                    Textarea::make('fileContent'),
+                ])
+                ->label('')
+                ->tooltip('Import')
+                ->icon('heroicon-o-folder-open')
+                ->action(static fn (array $data) => app(ImportArticlesFromByJsonTextAction::class)->execute($data['fileContent'])),
+        ];
     }
 }

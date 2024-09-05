@@ -96,9 +96,9 @@ class Setting extends Component implements HasActions, HasForms
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update email')
             ->modalCancelActionLabel('Cancel')
-            ->action(function (array $data) {
+            ->action(function (array $data): void {
                 // @phpstan-ignore-next-line
-                $verified = $this->model->email == $data['email'] ? $this->model->email_verified_at : null;
+                $verified = $this->model->email === $data['email'] ? $this->model->email_verified_at : null;
 
                 $this->model->update([
                     'email' => $data['email'],
@@ -138,7 +138,7 @@ class Setting extends Component implements HasActions, HasForms
             ->modalWidth(MaxWidth::Small)
             ->modalSubmitActionLabel('Update password')
             ->modalCancelActionLabel('Cancel')
-            ->action(function (array $data) {
+            ->action(function (array $data): void {
                 Assert::notNull($this->model->user, '['.__LINE__.']['.__FILE__.']');
                 $this->model->user->update([
                     'password' => bcrypt($data['password']),
@@ -181,7 +181,7 @@ class Setting extends Component implements HasActions, HasForms
             // ->modalIcon('heroicon-o-banknotes')
             ->stickyModalHeader()
             ->stickyModalFooter()
-            ->action(function (array $data, $arguments, Component $livewire) {
+            ->action(function (array $data, $arguments, Component $livewire): void {
                 $this->model->update([
                     'first_name' => $data['first_name'],
                     'last_name' => $data['last_name'],

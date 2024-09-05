@@ -63,9 +63,9 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         // $this->tpl = $tpl;
         $this->type = $type;
         $this->article = $article;
-        if ('show' == $type) {
+        if ($type === 'show') {
             $this->datas = $this->article->getArrayRatingsWithImage();
-        // $this->article_ratings = $article->getOptionRatingsIdTitle();
+            // $this->article_ratings = $article->getOptionRatingsIdTitle();
         } else {
             Assert::notNull($ratings, '['.__LINE__.']['.__FILE__.']');
             $this->datas = $ratings;
@@ -98,7 +98,7 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         $this->rating_title = $rating_title;
         // dovrebbe aggiornare le percentuali, ma non mi sembra lo facia
         // $this->ratings_percentage = $this->article->getRatingsPercentageByUser();
-        if ('index' == $this->type) {
+        if ($this->type === 'index') {
             $this->mountAction('bet', ['rating_id' => $rating_id]);
         }
 
@@ -116,7 +116,7 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         }
 
         Assert::notNull($article = $this->article, '['.__LINE__.']['.__FILE__.']');
-        if ('expired' == $article->getTimeLeftForHumans()) {
+        if ($article->getTimeLeftForHumans() === 'expired') {
             return $this->checkExpired();
         }
 
@@ -170,7 +170,7 @@ class RatingsWithImage extends Component implements HasActions, HasForms
         Assert::isInstanceOf($profile, Profile::class, '['.__LINE__.']['.__FILE__.']');
 
         return Action::make('bet')
-            ->action(function (array $arguments, array $data) {
+            ->action(function (array $arguments, array $data): void {
                 Assert::notNull($rating_morph = RatingMorph::where('rating_id', $data['rating_id'])->first(), '['.__LINE__.']['.__FILE__.']');
                 // $article_id = $rating_morph->model_id;
                 Assert::notNull($this->article, '['.__LINE__.']['.__FILE__.']');

@@ -14,13 +14,6 @@ use Webmozart\Assert\Assert;
 class LoginListener
 {
     /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Handle the event.
      */
     public function handle(Login $event): void
@@ -33,7 +26,7 @@ class LoginListener
             ->where('note', 'welcome')
             ->first();
 
-        if (null == $welcome_login) {
+        if ($welcome_login === null) {
             $user->profile()->firstOrcreate([
                 'email' => $user->email,
                 'credits' => 1000,

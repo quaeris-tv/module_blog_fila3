@@ -11,12 +11,15 @@ use Modules\Blog\Models\Article;
 use function Safe\json_decode;
 use function Safe\preg_replace;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Blog\Models\Article>
+ */
 class ArticleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     * @var class-string<Article>
      */
     protected $model = Article::class;
 
@@ -27,7 +30,7 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
-        $title = preg_replace('/\./', '', $this->faker->sentence(6));
+        $title = preg_replace('/\./', '', fake()->sentence(6));
 
         return [
             'slug' => Str::slug($title),

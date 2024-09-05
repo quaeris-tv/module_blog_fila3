@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Modules\Blog\View\Composers;
 
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Modules\Blog\Datas\ArticleData;
 use Modules\Blog\Models\Article;
@@ -17,11 +17,6 @@ use Modules\Blog\Models\Category;
 use Modules\Blog\Models\Profile;
 use Modules\Blog\Models\Tag;
 use Modules\UI\Datas\SliderData;
-use Modules\UI\Datas\SliderDataCollection;
-
-use function Safe\json_decode;
-
-use Spatie\LaravelData\DataCollection;
 use Webmozart\Assert\Assert;
 
 class ThemeComposer
@@ -33,9 +28,7 @@ class ThemeComposer
      */
     public function categories()
     {
-        $categories = Category::tree()->get()->toTree();
-
-        return $categories;
+        return Category::tree()->get()->toTree();
     }
 
     /**
@@ -48,7 +41,7 @@ class ThemeComposer
         return $this->categories();
     }
 
-    public function getArticles(): Collection
+    public function getArticles(): EloquentCollection
     {
         return Article::all()
             ->sortBy(['created_at', 'desc']);
@@ -79,13 +72,11 @@ class ThemeComposer
 
     public function getLatestArticles(int $number = 6): Collection
     {
-        $rows = Article::published()
+        return Article::published()
             ->publishedUntilToday()
             ->orderBy('published_at', 'desc')
             ->take($number)
             ->get();
-
-        return $rows;
     }
 
     public function getArticlesByCategory(string $category_id, int $number = 6): array
@@ -98,7 +89,7 @@ class ThemeComposer
         return $this->getArticleDataArray($rows);
     }
 
-    public function paginateArticlesByCategory(string $category_id, int $limit = 6): Paginator|array
+    public function paginateArticlesByCategory(string $category_id, int $limit = 6): Paginator
     {
         return Article::where('category_id', $category_id)
             ->orderBy('published_at', 'desc')
@@ -118,20 +109,16 @@ class ThemeComposer
 
     public function getNavCategories(): Collection
     {
-        $navCategories = Category::has('articles', '>', 0)
+        return Category::has('articles', '>', 0)
             ->take(8)
             ->get();
-
-        return $navCategories;
     }
 
     public function getFooterCategories(): Collection
     {
-        $footerCategories = Category::has('articles', '>', 0)
+        return Category::has('articles', '>', 0)
             ->take(8)
             ->get();
-
-        return $footerCategories;
     }
 
     // --- da fare con parental
@@ -139,7 +126,8 @@ class ThemeComposer
     {
         // $footerAuthors = Profile::profileIsAuthor()
         // ->take(8)
-        $footerAuthors = Profile::take(8)
+        $footerAuthors = Profile::inRandomOrder()
+            ->limit(8)
             ->get();
 
         return $footerAuthors;
@@ -152,9 +140,7 @@ class ThemeComposer
 
     public function getFooterTags(): Collection
     {
-        $footerTags = Tag::take(15)->get();
-
-        return $footerTags;
+        return Tag::take(15)->get();
     }
 
     /**
@@ -185,53 +171,23 @@ class ThemeComposer
 
     public function rankingProfilesByCredits(): Collection
     {
-        $profiles = Profile::all()->sortByDesc('credits');
-
-        return $profiles;
+        return Profile::all()->sortByDesc('credits');
     }
 
     public function rankingArticlesByBets(): Collection
     {
-        $var = Article::withCount([
-            'ratings' => function (Builder $builder) {
+        return Article::withCount([
+            'ratings' => function (Builder $builder): void {
                 $builder->where('user_id', '!=', null);
             },
         ])
             ->get()
             ->sortByDesc('ratings_count');
-
-        return $var;
     }
 
     public function getMethodData(string $method, int $number = 6): Paginator|array
     {
         return $this->{$method}($number);
-    }
-
-    public function getBanner_OLD(): array
-    {
-        $pub_theme = config('xra.pub_theme');
-        $path = base_path('Themes/'.$pub_theme.'/Resources/json/banner.json');
-
-        Assert::isArray($contents = json_decode(File::get($path), true), '['.__LINE__.']['.__FILE__.']');
-        // dddx($contents);
-        // dddx(json_decode($contents));
-        // dddx(SliderDataCollection::from($contents));
-        $tmp = [];
-        foreach ($contents as $content) {
-            // dddx($content);
-            $tmp[] = SliderData::from($content);
-        }
-
-        return $tmp;
-        // dddx($tmp);
-        // dddx(SliderDataCollection::collect($tmp,DataCollection::class));
-        // $results = SliderDataCollection::collect($tmp,DataCollection::class);
-        // foreach($results as $result){
-        //     dddx($result->slider_data);
-        // }
-
-        // return SliderDataCollection::collect($tmp,DataCollection::class);
     }
 
     public function getBanner(): array
@@ -383,7 +339,7 @@ class ThemeComposer
             // 'banner'
         ])
             ->get()
-            ->map(fn ($category) => [
+            ->map(fn ($category): array => [
                 'image' => $category->getFirstMediaUrl('category'), // ?? 'https://placehold.co/300x200',
                 'slug' => $category->slug,
                 'title' => $category->title,

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Error;
 
-class RatingClosedArticleError extends \DomainException
+use DomainException;
+
+class RatingClosedArticleError extends DomainException
 {
     public function __construct(string $articleId, string $userId, string $ratingId, int $credit)
     {

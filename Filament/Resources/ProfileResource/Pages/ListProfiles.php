@@ -33,7 +33,7 @@ class ListProfiles extends UserListProfiles
     {
         $res = parent::getTableActions();
 
-        $res[] = ModifyCredits::make();
+        // $res[] = ModifyCredits::make();
 
         return $res;
     }

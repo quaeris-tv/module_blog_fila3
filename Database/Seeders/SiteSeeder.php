@@ -10,10 +10,7 @@ use Modules\Cms\Models\Page;
 
 class SiteSeeder extends Seeder
 {
-    /**
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         Page::factory()->create([
             'slug' => 'about',

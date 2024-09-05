@@ -22,6 +22,33 @@ class ArticleSeeder extends Seeder
 
     private Carbon $date;
 
+    public function run(): void
+    {
+        $this->date = Carbon::now();
+
+        foreach ($this->categories as $category) {
+            Category::create([
+                'title' => $category['name'],
+                'slug' => Str::slug($category['name']),
+            ]);
+        }
+
+        // Featured posts
+        for ($i = 0; $i < 2; $i++) {
+            $this->createArticle(['is_featured' => 1]);
+        }
+
+        // Published posts
+        for ($i = 0; $i < 26; $i++) {
+            $this->createArticle();
+        }
+
+        // Draft posts
+        for ($i = 0; $i < 2; $i++) {
+            $this->createArticle(['published_at' => null]);
+        }
+    }
+
     /**
      * @return Collection <Article>
      */
@@ -42,35 +69,5 @@ class ArticleSeeder extends Seeder
         $data = array_merge($defaults, $data);
 
         return Article::factory()->create($data);
-    }
-
-    /**
-     * @return void
-     */
-    public function run()
-    {
-        $this->date = Carbon::now();
-
-        foreach ($this->categories as $category) {
-            Category::create([
-                'title' => $category['name'],
-                'slug' => Str::slug($category['name']),
-            ]);
-        }
-
-        // Featured posts
-        for ($i = 0; $i < 2; ++$i) {
-            $this->createArticle(['is_featured' => 1]);
-        }
-
-        // Published posts
-        for ($i = 0; $i < 26; ++$i) {
-            $this->createArticle();
-        }
-
-        // Draft posts
-        for ($i = 0; $i < 2; ++$i) {
-            $this->createArticle(['published_at' => null]);
-        }
     }
 }

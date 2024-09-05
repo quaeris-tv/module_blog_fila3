@@ -35,7 +35,7 @@ class ContactEntryResource extends Resource
                 ->columnSpanFull(),
 
             Infolists\Components\TextEntry::make('message')
-                ->formatStateUsing(static fn ($state) => new HtmlString(nl2br($state)))
+                ->formatStateUsing(static fn ($state): \Illuminate\Support\HtmlString => new HtmlString(nl2br((string) $state)))
                 ->columnSpanFull(),
         ]);
     }

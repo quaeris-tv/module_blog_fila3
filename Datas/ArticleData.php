@@ -12,7 +12,7 @@ use Modules\Blog\Models\Category;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 
-class ArticleData extends Data
+class ArticleData extends Data implements \Stringable
 {
     public string $title = '';
 
@@ -62,6 +62,21 @@ class ArticleData extends Data
         $this->tags = $article->tags->map(fn ($tag) => $tag->name);
     }
 
+    // public function getClosedAt(): string
+    // {
+    //     return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
+    // }
+
+    // public function getTimeLeftForHumans(): string
+    // {
+    //     dddx('a');
+    //     return $this->getArticle()->getTimeLeftForHumans();
+    // }
+    public function __toString(): string
+    {
+        return '['.__LINE__.']['.__FILE__.']';
+    }
+
     public function getCategories(): Collection
     {
         return app(GetBloodline::class)->execute($this->category_id);
@@ -91,7 +106,7 @@ class ArticleData extends Data
     public function url(string $type): string
     {
         $lang = app()->getLocale();
-        if ('show' == $type) {
+        if ($type === 'show') {
             return '/'.$lang.'/article/'.$this->slug;
         }
 
@@ -100,20 +115,5 @@ class ArticleData extends Data
         // }
 
         return '#';
-    }
-
-    // public function getClosedAt(): string
-    // {
-    //     return $carbonDate = Carbon::parse($this->closed_at)->format('Y-m-d');
-    // }
-
-    // public function getTimeLeftForHumans(): string
-    // {
-    //     dddx('a');
-    //     return $this->getArticle()->getTimeLeftForHumans();
-    // }
-    public function __toString(): string
-    {
-        return '['.__LINE__.']['.__FILE__.']';
     }
 }

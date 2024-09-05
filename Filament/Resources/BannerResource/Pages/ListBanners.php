@@ -32,7 +32,7 @@ class ListBanners extends ListRecords
                         // ->acceptedFileTypes(['application/json', 'json'])
                         ->imagePreviewHeight('250')
                         ->reactive()
-                        ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state) {
+                        ->afterStateUpdated(static function (callable $set, TemporaryUploadedFile $state): void {
                             $set('fileContent', File::get($state->getRealPath()));
                         }),
                     Textarea::make('fileContent'),

@@ -13,34 +13,13 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * @property string|null $parent_id
- * @property string      $name
+ * @property string $name
  */
 abstract class BaseTreeModel extends BaseModel
 {
     use Concerns\HasPathByParentId;
     use HasRecursiveRelationships;
     use SortableTrait;
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'name' => 'string',
-            'parent_id' => 'string',
-            'path' => 'string',
-            'breads' => 'string',
-            'root_name' => 'string',
-            'is_leaf' => 'boolean',
-            'ordering' => 'integer',
-            'deleted_at' => 'datetime',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
-    }
 
     public function getDepthName(): string
     {
@@ -64,5 +43,26 @@ abstract class BaseTreeModel extends BaseModel
         $this->save();
 
         return $this;
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'name' => 'string',
+            'parent_id' => 'string',
+            'path' => 'string',
+            'breads' => 'string',
+            'root_name' => 'string',
+            'is_leaf' => 'boolean',
+            'ordering' => 'integer',
+            'deleted_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
     }
 }

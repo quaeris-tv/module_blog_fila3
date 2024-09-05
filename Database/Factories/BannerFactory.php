@@ -7,12 +7,15 @@ namespace Modules\Blog\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Blog\Models\Banner;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Blog\Models\Banner>
+ */
 class BannerFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     * @var class-string<Banner>
      */
     protected $model = Banner::class;
 
@@ -24,7 +27,7 @@ class BannerFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
+            'title' => fake()->sentence,
             // 'slug' => $this->faker->slug,
         ];
     }

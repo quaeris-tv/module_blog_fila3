@@ -24,6 +24,17 @@ class ViewArticle extends ViewRecord
 
     protected static string $resource = ArticleResource::class;
 
+    public function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                // ...
+                TextEntry::make('title'),
+                TextEntry::make('closed_at'),
+                TextEntry::make('rewarded_at'),
+            ]);
+    }
+
     protected function getHeaderActions(): array
     {
         return [
@@ -72,16 +83,5 @@ class ViewArticle extends ViewRecord
         return [
             RatingWidgets\StatsOverview::class,
         ];
-    }
-
-    public function infolist(Infolist $infolist): Infolist
-    {
-        return $infolist
-            ->schema([
-                // ...
-                TextEntry::make('title'),
-                TextEntry::make('closed_at'),
-                TextEntry::make('rewarded_at'),
-            ]);
     }
 }

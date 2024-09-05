@@ -25,6 +25,12 @@ abstract class BaseMorphPivot extends MorphPivot
      */
     public static $snakeAttributes = true;
 
+    /** @var bool */
+    public $incrementing = true;
+
+    /** @var bool */
+    public $timestamps = true;
+
     /** @var int */
     protected $perPage = 30;
 
@@ -36,12 +42,6 @@ abstract class BaseMorphPivot extends MorphPivot
 
     /** @var string */
     protected $primaryKey = 'id';
-
-    /** @var bool */
-    public $incrementing = true;
-
-    /** @var bool */
-    public $timestamps = true;
 
     /** @var list<string> */
     protected $fillable = [

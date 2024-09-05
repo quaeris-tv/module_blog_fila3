@@ -45,9 +45,6 @@ class Profile extends Page implements HasForms
     {
         $this->model = $model;
         $this->tpl = $tpl;
-        // dddx($this->model->toArray());
-
-        $this->data = [];
         $this->data = $this->model->toArray();
         unset(
             $this->data['id'],
@@ -94,7 +91,7 @@ class Profile extends Page implements HasForms
     public function form(Form $form): Form
     {
         $schema = [];
-        foreach ($this->data as $key => $field) {
+        foreach (array_keys($this->data) as $key) {
             // dddx([$key, $field, $this->data]);
             // if(gettype($field) == 'float'){
             //     dddx([$key, $field]);
@@ -110,15 +107,6 @@ class Profile extends Page implements HasForms
         return $form
             ->schema($schema)
             ->statePath('data');
-    }
-
-    protected function getFormActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-                ->submit('save'),
-        ];
     }
 
     public function save(): void
@@ -142,5 +130,14 @@ class Profile extends Page implements HasForms
         //         $article_aggregate->rating($command);
         //     }
         // }
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
+                ->submit('save'),
+        ];
     }
 }

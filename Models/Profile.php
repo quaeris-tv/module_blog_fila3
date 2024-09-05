@@ -59,7 +59,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                                                                                      $teams_count
  * @property \Modules\Xot\Contracts\UserContract|null                                                                      $user
  * @property string|null                                                                                                   $user_name
- *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newQuery()
@@ -83,7 +82,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static Builder|BaseProfile                             withExtraAttributes()
  * @method static Builder|BaseProfile                             withoutPermission($permissions)
  * @method static Builder|BaseProfile                             withoutRole($roles, $guard = null)
- *
  * @property \Modules\User\Models\DeviceUser                                                 $pivot
  * @property \Modules\User\Models\Membership                                                 $membership
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Transaction> $transanctions
@@ -92,14 +90,17 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property \Modules\Xot\Contracts\ProfileContract|null                                     $updater
  * @property int                                                                             $oauth_enable
  * @property int                                                                             $credentials_enable
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCredentialsEnable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereOauthEnable($value)
- *
  * @mixin \Eloquent
  */
 class Profile extends BaseProfile
 {
+    /** @var array<string, string> */
+    public $casts = [
+        'extra' => SchemalessAttributes::class,
+    ];
+
     /** @var string */
     protected $connection = 'blog';
 
@@ -115,11 +116,6 @@ class Profile extends BaseProfile
         'extra',
     ];
 
-    /** @var array<string, string> */
-    public $casts = [
-        'extra' => SchemalessAttributes::class,
-    ];
-
     /** @var array */
     protected $schemalessAttributes = [
         'extra',
@@ -128,7 +124,7 @@ class Profile extends BaseProfile
     /**
      * @return HasMany<Article>
      */
-    public function articles()
+    public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
     }
@@ -136,17 +132,15 @@ class Profile extends BaseProfile
     /**
      * @return HasMany<Transaction>
      */
-    public function transanctions()
+    public function transanctions(): HasMany
     {
         return $this->hasMany(Transaction::class, 'user_id', 'user_id');
     }
 
     /**
      * Get the route key for the user.
-     *
-     * @return string
      */
-    public function getFrontRouteKeyName()
+    public function getFrontRouteKeyName(): string
     {
         return 'slug';
     }
@@ -154,9 +148,6 @@ class Profile extends BaseProfile
     public function getAvatarUrl(): string
     {
         if (null == $this->getFirstMediaUrl('photo_profile')) {
-            // in caso eseguire php artisan module:publish
-            // dddx($this);
-            // dddx(asset('blog/img/no_user.webp'));
             return asset('modules/blog/img/no_user.webp');
         }
 
@@ -182,12 +173,11 @@ class Profile extends BaseProfile
     // : int
     public function getArticleTraded(): \Illuminate\Support\Collection
     {
-        $result = RatingMorph::where('user_id', $this->user_id)
-            ->groupBy('model_id')
-            ->pluck('model_id');
         // ->get()
         // ->count()
 
-        return $result;
+        return RatingMorph::where('user_id', $this->user_id)
+            ->groupBy('model_id')
+            ->pluck('model_id');
     }
 }

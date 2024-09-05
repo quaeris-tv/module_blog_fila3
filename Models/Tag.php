@@ -9,43 +9,39 @@ use Spatie\Tags\Tag as BaseTag;
 /**
  * Modules\Blog\Models\Tag.
  *
- * @property int                             $id
- * @property array                           $name
- * @property array                           $slug
- * @property string|null                     $type
- * @property int|null                        $order_column
+ * @property int $id
+ * @property array $name
+ * @property array $slug
+ * @property string|null $type
+ * @property int|null $order_column
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null                     $updated_by
- * @property string|null                     $created_by
- *
- * @method static Builder|Tag                               containing(string $name, $locale = null)
+ * @property string|null $updated_by
+ * @property string|null $created_by
+ * @method static Builder|Tag containing(string $name, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newQuery()
- * @method static Builder|Tag                               ordered(string $direction = 'asc')
+ * @method static Builder|Tag ordered(string $direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|Tag query()
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereId($value)
- * @method static Builder|Tag                               whereLocale(string $column, string $locale)
- * @method static Builder|Tag                               whereLocales(string $column, array $locales)
+ * @method static Builder|Tag whereLocale(string $column, string $locale)
+ * @method static Builder|Tag whereLocales(string $column, array $locales)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereOrderColumn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereUpdatedBy($value)
- * @method static Builder|Tag                               withType(?string $type = null)
- *
- * @property mixed       $translations
+ * @method static Builder|Tag withType(?string $type = null)
+ * @property mixed $translations
  * @property string|null $deleted_at
  * @property string|null $deleted_by
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Tag whereDeletedBy($value)
- * @method static Builder|Tag                               whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
- * @method static Builder|Tag                               whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
- *
+ * @method static Builder|Tag whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
+ * @method static Builder|Tag whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
  * @mixin \Eloquent
  */
 class Tag extends BaseTag

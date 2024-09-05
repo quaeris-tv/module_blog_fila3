@@ -7,6 +7,8 @@ namespace Modules\Blog\Console\Commands;
 use Illuminate\Console\Command;
 use Modules\Blog\Models\Article;
 
+use function count;
+
 class ShowArticleListCommand extends Command
 {
     /**
@@ -25,22 +27,16 @@ class ShowArticleListCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $map = static function (Article $row) {
-            $result = $row->toArray();
-
+        $map = static fn(Article $row) =>
             // $result['price'] = Money::toString($result['price']);
-
-            return $result;
-        };
+            $row->toArray();
 
         $rows = Article::all(['id', 'title'])->map($map);
 
-        if (\count($rows) > 0) {
+        if (count($rows) > 0) {
             $headers = array_keys($rows[0] ?? []);
 
             $this->newLine();

@@ -30,6 +30,7 @@ class ForImage extends Component implements HasForms
     public int $rating_id = 0;
 
     public array $article_ratings = [];
+
     // #[Validate('required|gt:0')]
     public int $import = 0;
 

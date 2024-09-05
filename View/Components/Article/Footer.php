@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 use Modules\Xot\Actions\GetViewAction;
 
+use function is_array;
+
 // use Modules\Xot\View\Components\XotBaseComponent;
 
 /**
@@ -23,7 +25,7 @@ class Footer extends Component
         public Model $article,
         public string $tpl = 'v1')
     {
-        if (! \is_array($blocks)) {
+        if (! is_array($blocks)) {
             $blocks = [];
         }
         $this->blocks = $blocks;

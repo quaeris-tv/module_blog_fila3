@@ -37,7 +37,7 @@ class CategoryResource extends XotBaseResource
                 ->maxLength(2048)
                 ->reactive()
                 ->unique()
-                ->afterStateUpdated(function (Forms\Set $set, $state) {
+                ->afterStateUpdated(function (Forms\Set $set, $state): void {
                     $set('slug', Str::slug($state));
                 }),
             Forms\Components\TextInput::make('slug')

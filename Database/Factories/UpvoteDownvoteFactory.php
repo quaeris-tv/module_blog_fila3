@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace Modules\Blog\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Blog\Models\UpvoteDownvote;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Blog\Models\UpvoteDownvote>
+ */
 class UpvoteDownvoteFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     * @var class-string<UpvoteDownvote>
      */
     protected $model = UpvoteDownvote::class;
 
@@ -24,9 +28,9 @@ class UpvoteDownvoteFactory extends Factory
     public function definition()
     {
         return [
-            'is_upvote' => $this->faker->boolean,
-            'post_id' => $this->faker->randomNumber(5),
-            'user_id' => $this->faker->randomNumber(5),
+            'is_upvote' => fake()->boolean,
+            'post_id' => fake()->randomNumber(5),
+            'user_id' => fake()->randomNumber(5),
         ];
     }
 }
