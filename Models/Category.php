@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\Translatable\HasTranslations;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Spatie\Translatable\HasTranslations;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -161,7 +159,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @mixin \Eloquent
  */
-class Category extends BaseModel 
+class Category extends BaseModel
 {
     use HasTranslations;
     use HasRecursiveRelationships;
@@ -188,8 +186,8 @@ class Category extends BaseModel
     protected function casts(): array
     {
         return [
-            'id'=>'string',
-            'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
             'title' => 'string',
             'slug' => 'string',
             'name' => 'string',
@@ -209,8 +207,6 @@ class Category extends BaseModel
         $instance = new self();
 
         return app(GetTreeOptions::class)->execute($instance);
-
-        
     }
 
     /**
@@ -235,6 +231,4 @@ class Category extends BaseModel
     {
         return $this->hasOne(Banner::class);
     }
-
-    
 }

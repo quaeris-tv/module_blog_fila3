@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire\Article;
 
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -95,7 +94,7 @@ class Lists extends Component
     // }
 
     /**
-     * Summary of getArticleQuery
+     * Summary of getArticleQuery.
      */
     private function getArticleQuery(): EloquentBuilder
     {

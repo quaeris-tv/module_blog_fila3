@@ -55,7 +55,6 @@ abstract class BaseModel extends Model implements HasMedia
     /** @var string */
     protected $keyType = 'string';
     /** @var string */
-    
 
     /** @var list<string> */
     protected $hidden = [
@@ -76,10 +75,10 @@ abstract class BaseModel extends Model implements HasMedia
     protected function casts(): array
     {
         return [
-            'id'=>'string',
-            'uuid'=>'string',
-            'published_at' => 'datetime', 
-            'created_at' => 'datetime', 
+            'id' => 'string',
+            'uuid' => 'string',
+            'published_at' => 'datetime',
+            'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];
     }

@@ -128,8 +128,8 @@ class Taggable extends BaseMorphPivot
     protected function casts(): array
     {
         return [
-                'id'=>'string',
-                'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
             'custom_properties' => 'array',
         ];
     }

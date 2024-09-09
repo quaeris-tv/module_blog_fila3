@@ -632,8 +632,8 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     protected function casts(): array
     {
         return [
-            'id'=>'string',
-            'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
             // 'images' => 'array',
             'date' => 'datetime',
             'published_at' => 'datetime',

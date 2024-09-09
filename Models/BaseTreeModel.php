@@ -53,8 +53,8 @@ abstract class BaseTreeModel extends BaseModel
     protected function casts(): array
     {
         return [
-                'id'=>'string',
-                'uuid'=>'string',
+            'id' => 'string',
+            'uuid' => 'string',
             'name' => 'string',
             'parent_id' => 'string',
             'path' => 'string',
