@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Translatable\HasTranslations;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Blog\Actions\ParentChilds\GetTreeOptions;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Modules\Blog\Models\Category.
@@ -160,11 +161,10 @@ use Spatie\Translatable\HasTranslations;
  *
  * @mixin \Eloquent
  */
-class Category extends BaseModel implements HasMedia
+class Category extends BaseModel 
 {
     use HasTranslations;
-    use InteractsWithMedia;
-    use \Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+    use HasRecursiveRelationships;
 
     /** @var array<int, string> */
     public $translatable = [
@@ -184,28 +184,33 @@ class Category extends BaseModel implements HasMedia
         'icon',
     ];
 
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id'=>'string',
+            'uuid'=>'string',
+            'title' => 'string',
+            'slug' => 'string',
+            'name' => 'string',
+            'picture' => 'string',
+            'description' => 'string',
+            'parent_id' => 'string',
+            'in_leaderboard' => 'boolean',
+            'published_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'icon' => 'string',
+        ];
+    }
+
     public static function getTreeCategoryOptions(): array
     {
         $instance = new self();
 
         return app(GetTreeOptions::class)->execute($instance);
 
-        // $categories = self::tree()->get()->toTree();
-        // $results = [];
-        // foreach ($categories as $cat) {
-        //     $results[$cat->id] = $cat->title;
-        //     foreach ($cat->children as $child) {
-        //         $results[$child->id] = '--------->'.$child->title;
-        //         foreach ($child->children as $cld) {
-        //             $results[$cld->id] = '----------------->'.$cld->title;
-        //             foreach ($cld->children as $c) {
-        //                 $results[$c->id] = '------------------------->'.$c->title;
-        //             }
-        //         }
-        //     }
-        // }
-
-        // return $results;
+        
     }
 
     /**
@@ -231,22 +236,5 @@ class Category extends BaseModel implements HasMedia
         return $this->hasOne(Banner::class);
     }
 
-    /** @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'string',
-            'title' => 'string',
-            'slug' => 'string',
-            'name' => 'string',
-            'picture' => 'string',
-            'description' => 'string',
-            'parent_id' => 'string',
-            'in_leaderboard' => 'boolean',
-            'published_at' => 'datetime',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'icon' => 'string',
-        ];
-    }
+    
 }

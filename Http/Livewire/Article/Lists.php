@@ -7,6 +7,7 @@ namespace Modules\Blog\Http\Livewire\Article;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -93,7 +94,10 @@ class Lists extends Component
     //    return $this->category;
     // }
 
-    private function getArticleQuery(): QueryBuilder
+    /**
+     * Summary of getArticleQuery
+     */
+    private function getArticleQuery(): EloquentBuilder
     {
         $query = Article::published();
 

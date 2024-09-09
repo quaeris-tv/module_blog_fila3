@@ -135,6 +135,8 @@ class Menu extends BaseModel implements HasMedia
     protected function casts(): array
     {
         return [
+                'id'=>'string',
+                'uuid'=>'string',
             'items' => 'array',
         ];
     }

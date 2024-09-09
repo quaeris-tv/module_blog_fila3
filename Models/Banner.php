@@ -183,7 +183,8 @@ class Banner extends BaseModel implements HasMedia
     protected function casts(): array
     {
         return [
-            'id' => 'string',
+            'id'=>'string',
+            'uuid'=>'string',
             'desktop_thumbnail' => 'string',
             'mobile_thumbnail' => 'string',
             'desktop_thumbnail_webp' => 'string',
