@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Http\Livewire\Article;
 
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+// use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
@@ -96,7 +97,7 @@ class Lists extends Component
     /**
      * Summary of getArticleQuery.
      */
-    private function getArticleQuery(): EloquentBuilder
+    private function getArticleQuery(): QueryBuilder //EloquentBuilder
     {
         $query = Article::published();
 
