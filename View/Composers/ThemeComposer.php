@@ -255,9 +255,8 @@ class ThemeComposer
     }
 
     /**
-     * --
+     * --.
      */
-
     public function mapArticle(Article|ArticleData $article): ArticleData
     {
         if ($article instanceof ArticleData) {
