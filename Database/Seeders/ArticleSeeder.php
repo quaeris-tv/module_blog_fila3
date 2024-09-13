@@ -22,32 +22,7 @@ class ArticleSeeder extends Seeder
 
     private Carbon $date;
 
-    /**
-     * @return Collection <Article>
-     */
-    private function createArticle(array $data = []): Collection
-    {
-        $date = $this->date->subDay();
-
-        $category_key = array_rand($this->categories);
-
-        $defaults = [
-            'created_at' => $date,
-            'updated_at' => $date,
-            'published_at' => $date,
-            // 'category_id' => $category_key + 1,
-            'main_image_url' => $this->categories[$category_key]['image'],
-        ];
-
-        $data = array_merge($defaults, $data);
-
-        return Article::factory()->create($data);
-    }
-
-    /**
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         $this->date = Carbon::now();
 
@@ -72,5 +47,27 @@ class ArticleSeeder extends Seeder
         for ($i = 0; $i < 2; ++$i) {
             $this->createArticle(['published_at' => null]);
         }
+    }
+
+    /**
+     * @return Collection <Article>
+     */
+    private function createArticle(array $data = []): Collection
+    {
+        $date = $this->date->subDay();
+
+        $category_key = array_rand($this->categories);
+
+        $defaults = [
+            'created_at' => $date,
+            'updated_at' => $date,
+            'published_at' => $date,
+            // 'category_id' => $category_key + 1,
+            'main_image_url' => $this->categories[$category_key]['image'],
+        ];
+
+        $data = array_merge($defaults, $data);
+
+        return Article::factory()->create($data);
     }
 }

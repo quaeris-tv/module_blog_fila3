@@ -12,13 +12,13 @@ use Webmozart\Assert\Assert;
 
 class Line extends ChartWidget
 {
-    protected static ?string $heading = 'Daily Forecasts';
-
     public Article $model;
 
     public array $data;
 
     public ?string $filter = '-7';
+
+    protected static ?string $heading = 'Daily Forecasts';
 
     protected function getData(): array
     {
@@ -58,7 +58,7 @@ class Line extends ChartWidget
         foreach ($ratings as $rating_id => $rating_title) {
             $data_chart['datasets'][] = [
                 'label' => $rating_title,
-                'data' => collect($data)->map(function ($item) use ($rating_id) {
+                'data' => collect($data)->map(function (array $item) use ($rating_id) {
                     Assert::notNull($rating_info = collect($item['ratings'])->firstWhere('ratingId', $rating_id), '['.__LINE__.']['.__FILE__.']');
 
                     return $rating_info->credit;

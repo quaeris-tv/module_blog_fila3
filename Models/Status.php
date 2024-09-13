@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Models;
 
+use Eloquent;
 use Spatie\ModelStatus\Status as BaseStatus;
 
 /**
@@ -19,6 +20,7 @@ use Spatie\ModelStatus\Status as BaseStatus;
  * @property string|null                                   $updated_by
  * @property string|null                                   $created_by
  * @property \Illuminate\Database\Eloquent\Model|\Eloquent $model
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Status newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Status newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Status query()
@@ -31,19 +33,25 @@ use Spatie\ModelStatus\Status as BaseStatus;
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereReason($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUpdatedBy($value)
+ *
  * @property string $ip_address
  * @property string $user_agent
  * @property int    $post_id
  * @property int    $user_id
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereIpAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status wherePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUserAgent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUserId($value)
+ *
  * @property string|null $deleted_at
  * @property string|null $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereDeletedBy($value)
+ *
  * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Status extends BaseStatus
 {

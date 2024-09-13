@@ -25,25 +25,28 @@ abstract class BaseMorphPivot extends MorphPivot
      */
     public static $snakeAttributes = true;
 
-    /** @var int */
-    protected $perPage = 30;
-
-    /** @var string */
-    protected $connection = 'blog';
-
-    /** @var array<int, string> */
-    protected $appends = [];
-
-    /** @var string */
-    protected $primaryKey = 'id';
-
     /** @var bool */
     public $incrementing = true;
 
     /** @var bool */
     public $timestamps = true;
 
-    /** @var array<int, string> */
+    /** @var int */
+    protected $perPage = 30;
+
+    /** @var string */
+    protected $connection = 'blog';
+
+    /** @var list<string> */
+    protected $appends = [];
+
+    /** @var string */
+    protected $primaryKey = 'id';
+
+    /** @var string */
+    protected $keyType = 'string';
+
+    /** @var list<string> */
     protected $fillable = [
         'id',
         'post_id', 'post_type',
@@ -55,6 +58,8 @@ abstract class BaseMorphPivot extends MorphPivot
     protected function casts(): array
     {
         return [
+            'id' => 'string',
+            'uuid' => 'string',
             'created_at' => 'datetime', 'updated_at' => 'datetime', 'deleted_at' => 'datetime',
         ];
     }

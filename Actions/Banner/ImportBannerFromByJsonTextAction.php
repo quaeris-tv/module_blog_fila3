@@ -23,11 +23,11 @@ class ImportBannerFromByJsonTextAction
 
         foreach ($json as $j) {
             $start_date = $j['start_date'] ?? '';
-            if (\is_string($start_date) && \strlen($start_date) > 3) {
+            if (\is_string($start_date) && mb_strlen($start_date) > 3) {
                 $start_date = Carbon::parse($start_date);
             }
             $end_date = $j['end_date'];
-            if (\is_string($end_date) && \strlen($end_date) > 3) {
+            if (\is_string($end_date) && mb_strlen($end_date) > 3) {
                 $end_date = Carbon::parse($end_date);
             }
 

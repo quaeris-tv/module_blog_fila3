@@ -5,12 +5,15 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Modules\Lang\Models\Contracts\HasTranslationsContract;
 use Modules\Rating\Models\Contracts\HasRatingContract;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\Traits\HasRating;
@@ -20,7 +23,6 @@ use Safe\DateTime;
 use Spatie\Comments\Models\Concerns\HasComments;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
@@ -177,7 +179,7 @@ use Webmozart\Assert\Assert;
  *
  * @mixin \Eloquent
  */
-class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
+class Article extends BaseModel implements Feedable, HasRatingContract, HasTranslationsContract
 {
     use HasRating;
     use HasTags;
@@ -249,14 +251,15 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         'rewarded_at',
     ];
 
-    /** @var array<int, string> */
-    public $translatable = [
-        'title',
-        // 'description',
-        'content_blocks',
-        'sidebar_blocks',
-        'footer_blocks',
-    ];
+    /**
+     * return \Illuminate\Database\Eloquent\Collection<int, Article>.
+     *
+     * @return \Illuminate\Support\Collection<int, Article>
+     */
+    public static function getAllFeedItems()
+    {
+        return self::latest()->take(150)->get();
+    }
 
     public function sluggable(): array
     {
@@ -266,45 +269,6 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
             ],
         ];
     }
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            // 'images' => 'array',
-            'id' => 'string',
-            'uuid' => 'string',
-            'date' => 'datetime',
-            'published_at' => 'datetime',
-            'active' => 'boolean',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'closed_at' => 'datetime',
-            'content_blocks' => 'array',
-            'footer_blocks' => 'array',
-            'sidebar_blocks' => 'array',
-            // 'is_closed'=> 'boolean',
-        ];
-    }
-
-    // public function path()
-    // {
-    //    return "/article/$this->slug";
-    // }
-
-    // public function getSearchResult(): SearchResult
-    // {
-    //     $url = route('test', ['lang'=>'it']);
-
-    //     return new \Spatie\Searchable\SearchResult(
-    //        $this,
-    //        $this->title,
-    //        $url
-    //     );
-    // }
 
     public function orders(): MorphMany
     {
@@ -337,14 +301,6 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
             ->authorName($this->user?->name ?? 'Unknown');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection<int, Article>
-     */
-    public static function getAllFeedItems()
-    {
-        return self::latest()->take(150)->get();
-    }
-
     public function shortBody(int $words = 30): string
     {
         return Str::words(strip_tags((string) $this->body), $words);
@@ -360,9 +316,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     public function getThumbnail(): ?string
     {
         if (null !== $this->getMedia()->first()) {
-            $url = $this->getMedia()->first()->getUrl();
-
-            return $url;
+            return $this->getMedia()->first()->getUrl();
         }
 
         return '#';
@@ -376,7 +330,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     public function humanReadTime(): Attribute
     {
         return new Attribute(
-            get: static function ($value, $attributes): string {
+            get: static function ($value, array $attributes): string {
                 $words = Str::wordCount(strip_tags((string) $attributes['body']));
                 $minutes = ceil($words / 200);
 
@@ -389,11 +343,9 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles different from current article.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return EloquentBuilder
      */
-    public function scopeDifferentFromCurrentArticle($query, string $current_article)
+    public function scopeDifferentFromCurrentArticle(EloquentBuilder $query, string $current_article)
     {
         return $query->where('id', '!=', $current_article);
     }
@@ -466,38 +418,6 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         return '#';
     }
 
-    /**
-     * Get the article's title.
-     */
-    protected function title(): Attribute
-    {
-        return new Attribute(
-            get: static function ($value, $attributes): string {
-                if (null === $value) {
-                    return 'article title';
-                }
-
-                return $value;
-            }
-        );
-    }
-
-    /**
-     * Get the article's description.
-     */
-    protected function description(): Attribute
-    {
-        return new Attribute(
-            get: static function ($value, $attributes): string {
-                if (null === $value || '' === $value) {
-                    return 'article\'s description '.$attributes['title'];
-                }
-
-                return $value;
-            }
-        );
-    }
-
     /*
      * NO !!
     protected function createdAt(): Attribute
@@ -560,7 +480,7 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
         $hours = $diff->h;
         $minutes = $diff->i;
 
-        if (0 == $month && 0 == $days && 0 == $hours && 0 == $minutes) {
+        if (0 === $month && 0 === $days && 0 === $hours && 0 === $minutes) {
             // return __('blog::article.single_expired');
             return 'scaduto';
             // return 'expired';
@@ -578,7 +498,6 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     // {
     //     return "/storage/{$this->picture}";
     // }
-
     // /**
     //  * Get the route key for the article.
     //  *
@@ -589,16 +508,12 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     //     if (inAdmin()) {
     //         return $this->getKeyName();
     //     }
-
     //     return 'slug';
     // }
-
     /**
      * Get the path key to the item for the frontend only.
-     *
-     * @return string
      */
-    public function getFrontRouteKeyName()
+    public function getFrontRouteKeyName(): string
     {
         return 'slug';
     }
@@ -633,24 +548,16 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
 
     /**
      * Scope a query to only include articles.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeArticle($query, string $id)
+    public function scopeArticle(EloquentBuilder $query, string $id): EloquentBuilder
     {
         return $query->where('author_id', $id);
     }
 
     /**
      * Scope a query to only include published articles.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePublished($query)
+    public function scopePublished(EloquentBuilder $query): EloquentBuilder|QueryBuilder
     {
         // return $query->where('status', 'published');
         // return $query->currentStatus('published');
@@ -662,23 +569,17 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include show on homepage articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param EloquentBuilder $query
      */
-    public function scopeShowHomepage($query)
+    public function scopeShowHomepage($query): EloquentBuilder
     {
         return $query->where('show_on_homepage', 1);
     }
 
     /**
      * Scope a query to only include posted articles until today.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopePublishedUntilToday($query)
+    public function scopePublishedUntilToday(EloquentBuilder $query): EloquentBuilder|QueryBuilder
     {
         return $query->whereDate('published_at', '<=', Carbon::today()->toDateString());
     }
@@ -686,14 +587,11 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles with a specified category.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the category
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param $id -> The id of the category
      */
-    public function scopeCategory($query, string $id)
+    public function scopeCategory(EloquentBuilder $query, string $id): EloquentBuilder
     {
-        return $query->whereHas('category', static function ($q) use ($id) {
+        return $query->whereHas('category', static function ($q) use ($id): void {
             $q->where('id', $id);
         });
     }
@@ -701,14 +599,13 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles that belongs to an author.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $profile_id -> The id of the author
+     * @param $profile_id -> The id of the author
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return EloquentBuilder
      */
-    public function scopeAuthor($query, string $profile_id)
+    public function scopeAuthor(EloquentBuilder $query, string $profile_id)
     {
-        return $query->whereHas('author', static function ($q) use ($profile_id) {
+        return $query->whereHas('author', static function ($q) use ($profile_id): void {
             $q->where('id', $profile_id);
         });
     }
@@ -716,14 +613,13 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles with a specified tag.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $id    -> The id of the tag
+     * @param $id -> The id of the tag
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return EloquentBuilder
      */
-    public function scopeTag($query, string $id)
+    public function scopeTag(EloquentBuilder $query, string $id)
     {
-        return $query->whereHas('tags', static function ($q) use ($id) {
+        return $query->whereHas('tags', static function ($q) use ($id): void {
             $q->where('id', $id);
         });
     }
@@ -731,12 +627,9 @@ class Article extends BaseModel implements Feedable, HasMedia, HasRatingContract
     /**
      * Scope a query to only include articles which contains searching words.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param                                       $searching -> The searching words
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param $searching -> The searching words
      */
-    public function scopeSearch($query, string $searching)
+    public function scopeSearch(EloquentBuilder $query, string $searching): EloquentBuilder
     {
         return $query->where('title', 'LIKE', "%{$searching}%")
             ->orWhere('content', 'LIKE', "%{$searching}%")

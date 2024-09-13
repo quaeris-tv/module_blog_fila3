@@ -11,11 +11,6 @@ use Filament\Tables\Filters\SelectFilter;
 
 class CategoryFilter extends SelectFilter
 {
-    public static function getDefaultName(): ?string
-    {
-        return 'category';
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -24,5 +19,10 @@ class CategoryFilter extends SelectFilter
         // $this->relationship('category', 'name');
         $this->relationship('categories', 'title');
         // $this->searchable();
+    }
+
+    public static function getDefaultName(): ?string
+    {
+        return 'category';
     }
 }

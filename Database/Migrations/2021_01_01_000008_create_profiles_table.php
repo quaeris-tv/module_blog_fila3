@@ -41,7 +41,7 @@ return new class() extends XotBaseMigration {
                 }
 
                 if (! $this->hasColumn('credits')) {
-                    $table->decimal('credits');
+                    $table->decimal('credits')->default(0);
                 }
 
                 if (! $this->hasColumn('slug')) {

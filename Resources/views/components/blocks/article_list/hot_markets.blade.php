@@ -8,7 +8,7 @@
             {{-- {{ dddx($item->getTimeLeftForHumans()) }} --}}
             <article class="bg-white hover:bg-[#c2ced1] rounded-lg p-4">
                 <a
-                    href="{{ route('article_slug.show', ['lang'=>$lang,'article_slug' => $item->slug ]) }}"
+                    href="{{ route('article.view', ['lang'=>$lang,'slug' => $item->slug ]) }}"
                     class="text-neutral-5 text-base font-semibold"
                     >
                 {{ $item->title }}

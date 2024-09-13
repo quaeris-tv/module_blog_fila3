@@ -23,6 +23,7 @@ use Spatie\Translatable\HasTranslations;
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
+ *
  * @method static \Modules\Blog\Database\Factories\MenuFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   newQuery()
@@ -39,6 +40,7 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Menu   withoutTrashed()
+ *
  * @property string|null                                                                                                $link
  * @property string|null                                                                                                $title
  * @property string|null                                                                                                $description
@@ -57,6 +59,7 @@ use Spatie\Translatable\HasTranslations;
  * @property string                                                                                                     $mobile_thumbnail_webp
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereActionText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereDescription($value)
@@ -68,8 +71,10 @@ use Spatie\Translatable\HasTranslations;
  * @method static \Illuminate\Database\Eloquent\Builder|Banner wherePos($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Banner whereTitle($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class Banner extends BaseModel implements HasMedia
@@ -77,7 +82,7 @@ class Banner extends BaseModel implements HasMedia
     use InteractsWithMedia;
     // use HasTranslations;
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         // "id", //: 40,
         // "desktop_thumbnail",//: "https://My_Company-media-production.s3.amazonaws.com/cache/7a/9c/7a9c8f672e3499d573f24901280952f3.jpg",
@@ -108,40 +113,7 @@ class Banner extends BaseModel implements HasMedia
         'pos',
     ];
 
-    /** @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'string',
-            'desktop_thumbnail' => 'string',
-            'mobile_thumbnail' => 'string',
-            'desktop_thumbnail_webp' => 'string',
-            'mobile_thumbnail_webp' => 'string',
-            'link' => 'string',
-            'title' => 'string',
-            'description' => 'string',
-            'action_text' => 'string',
-            'category_id' => 'string',
-            /*
-        "category",//: 99,
-        "category_dict": {
-            "id": 99,
-            "title": "USA",
-            "slug": "usa",
-            "parent": 98,
-            "in_leaderboard": false,
-            "icon": null
-        },
-        */
-            'start_date' => 'datetime',
-            'end_date' => 'datetime',
-            'hot_topic' => 'boolean',
-            'open_markets_count' => 'integer',
-            'landing_banner' => 'boolean',
-        ];
-    }
-
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $appends = [
         'desktop_thumbnail',
         'mobile_thumbnail',
@@ -200,11 +172,45 @@ class Banner extends BaseModel implements HasMedia
 
     public function getUrlCategoryPage(): string
     {
-        if (null == $this->category) {
-            return route('categories', ['lang' => app()->getLocale()]);
+        if (null === $this->category) {
+            return route('categories.index', ['lang' => app()->getLocale()]);
         }
 
-        return route('category_slug.show', ['lang' => app()->getLocale(), 'category_slug' => $this->category->slug]);
+        return route('category.view', ['lang' => app()->getLocale(), 'slug' => $this->category->slug]);
+    }
+
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'uuid' => 'string',
+            'desktop_thumbnail' => 'string',
+            'mobile_thumbnail' => 'string',
+            'desktop_thumbnail_webp' => 'string',
+            'mobile_thumbnail_webp' => 'string',
+            'link' => 'string',
+            'title' => 'string',
+            'description' => 'string',
+            'action_text' => 'string',
+            'category_id' => 'string',
+            /*
+        "category",//: 99,
+        "category_dict": {
+            "id": 99,
+            "title": "USA",
+            "slug": "usa",
+            "parent": 98,
+            "in_leaderboard": false,
+            "icon": null
+        },
+        */
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'hot_topic' => 'boolean',
+            'open_markets_count' => 'integer',
+            'landing_banner' => 'boolean',
+        ];
     }
 }
 

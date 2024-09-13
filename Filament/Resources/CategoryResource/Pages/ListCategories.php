@@ -17,14 +17,6 @@ class ListCategories extends ListRecords
 
     protected static string $resource = CategoryResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\LocaleSwitcher::make(),
-            Actions\CreateAction::make(),
-        ];
-    }
-
     public function getTableColumns(): array
     {
         return [
@@ -54,5 +46,13 @@ class ListCategories extends ListRecords
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\LocaleSwitcher::make(),
+            Actions\CreateAction::make(),
+        ];
     }
 }

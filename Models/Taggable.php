@@ -18,6 +18,7 @@ use Illuminate\Support\Arr;
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property array                           $custom_properties
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable onlyTrashed()
@@ -32,12 +33,16 @@ use Illuminate\Support\Arr;
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable withoutTrashed()
+ *
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Taggable whereDeletedBy($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ *
  * @mixin \Eloquent
  */
 class Taggable extends BaseMorphPivot
@@ -52,7 +57,7 @@ class Taggable extends BaseMorphPivot
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $fillable = [
         'tag_id',
         'taggable_id',
@@ -68,14 +73,6 @@ class Taggable extends BaseMorphPivot
     protected $attributes = [
         'custom_properties' => [],
     ];
-
-    /** @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'custom_properties' => 'array',
-        ];
-    }
 
     public function withCustomProperties(array $customProperties): self
     {
@@ -125,5 +122,15 @@ class Taggable extends BaseMorphPivot
         $this->custom_properties = $customProperties;
 
         return $this;
+    }
+
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'uuid' => 'string',
+            'custom_properties' => 'array',
+        ];
     }
 }

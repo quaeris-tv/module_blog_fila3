@@ -33,7 +33,7 @@ class EditArticle extends EditRecord
                     Checkbox::make('sidebar_blocks')->inline(),
                     Checkbox::make('footer_blocks')->inline(),
                 ])
-                ->action(function (Article $record, ArticleResource $article_resource, array $data) {
+                ->action(function (Article $record, ArticleResource $article_resource, array $data): void {
                     app(TranslateContentAction::class)->execute(
                         'article',
                         $record->id, $article_resource->getTranslatableLocales(),

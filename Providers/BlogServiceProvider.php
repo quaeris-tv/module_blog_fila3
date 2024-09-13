@@ -12,11 +12,11 @@ use Spatie\EventSourcing\Facades\Projectionist;
 
 class BlogServiceProvider extends XotBaseServiceProvider
 {
+    public string $module_name = 'blog';
+
     protected string $module_dir = __DIR__;
 
     protected string $module_ns = __NAMESPACE__;
-
-    public string $module_name = 'blog';
 
     public function bootCallback(): void
     {
@@ -32,7 +32,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
             // Projectors\BetBalanceProjector::class,
             Projectors\ArticleProjector::class,
             Projectors\OrderProjector::class,
-            Projectors\ProfileProjector::class,
+            // Projectors\ProfileProjector::class, // to predict
             // YetAnotherProjector::class,
         ]);
     }
@@ -44,7 +44,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
          $router->get('my-second-route', 'MyVendor\MyPackage\MyController@otherAction');
         });
         */
-        $xot = XotData::make();
+        XotData::make();
         // dddx($xot->main_module);
         // $xot->update(['main_module'=>'Blog']);
         // $router->get('/', $xot->getHomeController());

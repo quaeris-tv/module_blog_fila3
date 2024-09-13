@@ -6,6 +6,7 @@ namespace Modules\Blog\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Xot\Contracts\UserContract;
 
 /**
  * Modules\Blog\Models\Comment.
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
- * @property \Modules\Xot\Contracts\UserContract|null               $user
+ * @property UserContract|null                                      $user
  *
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
@@ -71,6 +72,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereOriginalText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
+ * @property int|null                                                                                                   $media_count
+ *                                                                                                                                   >>>>>>> origin/master
+ *
  * @mixin \Eloquent
  */
 class Comment extends BaseModel
@@ -86,7 +93,9 @@ class Comment extends BaseModel
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(\Modules\Xot\Datas\XotData::make()->getUserClass());
+        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+
+        return $this->belongsTo($user_class);
     }
 
     /**

@@ -7,12 +7,15 @@ namespace Modules\Blog\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Blog\Models\Category;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Blog\Models\Category>
+ */
 class CategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
-     * @var class-string<\Illuminate\Database\Eloquent\Model>
+     * @var class-string<Category>
      */
     protected $model = Category::class;
 
@@ -24,8 +27,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
-            'slug' => $this->faker->slug,
+            'title' => fake()->sentence,
+            'slug' => fake()->slug,
         ];
     }
 }

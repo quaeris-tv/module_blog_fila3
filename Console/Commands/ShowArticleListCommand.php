@@ -25,18 +25,12 @@ class ShowArticleListCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $map = static function (Article $row) {
-            $result = $row->toArray();
-
+        $map = static fn (Article $row) =>
             // $result['price'] = Money::toString($result['price']);
-
-            return $result;
-        };
+            $row->toArray();
 
         $rows = Article::all(['id', 'title'])->map($map);
 

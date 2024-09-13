@@ -26,10 +26,8 @@ class ShowArticleCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $articleId = (string) $this->argument('articleId');
         Assert::notNull($article = Article::firstWhere(['id' => $articleId]), '['.__LINE__.']['.__FILE__.']');
@@ -43,12 +41,12 @@ class ShowArticleCommand extends Command
         $header = ['id', 'title', 'is_winner', 'count', 'sum', 'avg', 'tot'];
         $rows = [];
         foreach ($ratings as $rating) {
-            $tmp = $article->loadSum(['ratings as value_sum' => static function ($query) use ($rating) {
+            $tmp = $article->loadSum(['ratings as value_sum' => static function ($query) use ($rating): void {
                 $query
                     ->where('ratings.id', $rating->id)
                     ->where('rating_morph.user_id', '!=', null);
             }], 'rating_morph.value')
-                ->loadSum(['ratings as value_tot' => static function ($query) use ($ratings) {
+                ->loadSum(['ratings as value_tot' => static function ($query) use ($ratings): void {
                     $query
                         ->whereIn('ratings.id', $ratings->modelKeys())
                         ->where('rating_morph.user_id', '!=', null);
@@ -60,7 +58,7 @@ class ShowArticleCommand extends Command
                     ->where('rating_morph.user_id', '!=', null);
             }], 'rating_morph.value')
             */
-                ->loadCount(['ratings as value_count' => static function ($query) use ($rating) {
+                ->loadCount(['ratings as value_count' => static function ($query) use ($rating): void {
                     $query
                         ->where('ratings.id', $rating->id)
                         ->where('rating_morph.user_id', '!=', null);

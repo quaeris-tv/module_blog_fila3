@@ -14,25 +14,19 @@ use Webmozart\Assert\Assert;
 class LoginListener
 {
     /**
-     * Create the event listener.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Handle the event.
      */
     public function handle(Login $event): void
     {
+        $user_class = XotData::make()->getUserClass();
         Assert::notNull($user = $event->user, '['.__LINE__.']['.__FILE__.']');
-        Assert::isInstanceOf($user, XotData::make()->getUserClass(), '['.__LINE__.']['.__FILE__.']');
+        Assert::isInstanceOf($user, $user_class, '['.__LINE__.']['.__FILE__.']');
 
         $welcome_login = Transaction::where('user_id', $user->id)
             ->where('note', 'welcome')
             ->first();
 
-        if (null == $welcome_login) {
+        if (null === $welcome_login) {
             $user->profile()->firstOrcreate([
                 'email' => $user->email,
                 'credits' => 1000,

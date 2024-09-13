@@ -16,5 +16,5 @@ class RatingInfoData extends Data
 
     public ?string $image = '#';
 
-    public ?int $predict_victory;
+    public ?int $predict_victory = null;
 }

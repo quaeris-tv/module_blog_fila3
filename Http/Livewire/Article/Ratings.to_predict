@@ -113,15 +113,6 @@ class Ratings extends Page implements HasForms
             ->statePath('data');
     }
 
-    protected function getFormActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-                ->submit('save'),
-        ];
-    }
-
     public function save(): void
     {
         $data = $this->form->getState();
@@ -129,7 +120,7 @@ class Ratings extends Page implements HasForms
         Assert::isArray($ratings_add = $data['ratings_add'], '['.__LINE__.']['.__FILE__.']');
         foreach ($ratings_add as $rating_id => $rating) {
             $credit = $rating['value'];
-            if (null != $credit) {
+            if (null !== $credit) {
                 $command = RatingArticleData::from([
                     'userId' => $this->user_id,
                     'articleId' => $this->article->id,
@@ -145,5 +136,14 @@ class Ratings extends Page implements HasForms
         // } catch (Halt $exception) {
         //    return;
         // }
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
+                ->submit('save'),
+        ];
     }
 }

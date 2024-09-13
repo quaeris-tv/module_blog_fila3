@@ -21,27 +21,6 @@ abstract class BaseTreeModel extends BaseModel
     use HasRecursiveRelationships;
     use SortableTrait;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'name' => 'string',
-            'parent_id' => 'string',
-            'path' => 'string',
-            'breads' => 'string',
-            'root_name' => 'string',
-            'is_leaf' => 'boolean',
-            'ordering' => 'integer',
-            'deleted_at' => 'datetime',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
-    }
-
     public function getDepthName(): string
     {
         return 'cte_depth';
@@ -64,5 +43,28 @@ abstract class BaseTreeModel extends BaseModel
         $this->save();
 
         return $this;
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'uuid' => 'string',
+            'name' => 'string',
+            'parent_id' => 'string',
+            'path' => 'string',
+            'breads' => 'string',
+            'root_name' => 'string',
+            'is_leaf' => 'boolean',
+            'ordering' => 'integer',
+            'deleted_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
     }
 }

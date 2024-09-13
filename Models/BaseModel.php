@@ -13,16 +13,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Xot\Actions\Factory\GetFactoryAction;
 use Modules\Xot\Traits\Updater;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Class BaseModel.
  */
-abstract class BaseModel extends Model
+abstract class BaseModel extends Model implements HasMedia
 {
     use HasFactory;
 
     // use Searchable;
     // use Cachable;
+    use InteractsWithMedia;
     use SoftDeletes;
     use Updater;
 
@@ -35,33 +38,29 @@ abstract class BaseModel extends Model
      */
     public static $snakeAttributes = true;
 
+    /** @var bool */
+    public $incrementing = true;
+
+    /** @var bool */
+    public $timestamps = true;
+
     /** @var int */
     protected $perPage = 30;
 
     /** @var string */
     protected $connection = 'blog';
 
-    /** @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'published_at' => 'datetime', 'created_at' => 'datetime', 'updated_at' => 'datetime',
-        ];
-    }
-
     /** @var string */
     protected $primaryKey = 'id';
 
-    /** @var bool */
-    public $incrementing = true;
+    /** @var string */
+    protected $keyType = 'string';
+    /** @var string */
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $hidden = [
         // 'password'
     ];
-
-    /** @var bool */
-    public $timestamps = true;
 
     /**
      * Create a new factory instance for the model.
@@ -71,5 +70,17 @@ abstract class BaseModel extends Model
     protected static function newFactory()
     {
         return app(GetFactoryAction::class)->execute(static::class);
+    }
+
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string',
+            'uuid' => 'string',
+            'published_at' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
     }
 }

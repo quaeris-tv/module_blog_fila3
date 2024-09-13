@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Http\Livewire\Article;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
@@ -40,6 +40,8 @@ class Lists extends Component
     // Currently selected order
     public string $order = 'date_desc';
 
+    public string $tpl;
+
     /**
      * @var array
      */
@@ -47,8 +49,6 @@ class Lists extends Component
         'category' => ['except' => ''],
         'order' => ['except' => 'date_desc'],
     ];
-
-    public string $tpl;
 
     public function mount(): void
     {
@@ -66,7 +66,7 @@ class Lists extends Component
         $view = app(GetViewAction::class)->execute($this->tpl);
 
         $view_params = [
-            'activeCategory' => $this->getActiveCategory(),
+            'activeCategory' => $this->category,
         ];
 
         return view($view, $view_params);
@@ -87,27 +87,27 @@ class Lists extends Component
         ++$this->currentChunk;
     }
 
-    private function getActiveCategory(): ?Category
-    {
-        // return $this->categories->first(fn ($i) => $i->slug === $this->category);
-        return $this->category;
-    }
+    // private function getActiveCategory(): ?Category
+    // {
+    // return $this->categories->first(fn ($i) => $i->slug === $this->category);
+    //    return $this->category;
+    // }
 
-    private function getArticleQuery(): Builder
+    /**
+     * Summary of getArticleQuery.
+     */
+    private function getArticleQuery(): EloquentBuilder
     {
         $query = Article::published();
-
-        if ($activeCategory = $this->getActiveCategory()) {
+        if (($activeCategory = $this->category) instanceof Category) {
             $query = $query->whereCategoryId($activeCategory->id);
         }
 
         if ('date_asc' === $this->order) {
-            $query = $query->orderBy('published_at', 'asc');
-        } else {
-            $query = $query->orderBy('published_at', 'desc');
+            return $query->orderBy('published_at', 'asc');
         }
 
-        return $query;
+        return $query->orderBy('published_at', 'desc');
     }
 
     private function refreshArticles(): void

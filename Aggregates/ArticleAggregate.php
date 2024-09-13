@@ -26,7 +26,7 @@ class ArticleAggregate extends AggregateRoot
     {
         $article = Article::firstWhere(['id' => $command->articleId]);
 
-        if (null == $article) {
+        if (null === $article) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 
@@ -64,7 +64,7 @@ class ArticleAggregate extends AggregateRoot
         }
 
         $article = Article::firstWhere(['id' => $command->articleId]);
-        if (null == $article) {
+        if (null === $article) {
             throw new NullArticleError(articleId: $command->articleId);
         }
 

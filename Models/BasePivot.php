@@ -26,6 +26,9 @@ abstract class BasePivot extends Pivot
      */
     public static $snakeAttributes = true;
 
+    /** @var bool */
+    public $incrementing = true;
+
     /** @var int */
     protected $perPage = 30;
 
@@ -34,18 +37,8 @@ abstract class BasePivot extends Pivot
     /** @var string */
     protected $connection = 'blog';
 
-    /** @var array<int, string> */
+    /** @var list<string> */
     protected $appends = [];
-
-    /** @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'string', // must be string else primary key of related model will be typed as int
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
-    }
 
     /**
      * Undocumented variable.
@@ -54,6 +47,14 @@ abstract class BasePivot extends Pivot
      */
     protected $primaryKey = 'id';
 
-    /** @var bool */
-    public $incrementing = true;
+    /** @return array<string, string> */
+    protected function casts(): array
+    {
+        return [
+            'id' => 'string', // must be string else primary key of related model will be typed as int
+            'uuid' => 'string',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
 }

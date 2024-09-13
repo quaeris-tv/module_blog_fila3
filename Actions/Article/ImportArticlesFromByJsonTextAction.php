@@ -24,15 +24,15 @@ class ImportArticlesFromByJsonTextAction
 
         foreach ($json as $j) {
             $bet_end_date = $j['bet_end_date'] ?? '';
-            if (\is_string($bet_end_date) && \strlen($bet_end_date) > 3) {
+            if (\is_string($bet_end_date) && mb_strlen($bet_end_date) > 3) {
                 $bet_end_date = Carbon::parse($bet_end_date);
             }
             $event_start_date = $j['event_start_date'] ?? '';
-            if (\is_string($event_start_date) && \strlen($event_start_date) > 3) {
+            if (\is_string($event_start_date) && mb_strlen($event_start_date) > 3) {
                 $event_start_date = Carbon::parse($event_start_date);
             }
             $event_end_date = $j['event_end_date'] ?? '';
-            if (\is_string($event_end_date) && \strlen($event_end_date) > 3) {
+            if (\is_string($event_end_date) && mb_strlen($event_end_date) > 3) {
                 $event_end_date = Carbon::parse($event_end_date);
             }
 
@@ -60,7 +60,7 @@ class ImportArticlesFromByJsonTextAction
                 'title' => $j['title'],
                 'slug' => $j['slug'],
                 'status' => $j['status'],
-                'status_display' => ('open' == $j['status_display']) ? true : false,
+                'status_display' => 'open' === $j['status_display'],
                 'bet_end_date' => $bet_end_date,
                 'event_start_date' => $event_start_date,
                 'event_end_date' => $event_end_date,
