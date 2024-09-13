@@ -52,6 +52,7 @@ abstract class BaseModel extends Model implements HasMedia
 
     /** @var string */
     protected $primaryKey = 'id';
+
     /** @var string */
     protected $keyType = 'string';
     /** @var string */

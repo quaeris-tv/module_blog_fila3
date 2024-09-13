@@ -161,8 +161,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  */
 class Category extends BaseModel
 {
-    use HasTranslations;
     use HasRecursiveRelationships;
+    use HasTranslations;
 
     /** @var array<int, string> */
     public $translatable = [

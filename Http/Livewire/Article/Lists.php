@@ -99,7 +99,6 @@ class Lists extends Component
     private function getArticleQuery(): EloquentBuilder
     {
         $query = Article::published();
-
         if (($activeCategory = $this->category) instanceof Category) {
             $query = $query->whereCategoryId($activeCategory->id);
         }
