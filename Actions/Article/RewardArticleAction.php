@@ -13,7 +13,7 @@ class RewardArticleAction
         if (now() < $article->closed_at) {
             return;
         }
-        if ($article->rewarded_at !== null) {
+        if (null !== $article->rewarded_at) {
             return;
         }
 

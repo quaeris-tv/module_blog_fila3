@@ -85,7 +85,7 @@ class Lists extends Component
 
     public function loadMore(): void
     {
-        $this->currentChunk++;
+        ++$this->currentChunk;
     }
 
     // private function getActiveCategory(): ?Category
@@ -97,15 +97,13 @@ class Lists extends Component
     /**
      * Summary of getArticleQuery.
      */
-    private function getArticleQuery(): QueryBuilder //EloquentBuilder
-    {
-        $query = Article::published();
-
+    private function getArticleQuery(): QueryBuilder // EloquentBuilder
+    {$query = Article::published();
         if (($activeCategory = $this->category) instanceof Category) {
             $query = $query->whereCategoryId($activeCategory->id);
         }
 
-        if ($this->order === 'date_asc') {
+        if ('date_asc' === $this->order) {
             return $query->orderBy('published_at', 'asc');
         }
 
@@ -115,7 +113,7 @@ class Lists extends Component
     private function refreshArticles(): void
     {
         // This will force the update of the `post-chunk` child components
-        $this->queryCount++;
+        ++$this->queryCount;
         $this->currentChunk = 0;
 
         $postIds = $this->getArticleQuery()->pluck('id');
