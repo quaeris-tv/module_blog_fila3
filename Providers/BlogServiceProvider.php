@@ -50,9 +50,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
         // $router->get('/', $xot->getHomeController());
     }
 
-    public function registerCallback(): void
-    {
-    }
+    public function registerCallback(): void {}
 
     public function registerMyMiddleware(Router $router): void
     {

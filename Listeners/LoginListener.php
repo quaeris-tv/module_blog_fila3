@@ -26,7 +26,7 @@ class LoginListener
             ->where('note', 'welcome')
             ->first();
 
-        if (null === $welcome_login) {
+        if ($welcome_login === null) {
             $user->profile()->firstOrcreate([
                 'email' => $user->email,
                 'credits' => 1000,

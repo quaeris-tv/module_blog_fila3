@@ -6,8 +6,8 @@ namespace Modules\Blog\Http\Livewire\Article;
 
 use Illuminate\Contracts\Support\Renderable;
 // use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Livewire\Component;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Category;
@@ -85,7 +85,7 @@ class Lists extends Component
 
     public function loadMore(): void
     {
-        ++$this->currentChunk;
+        $this->currentChunk++;
     }
 
     // private function getActiveCategory(): ?Category
@@ -105,7 +105,7 @@ class Lists extends Component
             $query = $query->whereCategoryId($activeCategory->id);
         }
 
-        if ('date_asc' === $this->order) {
+        if ($this->order === 'date_asc') {
             return $query->orderBy('published_at', 'asc');
         }
 
@@ -115,7 +115,7 @@ class Lists extends Component
     private function refreshArticles(): void
     {
         // This will force the update of the `post-chunk` child components
-        ++$this->queryCount;
+        $this->queryCount++;
         $this->currentChunk = 0;
 
         $postIds = $this->getArticleQuery()->pluck('id');
