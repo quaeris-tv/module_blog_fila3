@@ -254,6 +254,10 @@ class ThemeComposer
             ->simplePaginate($limit);
     }
 
+    /**
+     * --
+     */
+
     public function mapArticle(Article|ArticleData $article): ArticleData
     {
         if ($article instanceof ArticleData) {
