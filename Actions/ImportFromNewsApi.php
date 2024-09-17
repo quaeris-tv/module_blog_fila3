@@ -20,7 +20,8 @@ class ImportFromNewsApi
     public function execute(): void
     {
         // $url = 'https://newsapi.org/v2/top-headlines?country=it&apiKey='.config('services.newsapi.app_key');
-        $url = 'https://newsapi.org/v2/everything?q=cripto&sortBy=popularity&apiKey='.config('services.newsapi.app_key');
+        Assert::string($app_key = config('services.newsapi.app_key'));
+        $url = 'https://newsapi.org/v2/everything?q=cripto&sortBy=popularity&apiKey='.$app_key;
         $response = Http::get($url);
         Assert::isArray($res = $response->json(), '['.__LINE__.']['.__FILE__.']');
         /* --- from POST to ARTICLE

@@ -302,7 +302,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
             ->summary($this->description)
             ->updated($this->updated_at)
             // ->link($this->path()) //Call to an undefined method Modules\Blog\Models\Article::path()
-            ->authorName($this->user?->name ?? 'Unknown');
+            ->authorName($this->user->name ?? 'Unknown');
     }
 
     public function shortBody(int $words = 30): string
