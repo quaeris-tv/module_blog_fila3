@@ -132,7 +132,7 @@ trait HasPathByParentId
         }
 
         $value = $this->getBreads();
-        if (null !== $this->getKey()) {
+        if (null != $this->getKey()) {
             if (null == $value) {
                 $value = $this->name;
             }

@@ -75,33 +75,31 @@ use Webmozart\Assert\Assert;
  * @method static EloquentBuilder|Article                         withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static EloquentBuilder|Article                         withoutTrashed()
  *
- * @property string                                                                    $id
- * @property string                                                                    $uuid
- * @property string|null                                                               $content
- * @property string|null                                                               $picture
- * @property int|null                                                                  $category_id
- * @property int|null                                                                  $author_id
- * @property string|null                                                               $status
- * @property int                                                                       $show_on_homepage
- * @property int|null                                                                  $read_time
- * @property string|null                                                               $excerpt
- * @property string                                                                    $created_at
- * @property \Illuminate\Support\Carbon|null                                           $deleted_at
- * @property string|null                                                               $updated_by
- * @property string|null                                                               $created_by
- * @property string|null                                                               $deleted_by
- * @property array|null                                                                $footer_blocks
- * @property array|null                                                                $sidebar_blocks
- * @property int                                                                       $is_featured
- * @property string|null                                                               $closed_at
- * @property Category|null                                                             $category
- * @property string                                                                    $main_image
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Order> $orders
- * @property int|null                                                                  $orders_count
- * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                     $ratings
- * @property int|null                                                                  $ratings_count
- * @property mixed                                                                     $translations
- * @property string|null                                                               $rewarded_at
+ * @property string                                                $id
+ * @property string                                                $uuid
+ * @property string|null                                           $content
+ * @property string|null                                           $picture
+ * @property int|null                                              $category_id
+ * @property int|null                                              $author_id
+ * @property string|null                                           $status
+ * @property int                                                   $show_on_homepage
+ * @property int|null                                              $read_time
+ * @property string|null                                           $excerpt
+ * @property string                                                $created_at
+ * @property \Illuminate\Support\Carbon|null                       $deleted_at
+ * @property string|null                                           $updated_by
+ * @property string|null                                           $created_by
+ * @property string|null                                           $deleted_by
+ * @property array|null                                            $footer_blocks
+ * @property array|null                                            $sidebar_blocks
+ * @property int                                                   $is_featured
+ * @property string|null                                           $closed_at
+ * @property Category|null                                         $category
+ * @property string                                                $main_image
+ * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
+ * @property int|null                                              $ratings_count
+ * @property mixed                                                 $translations
+ * @property string|null                                           $rewarded_at
  *
  * @method static EloquentBuilder|Article whereAuthorId($value)
  * @method static EloquentBuilder|Article whereCategoryId($value)
@@ -274,10 +272,11 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         ];
     }
 
-    public function orders(): MorphMany
-    {
-        return $this->morphMany(Order::class, 'model');
-    }
+    // to predict
+    // public function orders(): MorphMany
+    // {
+    //     return $this->morphMany(Order::class, 'model');
+    // }
 
     public function user(): BelongsTo
     {
