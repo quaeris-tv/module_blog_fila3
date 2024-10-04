@@ -33,9 +33,9 @@ class ArticleData extends Data implements \Stringable
         public ?array $ratings,
         public ?string $closed_at,
         public ?string $closed_at_date,
-        public ?int $betting_users,
+        // public ?int $betting_users,
         public ?string $time_left_for_humans,
-        public ?float $volume_credit,
+        // public ?float $volume_credit,
         public ?Collection $tags,
         // public string $class,
         // public string $articleId;
@@ -55,10 +55,10 @@ class ArticleData extends Data implements \Stringable
         $this->closed_at_date = Carbon::parse($this->closed_at)->format('Y-m-d');
 
         Assert::notNull($article = Article::where('uuid', $this->uuid)->first(), '['.__LINE__.']['.__FILE__.']');
-        $this->betting_users = $article->getBettingUsers();
+        // $this->betting_users = $article->getBettingUsers();
         $this->ratings = $article->getArrayRatingsWithImage();
         $this->time_left_for_humans = $article->getTimeLeftForHumans();
-        $this->volume_credit = $article->getVolumeCredit();
+        // $this->volume_credit = $article->getVolumeCredit();
         $this->tags = $article->tags->map(fn ($tag) => $tag->name);
     }
 
