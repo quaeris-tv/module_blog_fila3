@@ -174,17 +174,6 @@ class ThemeComposer
         return Profile::all()->sortByDesc('credits');
     }
 
-    public function rankingArticlesByBets(): Collection
-    {
-        return Article::withCount([
-            'ratings' => function (Builder $builder): void {
-                $builder->where('user_id', '!=', null);
-            },
-        ])
-            ->get()
-            ->sortByDesc('ratings_count');
-    }
-
     public function getMethodData(string $method, int $number = 6): Paginator|array
     {
         return $this->{$method}($number);

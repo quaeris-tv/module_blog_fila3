@@ -272,12 +272,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         ];
     }
 
-    // to predict
-    // public function orders(): MorphMany
-    // {
-    //     return $this->morphMany(Order::class, 'model');
-    // }
-
     public function user(): BelongsTo
     {
         $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
