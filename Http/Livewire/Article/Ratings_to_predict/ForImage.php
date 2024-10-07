@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Modules\Blog\Actions\Article\MakeBetAction;
+use Modules\Predict\Actions\Article\MakeBetAction;
 use Modules\Blog\Models\Article;
 use Modules\Blog\Models\Profile;
 use Modules\Xot\Actions\GetViewAction;
