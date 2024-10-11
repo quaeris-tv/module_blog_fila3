@@ -30,7 +30,7 @@ class BlogServiceProvider extends XotBaseServiceProvider
 
         Projectionist::addProjectors([
             // Projectors\BetBalanceProjector::class,
-            Projectors\ArticleProjector::class,
+            // Projectors\ArticleProjector::class, //to predict
             // Projectors\OrderProjector::class, //to predict
             // Projectors\ProfileProjector::class, // to predict
             // YetAnotherProjector::class,
