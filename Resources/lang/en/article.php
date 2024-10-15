@@ -31,6 +31,7 @@ return [
     'your_bet' => 'Your prediction',
     'your_amount' => 'Prediction',
     'if_win' => 'If you win',
+    'sell' => 'Sell'
 
     // 'fields' => [
     //     'name' => 'Nome',
