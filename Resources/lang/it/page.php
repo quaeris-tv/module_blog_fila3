@@ -10,4 +10,5 @@ return [
             'name' => 'Site',
         ],
     ],
+    'load-more' => 'Carica Altro'
 ];

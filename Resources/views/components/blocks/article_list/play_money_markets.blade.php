@@ -54,7 +54,7 @@
 			@else
 				<div class="flex justify-center">
 					<a href="{{ route('articles.index', ['lang' => $lang]) }}" class="flex items-center px-4 py-2 space-x-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
-						<span>Load more</span>
+						<span>{{ __('blog::page.load-more') }}</span>
 						<x-heroicon-o-arrow-right class="size-4"/>
 					</a>
 				</div>

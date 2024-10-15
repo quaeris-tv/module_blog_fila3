@@ -10,4 +10,5 @@ return [
             'name' => 'Site',
         ],
     ],
+    'load-more' => 'Load more'
 ];
