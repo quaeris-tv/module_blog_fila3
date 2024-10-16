@@ -209,6 +209,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         'published_at',
         'closed_at',
         'category_id',
+        'type',
         // 'is_closed', => closet_at
 
         /*

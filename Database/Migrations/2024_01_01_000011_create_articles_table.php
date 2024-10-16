@@ -118,6 +118,11 @@ return new class extends XotBaseMigration {
                     $table->datetimetz('rewarded_at')->nullable();
                 }
 
+                if (! $this->hasColumn('type')) {
+                    $table->string('type')->nullable();
+                }
+
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
