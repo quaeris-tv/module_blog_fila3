@@ -109,7 +109,11 @@
                                 @if($trans->model_type == 'profile')
                                     -
                                 @else
-                                    {{ $rating_morph->rating->title }}
+                                    @if($rating_morph->rating != null)
+                                        {{ $rating_morph->rating->title }}
+                                    @else
+                                        {{ __('predict::bet.not-defined') }}
+                                    @endif
                                 @endif
                             </td>
                         </tr>
