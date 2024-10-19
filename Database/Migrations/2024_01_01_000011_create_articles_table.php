@@ -122,7 +122,6 @@ return new class extends XotBaseMigration {
                     $table->string('type')->nullable();
                 }
 
-
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );

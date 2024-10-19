@@ -5,25 +5,25 @@ declare(strict_types=1);
 namespace Modules\Blog\Models;
 
 use Carbon\Carbon;
-use Safe\DateTime;
-use Spatie\Tags\HasTags;
-use Parental\HasChildren;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Modules\Rating\Models\Rating;
-use Illuminate\Support\Facades\Storage;
-use Modules\Xot\Contracts\UserContract;
-use Spatie\Translatable\HasTranslations;
-use Modules\Rating\Models\Traits\HasRating;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Modules\Rating\Models\Contracts\HasRatingContract;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Modules\Lang\Models\Contracts\HasTranslationsContract;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Modules\Rating\Models\Contracts\HasRatingContract;
+use Modules\Rating\Models\Rating;
+use Modules\Rating\Models\Traits\HasRating;
+use Modules\Xot\Contracts\UserContract;
+use Parental\HasChildren;
+use Safe\DateTime;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
+use Spatie\Tags\HasTags;
+use Spatie\Translatable\HasTranslations;
+use Webmozart\Assert\Assert;
 
 /**
  * Modules\Blog\Models\Article.
