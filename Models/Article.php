@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -78,33 +77,31 @@ use Webmozart\Assert\Assert;
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
  *
- * @property string                                                                    $id
- * @property string                                                                    $uuid
- * @property string|null                                                               $content
- * @property string|null                                                               $picture
- * @property int|null                                                                  $category_id
- * @property int|null                                                                  $author_id
- * @property string|null                                                               $status
- * @property int                                                                       $show_on_homepage
- * @property int|null                                                                  $read_time
- * @property string|null                                                               $excerpt
- * @property string                                                                    $created_at
- * @property \Illuminate\Support\Carbon|null                                           $deleted_at
- * @property string|null                                                               $updated_by
- * @property string|null                                                               $created_by
- * @property string|null                                                               $deleted_by
- * @property array|null                                                                $footer_blocks
- * @property array|null                                                                $sidebar_blocks
- * @property int                                                                       $is_featured
- * @property string|null                                                               $closed_at
- * @property Category|null                                                             $category
- * @property string                                                                    $main_image
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Order> $orders
- * @property int|null                                                                  $orders_count
- * @property \Illuminate\Database\Eloquent\Collection<int, Rating>                     $ratings
- * @property int|null                                                                  $ratings_count
- * @property mixed                                                                     $translations
- * @property string|null                                                               $rewarded_at
+ * @property string                                                $id
+ * @property string                                                $uuid
+ * @property string|null                                           $content
+ * @property string|null                                           $picture
+ * @property int|null                                              $category_id
+ * @property int|null                                              $author_id
+ * @property string|null                                           $status
+ * @property int                                                   $show_on_homepage
+ * @property int|null                                              $read_time
+ * @property string|null                                           $excerpt
+ * @property string                                                $created_at
+ * @property \Illuminate\Support\Carbon|null                       $deleted_at
+ * @property string|null                                           $updated_by
+ * @property string|null                                           $created_by
+ * @property string|null                                           $deleted_by
+ * @property array|null                                            $footer_blocks
+ * @property array|null                                            $sidebar_blocks
+ * @property int                                                   $is_featured
+ * @property string|null                                           $closed_at
+ * @property Category|null                                         $category
+ * @property string                                                $main_image
+ * @property \Illuminate\Database\Eloquent\Collection<int, Rating> $ratings
+ * @property int|null                                              $ratings_count
+ * @property mixed                                                 $translations
+ * @property string|null                                           $rewarded_at
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
@@ -270,11 +267,6 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
         ];
     }
 
-    public function orders(): MorphMany
-    {
-        return $this->morphMany(Order::class, 'model');
-    }
-
     public function user(): BelongsTo
     {
         $user_class = XotData::make()->getUserClass();
@@ -298,7 +290,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
             ->summary($this->description)
             ->updated($this->updated_at)
             // ->link($this->path()) //Call to an undefined method Modules\Blog\Models\Article::path()
-            ->authorName($this->user?->name ?? 'Unknown');
+            ->authorName($this->user->name ?? 'Unknown');
     }
 
     public function shortBody(int $words = 30): string
