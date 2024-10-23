@@ -106,6 +106,7 @@ class Comment extends BaseModel
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    /* -- to comment module
     public function comments(): HasMany
     {
         // return $this->hasMany(Comment::class, function ($query) {
@@ -116,4 +117,5 @@ class Comment extends BaseModel
             ->whereNotNull('parent_id')
             ->orderBy('created_at', 'desc');
     }
+    */
 }
