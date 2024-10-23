@@ -44,7 +44,7 @@ class Line extends ChartWidget
                     'credit' => $orders
                         ->where('date', $key)
                         ->where('rating_id', $rating_id)
-                        ->first()?->credits ?? 0,
+                        ->first()->credits ?? 0,
                 ]);
             }
             $tmp['ratings'] = $tmp1;

@@ -27,7 +27,7 @@ trait HasPathByParentId
             return $value;
         }
         $value = $this->getPath();
-        if (null !== $this->getKey()) {
+        if (null != $this->getKey()) {
             $this->update(
                 [
                     'path' => $value,
@@ -132,7 +132,7 @@ trait HasPathByParentId
         }
 
         $value = $this->getBreads();
-        if (null !== $this->getKey()) {
+        if (null != $this->getKey()) {
             if (null == $value) {
                 $value = $this->name;
             }

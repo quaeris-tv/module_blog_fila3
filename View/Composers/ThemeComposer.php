@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Blog\View\Composers;
 
-use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Model;
@@ -174,17 +173,6 @@ class ThemeComposer
         return Profile::all()->sortByDesc('credits');
     }
 
-    public function rankingArticlesByBets(): Collection
-    {
-        return Article::withCount([
-            'ratings' => function (Builder $builder): void {
-                $builder->where('user_id', '!=', null);
-            },
-        ])
-            ->get()
-            ->sortByDesc('ratings_count');
-    }
-
     public function getMethodData(string $method, int $number = 6): Paginator|array
     {
         return $this->{$method}($number);
@@ -254,8 +242,15 @@ class ThemeComposer
             ->simplePaginate($limit);
     }
 
-    public function mapArticle(Article $article): ArticleData
+    /**
+     * --.
+     */
+    public function mapArticle(Article|ArticleData $article): ArticleData
     {
+        if ($article instanceof ArticleData) {
+            return $article;
+        }
+
         $article = $article->toArray();
 
         if (is_array($article['title'])) {

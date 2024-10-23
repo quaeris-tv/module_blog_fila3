@@ -7,7 +7,6 @@ namespace Modules\Blog\Models;
 /**
  * Modules\Blog\Models\Order.
  *
- * @property date                            $date
  * @property string                          $article_id
  * @property string                          $rating_id
  * @property int                             $credits
@@ -50,5 +49,11 @@ namespace Modules\Blog\Models;
  */
 class Order extends BaseModel
 {
-    protected $fillable = ['date', 'model_type', 'model_id', 'rating_id', 'credits'];
+    protected $fillable = [
+        'date',
+        'model_type',
+        'model_id',
+        'rating_id',
+        'credits',
+    ];
 }

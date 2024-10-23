@@ -6,6 +6,7 @@ namespace Modules\Blog\Models;
 
 // use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 // use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Modules\Rating\Models\Rating;
@@ -62,9 +63,9 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newQuery()
- * @method static Builder|BaseProfile                             permission($permissions, $without = false)
+ * @method static EloquentBuilder|BaseProfile                     permission($permissions, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   query()
- * @method static Builder|BaseProfile                             role($roles, $guard = null, $without = false)
+ * @method static EloquentBuilder|BaseProfile                     role($roles, $guard = null, $without = false)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereCredits($value)
@@ -79,9 +80,9 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   whereUserId($value)
- * @method static Builder|BaseProfile                             withExtraAttributes()
- * @method static Builder|BaseProfile                             withoutPermission($permissions)
- * @method static Builder|BaseProfile                             withoutRole($roles, $guard = null)
+ * @method static EloquentBuilder|BaseProfile                     withExtraAttributes()
+ * @method static EloquentBuilder|BaseProfile                     withoutPermission($permissions)
+ * @method static EloquentBuilder|BaseProfile                     withoutRole($roles, $guard = null)
  *
  * @property \Modules\User\Models\DeviceUser                                                 $pivot
  * @property \Modules\User\Models\Membership                                                 $membership

@@ -14,8 +14,8 @@ use Filament\Resources\Pages\ViewRecord;
 use Modules\Blog\Actions\Article\TranslateContentAction;
 use Modules\Blog\Filament\Resources\ArticleResource;
 use Modules\Blog\Models\Article;
-use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
-use Modules\Rating\Filament\Actions\Header\WinHeaderAction;
+// use Modules\Rating\Filament\Actions\Header\BetHeaderAction;
+// use Modules\Rating\Filament\Actions\Header\WinHeaderAction;
 use Modules\Rating\Filament\Resources\HasRatingResource\Widgets as RatingWidgets;
 
 class ViewArticle extends ViewRecord
@@ -41,8 +41,8 @@ class ViewArticle extends ViewRecord
             Actions\LocaleSwitcher::make(),
             Actions\EditAction::make(),
             Actions\DeleteAction::make(),
-            BetHeaderAction::make(),
-            WinHeaderAction::make(),
+            // BetHeaderAction::make(),
+            // WinHeaderAction::make(),
             Actions\Action::make('change_closed_at')
                 ->tooltip('cambia data chiusura')
                 ->label('')
