@@ -62,6 +62,8 @@ class Transaction extends BaseModel
         'user_id',
         'credits',
         'note',
+        'stocks_count',
+        'stocks_value',
     ];
 
     public function getRatingMorph(): RatingMorph

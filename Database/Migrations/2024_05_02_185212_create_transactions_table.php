@@ -36,6 +36,11 @@ return new class extends XotBaseMigration {
                     $table->decimal('credits')->change();
                 }
 
+                if (! $this->hasColumn('stocks_count')) {
+                    $table->float('stocks_count')->nullable();
+                    $table->float('stocks_value')->nullable();
+                }
+
                 $this->updateTimestamps(table: $table, hasSoftDeletes: true);
             }
         );
