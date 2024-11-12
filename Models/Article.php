@@ -19,8 +19,10 @@ use Modules\Rating\Models\Traits\HasRating;
 use Modules\Xot\Contracts\UserContract;
 use Parental\HasChildren;
 use Safe\DateTime;
+use Spatie\Comments\Models\Concerns\HasComments;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 use Webmozart\Assert\Assert;
@@ -51,29 +53,29 @@ use Webmozart\Assert\Assert;
  * @property string                                                                                                     $main_image_url
  * @property string                                                                                                     $content_blocks
  *
- * @method static EloquentBuilder|Article                         article(string $id)
- * @method static EloquentBuilder|Article                         author(string $profile_id)
- * @method static EloquentBuilder|Article                         category(string $id)
- * @method static EloquentBuilder|Article                         currentStatus(...$names)
- * @method static EloquentBuilder|Article                         differentFromCurrentArticle(string $current_article)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   article(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   author(string $profile_id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   category(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   currentStatus(...$names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   differentFromCurrentArticle(string $current_article)
  * @method static \Modules\Blog\Database\Factories\ArticleFactory factory($count = null, $state = [])
- * @method static EloquentBuilder|Article                         newModelQuery()
- * @method static EloquentBuilder|Article                         newQuery()
- * @method static EloquentBuilder|Article                         onlyTrashed()
- * @method static EloquentBuilder|Article                         otherCurrentStatus(...$names)
- * @method static EloquentBuilder|Article                         published()
- * @method static EloquentBuilder|Article                         publishedUntilToday()
- * @method static EloquentBuilder|Article                         query()
- * @method static EloquentBuilder|Article                         search(string $searching)
- * @method static EloquentBuilder|Article                         showHomepage()
- * @method static EloquentBuilder|Article                         tag(string $id)
- * @method static EloquentBuilder|Article                         withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static EloquentBuilder|Article                         withAllTagsOfAnyType($tags)
- * @method static EloquentBuilder|Article                         withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static EloquentBuilder|Article                         withAnyTagsOfAnyType($tags)
- * @method static EloquentBuilder|Article                         withTrashed()
- * @method static EloquentBuilder|Article                         withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static EloquentBuilder|Article                         withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   otherCurrentStatus(...$names)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   published()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   publishedUntilToday()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   search(string $searching)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   showHomepage()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   tag(string $id)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withAllTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withAllTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withAnyTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withAnyTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTags(\ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article   withoutTrashed()
  *
  * @property string                                                $id
  * @property string                                                $uuid
@@ -101,34 +103,34 @@ use Webmozart\Assert\Assert;
  * @property mixed                                                 $translations
  * @property string|null                                           $rewarded_at
  *
- * @method static EloquentBuilder|Article whereAuthorId($value)
- * @method static EloquentBuilder|Article whereCategoryId($value)
- * @method static EloquentBuilder|Article whereClosedAt($value)
- * @method static EloquentBuilder|Article whereContent($value)
- * @method static EloquentBuilder|Article whereContentBlocks($value)
- * @method static EloquentBuilder|Article whereCreatedAt($value)
- * @method static EloquentBuilder|Article whereCreatedBy($value)
- * @method static EloquentBuilder|Article whereDeletedAt($value)
- * @method static EloquentBuilder|Article whereDeletedBy($value)
- * @method static EloquentBuilder|Article whereDescription($value)
- * @method static EloquentBuilder|Article whereExcerpt($value)
- * @method static EloquentBuilder|Article whereFooterBlocks($value)
- * @method static EloquentBuilder|Article whereId($value)
- * @method static EloquentBuilder|Article whereIsFeatured($value)
- * @method static EloquentBuilder|Article whereLocale(string $column, string $locale)
- * @method static EloquentBuilder|Article whereLocales(string $column, array $locales)
- * @method static EloquentBuilder|Article whereMainImageUpload($value)
- * @method static EloquentBuilder|Article whereMainImageUrl($value)
- * @method static EloquentBuilder|Article wherePicture($value)
- * @method static EloquentBuilder|Article wherePublishedAt($value)
- * @method static EloquentBuilder|Article whereReadTime($value)
- * @method static EloquentBuilder|Article whereShowOnHomepage($value)
- * @method static EloquentBuilder|Article whereSlug($value)
- * @method static EloquentBuilder|Article whereStatus($value)
- * @method static EloquentBuilder|Article whereTitle($value)
- * @method static EloquentBuilder|Article whereUpdatedAt($value)
- * @method static EloquentBuilder|Article whereUpdatedBy($value)
- * @method static EloquentBuilder|Article whereUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereAuthorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereClosedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereContentBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereExcerpt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereFooterBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsFeatured($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereLocale(string $column, string $locale)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereLocales(string $column, array $locales)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereMainImageUpload($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereMainImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePicture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article wherePublishedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereReadTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereShowOnHomepage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereUuid($value)
  *
  * @property int         $status_display
  * @property string|null $bet_end_date
@@ -146,28 +148,28 @@ use Webmozart\Assert\Assert;
  * @property float|null  $volume_real_money
  * @property int         $is_following
  *
- * @method static EloquentBuilder|Article whereBetEndDate($value)
- * @method static EloquentBuilder|Article whereBrierScore($value)
- * @method static EloquentBuilder|Article whereBrierScorePlayMoney($value)
- * @method static EloquentBuilder|Article whereBrierScoreRealMoney($value)
- * @method static EloquentBuilder|Article whereEventEndDate($value)
- * @method static EloquentBuilder|Article whereEventStartDate($value)
- * @method static EloquentBuilder|Article whereIsFollowing($value)
- * @method static EloquentBuilder|Article whereIsWagerable($value)
- * @method static EloquentBuilder|Article whereSidebarBlocks($value)
- * @method static EloquentBuilder|Article whereStatusDisplay($value)
- * @method static EloquentBuilder|Article whereVolumePlayMoney($value)
- * @method static EloquentBuilder|Article whereVolumeRealMoney($value)
- * @method static EloquentBuilder|Article whereWagers($value)
- * @method static EloquentBuilder|Article whereWagersCount($value)
- * @method static EloquentBuilder|Article whereWagersCountCanonical($value)
- * @method static EloquentBuilder|Article whereWagersCountTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBetEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScorePlayMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereBrierScoreRealMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereEventEndDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereEventStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsFollowing($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereIsWagerable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereSidebarBlocks($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereStatusDisplay($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereVolumePlayMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereVolumeRealMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountCanonical($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereWagersCountTotal($value)
  *
  * @property \Modules\Rating\Models\RatingMorph $pivot
  *
- * @method static EloquentBuilder|Article whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
- * @method static EloquentBuilder|Article whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
- * @method static EloquentBuilder|Article whereRewardedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocale(string $column, string $locale, ?mixed $value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereJsonContainsLocales(string $column, array $locales, ?mixed $value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Article whereRewardedAt($value)
  *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
@@ -276,7 +278,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
 
     public function user(): BelongsTo
     {
-        $user_class = \Modules\Xot\Datas\XotData::make()->getUserClass();
+        $user_class = XotData::make()->getUserClass();
 
         return $this->belongsTo($user_class);
     }
@@ -355,6 +357,39 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     public function author(): BelongsTo
     {
         return $this->belongsTo(Profile::class, 'user_id'); // ->withTrashed();
+    }
+
+    // /**
+    //  * Get the tags of the article
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Collection
+    //  */
+    // public function tags()
+    // {
+    //    return $this->belongsToMany(Tag::class);
+    // }
+
+    /*
+     * Get the comments of the article.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    */
+
+    /**
+     * Get the article's main image.
+     */
+    protected function mainImage(): Attribute
+    {
+        return new Attribute(
+            get: static function ($value, $attributes): string {
+                return $attributes['main_image_upload'] ?? $attributes['main_image_url'] ?? '#';
+            }
+        );
     }
 
     public function getTitle(): string
@@ -608,7 +643,7 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
      */
     public function commentableName(): string
     {
-        return 'Commento';
+        return 'Predizione';
     }
 
     /**
@@ -618,90 +653,5 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     public function commentUrl(): string
     {
         return '#';
-    }
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @return array<string, string> */
-    protected function casts(): array
-    {
-        return [
-            'id' => 'string',
-            'uuid' => 'string',
-            // 'images' => 'array',
-            'date' => 'datetime',
-            'published_at' => 'datetime',
-            'active' => 'boolean',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'closed_at' => 'datetime',
-            'content_blocks' => 'array',
-            'footer_blocks' => 'array',
-            'sidebar_blocks' => 'array',
-            // 'is_closed'=> 'boolean',
-        ];
-    }
-
-    // /**
-    //  * Get the tags of the article
-    //  *
-    //  * @return \Illuminate\Database\Eloquent\Collection
-    //  */
-    // public function tags()
-    // {
-    //    return $this->belongsToMany(Tag::class);
-    // }
-
-    // /**
-    //  * Get the comments of the article.
-    //  *
-    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany<Comment>
-    //  */
-    // public function comments()
-    // {
-    //     return $this->hasMany(Comment::class);
-    // }
-
-    /**
-     * Get the article's main image.
-     */
-    protected function mainImage(): Attribute
-    {
-        return new Attribute(
-            get: static fn ($value, $attributes): string => $attributes['main_image_upload'] ?? $attributes['main_image_url'] ?? '#'
-        );
-    }
-
-    /**
-     * Get the article's title.
-     */
-    protected function title(): Attribute
-    {
-        return new Attribute(
-            get: static function ($value, $attributes): string {
-                if (null === $value) {
-                    return 'article title';
-                }
-
-                return $value;
-            }
-        );
-    }
-
-    /**
-     * Get the article's description.
-     */
-    protected function description(): Attribute
-    {
-        return new Attribute(
-            get: static function ($value, array $attributes): string {
-                if (null === $value || '' === $value) {
-                    return 'article\'s description '.$attributes['title'];
-                }
-
-                return $value;
-            }
-        );
     }
 }

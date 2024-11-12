@@ -52,10 +52,31 @@ use Modules\Xot\Contracts\UserContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedBy($value)
  *
+ * @property \Modules\Xot\Contracts\ProfileContract|null $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ * @property string|null                                 $commentable_type
+ * @property string|null                                 $commentable_id
+ * @property string|null                                 $commentator_type
+ * @property string|null                                 $commentator_id
+ * @property string                                      $text
+ * @property string|null                                 $extra
+ * @property string|null                                 $approved_at
+ * @property string                                      $original_text
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereApprovedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentatorType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereExtra($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereOriginalText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
+ *
  * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
+ *                                                                                                                                   >>>>>>> origin/master
  *
  * @mixin \Eloquent
  */
@@ -106,6 +127,7 @@ class Comment extends BaseModel
         return $this->hasMany(self::class, 'parent_id');
     }
 
+    /* -- to comment module
     public function comments(): HasMany
     {
         // return $this->hasMany(Comment::class, function ($query) {
@@ -116,4 +138,5 @@ class Comment extends BaseModel
             ->whereNotNull('parent_id')
             ->orderBy('created_at', 'desc');
     }
+    */
 }
