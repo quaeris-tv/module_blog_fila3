@@ -18,8 +18,9 @@ class BlogServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback(): void
+    public function boot(): void
     {
+        parent::boot();
         // $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
         // $kernel->pushMiddleware(SwitchLanguageLocale::class);
         $router = app('router');
@@ -50,8 +51,9 @@ class BlogServiceProvider extends XotBaseServiceProvider
         // $router->get('/', $xot->getHomeController());
     }
 
-    public function registerCallback(): void
+    public function register(): void
     {
+        parent::register();
     }
 
     public function registerMyMiddleware(Router $router): void
