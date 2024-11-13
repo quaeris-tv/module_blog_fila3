@@ -656,8 +656,9 @@ class Article extends BaseModel implements Feedable, HasRatingContract, HasTrans
     /**
      * Converti l'attributo 'closed_at' in un oggetto Carbon.
      *
-     * @param  string  $value
-     * @return \Carbon\Carbon
+     * @param string $value
+     *
+     * @return Carbon
      */
     public function getClosedAtAttribute($value)
     {
