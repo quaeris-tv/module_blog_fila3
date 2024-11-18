@@ -78,41 +78,41 @@ class BannerResource extends XotBaseResource
             ]);
     }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('id')
-                    ->label(static::trans('fields.id'))
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->label(static::trans('fields.title'))
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('category.title')
-                    ->label(static::trans('fields.category.title'))
-                    ->sortable()
-                    ->searchable(),
-                SpatieMediaLibraryImageColumn::make('image')
-                    ->label(static::trans('fields.image'))
-                    ->collection('banner'),
-            ])
-            ->filters([
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
-            ->emptyStateActions([
-            ])
-            ->reorderable('pos')
-            ->defaultSort('pos', 'asc');
-    }
+    // public static function table(Table $table): Table
+    // {
+    //     return $table
+    //         ->columns([
+    //             Tables\Columns\TextColumn::make('id')
+    //                 ->label(static::trans('fields.id'))
+    //                 ->sortable()
+    //                 ->searchable(),
+    //             Tables\Columns\TextColumn::make('title')
+    //                 ->label(static::trans('fields.title'))
+    //                 ->sortable()
+    //                 ->searchable(),
+    //             Tables\Columns\TextColumn::make('category.title')
+    //                 ->label(static::trans('fields.category.title'))
+    //                 ->sortable()
+    //                 ->searchable(),
+    //             SpatieMediaLibraryImageColumn::make('image')
+    //                 ->label(static::trans('fields.image'))
+    //                 ->collection('banner'),
+    //         ])
+    //         ->filters([
+    //         ])
+    //         ->actions([
+    //             Tables\Actions\EditAction::make(),
+    //         ])
+    //         ->bulkActions([
+    //             Tables\Actions\BulkActionGroup::make([
+    //                 Tables\Actions\DeleteBulkAction::make(),
+    //             ]),
+    //         ])
+    //         ->emptyStateActions([
+    //         ])
+    //         ->reorderable('pos')
+    //         ->defaultSort('pos', 'asc');
+    // }
 
     public static function getRelations(): array
     {

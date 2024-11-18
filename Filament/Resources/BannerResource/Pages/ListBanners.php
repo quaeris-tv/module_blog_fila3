@@ -7,19 +7,19 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\BannerResource\Pages;
 
+use Filament\Tables;
 use Filament\Actions;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Textarea;
-use Filament\Resources\Pages\ListRecords;
 use Illuminate\Support\Facades\File;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\FileUpload;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Modules\Blog\Actions\Banner\ImportBannerFromByJsonTextAction;
-use Modules\Blog\Filament\Resources\BannerResource;
-use Modules\Blog\Models\Banner;
 
-class ListBanners extends ListRecords
+class ListBanners extends XotBaseListRecords
 {
-    protected static string $resource = BannerResource::class;
+    // protected static string $resource = BannerResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -43,6 +43,28 @@ class ListBanners extends ListRecords
                 ->action(static fn (array $data) => app(ImportBannerFromByJsonTextAction::class)->execute($data['fileContent'])),
         ];
     }
+
+    public function getListTableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('id')
+                ->label(static::trans('fields.id'))
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('title')
+                ->label(static::trans('fields.title'))
+                ->sortable()
+                ->searchable(),
+            Tables\Columns\TextColumn::make('category.title')
+                ->label(static::trans('fields.category.title'))
+                ->sortable()
+                ->searchable(),
+            SpatieMediaLibraryImageColumn::make('image')
+                ->label(static::trans('fields.image'))
+                ->collection('banner'),
+        ];
+    }
+
 }
 
 // "photo11":{

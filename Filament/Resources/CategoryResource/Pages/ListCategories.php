@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\CategoryResource\Pages;
 
-use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Tables;
-use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Actions;
 use Filament\Tables\Table;
-use Modules\Blog\Filament\Resources\CategoryResource;
+use Filament\Resources\Pages\ListRecords;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
-class ListCategories extends ListRecords
+class ListCategories extends XotBaseListRecords
 {
     use ListRecords\Concerns\Translatable;
 
-    protected static string $resource = CategoryResource::class;
-
-    public function getTableColumns(): array
+    public function getListTableColumns(): array
     {
         return [
             Tables\Columns\IconColumn::make('icon')
@@ -29,24 +27,24 @@ class ListCategories extends ListRecords
             // Tables\Columns\TextColumn::make('updated_at')
             //     ->sortable()
             //     ->dateTime(),
-            SpatieMediaLibraryImageColumn::make('image'),
+            SpatieMediaLibraryImageColumn::make('image')->collection('category'),
         ];
     }
 
-    public function table(Table $table): Table
-    {
-        return $table
-            ->columns($this->getTableColumns())
-            ->filters([
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
-    }
+    // public function table(Table $table): Table
+    // {
+    //     return $table
+    //         ->columns($this->getTableColumns())
+    //         ->filters([
+    //         ])
+    //         ->actions([
+    //             Tables\Actions\EditAction::make(),
+    //             Tables\Actions\DeleteAction::make(),
+    //         ])
+    //         ->bulkActions([
+    //             Tables\Actions\DeleteBulkAction::make(),
+    //         ]);
+    // }
 
     protected function getHeaderActions(): array
     {
