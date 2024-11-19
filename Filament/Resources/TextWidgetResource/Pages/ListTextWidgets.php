@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Modules\Blog\Filament\Resources\TextWidgetResource\Pages;
 
 use Filament\Pages\Actions;
-use Modules\Xot\Filament\Pages\XotBaseListRecords;
 use Modules\Blog\Filament\Resources\TextWidgetResource;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
 
 class ListTextWidgets extends XotBaseListRecords
 {

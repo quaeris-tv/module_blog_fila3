@@ -7,15 +7,15 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\BannerResource\Pages;
 
-use Filament\Tables;
 use Filament\Actions;
-use Illuminate\Support\Facades\File;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
-use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Filament\Forms\Components\Textarea;
+use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Illuminate\Support\Facades\File;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Modules\Blog\Actions\Banner\ImportBannerFromByJsonTextAction;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
 
 class ListBanners extends XotBaseListRecords
 {
@@ -64,7 +64,6 @@ class ListBanners extends XotBaseListRecords
                 ->collection('banner'),
         ];
     }
-
 }
 
 // "photo11":{
