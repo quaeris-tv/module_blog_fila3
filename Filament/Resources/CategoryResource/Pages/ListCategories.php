@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources\CategoryResource\Pages;
 
-use Filament\Tables;
 use Filament\Actions;
-use Filament\Tables\Table;
 use Filament\Resources\Pages\ListRecords;
-use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Table;
+use Modules\Xot\Filament\Pages\XotBaseListRecords;
 
 class ListCategories extends XotBaseListRecords
 {
