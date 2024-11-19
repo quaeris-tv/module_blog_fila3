@@ -35,6 +35,31 @@ return [
     'your_amount' => 'Previsione',
     'if_win' => 'Se vinci',
 
+    'fields' => [
+        'id' => [
+            'label' => 'id'
+        ],
+        'title' => [
+            'label' => 'Titolo'
+        ],
+        'category' => [
+            'title' => ['label' => 'Categoria']
+        ],
+        'published_at' => [
+            'label' => 'Publicato il'
+        ],
+        'closed_at' => [
+            'label' => 'Chiuso il'
+        ],
+        'rewarded_at' => [
+            'label' => 'Premiato il'
+        ],
+        'is_featured' => [
+            'label' => 'In primo piano'
+        ],
+        
+    ]
+
     // 'fields' => [
     //     'name' => 'Nome',
     //     'guard_name' => 'Guard',

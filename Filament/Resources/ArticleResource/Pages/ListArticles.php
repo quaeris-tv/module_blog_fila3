@@ -129,6 +129,7 @@ class ListArticles extends XotBaseListRecords
             ->filters($this->getTableFilters())
             ->bulkActions($this->getTableBulkActions())
             ->actionsPosition(ActionsPosition::BeforeColumns)
+            ->actions($this->getTableActions())
             ->defaultSort('published_at', 'desc');
     }
 
