@@ -1,4 +1,5 @@
 <div>
+    {{--
     <x-banner>
         @if ($activeCategory)
             <h1>Category: {{ $activeCategory->name }}</h1>
@@ -6,7 +7,7 @@
             <h1>All Posts</h1>
         @endif
     </x-banner>
-
+    --}}
     <x-std tpl='container'>
         @if ($postChunks->isNotEmpty())
             <div class="mt-8 flex flex-col gap-4 lg:items-center lg:flex-row">
@@ -41,7 +42,9 @@
 
             @if ($currentChunk < count($postChunks) - 1)
                 <div class="mt-16 flex justify-center">
-                    <x-button label="Load more" wire:click="loadMore"></x-button>
+                    {{--
+                    <x-filament::button label="Load more" wire:click="loadMore"></x-filament::button>
+                    --}}
                 </div>
             @endif
 
