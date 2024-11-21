@@ -37,28 +37,27 @@ return [
 
     'fields' => [
         'id' => [
-            'label' => 'id'
+            'label' => 'id',
         ],
         'title' => [
-            'label' => 'Titolo'
+            'label' => 'Titolo',
         ],
         'category' => [
-            'title' => ['label' => 'Categoria']
+            'title' => ['label' => 'Categoria'],
         ],
         'published_at' => [
-            'label' => 'Publicato il'
+            'label' => 'Publicato il',
         ],
         'closed_at' => [
-            'label' => 'Chiuso il'
+            'label' => 'Chiuso il',
         ],
         'rewarded_at' => [
-            'label' => 'Premiato il'
+            'label' => 'Premiato il',
         ],
         'is_featured' => [
-            'label' => 'In primo piano'
+            'label' => 'In primo piano',
         ],
-        
-    ]
+    ],
 
     // 'fields' => [
     //     'name' => 'Nome',
