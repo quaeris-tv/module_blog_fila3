@@ -12,7 +12,7 @@
             Add Rating
         </x-filament::button>
 
-        {{-- <x-button label="Scommetti" wire:click="save"></x-button>
+        {{-- <x-filament::button label="Scommetti" wire:click="save"></x-filament::button>
 
         <button
             type="submit"
