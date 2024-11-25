@@ -65,8 +65,12 @@
             @if(Auth::check())
                 @php
                     $art = $article->toArray();
+                    // dddx($art);
                 @endphp
                 <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$art" wire:key="$article->uuid"/>
+
+                <livewire:widgets.ratings-done-widget :article_data="$art" :user_id="$_user->id"/>
+
             @endif
         </article>
     @endforeach
