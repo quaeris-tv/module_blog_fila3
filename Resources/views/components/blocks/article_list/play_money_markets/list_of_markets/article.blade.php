@@ -63,14 +63,9 @@
 
             {{-- @include('blog::components.blocks.article_list.play_money_markets.list_of_markets.article.ratings') --}}
             @if(Auth::check())
-                @php
-                    $art = $article->toArray();
-                    // dddx($art);
-                @endphp
-                <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$art" wire:key="$article->uuid"/>
+                <livewire:article.ratings-done :article_uuid="$article->uuid" :article_data="$article->toArray()" wire:key="$article->uuid"/>
 
-                <livewire:widgets.ratings-done-widget :article_data="$art" :user_id="$_user->id"/>
-
+                @livewire(\Modules\Predict\Http\Livewire\Widgets\RatingsDoneWidget::class, ['article_data' => $article->toArray(), 'user_id' => $_user->id])
             @endif
         </article>
     @endforeach
