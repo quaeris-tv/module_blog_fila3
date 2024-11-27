@@ -31,7 +31,7 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property string|null                                                                                                   $deleted_by
  * @property string|null                                                                                                   $slug
  * @property \Spatie\SchemalessAttributes\SchemalessAttributes|null                                                        $extra
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Article>                                   $articles
+ * @property \Illuminate\Database\Eloquent\Collection<int, Article>                                                        $articles
  * @property int|null                                                                                                      $articles_count
  * @property string                                                                                                        $avatar
  * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\DeviceUser>                                $deviceUsers
@@ -84,14 +84,14 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static EloquentBuilder|BaseProfile                     withoutPermission($permissions)
  * @method static EloquentBuilder|BaseProfile                     withoutRole($roles, $guard = null)
  *
- * @property \Modules\User\Models\DeviceUser                                                 $pivot
- * @property \Modules\User\Models\Membership                                                 $membership
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Transaction> $transanctions
- * @property int|null                                                                        $transanctions_count
- * @property \Modules\Xot\Contracts\ProfileContract|null                                     $creator
- * @property \Modules\Xot\Contracts\ProfileContract|null                                     $updater
- * @property int                                                                             $oauth_enable
- * @property int                                                                             $credentials_enable
+ * @property \Modules\User\Models\DeviceUser                            $pivot
+ * @property \Modules\User\Models\Membership                            $membership
+ * @property \Illuminate\Database\Eloquent\Collection<int, Transaction> $transanctions
+ * @property int|null                                                   $transanctions_count
+ * @property \Modules\Xot\Contracts\ProfileContract|null                $creator
+ * @property \Modules\Xot\Contracts\ProfileContract|null                $updater
+ * @property int                                                        $oauth_enable
+ * @property int                                                        $credentials_enable
  *
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCredentialsEnable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereOauthEnable($value)

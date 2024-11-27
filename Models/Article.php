@@ -29,14 +29,14 @@ use Webmozart\Assert\Assert;
  * Modules\Blog\Models\Article.
  *
  * @property Profile|null                                                                                               $author
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Category>                               $categories
+ * @property \Illuminate\Database\Eloquent\Collection<int, Category>                                                    $categories
  * @property int|null                                                                                                   $categories_count
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Comment>                                $comments
+ * @property \Illuminate\Database\Eloquent\Collection<int, Comment>                                                     $comments
  * @property int|null                                                                                                   $comments_count
  * @property string                                                                                                     $human_read_time
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
- * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\Blog\Models\Tag>                                    $tags
+ * @property \Illuminate\Database\Eloquent\Collection<int, Tag>                                                         $tags
  * @property \Illuminate\Database\Eloquent\Collection<int, \Spatie\ModelStatus\Status>                                  $statuses
  * @property int|null                                                                                                   $statuses_count
  * @property int|null                                                                                                   $tags_count

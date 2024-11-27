@@ -143,7 +143,7 @@ class ThemeComposer
     }
 
     /**
-     * @return \Illuminate\Support\Collection<(int|string), mixed>
+     * @return Collection<(int|string), mixed>
      */
     public function getMoreArticles(Model $model)
     {
