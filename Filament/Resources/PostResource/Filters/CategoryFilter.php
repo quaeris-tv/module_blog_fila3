@@ -15,7 +15,7 @@ class CategoryFilter extends SelectFilter
     protected function setUp(): void
     {
         parent::setUp();
-        $this->label('Filter By Category');
+        $this;
         $this->placeholder('Select a category to filter');
         // $this->relationship('category', 'name');
         $this->relationship('categories', 'title');

@@ -1,23 +1,31 @@
-<?php
+<?php 
+return array (
+  'fields' => 
+  array (
+    'title' => 
+    array (
+      'label' => 'title',
+    ),
+    'sub_title' => 
+    array (
+      'label' => 'sub_title',
+    ),
+    'method' => 
+    array (
+      'label' => 'method',
+    ),
+    'limit' => 
+    array (
+      'label' => 'limit',
+    ),
+    '_tpl' => 
+    array (
+      'label' => '_tpl',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+  ),
+);
 
-declare(strict_types=1);
-
-return [
-    'fields' => [
-        'title' => [
-            'label' => 'title',
-        ],
-        'sub_title' => [
-            'label' => 'sub_title',
-        ],
-        'method' => [
-            'label' => 'method',
-        ],
-        'limit' => [
-            'label' => 'limit',
-        ],
-        '_tpl' => [
-            'label' => '_tpl',
-        ],
-    ],
-];

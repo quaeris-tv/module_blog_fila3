@@ -4,43 +4,31 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Blocks;
 
-use Filament\Forms\Components\Builder\Block;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Modules\Blog\Models\Article;
-use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
+use Filament\Forms\Components\Builder\Block;
+use Modules\Xot\Filament\Blocks\XotBaseBlock;
 
-class ArticleList
+class ArticleList extends XotBaseBlock
 {
-    public static function make(
-        string $name = 'article_list',
-        string $context = 'form',
-    ): Block {
-        $view = 'blog::components.blocks.article_list.v1';
-        $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
 
-        return Block::make($name)
-            ->schema([
-                // Select::make('article_id')
-                //    ->label('Article')
-                //    ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
-                //    ->required(),
-                // TextInput::make('text')
-                //    ->label('Link text (optional)'),
+    public static function getBlockSchema(): array{
+       
+
+        return [
                 TextInput::make('title')
-                    ->label('Titolo')
+                    
                     ->helperText('Inserisci un titolo del blocco articoli')
                     ->required(),
                 TextInput::make('sub_title')
-                    ->label('Sotto Titolo')
+                    
                     ->helperText('Inserisci un sotto titolo del blocco articoli'),
                 TextInput::make('method')
-                    ->label('$_theme->{$method}')
+                    
                     ->hint('Inserisci il nome del metodo da richiamare nel tema')
                     ->required(),
                 /*
                 Select::make('type')
-                    ->label('Type')
+                    
                     ->options([
                         'latest' => 'latest',
                         'featured' => 'featured',
@@ -48,13 +36,9 @@ class ArticleList
                     ->required(),
                 */
                 TextInput::make('limit'),
-                Select::make('_tpl')
-                    ->label('layout')
-                    ->options($views)
-                    ->default('v1')
-                    ->required(),
-            ])
-            ->label('Lista Articoli')
-            ->columns('form' === $context ? 3 : 1);
+        ];
+               
     }
+
+   
 }

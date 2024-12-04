@@ -18,14 +18,14 @@ class ArticleCard
         return Block::make($name)
             ->schema([
                 Select::make('article_id')
-                    ->label('Article')
+                    
                     ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
                     ->required(),
 
                 TextInput::make('text')
-                    ->label('Link text (optional)'),
+                    ,
             ])
-            ->label('Link to article')
+            
             ->columns('form' === $context ? 2 : 1);
     }
 }
