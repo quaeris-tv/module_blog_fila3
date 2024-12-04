@@ -1,13 +1,14 @@
-<?php return array (
-  'fields' => 
-  array (
-    'title' => 
-    array (
-      'label' => 'title',
-    ),
-    'layout' => 
-    array (
-      'label' => 'layout',
-    ),
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'title' => [
+            'label' => 'title',
+        ],
+        'layout' => [
+            'label' => 'layout',
+        ],
+    ],
+];

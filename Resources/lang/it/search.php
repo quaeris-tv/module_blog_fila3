@@ -1,13 +1,14 @@
-<?php return array (
-  'fields' => 
-  array (
-    'limit' => 
-    array (
-      'label' => 'limit',
-    ),
-    'layout' => 
-    array (
-      'label' => 'layout',
-    ),
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'limit' => [
+            'label' => 'limit',
+        ],
+        'layout' => [
+            'label' => 'layout',
+        ],
+    ],
+];
