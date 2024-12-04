@@ -4,33 +4,21 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Blocks;
 
-use Filament\Forms\Components\Builder\Block;
+use Modules\Blog\Models\Article;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Modules\Blog\Models\Article;
-use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
+use Filament\Forms\Components\Builder\Block;
+use Modules\Xot\Filament\Blocks\XotBaseBlock;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
+use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
 
-class ArticleList
+class ArticleList extends XotBaseBlock
 {
-    public static function make(
-        string $name = 'article_list',
-        string $context = 'form',
-    ): Block {
-        $options = app(GetViewBlocksOptionsByTypeAction::class)
-            ->execute('article_list', false);
 
-        $view = 'blog::components.blocks.article_list.v1';
-        $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
+    public static function getBlockSchema(): array{
+       
 
-        return Block::make($name)
-            ->schema([
-                // Select::make('article_id')
-                //    
-                //    ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
-                //    ->required(),
-                // TextInput::make('text')
-                //    ,
+        return [
                 TextInput::make('title')
                     
                     ->helperText('Inserisci un titolo del blocco articoli')
@@ -59,10 +47,9 @@ class ArticleList
                     ->default('v1')
                     ->required(),
                 */
-                Select::make('view')
-                        ->options($options),
-            ])
-            
-            ->columns('form' === $context ? 3 : 1);
+                    ];
+               
     }
+
+   
 }
