@@ -21,23 +21,23 @@ class ProfileOrLogin
         return Block::make($name)
             ->schema([
                 // TextInput::make('title')
-                // ->label('Titolo')
+                // 
                 // ->helperText('Inserisci un titolo del blocco articoli')
                 // ->required(),
                 // TextInput::make('sub_title')
-                //     ->label('Sotto Titolo')
+                //     
                 //     ->helperText('Inserisci un sotto titolo del blocco articoli'),
                 // TextInput::make('method')
-                //         ->label('$_theme->{$method}')
+                //         
                 //         ->hint('Inserisci il nome del metodo da richiamare nel tema')
                 //         ->required(),
                 Select::make('_tpl')
-                    ->label('layout')
+                    
                     ->options($views)
                     ->default('v1')
                     ->required(),
             ])
-            ->label('Profilo/Login')
+            
             ->columns('form' === $context ? 3 : 1);
     }
 }

@@ -22,13 +22,13 @@ class DropdownMenu
                         TextInput::make('title')
                             ->required(),
                         Select::make('type')
-                            ->label('Cosa vuoi visualizzare')
+                            
                             ->options([
                                 'categories' => 'Categorie',
                             ])
                             ->required(),
                         Select::make('layout')
-                            ->label('layout')
+                            
                             ->options([
                                 'v1' => 'layout 1 (Bootstrap)',
                             ])

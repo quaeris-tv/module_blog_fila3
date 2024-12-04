@@ -18,13 +18,13 @@ class PageCard
         return Block::make($name)
             ->schema([
                 Select::make('page_id')
-                    ->label('Page')
+                    
                     ->options(Page::orderBy('title')->pluck('title', 'id')),
 
                 TextInput::make('text')
-                    ->label('Link text (optional)'),
+                    ,
             ])
-            ->label('Link to page')
+            
             ->columns('form' === $context ? 2 : 1);
     }
 }

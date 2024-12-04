@@ -56,7 +56,7 @@ class ViewArticle extends ViewRecord
                 }),
             /*
             Actions\Action::make('translate')
-                ->label('Copia Blocchi nelle altre lingue')
+                
                 ->tooltip('translate')
                 ->icon('heroicon-o-language')
                 ->requiresConfirmation()

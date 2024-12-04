@@ -8,6 +8,7 @@ use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Modules\Blog\Models\Article;
+use Modules\Xot\Actions\Filament\Block\GetViewBlocksOptionsByTypeAction;
 use Modules\Xot\Actions\View\GetViewsSiblingsAndSelfAction;
 
 class ArticleList
@@ -16,31 +17,34 @@ class ArticleList
         string $name = 'article_list',
         string $context = 'form',
     ): Block {
+        $options = app(GetViewBlocksOptionsByTypeAction::class)
+            ->execute('article_list', false);
+
         $view = 'blog::components.blocks.article_list.v1';
         $views = app(GetViewsSiblingsAndSelfAction::class)->execute($view);
 
         return Block::make($name)
             ->schema([
                 // Select::make('article_id')
-                //    ->label('Article')
+                //    
                 //    ->options(Article::published()->orderBy('title')->pluck('title', 'id'))
                 //    ->required(),
                 // TextInput::make('text')
-                //    ->label('Link text (optional)'),
+                //    ,
                 TextInput::make('title')
-                    ->label('Titolo')
+                    
                     ->helperText('Inserisci un titolo del blocco articoli')
                     ->required(),
                 TextInput::make('sub_title')
-                    ->label('Sotto Titolo')
+                    
                     ->helperText('Inserisci un sotto titolo del blocco articoli'),
                 TextInput::make('method')
-                    ->label('$_theme->{$method}')
+                    
                     ->hint('Inserisci il nome del metodo da richiamare nel tema')
                     ->required(),
                 /*
                 Select::make('type')
-                    ->label('Type')
+                    
                     ->options([
                         'latest' => 'latest',
                         'featured' => 'featured',
@@ -48,13 +52,17 @@ class ArticleList
                     ->required(),
                 */
                 TextInput::make('limit'),
+                /*
                 Select::make('_tpl')
-                    ->label('layout')
+                    
                     ->options($views)
                     ->default('v1')
                     ->required(),
+                */
+                Select::make('view')
+                        ->options($options),
             ])
-            ->label('Lista Articoli')
+            
             ->columns('form' === $context ? 3 : 1);
     }
 }
