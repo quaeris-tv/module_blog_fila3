@@ -59,7 +59,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property int|null                                                                                                      $teams_count
  * @property \Modules\Xot\Contracts\UserContract|null                                                                      $user
  * @property string|null                                                                                                   $user_name
- *
  * @method static \Modules\Blog\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Profile   newQuery()
@@ -83,7 +82,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @method static EloquentBuilder|BaseProfile                     withExtraAttributes()
  * @method static EloquentBuilder|BaseProfile                     withoutPermission($permissions)
  * @method static EloquentBuilder|BaseProfile                     withoutRole($roles, $guard = null)
- *
  * @property \Modules\User\Models\DeviceUser                            $pivot
  * @property \Modules\User\Models\Membership                            $membership
  * @property \Illuminate\Database\Eloquent\Collection<int, Transaction> $transanctions
@@ -92,10 +90,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  * @property \Modules\Xot\Contracts\ProfileContract|null                $updater
  * @property int                                                        $oauth_enable
  * @property int                                                        $credentials_enable
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereCredentialsEnable($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profile whereOauthEnable($value)
- *
  * @mixin \Eloquent
  */
 class Profile extends BaseProfile
