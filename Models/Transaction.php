@@ -47,6 +47,11 @@ use Webmozart\Assert\Assert;
  * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
+ * @property float|null                                                                                                 $stocks_count
+ * @property float|null                                                                                                 $stocks_value
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereStocksCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Transaction whereStocksValue($value)
  *
  * @mixin \Eloquent
  */

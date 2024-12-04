@@ -94,7 +94,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Actions::make([
                     /*
                     InlinePreviewAction::make()
-                        
+
                         ->builderName('content_blocks'),
                     */
                 ])
@@ -102,7 +102,7 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleContent::make('content_blocks')
-                    
+
                     ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
@@ -111,7 +111,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Actions::make([
                     /*
                     InlinePreviewAction::make()
-                        
+
                         ->builderName('content_blocks'),
                     */
                 ])
@@ -119,7 +119,7 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleSidebar::make('sidebar_blocks')
-                    
+
                     // ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
@@ -128,7 +128,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Actions::make([
                     /*
                     InlinePreviewAction::make()
-                        
+
                         ->builderName('footer_blocks'),
                     */
                 ])
@@ -136,16 +136,16 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleFooter::make('footer_blocks')
-                    
+
                     ->columnSpanFull(),
             ])->collapsible(),
 
             Forms\Components\TextInput::make('main_image_url')
-                
+
                 ->columnSpanFull(),
 
             // Forms\Components\FileUpload::make('main_image_upload')
-            //     
+            //
             //     ->columnSpanFull(),
             SpatieMediaLibraryFileUpload::make('main_image_upload')
                 // ->image()

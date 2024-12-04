@@ -18,14 +18,14 @@ class Search
             ->schema([
                 TextInput::make('limit'),
                 Select::make('layout')
-                    
+
                     ->options([
                         'v1' => 'layout 1 (Bootstrap)',
                     ])
                     ->default('v1')
                     ->required(),
             ])
-            
+
             ->columns('form' === $context ? 3 : 1);
     }
 }

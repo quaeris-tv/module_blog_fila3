@@ -17,6 +17,7 @@ use Modules\Rating\Models\Contracts\HasRatingContract;
 use Modules\Rating\Models\Rating;
 use Modules\Rating\Models\Traits\HasRating;
 use Modules\Xot\Contracts\UserContract;
+use Modules\Xot\Datas\XotData;
 use Parental\HasChildren;
 use Safe\DateTime;
 use Spatie\Feed\Feedable;
@@ -171,6 +172,13 @@ use Webmozart\Assert\Assert;
  *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
+ * @property string|null                                 $type
+ * @property float|null                                  $stocks_count
+ * @property float|null                                  $stocks_value
+ *
+ * @method static EloquentBuilder<static>|Article whereStocksCount($value)
+ * @method static EloquentBuilder<static>|Article whereStocksValue($value)
+ * @method static EloquentBuilder<static>|Article whereType($value)
  *
  * @mixin \Eloquent
  */

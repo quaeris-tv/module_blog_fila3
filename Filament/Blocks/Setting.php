@@ -16,7 +16,7 @@ class Setting
         return Block::make($name)
             ->schema([
                 Select::make('version')
-                    
+
                     ->options([
                         'v1' => 'versione 1 (Bootstrap)',
                         // 'v2' => 'versione 2 (Bootstrap)',
@@ -26,7 +26,7 @@ class Setting
                     ])
                     ->required(),
             ])
-            
+
             ->columns('form' === $context ? 3 : 1);
     }
 }

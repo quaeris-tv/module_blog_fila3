@@ -1,13 +1,14 @@
-<?php return array (
-  'fields' => 
-  array (
-    'article_id' => 
-    array (
-      'label' => 'article_id',
-    ),
-    'text' => 
-    array (
-      'label' => 'text',
-    ),
-  ),
-);
+<?php
+
+declare(strict_types=1);
+
+return [
+    'fields' => [
+        'article_id' => [
+            'label' => 'article_id',
+        ],
+        'text' => [
+            'label' => 'text',
+        ],
+    ],
+];

@@ -23,7 +23,7 @@ class EditArticle extends EditRecord
             Actions\LocaleSwitcher::make(),
             Actions\DeleteAction::make(),
             Actions\Action::make('translate')
-                
+
                 ->tooltip('translate')
                 ->icon('heroicon-o-language')
                 ->requiresConfirmation()
