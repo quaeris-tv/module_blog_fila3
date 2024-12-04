@@ -26,7 +26,6 @@ use Modules\Xot\Contracts\UserContract;
  * @property int|null                                               $comments_count
  * @property Comment|null                                           $parentComment
  * @property UserContract|null                                      $user
- *
  * @method static \Modules\Blog\Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   newQuery()
@@ -41,17 +40,14 @@ use Modules\Xot\Contracts\UserContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Comment   withoutTrashed()
- *
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property string|null                     $deleted_by
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereUpdatedBy($value)
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null $updater
  * @property string|null                                 $commentable_type
@@ -62,7 +58,6 @@ use Modules\Xot\Contracts\UserContract;
  * @property string|null                                 $extra
  * @property string|null                                 $approved_at
  * @property string                                      $original_text
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereApprovedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereCommentableType($value)
@@ -71,13 +66,11 @@ use Modules\Xot\Contracts\UserContract;
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereExtra($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereOriginalText($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Comment whereText($value)
- *
  * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $creator
  * @property \Modules\Xot\Contracts\ProfileContract|null                                                                $updater
  * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media> $media
  * @property int|null                                                                                                   $media_count
  *                                                                                                                                   >>>>>>> origin/master
- *
  * @mixin \Eloquent
  */
 class Comment extends BaseModel
