@@ -34,7 +34,7 @@ class BannerResource extends XotBaseResource
             ->schema([
                 Forms\Components\Grid::make()->columns(2)->schema([
                     Forms\Components\TextInput::make('title')
-                        
+
                         ->columnSpan(1)
                         ->required(),
                     Forms\Components\TextInput::make('description')
@@ -83,19 +83,19 @@ class BannerResource extends XotBaseResource
     //     return $table
     //         ->columns([
     //             Tables\Columns\TextColumn::make('id')
-    //                 
+    //
     //                 ->sortable()
     //                 ->searchable(),
     //             Tables\Columns\TextColumn::make('title')
-    //                 
+    //
     //                 ->sortable()
     //                 ->searchable(),
     //             Tables\Columns\TextColumn::make('category.title')
-    //                 
+    //
     //                 ->sortable()
     //                 ->searchable(),
     //             SpatieMediaLibraryImageColumn::make('image')
-    //                 
+    //
     //                 ->collection('banner'),
     //         ])
     //         ->filters([

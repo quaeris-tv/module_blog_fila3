@@ -164,12 +164,9 @@ class Setting extends Component implements HasActions, HasForms
                     ->disk('uploads')
                     ->directory('photo_profile')
                     ->statePath('data'),
-                TextInput::make('user_name')
-                    ,
-                TextInput::make('first_name')
-                    ,
-                TextInput::make('last_name')
-                    ,
+                TextInput::make('user_name'),
+                TextInput::make('first_name'),
+                TextInput::make('last_name'),
             ])
             ->modalHeading('Edit Profile')
             ->closeModalByClickingAway(false)

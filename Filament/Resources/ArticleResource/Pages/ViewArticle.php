@@ -56,7 +56,7 @@ class ViewArticle extends ViewRecord
                 }),
             /*
             Actions\Action::make('translate')
-                
+
                 ->tooltip('translate')
                 ->icon('heroicon-o-language')
                 ->requiresConfirmation()

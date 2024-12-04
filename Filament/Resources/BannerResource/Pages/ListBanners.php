@@ -49,19 +49,19 @@ class ListBanners extends XotBaseListRecords
     {
         return [
             Tables\Columns\TextColumn::make('id')
-                
+
                 ->sortable()
                 ->searchable(),
             Tables\Columns\TextColumn::make('title')
-                
+
                 ->sortable()
                 ->searchable(),
             Tables\Columns\TextColumn::make('category.title')
-                
+
                 ->sortable()
                 ->searchable(),
             SpatieMediaLibraryImageColumn::make('image')
-                
+
                 ->collection('banner'),
         ];
     }

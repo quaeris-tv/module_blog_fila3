@@ -17,14 +17,14 @@ class Filter
         return Block::make($name)
             ->schema([
                 // TextInput::make('title')
-                //     
+                //
                 //     ->helperText('Inserisci un titolo della classifica')
                 //     ->required(),
                 // TextInput::make('sub_title')
-                //     
+                //
                 //     ->helperText('Inserisci un sotto titolo della classifica'),
                 // Select::make('type')
-                //     
+                //
                 //     ->options([
                 //         'latest' => 'latest',
                 //         // 'featured' => 'featured',
@@ -32,7 +32,7 @@ class Filter
                 //     ->required(),
                 // TextInput::make('limit'),
                 Select::make('layout')
-                    
+
                     ->options([
                         'v1' => 'layout 1 (bootstrap)',
                         // 'v2' => 'versione 2',
@@ -42,7 +42,7 @@ class Filter
                     ]),
                 // ->required(),
             ])
-            
+
             ->columns('form' === $context ? 3 : 1);
     }
 }

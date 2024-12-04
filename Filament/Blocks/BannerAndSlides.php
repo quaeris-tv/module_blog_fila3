@@ -19,7 +19,7 @@ class BannerAndSlides
                 TextInput::make('title')
                     ->required(),
                 Select::make('layout')
-                    
+
                     ->options([
                         'v1' => 'layout 1 (Bootstrap)',
                     ])

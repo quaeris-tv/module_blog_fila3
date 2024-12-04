@@ -53,7 +53,7 @@ class ListArticles extends XotBaseListRecords
                 ->sortable(),
 
             // Tables\Columns\TextColumn::make('id')
-            //     
+            //
             //     ->formatStateUsing(function ($state, Article $article) {
             //         return $article->title . ' ' . $article->category->title;
             //     }),
