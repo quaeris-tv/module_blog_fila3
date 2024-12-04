@@ -21,14 +21,14 @@ class Leaderboard
         return Block::make($name)
             ->schema([
                 TextInput::make('title')
-                    ->label('Titolo')
+                    
                     ->helperText('Inserisci un titolo della classifica')
                     ->required(),
                 TextInput::make('sub_title')
-                    ->label('Sotto Titolo')
+                    
                     ->helperText('Inserisci un sotto titolo della classifica'),
                 // Select::make('type')
-                //     ->label('Type')
+                //     
                 //     ->options([
                 //         'latest' => 'latest',
                 //         // 'featured' => 'featured',
@@ -36,7 +36,7 @@ class Leaderboard
                 //     ->required(),
                 TextInput::make('limit'),
                 // Select::make('version')
-                // ->label('version')
+                // 
                 // ->options([
                 //     'v1' => 'versione 1 (Tailwind)',
                 //     'v2' => 'versione 2 (Bootstrap)',
@@ -46,14 +46,14 @@ class Leaderboard
                 // ]),
 
                 Select::make('_tpl')
-                    ->label('layout')
+                    
                     ->options($views)
                     ->default('v1')
                     ->required(),
 
                 // ->required(),
             ])
-            ->label('leaderboard')
+            
             ->columns('form' === $context ? 3 : 1);
     }
 }

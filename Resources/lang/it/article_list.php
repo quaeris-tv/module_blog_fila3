@@ -1,4 +1,5 @@
-<?php return array (
+<?php 
+return array (
   'fields' => 
   array (
     'title' => 
@@ -21,5 +22,9 @@
     array (
       'label' => '_tpl',
     ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
   ),
-);
+);

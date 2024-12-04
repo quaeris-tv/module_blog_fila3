@@ -94,7 +94,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Actions::make([
                     /*
                     InlinePreviewAction::make()
-                        ->label('Preview Content Blocks')
+                        
                         ->builderName('content_blocks'),
                     */
                 ])
@@ -102,7 +102,7 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleContent::make('content_blocks')
-                    ->label('Content')
+                    
                     ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
@@ -111,7 +111,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Actions::make([
                     /*
                     InlinePreviewAction::make()
-                        ->label('Preview Content Blocks')
+                        
                         ->builderName('content_blocks'),
                     */
                 ])
@@ -119,7 +119,7 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleSidebar::make('sidebar_blocks')
-                    ->label('Sidebar')
+                    
                     // ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
@@ -128,7 +128,7 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\Actions::make([
                     /*
                     InlinePreviewAction::make()
-                        ->label('Open Footer Editor')
+                        
                         ->builderName('footer_blocks'),
                     */
                 ])
@@ -136,16 +136,16 @@ class ArticleResource extends XotBaseResource
                     ->alignRight(),
 
                 ArticleFooter::make('footer_blocks')
-                    ->label('Footer')
+                    
                     ->columnSpanFull(),
             ])->collapsible(),
 
             Forms\Components\TextInput::make('main_image_url')
-                ->label('Main image URL')
+                
                 ->columnSpanFull(),
 
             // Forms\Components\FileUpload::make('main_image_upload')
-            //     ->label('Main image upload')
+            //     
             //     ->columnSpanFull(),
             SpatieMediaLibraryFileUpload::make('main_image_upload')
                 // ->image()

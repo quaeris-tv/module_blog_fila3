@@ -44,7 +44,7 @@ class CategoryResource extends XotBaseResource
                 ->required()
                 ->maxLength(2048),
             Forms\Components\Select::make('parent_id')
-                ->label('Categoria Padre')
+                
                 ->options(
                     // Category::where('parent_id', null)->pluck('title', 'id')
                     // Category::tree()->get()->toTree()->pluck('title', 'id')

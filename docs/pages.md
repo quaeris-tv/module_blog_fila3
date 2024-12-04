@@ -20,7 +20,7 @@ per poter poi configurare i blocchi che verranno utilizzati nella pagina.
 ```php
 Forms\Components\Section::make('Page Content')->schema([
     PageContent::make('content_blocks')
-        ->label('Blocchi Contenuto')
+        
         ->required()
         ->columnSpanFull(),
 ]),
@@ -29,7 +29,7 @@ Forms\Components\Section::make('Page Content')->schema([
 
 Forms\Components\Section::make('Sidebar Content')->schema([
     LeftSidebarContent::make('sidebar_blocks')
-        ->label('Blocchi Sidebar')
+        
         ->columnSpanFull(),
 ]),
 ```
