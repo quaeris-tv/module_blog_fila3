@@ -58,5 +58,9 @@
     array (
       'label' => 'Categoria',
     ),
+    'fileContent' => 
+    array (
+      'label' => 'fileContent',
+    ),
   ),
 );
