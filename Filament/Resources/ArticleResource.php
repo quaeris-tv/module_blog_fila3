@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Blog\Filament\Resources;
 
+use CodeWithDennis\FilamentSelectTree\SelectTree;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
@@ -51,10 +52,12 @@ class ArticleResource extends XotBaseResource
                 Forms\Components\TextInput::make('slug')
                     ->columnSpan(1)
                     ->required(),
+                /*
                 Forms\Components\DateTimePicker::make('closed_at')
                     ->columnSpan(1)
                     ->helperText('Determina fino a quando è possibile scommettere')
                     ->required(),
+                */
                 /*
                 Forms\Components\TextInput::make('description')
                     ->columnSpanFull()
@@ -66,16 +69,18 @@ class ArticleResource extends XotBaseResource
                     ->nullable()
                 // ->required()
                 ,
+                /*
                 Forms\Components\DateTimePicker::make('rewarded_at')
                     ->nullable()
                     ->columnSpan(1),
-
+                */
                 /*
                 Forms\Components\Select::make('category_id')
                     ->relationship('category', 'name')
                     ->columnSpan(1)
                     ->required(),
                 */
+                // *
                 Forms\Components\Select::make('category_id')
                             // ->multiple()
                     ->required()
@@ -83,6 +88,12 @@ class ArticleResource extends XotBaseResource
                     // ->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
                     ->createOptionForm(CategoryResource::getFormFields()),
+                // */
+                /*
+                SelectTree::make('category_id')
+                    ->relationship('category', 'title', 'parent_id')
+                    ->enableBranchNode(),
+                // */
                 // SpatieTagsInput::make('tags'),
                 Forms\Components\Toggle::make('is_featured')
                     ->columnSpanFull()
@@ -92,11 +103,6 @@ class ArticleResource extends XotBaseResource
 
             Forms\Components\Section::make('Article Content')->schema([
                 Forms\Components\Actions::make([
-                    /*
-                    InlinePreviewAction::make()
-
-                        ->builderName('content_blocks'),
-                    */
                 ])
                     ->columnSpanFull()
                     ->alignRight(),
@@ -123,14 +129,10 @@ class ArticleResource extends XotBaseResource
                     // ->required()
                     ->columnSpanFull(),
             ])->collapsible(),
-
+            /*
             Forms\Components\Section::make('Article Footer')->schema([
                 Forms\Components\Actions::make([
-                    /*
-                    InlinePreviewAction::make()
 
-                        ->builderName('footer_blocks'),
-                    */
                 ])
                     ->columnSpanFull()
                     ->alignRight(),
@@ -139,7 +141,7 @@ class ArticleResource extends XotBaseResource
 
                     ->columnSpanFull(),
             ])->collapsible(),
-
+            */
             Forms\Components\TextInput::make('main_image_url')
 
                 ->columnSpanFull(),
@@ -173,7 +175,7 @@ class ArticleResource extends XotBaseResource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\RatingsRelationManager::class,
+            // RelationManagers\RatingsRelationManager::class,
         ];
     }
 

@@ -44,9 +44,9 @@ class ListArticles extends XotBaseListRecords
             Tables\Columns\TextColumn::make('closed_at')
                 ->dateTime()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('rewarded_at')
-                ->dateTime()
-                ->sortable(),
+            // Tables\Columns\TextColumn::make('rewarded_at')
+            //    ->dateTime()
+            //    ->sortable(),
 
             Tables\Columns\IconColumn::make('is_featured')
                 ->boolean()
