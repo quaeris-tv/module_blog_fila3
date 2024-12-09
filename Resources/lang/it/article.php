@@ -62,5 +62,40 @@
     array (
       'label' => 'fileContent',
     ),
+    'file' => 
+    array (
+      'label' => 'file',
+    ),
+    'main_image_upload' => 
+    array (
+      'label' => 'main_image_upload',
+    ),
+    'main_image_url' => 
+    array (
+      'label' => 'main_image_url',
+    ),
+    'category_id' => 
+    array (
+      'label' => 'category_id',
+    ),
+    'slug' => 
+    array (
+      'label' => 'slug',
+    ),
+  ),
+  'actions' => 
+  array (
+    'import' => 
+    array (
+      'label' => 'import',
+    ),
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'activeLocale' => 
+    array (
+      'label' => 'activeLocale',
+    ),
   ),
 );

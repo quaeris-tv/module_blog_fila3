@@ -30,8 +30,8 @@ class ViewArticle extends ViewRecord
             ->schema([
                 // ...
                 TextEntry::make('title'),
-                TextEntry::make('closed_at'),
-                TextEntry::make('rewarded_at'),
+                // TextEntry::make('closed_at'), //e' un articolo
+                // TextEntry::make('rewarded_at'),
             ]);
     }
 
@@ -43,6 +43,7 @@ class ViewArticle extends ViewRecord
             Actions\DeleteAction::make(),
             // BetHeaderAction::make(),
             // WinHeaderAction::make(),
+            /*
             Actions\Action::make('change_closed_at')
                 ->tooltip('cambia data chiusura')
                 ->label('')
@@ -54,6 +55,7 @@ class ViewArticle extends ViewRecord
                 ->action(function (array $data, $record): void {
                     $record->update($data);
                 }),
+            */
             /*
             Actions\Action::make('translate')
 
@@ -81,7 +83,7 @@ class ViewArticle extends ViewRecord
     protected function getHeaderWidgets(): array
     {
         return [
-            RatingWidgets\StatsOverview::class,
+            // RatingWidgets\StatsOverview::class,
         ];
     }
 }
