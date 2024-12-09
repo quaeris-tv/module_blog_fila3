@@ -38,5 +38,23 @@
     array (
       'label' => 'title',
     ),
+    'parent' => 
+    array (
+      'title' => 
+      array (
+        'label' => 'parent.title',
+      ),
+    ),
+  ),
+  'actions' => 
+  array (
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'activeLocale' => 
+    array (
+      'label' => 'activeLocale',
+    ),
   ),
 );
