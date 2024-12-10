@@ -82,6 +82,18 @@
     array (
       'label' => 'slug',
     ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    'delete' => 
+    array (
+      'label' => 'delete',
+    ),
   ),
   'actions' => 
   array (
