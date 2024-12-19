@@ -28,7 +28,7 @@ class TranslateContentAction
                     $model_content[$locale] = $model_content['it'];
                 }
             }
-            // @phpstan-ignore-next-line
+            // @phpstan-ignore property.notFound
             $model->content_blocks = $model_content;
         }
 
@@ -41,7 +41,7 @@ class TranslateContentAction
                     $model_content[$locale] = $model_content['it'];
                 }
             }
-            // @phpstan-ignore-next-line
+            // @phpstan-ignore property.notFound
             $model->sidebar_blocks = $model_content;
         }
 
@@ -54,7 +54,7 @@ class TranslateContentAction
                     $model_content[$locale] = $model_content['it'];
                 }
             }
-            // @phpstan-ignore-next-line
+            // @phpstan-ignore property.notFound
             $model->footer_blocks = $model_content;
         }
 

@@ -13,7 +13,7 @@ class GetTreeOptions
 
     public function execute(Model $model): array
     {
-        // @phpstan-ignore-next-line
+        // @phpstan-ignore staticMethod.notFound
         $models = $model::tree()->get()->toTree();
         $results = [];
         foreach ($models as $mod) {

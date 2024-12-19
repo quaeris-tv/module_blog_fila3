@@ -135,7 +135,7 @@ class Banner extends BaseModel implements HasMedia
      */
     public function registerMediaConversions(?Media $media = null): void
     {
-        // @phpstan-ignore-next-line
+        // @phpstan-ignore method.notFound
         $this->addMediaConversion('cover')
         // @phpstan-ignore-next-line
             // ->format(Manipulations::FORMAT_WEBP)

@@ -97,7 +97,7 @@ class Setting extends Component implements HasActions, HasForms
             ->modalSubmitActionLabel('Update email')
             ->modalCancelActionLabel('Cancel')
             ->action(function (array $data): void {
-                // @phpstan-ignore-next-line
+                // @phpstan-ignore property.notFound
                 $verified = $this->model->email === $data['email'] ? $this->model->email_verified_at : null;
 
                 $this->model->update([
