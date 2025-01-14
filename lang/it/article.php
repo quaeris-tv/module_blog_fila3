@@ -1,4 +1,5 @@
-<?php return array (
+<?php 
+return array (
   'navigation' => 
   array (
     'name' => 'Articolo',
@@ -12,7 +13,7 @@
   array (
     'no_import' => 'Nessuna cifra inserita',
     'import_zero' => 'Nessuna cifra inserita',
-    'import_min' => 'Hai superato la cifra di :credits: crediti',
+    'import_min' => 'Hai superato la cifra di :credits crediti',
     'no_choice' => 'Nessuna opzione scelta',
   ),
   'single_expired' => 'Scaduto',
@@ -110,4 +111,4 @@
       'label' => 'activeLocale',
     ),
   ),
-);
+);
