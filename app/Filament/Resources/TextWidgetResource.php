@@ -22,10 +22,9 @@ class TextWidgetResource extends XotBaseResource
 
     // protected static ?string $navigationGroup = 'Content';
 
-    public static function form(Form $form): Form
+    public static function getFormSchema(): array
     {
-        return $form
-            ->schema([
+        return [
                 Forms\Components\TextInput::make('key')
                     ->required()
                     ->maxLength(255),
@@ -47,7 +46,7 @@ class TextWidgetResource extends XotBaseResource
                 Forms\Components\RichEditor::make('content'),
                 Forms\Components\Toggle::make('active')
                     ->required(),
-            ])->columns(1);
+            ];
     }
 
     public static function table(Table $table): Table

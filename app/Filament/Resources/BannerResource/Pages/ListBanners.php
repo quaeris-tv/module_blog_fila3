@@ -16,7 +16,7 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Support\Facades\File;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Modules\Blog\Actions\Banner\ImportBannerFromByJsonTextAction;
-use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListBanners extends XotBaseListRecords
 {

@@ -16,6 +16,12 @@ class ProfileResource extends BaseProfileResource
 
     protected static ?string $model = Profile::class;
 
+    public static function getFormSchema(): array
+    {
+        return [
+        ];
+    }
+
     public static function getRelations(): array
     {
         return [
