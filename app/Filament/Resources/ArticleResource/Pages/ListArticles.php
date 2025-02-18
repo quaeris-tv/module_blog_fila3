@@ -16,7 +16,7 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Modules\Blog\Actions\Article\ImportArticlesFromByJsonTextAction;
 use Modules\Blog\Filament\Resources\ArticleResource;
 use Modules\Blog\Models\Category;
-use Modules\Xot\Filament\Pages\XotBaseListRecords;
+use Modules\Xot\Filament\Resources\Pages\XotBaseListRecords;
 
 class ListArticles extends XotBaseListRecords
 {
