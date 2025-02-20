@@ -73,12 +73,6 @@ class CategoryResource extends XotBaseResource
         ];
     }
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema(static::getFormFields());
-    }
-
     public static function getPages(): array
     {
         return [

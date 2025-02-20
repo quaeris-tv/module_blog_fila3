@@ -7,6 +7,9 @@
     array (
       'name' => 'Content',
     ),
+    'label' => 'category.navigation',
+    'icon' => 'category.navigation',
+    'sort' => 51,
   ),
   'show' => 
   array (
@@ -45,6 +48,42 @@
         'label' => 'parent.title',
       ),
     ),
+    'create' => 
+    array (
+      'label' => 'create',
+    ),
+    'view' => 
+    array (
+      'label' => 'view',
+    ),
+    'edit' => 
+    array (
+      'label' => 'edit',
+    ),
+    'delete' => 
+    array (
+      'label' => 'delete',
+    ),
+    'openFilters' => 
+    array (
+      'label' => 'openFilters',
+    ),
+    'applyFilters' => 
+    array (
+      'label' => 'applyFilters',
+    ),
+    'resetFilters' => 
+    array (
+      'label' => 'resetFilters',
+    ),
+    'reorderRecords' => 
+    array (
+      'label' => 'reorderRecords',
+    ),
+    'toggleColumns' => 
+    array (
+      'label' => 'toggleColumns',
+    ),
   ),
   'actions' => 
   array (
@@ -56,5 +95,9 @@
     array (
       'label' => 'activeLocale',
     ),
+  ),
+  'model' => 
+  array (
+    'label' => 'category.model',
   ),
 );

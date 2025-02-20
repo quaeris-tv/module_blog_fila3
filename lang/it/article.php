@@ -1,5 +1,4 @@
-<?php 
-return array (
+<?php return array (
   'navigation' => 
   array (
     'name' => 'Articolo',
@@ -8,6 +7,9 @@ return array (
     array (
       'name' => 'Content',
     ),
+    'label' => 'article.navigation',
+    'icon' => 'article.navigation',
+    'sort' => 100,
   ),
   'rating' => 
   array (
@@ -111,4 +113,8 @@ return array (
       'label' => 'activeLocale',
     ),
   ),
-);
+  'model' => 
+  array (
+    'label' => 'article.model',
+  ),
+);

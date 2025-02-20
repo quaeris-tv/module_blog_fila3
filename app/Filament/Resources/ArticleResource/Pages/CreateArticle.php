@@ -7,8 +7,9 @@ namespace Modules\Blog\Filament\Resources\ArticleResource\Pages;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Modules\Blog\Filament\Resources\ArticleResource;
+use Modules\Xot\Filament\Resources\Pages\XotBaseCreateRecord;
 
-class CreateArticle extends CreateRecord
+class CreateArticle extends XotBaseCreateRecord
 {
     use CreateRecord\Concerns\Translatable;
 

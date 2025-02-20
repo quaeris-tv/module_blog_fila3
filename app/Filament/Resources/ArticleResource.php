@@ -89,7 +89,7 @@ class ArticleResource extends XotBaseResource
                      // ->relationship('categories', 'title')
                     // ->relationship('category', 'title')
                     ->options(Category::getTreeCategoryOptions())
-                    ->createOptionForm(CategoryResource::getFormFields()),
+                    ->createOptionForm(CategoryResource::getFormSchema()),
                 // */
                 /*
                 SelectTree::make('category_id')

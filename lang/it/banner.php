@@ -7,6 +7,9 @@
     array (
       'name' => 'Content',
     ),
+    'label' => 'banner.navigation',
+    'icon' => 'banner.navigation',
+    'sort' => 44,
   ),
   'fields' => 
   array (

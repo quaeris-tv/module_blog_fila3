@@ -1,1 +1,1 @@
-[{"name":"show-article-command","class":"ShowArticleCommand","module":null,"path":null,"ns":"Modules\\Blog\\ShowArticleCommand"},{"name":"show-article-list-command","class":"ShowArticleListCommand","module":null,"path":null,"ns":"Modules\\Blog\\ShowArticleListCommand"}]
+[{"name":"show-article-command","class":"ShowArticleCommand","module":null,"path":null,"ns":"Modules\\Blog\\Console\\Commands\\ShowArticleCommand"},{"name":"show-article-list-command","class":"ShowArticleListCommand","module":null,"path":null,"ns":"Modules\\Blog\\Console\\Commands\\ShowArticleListCommand"}]

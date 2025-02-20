@@ -13,51 +13,61 @@ class TranslateContentAction
 {
     public function execute(string $model_class, string $article_id, array $locales, array $data, string $class): void
     {
-        // dddx([app(GetModelClassByModelTypeAction::class)->execute($model_class), Article::class]);
-        // dddx(app($class));
-        Assert::isInstanceOf($model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id), app($class), '['.__LINE__.']['.__FILE__.']');
+        // Recupera il modello corrispondente all'ID
+        $model = app(GetModelByModelTypeAction::class)->execute($model_class, $article_id);
+        Assert::isInstanceOf($model, app($class), '['.__LINE__.']['.__FILE__.']');
 
+        // Converti il modello in array e verifica che sia valido
         Assert::isArray($model_contents = $model->toArray(), '['.__LINE__.']['.__FILE__.']');
 
-        if ($data['content_blocks']) {
-            $model_content = $model_contents['content_blocks'];
-
-            // per ora do per scontato che la traduzione italiana esista
-            foreach ($locales as $locale) {
-                if (! isset($model_content[$locale])) {
-                    $model_content[$locale] = $model_content['it'];
-                }
-            }
-            // @phpstan-ignore property.notFound
-            $model->content_blocks = $model_content;
+        // Gestione content_blocks
+        if (!empty($data['content_blocks'])) {
+            $model->content_blocks = $this->translateBlocks(
+                $model_contents['content_blocks'] ?? null,
+                $locales
+            );
         }
 
-        if ($data['sidebar_blocks']) {
-            $model_content = $model_contents['sidebar_blocks'];
-
-            // per ora do per scontato che la traduzione italiana esista
-            foreach ($locales as $locale) {
-                if (! isset($model_content[$locale])) {
-                    $model_content[$locale] = $model_content['it'];
-                }
-            }
-            // @phpstan-ignore property.notFound
-            $model->sidebar_blocks = $model_content;
+        // Gestione sidebar_blocks
+        if (!empty($data['sidebar_blocks'])) {
+            $model->sidebar_blocks = $this->translateBlocks(
+                $model_contents['sidebar_blocks'] ?? null,
+                $locales
+            );
         }
 
-        if ($data['footer_blocks']) {
-            $model_content = $model_contents['footer_blocks'];
-
-            // per ora do per scontato che la traduzione italiana esista
-            foreach ($locales as $locale) {
-                if (! isset($model_content[$locale])) {
-                    $model_content[$locale] = $model_content['it'];
-                }
-            }
-            // @phpstan-ignore property.notFound
-            $model->footer_blocks = $model_content;
+        // Gestione footer_blocks
+        if (!empty($data['footer_blocks'])) {
+            $model->footer_blocks = $this->translateBlocks(
+                $model_contents['footer_blocks'] ?? null,
+                $locales
+            );
         }
 
+        // Aggiorna il modello con le nuove traduzioni
         $model->update();
+    }
+
+    /**
+     * Metodo per tradurre i blocchi di contenuto.
+     */
+    private function translateBlocks(?array $model_content, array $locales): array
+    {
+        // Se il contenuto è null, inizializza come array vuoto
+        $model_content = $model_content ?? [];
+
+        // Verifica che esista una traduzione italiana, altrimenti imposta un array vuoto
+        if (!isset($model_content['it']) || !is_array($model_content['it'])) {
+            $model_content['it'] = [];
+        }
+
+        // Copia un array vuoto nelle altre lingue mancanti
+        foreach ($locales as $locale) {
+            if (!isset($model_content[$locale]) || !is_array($model_content[$locale])) {
+                $model_content[$locale] = [];
+            }
+        }
+
+        return $model_content;
     }
 }
